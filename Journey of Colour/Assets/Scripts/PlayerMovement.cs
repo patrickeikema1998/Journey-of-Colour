@@ -40,12 +40,12 @@ public class PlayerMovement : MonoBehaviour
     {
         if (Input.GetKey("d"))
         {
-            rb.AddForce(0, 0, sideForce * Time.deltaTime);
+            rb.AddForce(sideForce * Time.deltaTime, 0, 0);
         }
 
         if (Input.GetKey("a"))
         {
-            rb.AddForce(0, 0, -sideForce * Time.deltaTime);
+            rb.AddForce(-sideForce * Time.deltaTime, 0, 0);
         }
 
         if (isJumpButtonPressed)
