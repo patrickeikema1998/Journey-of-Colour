@@ -5,63 +5,54 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    public float speed;
-    public float jumpForce = 2.0f;
-    private bool isGrounded;
-    Rigidbody rb;
-    bool jump;
-    private Animator anim;
-    SpriteRenderer renderer;
-    float airY;
+    public Rigidbody rb;
 
+    public float sideForce;
+    public float jumpForce;
 
-    private void Start()
+    bool isJumpButtonPressed = false;
+    bool isGrounded = false;
+
+    public void Update()
     {
-        rb = GetComponent<Rigidbody>();
-        renderer = GetComponent<SpriteRenderer>();
-    }
-
-    // Update is called once per frame
-    void FixedUpdate()
-    {
-        float xDir = Input.GetAxis("Horizontal");
-        rb.velocity = new Vector3(xDir * speed, rb.velocity.y, rb.velocity.z);
-
-
-
-    }
-    private void Update()
-    {
-        Jump();
-
-        if (Input.GetKey(KeyCode.LeftArrow))
+        if (Input.GetButtonDown("Jump") && isGrounded)
         {
-            renderer.flipX = true;
+            isJumpButtonPressed = true;
         }
-        else if (Input.GetKey(KeyCode.RightArrow))
-        {
-            renderer.flipX = false;
-        }
-
     }
 
-    private void OnCollisionStay(Collision collision)
-    {
-        isGrounded = true;
-    }
     private void OnCollisionExit(Collision collision)
     {
-        isGrounded = false;
-
-    }
-
-    protected void Jump()
-    {
-        if (Input.GetKeyDown(KeyCode.Space))
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            rb.AddForce(Vector3.up * jumpForce);
+            isGrounded = false;
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+        }
+    }
 
+    void FixedUpdate()
+    {
+        if (Input.GetKey("d"))
+        {
+            rb.AddForce(sideForce * Time.deltaTime, 0, 0);
+        }
+
+        if (Input.GetKey("a"))
+        {
+            rb.AddForce(-sideForce * Time.deltaTime, 0, 0);
+        }
+
+        if (isJumpButtonPressed)
+        {
+            rb.AddForce(new Vector3(0, jumpForce * Time.deltaTime, 0), ForceMode.Impulse);
+            isJumpButtonPressed = false;
+        }
+    }
 }
