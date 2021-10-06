@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class CameraSideways : MonoBehaviour
 {
+    //Camera follows the player from a sideview
     public GameObject player;
 
    void LateUpdate()
