@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraFollow : MonoBehaviour
 {
     //Camera follows player from behind
+    //https://www.youtube.com/watch?v=MFQhpwc6cKE
     public Transform target;
 
     public float smoothSpeed = 0.125f;

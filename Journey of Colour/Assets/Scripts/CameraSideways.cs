@@ -5,6 +5,7 @@ using UnityEngine;
 public class CameraSideways : MonoBehaviour
 {
     //Camera follows the player from a sideview
+    //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
     public GameObject player;
 
    void LateUpdate()
