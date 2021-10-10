@@ -28,7 +28,7 @@ public class EnemyController : MonoBehaviour
         transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
 
         //verplaatst de enemy naar voren
-        m_Rigidbody.AddForce(transform.forward * speed, ForceMode.Force);
+        m_Rigidbody.AddForce(transform.forward * speed *Time.deltaTime, ForceMode.VelocityChange);
 
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
