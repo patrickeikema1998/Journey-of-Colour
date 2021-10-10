@@ -11,7 +11,7 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
 
     bool isJumpButtonPressed = false;
-    bool isGrounded = false;
+    public bool isGrounded = false;
 
     public void Update()
     {
