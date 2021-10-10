@@ -10,6 +10,7 @@ public class EnemyController : MonoBehaviour
     public GameObject player;
 
     Rigidbody m_Rigidbody;
+    MeleeAttack attack;
 
     float timeLeft;
 
@@ -17,6 +18,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
+        attack = GetComponent<MeleeAttack>();
         timeLeft = attackCooldown;
     }
 
@@ -38,6 +40,7 @@ public class EnemyController : MonoBehaviour
     void Attack()
     {
         timeLeft = attackCooldown;
+        attack.Attack();
         Debug.Log("Attacks!");
     }
 }

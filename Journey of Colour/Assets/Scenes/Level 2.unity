@@ -754,6 +754,7 @@ GameObject:
   - component: {fileID: 1111010250}
   - component: {fileID: 1111010255}
   - component: {fileID: 1111010256}
+  - component: {fileID: 1111010257}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -883,6 +884,21 @@ MonoBehaviour:
   rb: {fileID: 1111010250}
   sideForce: 3000
   jumpForce: 800
+--- !u!114 &1111010257
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111010249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 0
+  meleeWeapon: {fileID: 0}
+  weaponOffset: 1
 --- !u!1 &1288824735
 GameObject:
   m_ObjectHideFlags: 0
@@ -1079,6 +1095,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 61838374, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
+      propertyPath: damage
+      value: 10
+      objectReference: {fileID: 0}
+    - target: {fileID: 61838374, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
+      propertyPath: meleeWeapon
+      value: 
+      objectReference: {fileID: 2898798658221108718, guid: edc15585d110d744885f97a36da5206f, type: 3}
     - target: {fileID: 572177635397454091, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: m_Name
       value: Enemy

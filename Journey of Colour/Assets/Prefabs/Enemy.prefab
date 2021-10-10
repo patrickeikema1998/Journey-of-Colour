@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 572177635397454094}
   - component: {fileID: 572177635397454093}
   - component: {fileID: 396816615372423165}
+  - component: {fileID: 61838374}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Untagged
@@ -148,8 +149,21 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 10
-  health: 0
-  dead: 0
+--- !u!114 &61838374
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572177635397454091}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  meleeWeapon: {fileID: 2898798658221108718, guid: edc15585d110d744885f97a36da5206f, type: 3}
+  weaponOffset: 1
 --- !u!1 &656063889217491582
 GameObject:
   m_ObjectHideFlags: 0
