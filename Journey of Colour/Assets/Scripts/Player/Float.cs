@@ -8,27 +8,52 @@ public class Float : MonoBehaviour
 
     bool isGrounded;
     [SerializeField] Rigidbody rb;
-    void Start()
+    [SerializeField] float maxFloatTime, cooldownTime;
+    CustomTimer maxFloatTimer, cooldownTimer;
+    bool pressed;
+
+    private void Start()
     {
+        maxFloatTimer = new CustomTimer(maxFloatTime);
+        cooldownTimer = new CustomTimer(cooldownTime);
+        cooldownTimer.finish = true;
     }
 
-    // Update is called once per frame
+    private void Update()
+    {
+        maxFloatTimer.Update();
+        cooldownTimer.Update();
+    }
+
     private void FixedUpdate()
     {
         this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
-        Vector3 v = Physics.gravity * rb.mass;
-
-        if ( !isGrounded )
+        if (!isGrounded)
         {
             if (Input.GetKey(KeyCode.E))
             {
-                //rb.AddForce(-v);
-                rb.useGravity = false;
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                if (cooldownTimer.finish)
+                {
+                    cooldownTimer.Reset();
+                    cooldownTimer.start = true;
+
+                    maxFloatTimer.start = true;
+                    rb.useGravity = false;
+                    rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                }
+                pressed = true;
             } else
             {
+                pressed = false;
+            }
+
+            Debug.Log(maxFloatTimer.timeRemaining);
+
+            if (maxFloatTimer.finish || !pressed)
+            {
                 rb.useGravity = true;
+                maxFloatTimer.Reset();
             }
         }
     }
