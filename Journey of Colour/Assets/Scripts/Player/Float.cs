@@ -21,10 +21,14 @@ public class Float : MonoBehaviour
 
         if ( !isGrounded )
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKey(KeyCode.E))
             {
                 //rb.AddForce(-v);
-                rb.velocity = new Vector3(rb.velocity.x, 0f, rb.velocity.z);
+                rb.useGravity = false;
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            } else
+            {
+                rb.useGravity = true;
             }
         }
     }

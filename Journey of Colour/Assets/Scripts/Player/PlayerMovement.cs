@@ -39,15 +39,8 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        if (Input.GetKey("d"))
-        {
-            rb.AddForce(sideForce * Time.deltaTime, 0, 0);
-        }
-
-        if (Input.GetKey("a"))
-        {
-            rb.AddForce(-sideForce * Time.deltaTime, 0, 0);
-        }
+        var XMovement = Input.GetAxis("Horizontal");
+        rb.AddForce(sideForce * XMovement * Time.deltaTime, 0, 0);
 
         if (isJumpButtonPressed)
         {
