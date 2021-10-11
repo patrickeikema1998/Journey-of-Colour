@@ -203,7 +203,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0.5, y: 0.5}
   m_AnchorMax: {x: 0.5, y: 0.5}
-  m_AnchoredPosition: {x: -283, y: 227}
+  m_AnchoredPosition: {x: -289.7, y: 208.95}
   m_SizeDelta: {x: 196.4895, y: 32.1631}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &129561821
@@ -245,7 +245,7 @@ MonoBehaviour:
     m_PressedTrigger: Pressed
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
-  m_Interactable: 1
+  m_Interactable: 0
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 1565590847}
   m_HandleRect: {fileID: 0}
@@ -1933,6 +1933,7 @@ GameObject:
   - component: {fileID: 1366385716}
   - component: {fileID: 1366385718}
   - component: {fileID: 1366385717}
+  - component: {fileID: 1366385719}
   m_Layer: 5
   m_Name: Panel
   m_TagString: Untagged
@@ -2000,6 +2001,21 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1366385715}
   m_CullTransparentMesh: 1
+--- !u!114 &1366385719
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1366385715}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 76c392e42b5098c458856cdf6ecaaaa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_FirstSelected: {fileID: 1131085021}
+  m_sendNavigationEvents: 1
+  m_DragThreshold: 10
 --- !u!1001 &1474453449
 PrefabInstance:
   m_ObjectHideFlags: 0
