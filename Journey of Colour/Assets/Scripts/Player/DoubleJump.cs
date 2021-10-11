@@ -26,7 +26,7 @@ public class DoubleJump : MonoBehaviour
         {
             if (isJumpButtonPressed && !jumpedTwice)
             {
-                rb.AddForce(new Vector3(0, jumpForceTwo * Time.deltaTime, 0), ForceMode.Impulse);
+                rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
                 isJumpButtonPressed = false;
                 jumpedTwice = true;
             }
