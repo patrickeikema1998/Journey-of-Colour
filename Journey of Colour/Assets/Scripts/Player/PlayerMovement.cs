@@ -10,12 +10,12 @@ public class PlayerMovement : MonoBehaviour
     public float sideForce;
     public float jumpForce;
 
-    bool isJumpButtonPressed = false;
+    public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
     public void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
             isJumpButtonPressed = true;
         }
@@ -34,6 +34,7 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            isJumpButtonPressed = false;
         }
     }
 
@@ -42,7 +43,7 @@ public class PlayerMovement : MonoBehaviour
         var XMovement = Input.GetAxis("Horizontal");
         rb.AddForce(sideForce * XMovement * Time.deltaTime, 0, 0);
 
-        if (isJumpButtonPressed)
+        if (isJumpButtonPressed && isGrounded)
         {
             rb.AddForce(new Vector3(0, jumpForce * Time.deltaTime, 0), ForceMode.Impulse);
             isJumpButtonPressed = false;
