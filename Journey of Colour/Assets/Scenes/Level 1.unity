@@ -755,6 +755,7 @@ GameObject:
   - component: {fileID: 1111010255}
   - component: {fileID: 1111010256}
   - component: {fileID: 1111010257}
+  - component: {fileID: 1111010258}
   m_Layer: 0
   m_Name: Player
   m_TagString: Untagged
@@ -901,6 +902,19 @@ MonoBehaviour:
   rb: {fileID: 1111010250}
   maxFloatTime: 3
   cooldownTime: 10
+--- !u!114 &1111010258
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1111010249}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b8e4d9e5644d8a64eaa469bbe893ac81, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  jumpForceTwo: 700
 --- !u!1 &1112807658
 GameObject:
   m_ObjectHideFlags: 0
@@ -931,10 +945,6 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 1
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
-  m_Script: {fileID: 11500000, guid: b8e4d9e5644d8a64eaa469bbe893ac81, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  jumpForceTwo: 700
 --- !u!1 &1288824735
 GameObject:
   m_ObjectHideFlags: 0
