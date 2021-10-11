@@ -7,7 +7,9 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float sideForce;
+    private Vector3 PlayerMovementInput;
+
+    public float speed;
     public float jumpForce;
 
     bool isJumpButtonPressed = false;
@@ -39,12 +41,14 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        var XMovement = Input.GetAxis("Horizontal");
-        rb.AddForce(sideForce * XMovement * Time.deltaTime, 0, 0);
+        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
+        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
         if (isJumpButtonPressed)
         {
-            rb.AddForce(new Vector3(0, jumpForce * Time.deltaTime, 0), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
     }
