@@ -7,9 +7,7 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    private Vector3 PlayerMovementInput;
-
-    public float speed;
+    public float sideForce;
     public float jumpForce;
 
     public bool isJumpButtonPressed = false;
@@ -42,14 +40,12 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
-
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
-        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
+        var XMovement = Input.GetAxis("Horizontal");
+        rb.AddForce(sideForce * XMovement * Time.deltaTime, 0, 0);
 
         if (isJumpButtonPressed && isGrounded)
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            rb.AddForce(new Vector3(0, jumpForce * Time.deltaTime, 0), ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
     }
