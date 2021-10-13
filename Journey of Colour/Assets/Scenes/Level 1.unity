@@ -829,6 +829,8 @@ MonoBehaviour:
   rb: {fileID: 1111010250}
   maxFloatTime: 3
   cooldownTime: 10
+  SinYIncrement: 2.5
+  Amplitude: 0.02
 --- !u!114 &1111010258
 MonoBehaviour:
   m_ObjectHideFlags: 0
