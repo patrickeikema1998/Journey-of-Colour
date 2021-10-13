@@ -4,21 +4,23 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public float speed = 1,
-                 attackCooldown = 3,
-                 attackRange = 2;
-    public GameObject player;
+    [SerializeField] float speed = 1,
+                           attackCooldown = 3,
+                           attackRange = 2;
+    [SerializeField] GameObject player;
 
-    Rigidbody m_Rigidbody;
+    CharacterController controller;
     MeleeAttack attack;
+    Health health;
 
     float timeLeft;
 
     // Start is called before the first frame update
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
+        health = GetComponent<Health>();
         timeLeft = attackCooldown;
     }
 
@@ -30,7 +32,7 @@ public class EnemyController : MonoBehaviour
         transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
 
         //verplaatst de enemy naar voren
-        m_Rigidbody.AddForce(transform.forward * speed *Time.deltaTime, ForceMode.VelocityChange);
+        controller.SimpleMove(transform.forward * speed);
 
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
@@ -40,7 +42,7 @@ public class EnemyController : MonoBehaviour
     void Attack()
     {
         timeLeft = attackCooldown;
-        attack.Attack();
+        //attack.Attack();
         Debug.Log("Attacks!");
     }
 }
