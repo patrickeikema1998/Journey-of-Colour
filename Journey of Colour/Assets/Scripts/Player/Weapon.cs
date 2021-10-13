@@ -8,6 +8,9 @@ public class Weapon : MonoBehaviour
     public Transform bulletPoint;
     public GameObject bulletPrefab;
 
+    string lastPressed;
+    string currentPressed;
+
     // Update is called once per frame
     void Update()
     {
@@ -20,6 +23,7 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
+
         Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
     }
 }

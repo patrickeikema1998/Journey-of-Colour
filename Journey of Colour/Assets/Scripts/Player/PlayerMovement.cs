@@ -16,12 +16,22 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
+    string lastPressed;
+    string currentPressed;
+
     public void Update()
     {
-        if (Input.GetButtonDown("Jump"))
-        {
+        if (Input.GetButtonDown("Jump")) 
             isJumpButtonPressed = true;
-        }
+
+        lastPressed = currentPressed;
+
+        if (lastPressed == "a") LookingLeft();
+        else LookingRight();
+
+        if (Input.GetKeyDown("a")) currentPressed = "a";
+
+        if (Input.GetKeyDown("d")) currentPressed = "d";
     }
 
     private void OnCollisionExit(Collision collision)
@@ -54,5 +64,14 @@ public class PlayerMovement : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
+    }
+
+    private void LookingRight()
+    {
+        transform.localScale = new Vector3(1, 1, 1);
+    }
+    private void LookingLeft()
+    {
+        transform.localScale = new Vector3(-1, 1, 1);
     }
 }
