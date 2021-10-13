@@ -855,10 +855,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1111010250}
-  dashForce: 8
-  coolDownTime: 0.8
+  dashForce: 10
+  coolDownTime: 1
   durationTime: 0.25
-  material: {fileID: 2100000, guid: 8d539ab6754d1e74796f4a26a08973ce, type: 2}
 --- !u!1 &1112807658
 GameObject:
   m_ObjectHideFlags: 0
