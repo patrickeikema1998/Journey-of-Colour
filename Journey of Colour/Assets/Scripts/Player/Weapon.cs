@@ -8,9 +8,6 @@ public class Weapon : MonoBehaviour
     public Transform bulletPoint;
     public GameObject bulletPrefab;
 
-    string lastPressed;
-    string currentPressed;
-
     // Update is called once per frame
     void Update()
     {
