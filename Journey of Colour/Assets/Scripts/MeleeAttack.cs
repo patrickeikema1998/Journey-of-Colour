@@ -13,17 +13,20 @@ public class MeleeAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        //de attackrange
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetButtonDown("Fire1")) Attack();
+        //dit moet geplaatst worden in een playercontroller ofzo
+        //if (Input.GetButtonDown("Fire1")) Attack();
     }
 
     public void Attack()
     {
+        //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
         Collider[] overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
         foreach (Collider opponent in overlaps)
         {

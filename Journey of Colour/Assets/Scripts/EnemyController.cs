@@ -27,6 +27,8 @@ public class EnemyController : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (health.dead) Die();
+
         //zorgt ervoor det de enemy naar de speler wijst
         Vector3 playerDirection = player.transform.position - transform.position;
         transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
@@ -44,5 +46,10 @@ public class EnemyController : MonoBehaviour
         timeLeft = attackCooldown;
         //attack.Attack();
         Debug.Log("Attacks!");
+    }
+
+    void Die()
+    {
+        Destroy(this);
     }
 }

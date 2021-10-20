@@ -150,7 +150,7 @@ MonoBehaviour:
   attackRange: 1
   opponentLayer:
     serializedVersion: 2
-    m_Bits: 1
+    m_Bits: 128
 --- !u!143 &3910085651735610494
 CharacterController:
   m_ObjectHideFlags: 0
