@@ -10,17 +10,27 @@ public class Float : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxFloatTime, cooldownTime;
     CustomTimer maxFloatTimer, cooldownTimer;
-    bool pressed;
+    bool abilityGo;
+
+    SwapClass swapClass;
+
+    private float sinY;
+    [SerializeField] private float SinYIncrement;
+    [SerializeField] private float Amplitude;
 
     private void Start()
     {
         maxFloatTimer = new CustomTimer(maxFloatTime);
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
+
+        swapClass = GetComponent<SwapClass>();
+
     }
 
     private void Update()
     {
+
         maxFloatTimer.Update();
         cooldownTimer.Update();
     }
@@ -29,7 +39,7 @@ public class Float : MonoBehaviour
     {
         this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
-        if (!isGrounded)
+        if (!isGrounded && swapClass.playerClass == 0)
         {
             if (Input.GetKey(KeyCode.E))
             {
@@ -41,16 +51,23 @@ public class Float : MonoBehaviour
                     maxFloatTimer.start = true;
                     rb.useGravity = false;
                     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                    abilityGo = true;
                 }
-                pressed = true;
             } else
             {
-                pressed = false;
+                abilityGo = false;
             }
 
-            Debug.Log(maxFloatTimer.timeRemaining);
 
-            if (maxFloatTimer.finish || !pressed)
+            if (abilityGo)
+            {
+                sinY += SinYIncrement * Time.deltaTime;
+                var sinMovement = Mathf.Sin(sinY) * Amplitude;
+
+                rb.position = new Vector2(rb.position.x, rb.position.y + sinMovement);
+            }
+
+            if (!abilityGo || maxFloatTimer.finish)
             {
                 rb.useGravity = true;
                 maxFloatTimer.Reset();
