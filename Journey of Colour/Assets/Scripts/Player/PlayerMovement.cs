@@ -15,9 +15,9 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
-    public bool lookingLeft;
+    bool lookingLeft;
 
-    public string lastPressed;
+    string lastPressed;
     string currentPressed;
 
     public GameObject bullet;
