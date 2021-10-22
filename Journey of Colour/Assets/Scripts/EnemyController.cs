@@ -44,7 +44,7 @@ public class EnemyController : MonoBehaviour
     void Attack()
     {
         timeLeft = attackCooldown;
-        //attack.Attack();
+        attack.Attack();
         Debug.Log("Attacks!");
     }
 

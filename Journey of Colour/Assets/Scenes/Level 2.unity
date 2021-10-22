@@ -643,6 +643,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 1111010249}
+  startOffset: {x: 0, y: 0, z: 0}
 --- !u!1 &924894385
 GameObject:
   m_ObjectHideFlags: 0
@@ -882,8 +883,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 1111010250}
-  sideForce: 3000
+  speed: 0
   jumpForce: 800
+  isJumpButtonPressed: 0
+  isGrounded: 0
 --- !u!114 &1111010257
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1120,7 +1123,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 572177635397454095, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 1.3922653
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 572177635397454095, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: m_LocalRotation.w

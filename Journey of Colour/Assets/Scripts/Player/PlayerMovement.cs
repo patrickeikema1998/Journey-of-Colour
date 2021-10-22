@@ -7,6 +7,8 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
+    MeleeAttack meleeAttack;
+
     //public float sideForce;
     private Vector3 PlayerMovementInput;
 
@@ -16,12 +18,18 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
+    void Start()
+    {
+        meleeAttack = GetComponent<MeleeAttack>();
+    }
+
     public void Update()
     {
         if (Input.GetButtonDown("Jump"))
         {
             isJumpButtonPressed = true;
         }
+        if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
     }
 
     private void OnCollisionExit(Collision collision)
