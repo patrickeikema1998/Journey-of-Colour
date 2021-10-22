@@ -16,4 +16,14 @@ public class Bullet : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         rb.velocity = transform.right * speed;
     }
+
+    void OnTriggerEnter(Collider collision)
+    {
+        if (collision.gameObject.tag == "Enemy")
+        {
+            //Enemy enemy = collision.GetComponent<Enemy>()
+        }
+
+        Destroy(gameObject);
+    }
 }

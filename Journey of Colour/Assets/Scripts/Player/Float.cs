@@ -48,8 +48,6 @@ public class Float : MonoBehaviour
                 pressed = false;
             }
 
-            Debug.Log(maxFloatTimer.timeRemaining);
-
             if (maxFloatTimer.finish || !pressed)
             {
                 rb.useGravity = true;
