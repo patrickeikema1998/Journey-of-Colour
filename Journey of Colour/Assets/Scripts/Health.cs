@@ -39,4 +39,12 @@ public class Health : MonoBehaviour
         dead = false;
     }
 
+    private void Update()
+    {
+        if (dead)
+        {
+            Destroy(gameObject);
+        }
+    }
+
 }

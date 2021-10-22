@@ -5,22 +5,30 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
 
-    public Transform bulletPoint;
-    public GameObject bulletPrefab;
+    public Transform fireBallPoint;
+    public GameObject fireBallPrefab;
+
+    SwapClass swapClass;
+
+    private void Start()
+    {
+        swapClass = GetComponent<SwapClass>();
+    }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("z"))
-        {
-            Shoot();
-        }
+        if (swapClass.playerClass == 1)
+            if (Input.GetKeyDown("z"))
+            {
+                Shoot();
+            }
     }
 
     void Shoot()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
 
-        Instantiate(bulletPrefab, bulletPoint.position, bulletPoint.rotation);
+        Instantiate(fireBallPrefab, fireBallPoint.position, fireBallPoint.rotation);
     }
 }

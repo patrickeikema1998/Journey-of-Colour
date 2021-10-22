@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class Bullet : MonoBehaviour
+public class FireBall : MonoBehaviour
 {
     public float speed = 20;
     public Rigidbody rb;
@@ -14,16 +14,16 @@ public class Bullet : MonoBehaviour
     void Start()
     {
         playerMovement = player.GetComponent<PlayerMovement>();
+
         rb.velocity = transform.right * speed;
     }
 
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.gameObject.tag == "Enemy")
+        if (collision.tag == "Enemy")
         {
-            //Enemy enemy = collision.GetComponent<Enemy>()
+            collision.GetComponent<Health>().Damage(5);
         }
-
         Destroy(gameObject);
     }
 }

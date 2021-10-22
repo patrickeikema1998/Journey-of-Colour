@@ -151,8 +151,7 @@ MonoBehaviour:
   jumpForce: 17
   isJumpButtonPressed: 0
   isGrounded: 0
-  lookingLeft: 0
-  lastPressed: 
+  fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &4766406252104518685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -168,6 +167,8 @@ MonoBehaviour:
   rb: {fileID: 4766406252104518662}
   maxFloatTime: 3
   cooldownTime: 10
+  SinYIncrement: 0
+  Amplitude: 0
 --- !u!114 &4766406252104518686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -210,8 +211,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bulletPoint: {fileID: 4766406252270150372}
-  bulletPrefab: {fileID: 4340785449186259112, guid: ec725a87f49f55e418f369c74474e323, type: 3}
+  fireBallPoint: {fileID: 4766406252270150372}
+  fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!1 &4766406252270150379
 GameObject:
   m_ObjectHideFlags: 0
@@ -222,7 +223,7 @@ GameObject:
   m_Component:
   - component: {fileID: 4766406252270150372}
   m_Layer: 0
-  m_Name: BulletPoint
+  m_Name: FireBallPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

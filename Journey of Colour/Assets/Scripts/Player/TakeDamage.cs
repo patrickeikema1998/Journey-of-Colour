@@ -21,10 +21,12 @@ public class TakeDamage : MonoBehaviour
     void Update()
     {
         //If enemy attacks player, then the player takes the hit
-        if (Input.GetKeyDown(KeyCode.Space))
-        {
-            TakeHit(20);
-        }
+        //{
+        //    if (Input.GetKeyDown(KeyCode.Space))
+        //    {
+        //        TakeHit(20);
+        //    } 
+        //}
 
         if(currentHealth <= 0)
         {

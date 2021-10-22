@@ -116,10 +116,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab170a866557fb146ac6449f8379446a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 2.5
+  speed: 3
   attackCooldown: 3
   attackRange: 2
-  player: {fileID: 0}
+  player: {fileID: 4766406252104518661, guid: 569815516a4f824459d2dc91905f1128, type: 3}
 --- !u!114 &396816615372423165
 MonoBehaviour:
   m_ObjectHideFlags: 0

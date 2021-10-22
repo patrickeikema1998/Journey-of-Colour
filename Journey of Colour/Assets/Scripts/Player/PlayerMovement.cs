@@ -20,12 +20,12 @@ public class PlayerMovement : MonoBehaviour
     string lastPressed;
     string currentPressed;
 
-    public GameObject bullet;
-    private Bullet bulletScript;
+    public GameObject fireBall;
+    private FireBall bulletScript;
 
     public void Start()
     {
-        bulletScript = bullet.GetComponent<Bullet>();
+        bulletScript = fireBall.GetComponent<FireBall>();
     }
 
     public void Update()
