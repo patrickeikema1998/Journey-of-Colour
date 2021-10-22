@@ -77,7 +77,6 @@ public class PlayerMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-
         if (isJumpButtonPressed && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
