@@ -20,8 +20,6 @@ public class MeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        //dit moet geplaatst worden in een playercontroller ofzo
-        //if (Input.GetButtonDown("Fire1")) Attack();
     }
 
     public void Attack()
