@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6111656, g: 0.5547312, b: 0.65122885, a: 1}
+  m_IndirectSpecularColor: {r: 0.6111655, g: 0.5547312, b: 0.65122855, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -743,13 +743,13 @@ Rigidbody:
   m_GameObject: {fileID: 1111010249}
   serializedVersion: 2
   m_Mass: 1
-  m_Drag: 0
-  m_AngularDrag: 0.05
+  m_Drag: 0.3
+  m_AngularDrag: 0.5
   m_UseGravity: 1
   m_IsKinematic: 0
   m_Interpolate: 0
   m_Constraints: 120
-  m_CollisionDetection: 0
+  m_CollisionDetection: 1
 --- !u!65 &1111010251
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -897,9 +897,13 @@ MonoBehaviour:
   m_GameObject: {fileID: 1111010249}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f104972ef949e4ab83c1a1e1c635ae, type: 3}
+  m_Script: {fileID: 11500000, guid: b7c5c43a060fd84498bbd8dd299a9cb2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  rb: {fileID: 1111010250}
+  dashForce: 10
+  coolDownTime: 1
+  durationTime: 0.25
 --- !u!1 &1112807658
 GameObject:
   m_ObjectHideFlags: 0
@@ -1033,6 +1037,10 @@ PrefabInstance:
     - target: {fileID: 572177635397454091, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: m_Name
       value: Enemy
+      objectReference: {fileID: 0}
+    - target: {fileID: 572177635397454093, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
+      propertyPath: speed
+      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 572177635397454093, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: player
