@@ -35,7 +35,7 @@ public class TakeDamage : MonoBehaviour
         }
     }
 
-    void TakeHit(int damage)
+    public void TakeHit(int damage)
     {
         currentHealth -= damage;
 

@@ -25,10 +25,10 @@ public class BasicBulletPatern : MonoBehaviour
         if (collision.gameObject == target)
         {
             Debug.Log("Hit!");
+            target.GetComponent<TakeDamage>().TakeHit(20);
         }
 
         if (collision.gameObject.tag != "Enemy")
             Destroy(gameObject);
-         
     }
 }
