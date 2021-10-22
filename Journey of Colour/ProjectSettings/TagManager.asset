@@ -13,8 +13,8 @@ TagManager:
   - MovingObject
   - Water
   - UI
-  - 
-  - 
+  - Enemy
+  - Player
   - 
   - 
   - 
