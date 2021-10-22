@@ -7,15 +7,18 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    public float sideForce;
+    //public float sideForce;
+    private Vector3 PlayerMovementInput;
+
+    public float speed;
     public float jumpForce;
 
-    bool isJumpButtonPressed = false;
-    bool isGrounded = false;
+    public bool isJumpButtonPressed = false;
+    public bool isGrounded = false;
 
     public void Update()
     {
-        if (Input.GetButtonDown("Jump") && isGrounded)
+        if (Input.GetButtonDown("Jump"))
         {
             isJumpButtonPressed = true;
         }
@@ -34,24 +37,21 @@ public class PlayerMovement : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             isGrounded = true;
+            isJumpButtonPressed = false;
         }
     }
 
     void FixedUpdate()
     {
-        if (Input.GetKey("d"))
-        {
-            rb.AddForce(sideForce * Time.deltaTime, 0, 0);
-        }
+        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
 
-        if (Input.GetKey("a"))
-        {
-            rb.AddForce(-sideForce * Time.deltaTime, 0, 0);
-        }
+        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
+        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-        if (isJumpButtonPressed)
+
+        if (isJumpButtonPressed && isGrounded)
         {
-            rb.AddForce(new Vector3(0, jumpForce * Time.deltaTime, 0), ForceMode.Impulse);
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
     }
