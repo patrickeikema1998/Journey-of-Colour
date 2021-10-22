@@ -128,3 +128,5 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 20
   rb: {fileID: 7517601931884193809}
+  player: {fileID: 4766406252104518661, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+  lookingLeft: 0

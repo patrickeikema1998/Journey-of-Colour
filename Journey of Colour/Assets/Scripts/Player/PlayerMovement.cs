@@ -7,7 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    //public float sideForce;
     private Vector3 PlayerMovementInput;
 
     public float speed;
@@ -16,16 +15,31 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
-    public bool lookingLeft = false;
+    public bool lookingLeft;
 
     public string lastPressed;
     string currentPressed;
 
+    public GameObject bullet;
+    private Bullet bulletScript;
+
+    public void Start()
+    {
+        bulletScript = bullet.GetComponent<Bullet>();
+    }
+
     public void Update()
     {
-        if(!lookingLeft) transform.localScale = new Vector3(1, 1, 1);
-        else transform.localScale = new Vector3(-1, 1, 1);
-
+        if (!lookingLeft)
+        {
+            transform.localScale = new Vector3(1, 1, 1);
+            bulletScript.speed = 20;
+        }
+        else
+        {
+            transform.localScale = new Vector3(-1, 1, 1);
+            bulletScript.speed = -20;
+        }
         if (Input.GetButtonDown("Jump")) 
             isJumpButtonPressed = true;
 
@@ -37,7 +51,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("a")) currentPressed = "a";
 
         if (Input.GetKeyDown("d")) currentPressed = "d";
-
     }
 
     private void OnCollisionExit(Collision collision)
