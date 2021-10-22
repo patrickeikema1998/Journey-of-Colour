@@ -9,16 +9,11 @@ public class DoubleJump : MonoBehaviour
     bool isJumpButtonPressed;
     bool jumpedTwice;
     Rigidbody rb;
-
-    SwapClass playerClass;
-
     // Start is called before the first frame update
     void Start()
     {
         rb = this.GetComponent<Rigidbody>();
         jumpedTwice = false;
-
-        playerClass = GetComponent<SwapClass>();
     }
 
     // Update is called once per frame
@@ -29,9 +24,9 @@ public class DoubleJump : MonoBehaviour
 
         if (!isGrounded)
         {
-            if (isJumpButtonPressed && !jumpedTwice && playerClass.playerClass == 0)
+            if (isJumpButtonPressed && !jumpedTwice)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0, 0);
+                rb.velocity = new Vector3(rb.velocity.x, 0 , rb.velocity.z);
                 rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
                 isJumpButtonPressed = false;
                 jumpedTwice = true;
