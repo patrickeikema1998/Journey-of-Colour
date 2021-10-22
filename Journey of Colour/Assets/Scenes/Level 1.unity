@@ -855,7 +855,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 1111010250}
   speed: 10
-  jumpForce: 17
+  jumpForce: 20
   isJumpButtonPressed: 0
   isGrounded: 0
 --- !u!114 &1111010257
@@ -887,7 +887,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e4d9e5644d8a64eaa469bbe893ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForceTwo: 15
+  jumpForceTwo: 20
 --- !u!114 &1111010259
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -900,7 +900,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f104972ef949e4ab83c1a1e1c635ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 1111010250}
 --- !u!1 &1112807658
 GameObject:
   m_ObjectHideFlags: 0
