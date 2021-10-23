@@ -53,5 +53,10 @@ public class SlimeBossController : MonoBehaviour
             onGround = true;
             jumpCooldownTimer = 0;
         }
+
+        if (collision.gameObject.name.StartsWith("SideWall"))
+        {
+            facingLeft = !facingLeft;
+        }
     }
 }
