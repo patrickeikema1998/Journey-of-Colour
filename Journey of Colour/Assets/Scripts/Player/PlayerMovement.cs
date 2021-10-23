@@ -29,7 +29,10 @@ public class PlayerMovement : MonoBehaviour
         {
             isJumpButtonPressed = true;
         }
-        if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
+        if (Input.GetButtonDown("Fire1"))
+        {
+            meleeAttack.Attack();
+        }
     }
 
     private void OnCollisionExit(Collision collision)

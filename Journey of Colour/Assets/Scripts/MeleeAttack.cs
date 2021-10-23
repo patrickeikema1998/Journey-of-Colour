@@ -9,6 +9,7 @@ public class MeleeAttack : MonoBehaviour
                            attackRange = 1;
     [SerializeField] LayerMask opponentLayer;
     Vector3 attackBox;
+    int playerDirection = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -20,12 +21,22 @@ public class MeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if (Input.GetAxis("Horizontal") < 0) playerDirection = -1;
+        if (Input.GetAxis("Horizontal") > 0) playerDirection = 1;
     }
 
     public void Attack()
     {
         //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
-        Collider[] overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
+        Collider[] overlaps;
+        if (tag.Equals("Player"))
+        {
+            overlaps = Physics.OverlapBox(transform.position + (transform.right * attackOffset * playerDirection), attackBox, transform.rotation, opponentLayer);
+        } else
+        {
+            overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
+        }
+
         foreach (Collider opponent in overlaps)
         {
             if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
