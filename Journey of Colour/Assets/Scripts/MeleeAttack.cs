@@ -9,6 +9,7 @@ public class MeleeAttack : MonoBehaviour
                            attackRange = 1;
     [SerializeField] LayerMask opponentLayer;
     Vector3 attackBox;
+    int playerDirection = 1;
 
     // Start is called before the first frame update
     void Start()
@@ -20,7 +21,8 @@ public class MeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        Debug.DrawLine(transform.position + transform.forward, transform.position + (transform.forward * attackOffset));
+        if (Input.GetAxis("Horizontal") < 0) playerDirection = -1;
+        if (Input.GetAxis("Horizontal") > 0) playerDirection = 1;
     }
 
     public void Attack()
@@ -29,9 +31,6 @@ public class MeleeAttack : MonoBehaviour
         Collider[] overlaps;
         if (tag.Equals("Player"))
         {
-            int playerDirection = 0;
-            if (Input.GetAxis("Horizontal") < 0) playerDirection = 1;
-            if (Input.GetAxis("Horizontal") > 0) playerDirection = -1;
             overlaps = Physics.OverlapBox(transform.position + (transform.right * attackOffset * playerDirection), attackBox, transform.rotation, opponentLayer);
         } else
         {

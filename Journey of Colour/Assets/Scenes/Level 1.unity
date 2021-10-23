@@ -844,17 +844,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 61838374, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
-      propertyPath: damage
-      value: 2
-      objectReference: {fileID: 0}
     - target: {fileID: 572177635397454091, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: m_Name
       value: Enemy
-      objectReference: {fileID: 0}
-    - target: {fileID: 572177635397454093, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
-      propertyPath: speed
-      value: 3
       objectReference: {fileID: 0}
     - target: {fileID: 572177635397454093, guid: 789e9a820965b5d4a8d31a2a3c376065, type: 3}
       propertyPath: player
@@ -1240,7 +1232,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 112905447361577209, guid: 6ff2653edd9668c4a869a3f7e123f40c, type: 3}
       propertyPath: attackOffset
-      value: 1
+      value: 2
       objectReference: {fileID: 0}
     - target: {fileID: 8188030870913918960, guid: 6ff2653edd9668c4a869a3f7e123f40c, type: 3}
       propertyPath: m_RootOrder

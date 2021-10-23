@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField] float speed = 1,
                            attackCooldown = 3,
-                           attackRange = 2;
+                           attackDetectionRange = 2;
     [SerializeField] GameObject player;
 
     CharacterController controller;
@@ -38,18 +38,18 @@ public class EnemyController : MonoBehaviour
 
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
-        if (Vector3.SqrMagnitude(playerDirection) < attackRange * attackRange && timeLeft < 0) Attack();
+        if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0) Attack();
     }
 
     void Attack()
     {
         timeLeft = attackCooldown;
         attack.Attack();
-        Debug.Log("Attacks!");
     }
 
     void Die()
     {
-        Destroy(this);
+        Destroy(gameObject);
+
     }
 }
