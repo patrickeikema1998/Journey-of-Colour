@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 
     public int maxHealth = 10;
 
-    [System.NonSerialized] public int health;
+    public int health;
 
     [System.NonSerialized] public bool dead = false;
 
@@ -25,9 +25,8 @@ public class Health : MonoBehaviour
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
-        if (health < 0)
+        if (health <= 0)
         {
-            health = 0;
             dead = true;
         }
     }

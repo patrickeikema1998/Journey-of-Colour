@@ -18,6 +18,7 @@ public class Weapon : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //player can only fire a fireball when he is in class 1. also known as the black colour.
         if (swapClass.playerClass == 1)
             if (Input.GetKeyDown("z"))
             {
@@ -28,7 +29,6 @@ public class Weapon : MonoBehaviour
     void Shoot()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
-
         Instantiate(fireBallPrefab, fireBallPoint.position, fireBallPoint.rotation);
     }
 }
