@@ -24,7 +24,7 @@ public class BasicBulletPatern : MonoBehaviour
     {
         if (collision.gameObject == target)
         {
-            Debug.Log("Hit!");
+            //Debug.Log("Hit!");
         }
 
         if (collision.gameObject.tag != "Enemy")
