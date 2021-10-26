@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
                            attackDetectionRange = 2;
     [SerializeField] GameObject player;
 
-    public CharacterController controller;
+    CharacterController controller;
     MeleeAttack attack;
     Health health;
 
@@ -50,5 +50,6 @@ public class EnemyController : MonoBehaviour
     void Die()
     {
         Destroy(gameObject);
+
     }
 }

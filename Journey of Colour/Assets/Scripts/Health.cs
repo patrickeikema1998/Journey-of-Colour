@@ -7,7 +7,7 @@ public class Health : MonoBehaviour
 
     public int maxHealth = 10;
 
-    public int health;
+    [System.NonSerialized] public int health;
 
     [System.NonSerialized] public bool dead = false;
 
@@ -27,6 +27,7 @@ public class Health : MonoBehaviour
         health -= damageAmount;
         if (health <= 0)
         {
+            health = 0;
             dead = true;
         }
     }
@@ -36,14 +37,6 @@ public class Health : MonoBehaviour
         health += healAmount;
         if (health > maxHealth) health = maxHealth;
         dead = false;
-    }
-
-    private void Update()
-    {
-        if (dead)
-        {
-            Destroy(gameObject);
-        }
     }
 
 }
