@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 8754023165531826241}
   - component: {fileID: 4146760915215580849}
   - component: {fileID: 7658891187539879772}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: JumpCollision
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -108,9 +108,9 @@ GameObject:
   - component: {fileID: 6602083023199105790}
   - component: {fileID: 6602083023199105785}
   - component: {fileID: 6602083023199105784}
-  m_Layer: 11
+  m_Layer: 0
   m_Name: Platform
-  m_TagString: Ground
+  m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
