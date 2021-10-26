@@ -9,6 +9,7 @@ public class Counter : MonoBehaviour
     private bool keyDown;
     private CharacterController controller;
     private CustomTimer cooldownTimer;
+    private SwapClass swapClass;
     //https://www.youtube.com/watch?v=_w7GU2NIxUE
     //https://answers.unity.com/questions/1100879/push-object-in-opposite-direction-of-collision.html
 
@@ -16,6 +17,8 @@ public class Counter : MonoBehaviour
     {
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
+
+        swapClass = GetComponent<SwapClass>();
     }
 
     public void Update()
@@ -33,7 +36,7 @@ public class Counter : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (keyDown)
+        if (keyDown && swapClass.playerClass == 1)
         {
             Vector3 dir = (c.gameObject.transform.position - transform.position).normalized;
 
@@ -48,9 +51,9 @@ public class Counter : MonoBehaviour
                     if (controller != null)
                     {
                         c.gameObject.transform.forward = (new Vector3(
-                        dir.x * c.gameObject.transform.forward.x,
-                        dir.y * c.gameObject.transform.forward.y,
-                        dir.z * c.gameObject.transform.forward.z)
+                        dir.x,
+                        dir.y,
+                        dir.z)
                         );
                         controller.SimpleMove(c.gameObject.transform.forward * enemyForce);
                     }
