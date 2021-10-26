@@ -4,15 +4,17 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-
-    public Transform fireBallPoint;
+    public Transform fireBallPointLeft;
+    public Transform fireBallPointRight;
     public GameObject fireBallPrefab;
 
     SwapClass swapClass;
+    PlayerMovement playerMovement;
 
     private void Start()
     {
         swapClass = GetComponent<SwapClass>();
+        playerMovement = GetComponent<PlayerMovement>();
     }
 
     // Update is called once per frame
@@ -20,15 +22,31 @@ public class Weapon : MonoBehaviour
     {
         //player can only fire a fireball when he is in class 1. also known as the black colour.
         if (swapClass.playerClass == 1)
+        {
+
             if (Input.GetKeyDown("z"))
             {
-                Shoot();
+                if (!playerMovement.lookingLeft)
+                {
+                    ShootRight();
+                }
+                else if (playerMovement.lookingLeft)
+                {
+                    ShootLeft();
+                }
             }
+        }
     }
 
-    void Shoot()
+    void ShootRight()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
-        Instantiate(fireBallPrefab, fireBallPoint.position, fireBallPoint.rotation);
+        Instantiate(fireBallPrefab, fireBallPointRight.position, fireBallPointRight.rotation);
+    }
+
+    void ShootLeft()
+    {
+        //instantiate a bullet on a certain position (the bulletPoint).
+        Instantiate(fireBallPrefab, fireBallPointLeft.position, fireBallPointLeft.rotation);
     }
 }

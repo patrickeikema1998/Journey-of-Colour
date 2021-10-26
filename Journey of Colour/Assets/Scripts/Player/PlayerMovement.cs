@@ -15,7 +15,7 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
-    bool lookingLeft;
+    public bool lookingLeft;
 
     string lastPressed;
     string currentPressed;
@@ -32,16 +32,18 @@ public class PlayerMovement : MonoBehaviour
     {
         if (!lookingLeft)
         {
-            transform.localScale = new Vector3(1, 1, 1);
+            //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
             bulletScript.speed = 20;
         }
         else
         {
-            transform.localScale = new Vector3(-1, 1, 1);
+            //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             bulletScript.speed = -20;
         }
-        if (Input.GetButtonDown("Jump")) 
+        if (Input.GetButtonDown("Jump"))
             isJumpButtonPressed = true;
+
+
 
         lastPressed = currentPressed;
 
