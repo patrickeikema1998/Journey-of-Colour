@@ -7,9 +7,6 @@ public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
 
-    MeleeAttack meleeAttack;
-
-    //public float sideForce;
     private Vector3 PlayerMovementInput;
 
     public float speed;
@@ -18,21 +15,44 @@ public class PlayerMovement : MonoBehaviour
     public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
 
-    void Start()
+    public bool lookingLeft;
+
+    string lastPressed;
+    string currentPressed;
+
+    public GameObject fireBall;
+    private FireBall bulletScript;
+
+    public void Start()
     {
-        meleeAttack = GetComponent<MeleeAttack>();
+        bulletScript = fireBall.GetComponent<FireBall>();
     }
 
     public void Update()
     {
+        if (!lookingLeft)
+        {
+            //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
+            bulletScript.speed = 20;
+        }
+        else
+        {
+            //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
+            bulletScript.speed = -20;
+        }
         if (Input.GetButtonDown("Jump"))
-        {
             isJumpButtonPressed = true;
-        }
-        if (Input.GetButtonDown("Fire1"))
-        {
-            meleeAttack.Attack();
-        }
+
+
+
+        lastPressed = currentPressed;
+
+        if (lastPressed == "a") lookingLeft = true;
+        else lookingLeft = false;
+
+        if (Input.GetKeyDown("a")) currentPressed = "a";
+
+        if (Input.GetKeyDown("d")) currentPressed = "d";
     }
 
     private void OnCollisionExit(Collision collision)
@@ -58,7 +78,6 @@ public class PlayerMovement : MonoBehaviour
 
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
-
 
         if (isJumpButtonPressed && isGrounded)
         {
