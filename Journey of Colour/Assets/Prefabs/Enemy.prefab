@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 572177635397454095}
   - component: {fileID: 572177635397454088}
   - component: {fileID: 572177635397454089}
+  - component: {fileID: 572177635397454090}
   - component: {fileID: 572177635397454093}
   - component: {fileID: 396816615372423165}
   - component: {fileID: 61838374}
@@ -89,6 +90,20 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!136 &572177635397454090
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 572177635397454091}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 0
+  m_Enabled: 1
+  m_Radius: 0.5
+  m_Height: 2
+  m_Direction: 1
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!114 &572177635397454093
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -103,8 +118,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 3
   attackCooldown: 3
-  attackDetectionRange: 2
-  player: {fileID: 0}
+  attackRange: 2
+  player: {fileID: 4766406252104518661, guid: 569815516a4f824459d2dc91905f1128, type: 3}
 --- !u!114 &396816615372423165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -132,7 +147,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 2
   attackOffset: 1
-  attackRange: 2
+  attackRange: 1
   opponentLayer:
     serializedVersion: 2
     m_Bits: 128
