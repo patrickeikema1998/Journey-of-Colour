@@ -41,7 +41,7 @@ public class Float : MonoBehaviour
 
         if (!isGrounded && swapClass.playerClass == 0)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey("w"))
             {
                 if (cooldownTimer.finish)
                 {
