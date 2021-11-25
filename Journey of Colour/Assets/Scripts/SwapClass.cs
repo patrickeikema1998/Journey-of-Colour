@@ -25,10 +25,11 @@ public class SwapClass : MonoBehaviour
 
     void Controls()
     {
-        if (Input.GetKey(KeyCode.X))
+        if (Input.GetKeyDown(KeyCode.W) && playerClass != (int)Classes.Devil)
         {
             playerClass = (int)Classes.Devil;
-        } else if (Input.GetKey(KeyCode.C))
+        }
+        else if (Input.GetKeyDown(KeyCode.W) && playerClass != (int)Classes.Angel)
         {
             playerClass = (int)Classes.Angel;
         }
@@ -36,10 +37,11 @@ public class SwapClass : MonoBehaviour
 
     void SwapColor()
     {
-        if(playerClass == (int)Classes.Angel)
+        if (playerClass == (int)Classes.Angel)
         {
             material.color = Color.white;
-        } else if(playerClass == (int)Classes.Devil)
+        }
+        else if (playerClass == (int)Classes.Devil)
         {
             material.color = Color.black;
         }
