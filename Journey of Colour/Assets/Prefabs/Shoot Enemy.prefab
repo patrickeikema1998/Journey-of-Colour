@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 4242413292823824250}
   - component: {fileID: 4242413292823824225}
   - component: {fileID: 4780426694051202433}
-  m_Layer: 0
+  m_Layer: 6
   m_Name: Shoot Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -143,3 +143,4 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 5
+  health: 0
