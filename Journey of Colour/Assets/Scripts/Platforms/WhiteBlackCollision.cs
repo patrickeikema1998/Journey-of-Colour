@@ -11,11 +11,12 @@ public class WhiteBlackCollision : MonoBehaviour
     Collider collider;
     CustomTimer swapColorTimer;
     [SerializeField] Material material;
+    [SerializeField] int swapTimeInSeconds;
 
     string color;
     void Start()
     {
-        swapColorTimer = new CustomTimer(1);
+        swapColorTimer = new CustomTimer(swapTimeInSeconds);
         swapColorTimer.start = true;
 
         playerClass = player.GetComponent<SwapClass>();
@@ -48,12 +49,12 @@ public class WhiteBlackCollision : MonoBehaviour
         if(other.gameObject.layer == 7)
         {
             // 0 is white
-            if (playerClass.playerClass == 0 && material.color == Color.white)
+            if (playerClass.currentClass == SwapClass.playerClasses.Angel && material.color == Color.white)
             {
                 collider.isTrigger = false;
             }
             
-            if(playerClass.playerClass == 1 && material.color == Color.black)
+            if(playerClass.currentClass == SwapClass.playerClasses.Devil && material.color == Color.black)
             {
                 collider.isTrigger = false;
             }
@@ -64,11 +65,11 @@ public class WhiteBlackCollision : MonoBehaviour
     {
         if(collision.gameObject.layer == 7)
         {
-            if(playerClass.playerClass == 1 && material.color == Color.white)
+            if(playerClass.currentClass == SwapClass.playerClasses.Devil && material.color == Color.white)
             {
                 collider.isTrigger = true;
             }
-            if(playerClass.playerClass == 0 && material.color == Color.black)
+            if(playerClass.currentClass == SwapClass.playerClasses.Angel && material.color == Color.black)
             {
                 collider.isTrigger = true;
             }

@@ -36,7 +36,7 @@ public class Counter : MonoBehaviour
 
     void OnTriggerEnter(Collider c)
     {
-        if (keyDown && swapClass.playerClass == 1)
+        if (keyDown && swapClass.currentClass == SwapClass.playerClasses.Devil)
         {
             Vector3 dir = (c.gameObject.transform.position - transform.position).normalized;
 

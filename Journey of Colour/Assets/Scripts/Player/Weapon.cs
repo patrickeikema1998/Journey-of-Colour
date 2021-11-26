@@ -21,7 +21,7 @@ public class Weapon : MonoBehaviour
     void Update()
     {
         //player can only fire a fireball when he is in class 1. also known as the black colour.
-        if (swapClass.playerClass == 1)
+        if (swapClass.currentClass == SwapClass.playerClasses.Devil)
         {
 
             if (Input.GetKeyDown("z"))
