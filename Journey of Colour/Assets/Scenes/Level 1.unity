@@ -130,6 +130,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 4242413292823824225, guid: b1308b5e6b04b024f808534e2e544061, type: 3}
+      propertyPath: offsetDistance
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4242413292823824251, guid: b1308b5e6b04b024f808534e2e544061, type: 3}
       propertyPath: m_Name
       value: Shoot Enemy
@@ -184,6 +188,24 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b1308b5e6b04b024f808534e2e544061, type: 3}
+--- !u!1 &11482338 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4242413292823824251, guid: b1308b5e6b04b024f808534e2e544061, type: 3}
+  m_PrefabInstance: {fileID: 11482337}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &11482339
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 11482338}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b519f19d30c4a54eb701e8e18897d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 720
 --- !u!1 &107615519
 GameObject:
   m_ObjectHideFlags: 0
@@ -1734,7 +1756,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6602083023199105787, guid: 45ba1ef3ccbd8124483c32473b3d3caa, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 2.9
+      value: 4.76
       objectReference: {fileID: 0}
     - target: {fileID: 6602083023199105787, guid: 45ba1ef3ccbd8124483c32473b3d3caa, type: 3}
       propertyPath: m_LocalPosition.z
@@ -2134,6 +2156,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -2025108513493655663, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: enemyForce
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: -2025108513493655663, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: bulletForce
+      value: 20
+      objectReference: {fileID: 0}
     - target: {fileID: 1080790390, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: slider
       value: 
@@ -2246,7 +2276,8 @@ PrefabInstance:
       propertyPath: coolDownTime
       value: 0.4
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: -2025108513493655663, guid: 569815516a4f824459d2dc91905f1128, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 569815516a4f824459d2dc91905f1128, type: 3}
 --- !u!1001 &1474453449
 PrefabInstance:
