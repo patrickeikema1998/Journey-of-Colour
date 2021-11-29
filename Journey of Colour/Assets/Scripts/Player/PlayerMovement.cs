@@ -74,6 +74,7 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = true;
             isJumpButtonPressed = false;
         }
+        else isGrounded = false;
     }
 
     void FixedUpdate()
