@@ -31,7 +31,7 @@ public class EnemyController : MonoBehaviour
 
         //zorgt ervoor det de enemy naar de speler wijst
         Vector3 playerDirection = player.transform.position - transform.position;
-        transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
+        //transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
 
         //verplaatst de enemy naar voren
         controller.SimpleMove(transform.forward * speed);

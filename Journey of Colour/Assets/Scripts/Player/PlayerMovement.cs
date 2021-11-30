@@ -6,6 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public Rigidbody rb;
+    MeleeAttack meleeAttack;
 
     private Vector3 PlayerMovementInput;
 
@@ -26,6 +27,7 @@ public class PlayerMovement : MonoBehaviour
     public void Start()
     {
         bulletScript = fireBall.GetComponent<FireBall>();
+        meleeAttack = GetComponent<MeleeAttack>();
     }
 
     public void Update()
@@ -53,6 +55,8 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("a")) currentPressed = "a";
 
         if (Input.GetKeyDown("d")) currentPressed = "d";
+
+        if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
     }
 
     private void OnCollisionExit(Collision collision)

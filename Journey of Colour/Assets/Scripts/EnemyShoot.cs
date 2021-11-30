@@ -5,7 +5,7 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
-    [SerializeField] float fireRate = 5f;
+    [SerializeField] float fireRate = 5f, offsetDistance;
     float coolDown;
    
     void Start()
@@ -27,6 +27,8 @@ public class EnemyShoot : MonoBehaviour
     void FireBullet()
     {
         coolDown = fireRate;
-        Instantiate(bullet, transform.position, Quaternion.identity);
+        Debug.Log(transform.forward);
+        Vector3 dir = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
+        Instantiate(bullet, (transform.position + (dir * offsetDistance)), Quaternion.identity);
     }
 }

@@ -9,8 +9,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6716492919531158181}
-  m_Layer: 0
-  m_Name: FireBallPoint (1)
+  m_Layer: 7
+  m_Name: FireBallPointLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -50,9 +50,14 @@ GameObject:
   - component: {fileID: 4766406252104518687}
   - component: {fileID: 4766406252104518680}
   - component: {fileID: -206350395486930965}
-  m_Layer: 0
+  - component: {fileID: -2025108513493655663}
+  - component: {fileID: 1091400812943742362}
+  - component: {fileID: 5245770882488702517}
+  - component: {fileID: 1080790390}
+  - component: {fileID: 8480394775091741918}
+  m_Layer: 7
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -183,6 +188,7 @@ MonoBehaviour:
   jumpForce: 17
   isJumpButtonPressed: 0
   isGrounded: 0
+  lookingLeft: 0
   fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &4766406252104518685
 MonoBehaviour:
@@ -243,7 +249,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  fireBallPoint: {fileID: 4766406252270150372}
+  fireBallPointLeft: {fileID: 6716492919531158181}
+  fireBallPointRight: {fileID: 4766406252270150372}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &-206350395486930965
 MonoBehaviour:
@@ -257,6 +264,82 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50f104972ef949e4ab83c1a1e1c635ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &-2025108513493655663
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766406252104518661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletForce: 0
+  enemyForce: 0
+  cooldownTime: 0
+--- !u!114 &1091400812943742362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766406252104518661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  maxHealth: 10
+  health: 0
+--- !u!114 &5245770882488702517
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766406252104518661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 2
+  attackOffset: 1
+  attackRange: 1
+  opponentLayer:
+    serializedVersion: 2
+    m_Bits: 4160
+--- !u!114 &1080790390
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766406252104518661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+--- !u!114 &8480394775091741918
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4766406252104518661}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b7c5c43a060fd84498bbd8dd299a9cb2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rb: {fileID: 0}
+  dashForce: 10
+  coolDownTime: 0.2
+  durationTime: 0.25
 --- !u!1 &4766406252270150379
 GameObject:
   m_ObjectHideFlags: 0
@@ -266,8 +349,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 4766406252270150372}
-  m_Layer: 0
-  m_Name: FireBallPoint
+  m_Layer: 7
+  m_Name: FireBallPointRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
