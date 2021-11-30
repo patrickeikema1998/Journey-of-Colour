@@ -2824,6 +2824,10 @@ PrefabInstance:
       value: Player
       objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518680, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: shootTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 4766406252104518680, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: fireBallPointLeft
       value: 
       objectReference: {fileID: 2132580516}
