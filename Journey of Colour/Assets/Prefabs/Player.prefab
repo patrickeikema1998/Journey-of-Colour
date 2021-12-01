@@ -49,7 +49,6 @@ GameObject:
   - component: {fileID: 4766406252104518686}
   - component: {fileID: 4766406252104518687}
   - component: {fileID: 4766406252104518680}
-  - component: {fileID: -206350395486930965}
   - component: {fileID: -2025108513493655663}
   - component: {fileID: 1091400812943742362}
   - component: {fileID: 5245770882488702517}
@@ -135,7 +134,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 4766406252104518661}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 21a4075e1c70d0542b22e9b705200e24, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -170,7 +169,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   material: {fileID: 2100000, guid: 8d539ab6754d1e74796f4a26a08973ce, type: 2}
-  playerClass: 0
+  swappable: 1
+  currentClass: 0
 --- !u!114 &4766406252104518684
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -185,7 +185,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4766406252104518662}
   speed: 10
-  jumpForce: 17
+  jumpForce: 22
   isJumpButtonPressed: 0
   isGrounded: 0
   lookingLeft: 0
@@ -219,7 +219,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e4d9e5644d8a64eaa469bbe893ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForceTwo: 15
+  jumpForceTwo: 20
 --- !u!114 &4766406252104518687
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -252,18 +252,6 @@ MonoBehaviour:
   fireBallPointLeft: {fileID: 6716492919531158181}
   fireBallPointRight: {fileID: 4766406252270150372}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
---- !u!114 &-206350395486930965
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766406252104518661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 50f104972ef949e4ab83c1a1e1c635ae, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &-2025108513493655663
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -278,7 +266,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bulletForce: 0
   enemyForce: 0
-  cooldownTime: 0
+  counterDistance: 0
 --- !u!114 &1091400812943742362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -338,7 +326,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 0}
   dashForce: 10
-  coolDownTime: 0.2
+  coolDownTime: 0.3
   durationTime: 0.25
 --- !u!1 &4766406252270150379
 GameObject:
