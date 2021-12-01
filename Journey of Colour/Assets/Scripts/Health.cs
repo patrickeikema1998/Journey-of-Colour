@@ -50,9 +50,10 @@ public class Health : MonoBehaviour
             Destroy(gameObject);
         }
 
-        if(dead && gameObject == player)
+        if(health <= 0 && gameObject == player)
         {
             health = maxHealth;
+            healthbar.SetHealth(health);
         }
     }
 }
