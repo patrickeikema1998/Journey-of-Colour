@@ -49,5 +49,10 @@ public class Health : MonoBehaviour
         {
             Destroy(gameObject);
         }
+
+        if(dead && gameObject == player)
+        {
+            health = maxHealth;
+        }
     }
 }
