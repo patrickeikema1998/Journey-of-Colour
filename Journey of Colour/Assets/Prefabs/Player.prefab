@@ -235,9 +235,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   currentHealth: 100
-  healthbar: {fileID: 0}
-  rb: {fileID: 4766406252104518662}
-  panel: {fileID: 0}
+  healthbar: {fileID: 1080790390}
 --- !u!114 &4766406252104518680
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -281,8 +279,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
-  health: 0
+  maxHealth: 100
+  health: 100
+  player: {fileID: 4766406252104518661}
+  healthbar: {fileID: 1080790390}
 --- !u!114 &5245770882488702517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -342,9 +342,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4360ad34f57e446aa6005b263595a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 0}
-  checkPoints: []
-  vectorPoint: {x: 0, y: 0, z: 0}
+  player: {fileID: 4766406252104518661}
+  checkPoints:
+  - {fileID: 0}
 --- !u!1 &4766406252270150379
 GameObject:
   m_ObjectHideFlags: 0
