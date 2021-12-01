@@ -346,8 +346,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5675490294247148220, guid: 883f37e65b6d7024bbfe0afbf0afc78f, type: 3}
+  player: {fileID: 0}
   fireRate: 3
-  offsetDistance: 1.5
+  offsetFloat: 0.2
 --- !u!114 &4596822843485974000
 MonoBehaviour:
   m_ObjectHideFlags: 0

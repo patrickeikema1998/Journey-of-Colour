@@ -5,9 +5,16 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
-    [SerializeField] float fireRate = 5f, offsetDistance;
+    [SerializeField] GameObject player;
+    [SerializeField] float fireRate = 5f, offsetFloat;
+    
+
     float coolDown;
-   
+    
+    Vector3 offset;
+    
+    bool lookingLeft;
+
     void Start()
     {
         coolDown = fireRate;
@@ -16,18 +23,29 @@ public class EnemyShoot : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        offset = new Vector3(offsetFloat, 0, 0);
+
         coolDown -= Time.deltaTime;
 
         if (coolDown < 0)
         {
             FireBullet();
         }
+
+        if (transform.position.x < player.transform.position.x)
+            lookingLeft = true; 
+        else
+            lookingLeft = false;
+
+        if(lookingLeft)
+            offsetFloat = 1;
+        else
+            offsetFloat = -1;
     }
 
     void FireBullet()
     {
         coolDown = fireRate;
-        Vector3 dir = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
-        Instantiate(bullet, (transform.position + (dir * offsetDistance)), Quaternion.identity);
+        Instantiate(bullet, transform.position + offset, Quaternion.identity);
     }
 }

@@ -432,8 +432,9 @@ MonoBehaviour:
   speed: 2
   attackCooldown: 3
   attackDetectionRange: 2
+  enemySight: 10
   player: {fileID: 0}
-  controller: {fileID: 0}
+  controller: {fileID: 8688109621829120273}
 --- !u!114 &1096991032897665282
 MonoBehaviour:
   m_ObjectHideFlags: 0
