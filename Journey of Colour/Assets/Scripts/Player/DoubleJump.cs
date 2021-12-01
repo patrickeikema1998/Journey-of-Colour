@@ -24,7 +24,7 @@ public class DoubleJump : MonoBehaviour
         this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
         this.isJumpButtonPressed = GetComponent<PlayerMovement>().isJumpButtonPressed;
 
-        if (!isGrounded && swapClass.playerClass == 0)
+        if (!isGrounded && swapClass.currentClass == 0)
         {
             if (isJumpButtonPressed && !jumpedTwice)
             {

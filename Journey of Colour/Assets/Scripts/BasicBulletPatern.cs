@@ -22,6 +22,7 @@ public class BasicBulletPatern : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        Debug.Log("COLLIDED!");
         if (collision.gameObject == target)
         {
             Debug.Log("Hit!");

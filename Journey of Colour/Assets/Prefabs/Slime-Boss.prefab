@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 6598137198759520921}
   - component: {fileID: 6598137198759520922}
   - component: {fileID: 6045546699012542347}
+  - component: {fileID: 9126506332441091796}
   m_Layer: 12
   m_Name: Slime-Boss
   m_TagString: Enemy
@@ -118,6 +119,7 @@ MonoBehaviour:
   jumpCooldownPhase3: 0.5
   shootCooldownPhase2: 2
   shootCooldownPhase3: 1
+  burstTime: 1.6
   jumpForce: 25
   sideForce: 5
 --- !u!54 &6598137198759520921
@@ -149,6 +151,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
+  health: 0
 --- !u!114 &6045546699012542347
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -163,3 +166,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   bullet: {fileID: 5675490294247148220, guid: 883f37e65b6d7024bbfe0afbf0afc78f, type: 3}
   fireRate: 0.3
+--- !u!114 &9126506332441091796
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6598137198759520914}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  bulletForce: 0
+  enemyForce: 40
+  counterDistance: 3
