@@ -5,7 +5,7 @@ using UnityEngine;
 public class CustomTimer : MonoBehaviour
 {
     public float timeRemaining, initialTimeInSeconds;
-    public bool start, finish; 
+    public bool start, finish;
     // Start is called before the first frame update
 
     public CustomTimer(float timeInSeconds)
