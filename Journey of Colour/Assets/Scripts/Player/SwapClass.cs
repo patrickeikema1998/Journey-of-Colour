@@ -28,7 +28,7 @@ public class SwapClass : MonoBehaviour
     {
         if (swappable)
         {
-            if (Input.GetKeyDown(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.W))
             {
                 if(currentClass == playerClasses.Angel)
                 {

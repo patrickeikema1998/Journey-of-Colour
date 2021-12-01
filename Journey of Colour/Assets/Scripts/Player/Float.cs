@@ -57,7 +57,8 @@ public class Float : MonoBehaviour
                     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);         //sets Y velocity on 0 before starting ability, so that player wont fly upwards.
                     abilityGo = true;
                 }
-            } else
+            }
+            else
             {
                 abilityGo = false;
             }

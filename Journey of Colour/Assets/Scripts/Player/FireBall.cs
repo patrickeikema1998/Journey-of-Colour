@@ -5,7 +5,6 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     public float speed = 20;
-    float outOfRange = 60;
 
     public Rigidbody rb;
     public GameObject player;

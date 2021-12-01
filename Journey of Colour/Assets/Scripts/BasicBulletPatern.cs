@@ -22,14 +22,14 @@ public class BasicBulletPatern : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        Debug.Log("COLLIDED!");
         if (collision.gameObject == target)
         {
-            Debug.Log("Hit!");
-            target.GetComponent<TakeDamage>().TakeHit(20);
+            //Debug.Log("Hit!");
+            //target.GetComponent<TakeDamage>().TakeHit(2);
+            target.GetComponent<Health>().Damage(2);
         }
 
-        if (collision.gameObject.tag != "Enemy")
-            Destroy(gameObject);
+        //if (collision.gameObject.tag != "Enemy")
+        //    Destroy(gameObject);
     }
 }

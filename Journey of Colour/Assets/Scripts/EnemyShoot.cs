@@ -27,7 +27,6 @@ public class EnemyShoot : MonoBehaviour
     void FireBullet()
     {
         coolDown = fireRate;
-        Debug.Log(transform.forward);
         Vector3 dir = new Vector3(transform.forward.x, transform.forward.y, transform.forward.z);
         Instantiate(bullet, (transform.position + (dir * offsetDistance)), Quaternion.identity);
     }

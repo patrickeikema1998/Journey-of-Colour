@@ -11,7 +11,6 @@ public class Rotate : MonoBehaviour
     void Start()
     {
         target = GameObject.Find("Player");
-        Debug.Log("Hai");
     }
 
     // Update is called once per frame
