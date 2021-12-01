@@ -43,3 +43,5 @@ public class CheckPoint : MonoBehaviour
         checkPointHit = true;
     }
 }
+
+//bron: https://www.youtube.com/watch?v=3CfvYnfq-9M
