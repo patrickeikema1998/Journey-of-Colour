@@ -5,12 +5,12 @@ using UnityEngine;
 public class FollowEnemy : MonoBehaviour
 {
     public GameObject enemy;
-    Vector3 offset;
+    //Vector3 offset;
 
     // Start is called before the first frame update
     private void Start()
     {
-        offset = new Vector3(0, 0, -2);
+        //offset = new Vector3(0, 0, -2);
     }
 
     // Update is called once per frame
@@ -18,7 +18,7 @@ public class FollowEnemy : MonoBehaviour
     {
         if (enemy != null)
         {
-            transform.position = enemy.transform.position + offset;
+            transform.position = enemy.transform.position /*+ offset*/;
         }
         else
         {
