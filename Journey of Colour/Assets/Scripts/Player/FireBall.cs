@@ -5,6 +5,7 @@ using UnityEngine;
 public class FireBall : MonoBehaviour
 {
     public float speed = 20;
+    public int damage = 5;
 
     public Rigidbody rb;
     public GameObject player;
@@ -31,7 +32,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<Health>().Damage(5);
+            collision.GetComponent<Health>().Damage(damage);
         }
         Destroy(gameObject);
     }

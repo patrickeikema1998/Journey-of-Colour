@@ -295,9 +295,11 @@ GameObject:
   - component: {fileID: 2905280355732803710}
   - component: {fileID: 4861505334259462035}
   - component: {fileID: 1096991032897665282}
-  m_Layer: 0
+  - component: {fileID: 4280056782129397451}
+  - component: {fileID: 9005607544567344455}
+  m_Layer: 6
   m_Name: MeleeEnemy
-  m_TagString: Untagged
+  m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -411,7 +413,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 10
+  maxHealth: 50
   health: 0
   player: {fileID: 0}
   healthbar: {fileID: 3391966435763913886}
@@ -427,11 +429,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ab170a866557fb146ac6449f8379446a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  speed: 2
   attackCooldown: 3
   attackDetectionRange: 2
   player: {fileID: 0}
-  controller: {fileID: 8688109621829120273}
+  controller: {fileID: 0}
 --- !u!114 &1096991032897665282
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -445,8 +447,39 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bulletForce: 0
-  enemyForce: 12
+  enemyForce: 30
   counterDistance: 3
+--- !u!114 &4280056782129397451
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317827145847541210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  damage: 35
+  attackOffset: 1
+  attackRange: 1
+  opponentLayer:
+    serializedVersion: 2
+    m_Bits: 128
+--- !u!114 &9005607544567344455
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5317827145847541210}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6b519f19d30c4a54eb701e8e18897d80, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  rotationSpeed: 720
 --- !u!1 &6184328504172230975
 GameObject:
   m_ObjectHideFlags: 0
