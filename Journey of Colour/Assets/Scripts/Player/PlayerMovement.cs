@@ -45,8 +45,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             isJumpButtonPressed = true;
 
-
-
         lastPressed = currentPressed;
 
         if (lastPressed == "a") lookingLeft = true;
@@ -59,24 +57,6 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
     }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = false;
-        }
-    }
-
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            isJumpButtonPressed = false;
-        }
-        else isGrounded = false;
-    }
-
     void FixedUpdate()
     {
         PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
@@ -84,10 +64,15 @@ public class PlayerMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-        if (isJumpButtonPressed && isGrounded)
+        if (isJumpButtonPressed && IsGrounded())
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
+    }
+
+    private bool IsGrounded()
+    {
+        return transform.Find("GroundCheck").GetComponent<GroundCheck>().isGrounded;
     }
 }

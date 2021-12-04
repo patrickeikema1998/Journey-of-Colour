@@ -1404,7 +1404,7 @@ GameObject:
   m_Component:
   - component: {fileID: 9169739985963968092}
   - component: {fileID: 9169739985963968093}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: GroundChunk
   m_TagString: Ground
   m_Icon: {fileID: 0}

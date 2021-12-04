@@ -28,7 +28,8 @@ public class CheckPoint : MonoBehaviour
         if (health.health <= 0 && checkPointHit == false)
         {
             player.transform.position = respawnPos + beginOffset;
-        } else if (health.health <= 0 && checkPointHit)
+        }
+        else if (health.health <= 0 && checkPointHit)
         {
             //when the player dies and respawns at a checkpoint the playerPos will be set
             //to the respawnPos which will be acitvated when the checkPoints is triggered.
@@ -39,7 +40,13 @@ public class CheckPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         respawnPos = player.transform.position;
-        Destroy(other.gameObject);
+        for(int i = 0; i < checkPoints.Count; i++)
+        {
+            if (other == checkPoints[i])
+            {
+                Destroy(other.gameObject);
+            }
+        }
         checkPointHit = true;
     }
 }
