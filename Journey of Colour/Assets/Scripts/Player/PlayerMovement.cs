@@ -24,6 +24,8 @@ public class PlayerMovement : MonoBehaviour
     public GameObject fireBall;
     private FireBall bulletScript;
 
+    [SerializeField] private LayerMask platformLayerMask;
+
     public void Start()
     {
         bulletScript = fireBall.GetComponent<FireBall>();
@@ -45,6 +47,9 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown(KeyCode.Space))
             isJumpButtonPressed = true;
 
+        if (!Input.GetKeyDown(KeyCode.Space))
+            isJumpButtonPressed = false;
+
         lastPressed = currentPressed;
 
         if (lastPressed == "a") lookingLeft = true;
@@ -56,6 +61,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
     }
+    private void OnCollisionEnter(Collider other)
+    {
+        if (other.gameObject.layer == platformLayerMask)
+        {
+            isGrounded = true;
+        }
+    }
+
+    private void OnCollisionExit(Collider other)
+    {
+        isGrounded = false;
+    }
 
     void FixedUpdate()
     {
@@ -64,15 +81,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-        if (isJumpButtonPressed && IsGrounded())
+        if (isJumpButtonPressed && isGrounded)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             isJumpButtonPressed = false;
         }
-    }
-
-    private bool IsGrounded()
-    {
-        return transform.Find("GroundCheck").GetComponent<GroundCheck>().isGrounded;
     }
 }

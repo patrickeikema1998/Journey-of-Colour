@@ -289,11 +289,6 @@ Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4766406252104518662, guid: 569815516a4f824459d2dc91905f1128, type: 3}
   m_PrefabInstance: {fileID: 1505115414}
   m_PrefabAsset: {fileID: 0}
---- !u!4 &329329557 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
-  m_PrefabInstance: {fileID: 1505115414}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &334208543
 GameObject:
   m_ObjectHideFlags: 0
@@ -1152,67 +1147,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 766098613}
   controlPanel: {fileID: 334208543}
---- !u!1 &910784176
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 910784177}
-  - component: {fileID: 910784179}
-  - component: {fileID: 910784178}
-  m_Layer: 7
-  m_Name: GroundCheck
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &910784177
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910784176}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 329329557}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &910784178
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910784176}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 591687e95ba515442b927567c2d043ee, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
-  isGrounded: 0
---- !u!65 &910784179
-BoxCollider:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 910784176}
-  m_Material: {fileID: 0}
-  m_IsTrigger: 1
-  m_Enabled: 1
-  serializedVersion: 2
-  m_Size: {x: 1, y: 1, z: 1}
-  m_Center: {x: 0, y: -0.15, z: 0}
 --- !u!1 &921665220 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 7773497243037986528, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
