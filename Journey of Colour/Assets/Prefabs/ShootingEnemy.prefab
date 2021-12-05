@@ -349,6 +349,7 @@ MonoBehaviour:
   player: {fileID: 0}
   fireRate: 3
   offsetFloat: 0.2
+  enemySight: 20
 --- !u!114 &4596822843485974000
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -361,7 +362,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 50
+  maxHealth: 15
   health: 0
   player: {fileID: 0}
   healthbar: {fileID: 5400648944104766967}
@@ -502,7 +503,6 @@ GameObject:
   - component: {fileID: 9051195959455401699}
   - component: {fileID: 9051195959455401696}
   - component: {fileID: 9051195959455401697}
-  - component: {fileID: 9051195959455401710}
   m_Layer: 5
   m_Name: CanvasShootEnemy
   m_TagString: Untagged
@@ -591,16 +591,3 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
---- !u!114 &9051195959455401710
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9051195959455401711}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 048ed5d4f4a41d44fb2333475acd321f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  enemy: {fileID: 5151091772511661834}

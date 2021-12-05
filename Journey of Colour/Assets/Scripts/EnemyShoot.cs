@@ -6,7 +6,7 @@ public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject player;
-    [SerializeField] float fireRate = 5f, offsetFloat;
+    [SerializeField] float fireRate = 5f, offsetFloat, enemySight;
     
 
     float coolDown;
@@ -14,6 +14,8 @@ public class EnemyShoot : MonoBehaviour
     Vector3 offset;
     
     bool lookingLeft;
+
+    float distance;
 
     void Start()
     {
@@ -27,7 +29,9 @@ public class EnemyShoot : MonoBehaviour
 
         coolDown -= Time.deltaTime;
 
-        if (coolDown < 0)
+        distance = Vector3.Distance(transform.position, player.transform.position);
+
+        if (coolDown < 0 && distance < enemySight)
         {
             FireBullet();
         }

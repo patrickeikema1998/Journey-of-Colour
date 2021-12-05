@@ -440,6 +440,7 @@ MonoBehaviour:
   speed: 10
   jumpForce: 17
   isGrounded: 0
+  jump: 0
   lookingLeft: 0
   fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &4766406252104518685
@@ -487,7 +488,7 @@ MonoBehaviour:
   fireBallPointLeft: {fileID: 6716492919531158181}
   fireBallPointRight: {fileID: 4766406252270150372}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
-  shootTime: 0
+  shootTime: 1
 --- !u!114 &-2025108513493655663
 MonoBehaviour:
   m_ObjectHideFlags: 0
