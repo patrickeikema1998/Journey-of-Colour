@@ -40,13 +40,9 @@ public class CheckPoint : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         respawnPos = player.transform.position;
-        for(int i = 0; i < checkPoints.Count; i++)
-        {
-            if (other == checkPoints[i])
-            {
-                Destroy(other.gameObject);
-            }
-        }
+
+        Destroy(other.gameObject);
+
         checkPointHit = true;
     }
 }

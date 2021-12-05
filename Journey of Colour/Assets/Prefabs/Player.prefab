@@ -439,13 +439,9 @@ MonoBehaviour:
   rb: {fileID: 4766406252104518662}
   speed: 10
   jumpForce: 17
-  isJumpButtonPressed: 0
   isGrounded: 0
   lookingLeft: 0
   fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
-  platformLayerMask:
-    serializedVersion: 2
-    m_Bits: 2048
 --- !u!114 &4766406252104518685
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -857,7 +853,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Navigation:
-    m_Mode: 3
+    m_Mode: 0
     m_WrapAround: 0
     m_SelectOnUp: {fileID: 0}
     m_SelectOnDown: {fileID: 0}

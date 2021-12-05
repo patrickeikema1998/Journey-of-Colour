@@ -13,8 +13,9 @@ public class PlayerMovement : MonoBehaviour
     public float speed;
     public float jumpForce;
 
-    public bool isJumpButtonPressed = false;
+    //public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
+    public bool jump;
 
     public bool lookingLeft;
 
@@ -24,7 +25,6 @@ public class PlayerMovement : MonoBehaviour
     public GameObject fireBall;
     private FireBall bulletScript;
 
-    [SerializeField] private LayerMask platformLayerMask;
 
     public void Start()
     {
@@ -44,11 +44,6 @@ public class PlayerMovement : MonoBehaviour
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             bulletScript.speed = -20;
         }
-        if (Input.GetKeyDown(KeyCode.Space))
-            isJumpButtonPressed = true;
-
-        if (!Input.GetKeyDown(KeyCode.Space))
-            isJumpButtonPressed = false;
 
         lastPressed = currentPressed;
 
@@ -60,19 +55,14 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("d")) currentPressed = "d";
 
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
-    }
-    private void OnCollisionEnter(Collider other)
-    {
-        if (other.gameObject.layer == platformLayerMask)
+
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            isGrounded = true;
+            jump = true;
         }
     }
 
-    private void OnCollisionExit(Collider other)
-    {
-        isGrounded = false;
-    }
 
     void FixedUpdate()
     {
@@ -81,10 +71,30 @@ public class PlayerMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-        if (isJumpButtonPressed && isGrounded)
+        if (jump)
         {
+            jump = false;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumpButtonPressed = false;
         }
+
+        GroundCheck();
+    }
+
+    void GroundCheck()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
+        {
+            isGrounded = true;
+        }
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
+        {
+            isGrounded = true;
+        }
+        else
+        {
+            isGrounded = false;
+        }
+
     }
 }
