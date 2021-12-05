@@ -30,7 +30,7 @@ public class BasicBulletPatern : MonoBehaviour
         {
             //Debug.Log("Hit!");
             //target.GetComponent<TakeDamage>().TakeHit(2);
-            target.GetComponent<Health>().Damage(2);
+            target.GetComponent<Health>().Damage(15);
         }
 
         Destroy(gameObject);
