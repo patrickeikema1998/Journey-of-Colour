@@ -25,10 +25,10 @@ public class CameraSideways : MonoBehaviour
             changeInX = true;
             newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x - 3);
         }
-        else if (offset.x < startOffset.x - 3)
+        else if (offset.x < startOffset.x)
         {
             changeInX = true;
-            newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x + 3);
+            newCameraPosition.x = (player.transform.position.x);
         }
         if (offset.y > + startOffset.y + 2)
         {
