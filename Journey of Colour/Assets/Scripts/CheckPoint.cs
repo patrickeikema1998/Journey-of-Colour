@@ -9,18 +9,20 @@ public class CheckPoint : MonoBehaviour
     private Rigidbody rb;
     bool checkPointHit = false;
 
-    [SerializeField] List<GameObject> checkPoints;
+    //[SerializeField] List<GameObject> checkPoints;
 
     //The respawnPos will be at y=0, but the player needs to be at y=1, so we have
     // an offset that will be the position of the player when the scene loads in.
     Vector3 respawnPos;
     Vector3 beginOffset;
+    Vector3 originPos;
 
     void Start()
     {
         health = player.GetComponent<Health>();
         rb = player.GetComponent<Rigidbody>();
         beginOffset = new Vector3(0, 1, 0);
+        originPos = transform.position + beginOffset;
     }
     // Update is called once per frame
     void Update()
@@ -39,11 +41,12 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        respawnPos = player.transform.position;
-
-        if(other.gameObject.layer == 8) Destroy(other.gameObject);
-
-        checkPointHit = true;
+        if (other.gameObject.layer == 7)
+        {
+            respawnPos = originPos;
+            gameObject.transform.position = new Vector3(0, 10000, 0);
+            checkPointHit = true;
+        }
     }
 }
 

@@ -4,10 +4,13 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
+    [SerializeField] Transform playerPos;
     public Transform fireBallPointLeft;
     public Transform fireBallPointRight;
     public GameObject fireBallPrefab;
     public float shootTime;
+    private FireBall bullet;
+    public GameObject fireBall;
 
     SwapClass swapClass;
     PlayerMovement playerMovement;
@@ -19,6 +22,7 @@ public class Weapon : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);
         shootTimer.start = true;
+        bullet = fireBall.GetComponent<FireBall>();
     }
 
     // Update is called once per frame
@@ -31,11 +35,11 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1) && shootTimer.finish == true)
             {
-                if (!playerMovement.lookingLeft)
+                if (Input.mousePosition.x > playerPos.position.x)
                 {
                     ShootRight();
                 }
-                else if (playerMovement.lookingLeft)
+                else if (Input.mousePosition.x < playerPos.position.x)
                 {
                     ShootLeft();
                 }
@@ -49,11 +53,13 @@ public class Weapon : MonoBehaviour
     {
         //instantiate a bullet on a certain position (the bulletPoint).
         Instantiate(fireBallPrefab, fireBallPointRight.position, fireBallPointRight.rotation);
+        bullet.speed = 20;
     }
 
     void ShootLeft()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
         Instantiate(fireBallPrefab, fireBallPointLeft.position, fireBallPointLeft.rotation);
+        bullet.speed = -20;
     }
 }

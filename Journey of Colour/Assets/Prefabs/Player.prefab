@@ -317,7 +317,6 @@ GameObject:
   - component: {fileID: 5245770882488702517}
   - component: {fileID: 1080790390}
   - component: {fileID: 8480394775091741918}
-  - component: {fileID: 1263404897866758739}
   - component: {fileID: 4063576121349668538}
   m_Layer: 7
   m_Name: Player
@@ -485,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {fileID: 4766406252104518658}
   fireBallPointLeft: {fileID: 6716492919531158181}
   fireBallPointRight: {fileID: 4766406252270150372}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
@@ -567,21 +567,6 @@ MonoBehaviour:
   dashForce: 10
   coolDownTime: 0.2
   durationTime: 0.25
---- !u!114 &1263404897866758739
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766406252104518661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: ba4360ad34f57e446aa6005b263595a2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  player: {fileID: 4766406252104518661}
-  checkPoints:
-  - {fileID: 0}
 --- !u!65 &4063576121349668538
 BoxCollider:
   m_ObjectHideFlags: 0

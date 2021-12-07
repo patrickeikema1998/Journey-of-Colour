@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.6111656, g: 0.5547312, b: 0.65122885, a: 1}
+  m_IndirectSpecularColor: {r: 0.6111654, g: 0.5547312, b: 0.65122885, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -2505,6 +2505,19 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 7773497243037986531, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
   m_PrefabInstance: {fileID: 1257519363}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &921665223
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 921665220}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: ba4360ad34f57e446aa6005b263595a2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  player: {fileID: 329329541}
 --- !u!1 &934359533 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 1744151502835948520, guid: e37dab4de65a4094fa040c5b94698fed, type: 3}
@@ -3435,7 +3448,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 7773497242911296374, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7773497243037986528, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
       propertyPath: m_Name
@@ -3501,9 +3514,13 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 7773497244132248435, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 7773497244132248438, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
       propertyPath: m_Layer
-      value: 8
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 8c42a497e05726041b8cbecf13f64507, type: 3}
@@ -4346,18 +4363,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: 1263404897866758739, guid: 569815516a4f824459d2dc91905f1128, type: 3}
-      propertyPath: checkPoints.Array.size
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 1263404897866758739, guid: 569815516a4f824459d2dc91905f1128, type: 3}
-      propertyPath: checkPoints.Array.data[0]
-      value: 
-      objectReference: {fileID: 921665220}
-    - target: {fileID: 1263404897866758739, guid: 569815516a4f824459d2dc91905f1128, type: 3}
-      propertyPath: checkPoints.Array.data[1]
-      value: 
-      objectReference: {fileID: 0}
     - target: {fileID: 2491571737267809715, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -4378,13 +4383,17 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4766406252104518656, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: m_Enabled
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 158.9
+      value: 109.5
       objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_LocalPosition.y
@@ -4426,6 +4435,10 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
+    - target: {fileID: 4766406252104518680, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: fireBall
+      value: 
+      objectReference: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
     - target: {fileID: 4766406252104518684, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: speed
       value: 15
