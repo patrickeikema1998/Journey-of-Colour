@@ -49,6 +49,6 @@ public class CameraSideways : MonoBehaviour
             newCameraPosition.y = transform.position.y;
         }
         transform.position = newCameraPosition;
-        transform.LookAt(new Vector3(transform.position.x, player.transform.position.y, player.transform.position.z));
+        transform.LookAt(new Vector3(transform.position.x, player.transform.position.y + 3, player.transform.position.z));
     }
 }
