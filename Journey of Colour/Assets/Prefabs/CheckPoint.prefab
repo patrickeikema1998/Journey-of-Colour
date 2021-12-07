@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 7773497242911296369}
   - component: {fileID: 7773497242911296370}
   - component: {fileID: 7773497242911296371}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Sphere
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -92,7 +92,7 @@ GameObject:
   m_Component:
   - component: {fileID: 7773497243037986531}
   - component: {fileID: 7773497243037986530}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: CheckPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -139,7 +139,7 @@ GameObject:
   - component: {fileID: 7773497244132248433}
   - component: {fileID: 7773497244132248434}
   - component: {fileID: 7773497244132248435}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}

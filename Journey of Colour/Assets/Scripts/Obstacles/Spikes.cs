@@ -9,52 +9,58 @@ public class Spikes : MonoBehaviour
     [SerializeField] Rigidbody rbPlayer;
 
     //timer stuff
-    CustomTimer holdTimer;
-    [SerializeField] float holdTime;
+    CustomTimer holdTimer, damageTimer;
+    [SerializeField] float holdTimeSpikes, timeBetweenDamage;
 
-    //distance variables
-    [SerializeField] float range;
-    float distanceToPlayer;
-
-    [SerializeField] float retractedPosY, extractedPosY, moveSpeed;
+    [SerializeField] float moveSpeed;
+    float retractedPosY, extractedPosY;
     bool extracted;
+
 
     // Start is called before the first frame update
     void Start()
     {
-        extracted = true;
         rb = GetComponent<Rigidbody>();
-        holdTimer = new CustomTimer(holdTime);
+        extractedPosY = rb.position.y;
+        retractedPosY = rb.position.y - 0.4f;
+        extracted = true;
+        holdTimer = new CustomTimer(holdTimeSpikes);
+        damageTimer = new CustomTimer(timeBetweenDamage);
+        holdTimer.start = true;
+        damageTimer.start = true;
     }
 
     // Update is called once per frame
     void Update()
     {
         holdTimer.Update();
-        StartTimerIfInRange();
-        Animate();
+        damageTimer.Update();
+        ExtractRetract();
     }
 
-    private void OnTriggerEnter(Collider other)
+    private void OnTriggerStay(Collider other)
     {
-        
-    }
-
-    void StartTimerIfInRange()
-    {
-        distanceToPlayer = Mathf.Abs(rb.position.x - rbPlayer.position.x);
-
-        //checks if player is in range, stops the spikes from updating if not
-        if (distanceToPlayer < range)
+        if (other.gameObject.layer == 7)
         {
-            holdTimer.start = true;        }
-        else
-        {
-            holdTimer.start = false;
+            if (other.GetComponent<Health>() != null && damageTimer.finish)
+            {
+                other.GetComponent<Health>().Damage(10);
+                damageTimer.Reset();
+            }
         }
     }
 
-    private void Animate()
+    private void OnTriggerExit(Collider other)
+    {
+        if (other.gameObject.layer == 7)
+        {
+            damageTimer.Reset();
+        }
+    }
+
+
+
+    private void ExtractRetract()
     {
         //if the hold time is finished, checks if the spiked are extracted.
         if (holdTimer.finish)

@@ -41,7 +41,7 @@ public class CheckPoint : MonoBehaviour
     {
         respawnPos = player.transform.position;
 
-        Destroy(other.gameObject);
+        if(other.gameObject.layer == 8) Destroy(other.gameObject);
 
         checkPointHit = true;
     }

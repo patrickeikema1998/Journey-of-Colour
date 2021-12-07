@@ -36,7 +36,7 @@ public class CustomTimer : MonoBehaviour
     public void Reset()
     {
         timeRemaining = initialTimeInSeconds;
-        start = false;
         finish = false;
+        start = true;
     }
 }
