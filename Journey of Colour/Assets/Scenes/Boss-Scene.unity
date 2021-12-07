@@ -660,10 +660,26 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 6602083023199105787, guid: 45ba1ef3ccbd8124483c32473b3d3caa, type: 3}
   m_PrefabInstance: {fileID: 2056354948}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1300770644 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+  m_PrefabInstance: {fileID: 6598137198058354629}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e595da2089989c74abeb737126c7c4c7, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!4 &1621528286 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 6602083023199105787, guid: 45ba1ef3ccbd8124483c32473b3d3caa, type: 3}
   m_PrefabInstance: {fileID: 617819862}
+  m_PrefabAsset: {fileID: 0}
+--- !u!1 &1720565618 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 4766406252104518661, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+  m_PrefabInstance: {fileID: 1820266500}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1820266500
 PrefabInstance:
@@ -672,6 +688,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1091400812943742362, guid: 569815516a4f824459d2dc91905f1128, type: 3}
+      propertyPath: maxHealth
+      value: 10
+      objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_RootOrder
       value: 6
@@ -774,8 +794,8 @@ Camera:
   near clip plane: 0.3
   far clip plane: 1000
   field of view: 60
-  orthographic: 0
-  orthographic size: 5
+  orthographic: 1
+  orthographic size: 8.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -799,7 +819,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1924042691}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0, y: 5, z: -18}
+  m_LocalPosition: {x: 0, y: 8, z: -18}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -915,9 +935,29 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: -6710222129017690414, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: burstTime
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: -6710222129017690414, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: controller
+      value: 
+      objectReference: {fileID: 1300770644}
+    - target: {fileID: 5358125927309129144, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: player
+      value: 
+      objectReference: {fileID: 1720565618}
     - target: {fileID: 6598137198759520914, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_Name
       value: Slime-Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: phase
+      value: 3
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: maxStunTime
+      value: 5
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_RootOrder
@@ -925,7 +965,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 4.5
+      value: -10.3
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_LocalPosition.y
