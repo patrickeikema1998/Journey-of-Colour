@@ -25,6 +25,8 @@ public class Spikes : MonoBehaviour
         extracted = true;
         rb = GetComponent<Rigidbody>();
         holdTimer = new CustomTimer(holdTime);
+        retractedPosY = rb.position.y + retractedPosY;
+        extractedPosY = rb.position.y + extractedPosY;
     }
 
     // Update is called once per frame
@@ -37,7 +39,7 @@ public class Spikes : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        
+        Debug.LogWarning("Spike hit");
     }
 
     void StartTimerIfInRange()
