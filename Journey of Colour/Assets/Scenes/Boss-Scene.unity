@@ -690,7 +690,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 1091400812943742362, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: maxHealth
-      value: 10
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 4766406252104518658, guid: 569815516a4f824459d2dc91905f1128, type: 3}
       propertyPath: m_RootOrder
@@ -953,11 +953,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: phase
-      value: 3
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: maxStunTime
       value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520922, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: maxHealth
+      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_RootOrder
