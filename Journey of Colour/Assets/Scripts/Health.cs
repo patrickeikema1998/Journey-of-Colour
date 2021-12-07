@@ -7,7 +7,11 @@ public class Health : MonoBehaviour
 
     public int maxHealth = 10;
 
+    public Rigidbody rb;
+
     public int health;
+
+    public GameObject panel;
 
     [System.NonSerialized] public bool dead = false;
 
@@ -42,7 +46,8 @@ public class Health : MonoBehaviour
     {
         if (dead)
         {
-            Destroy(gameObject);
+            rb.constraints = RigidbodyConstraints.FreezeAll;
+            panel.SetActive(true);
         }
     }
 

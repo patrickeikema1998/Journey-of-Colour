@@ -40,6 +40,14 @@ public class Spikes : MonoBehaviour
     private void OnTriggerEnter(Collider other)
     {
         Debug.LogWarning("Spike hit");
+
+        //deal damage to object
+        if (other.GetComponent<Health>() != null)
+        {
+           other.GetComponent<Health>().Damage(4);
+           other.GetComponent<TakeDamage>().TakeHit(40);
+        }
+
     }
 
     void StartTimerIfInRange()

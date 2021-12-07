@@ -39,7 +39,11 @@ public class MeleeAttack : MonoBehaviour
 
         foreach (Collider opponent in overlaps)
         {
-            if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
+            if (opponent.GetComponent<Health>() != null)
+            {
+                opponent.GetComponent<Health>().Damage(damage);
+                opponent.GetComponent<TakeDamage>().TakeHit(damage*10);
+            }
         }
     }
 }
