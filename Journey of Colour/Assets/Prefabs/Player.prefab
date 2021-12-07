@@ -53,7 +53,6 @@ GameObject:
   - component: {fileID: -2025108513493655663}
   - component: {fileID: 1091400812943742362}
   - component: {fileID: 5245770882488702517}
-  - component: {fileID: 1080790390}
   - component: {fileID: 8480394775091741918}
   m_Layer: 7
   m_Name: Player
@@ -293,6 +292,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 10
   health: 0
+  player: {fileID: 0}
+  healthbar: {fileID: 0}
 --- !u!114 &5245770882488702517
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -311,19 +312,6 @@ MonoBehaviour:
   opponentLayer:
     serializedVersion: 2
     m_Bits: 4160
---- !u!114 &1080790390
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 4766406252104518661}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 0}
 --- !u!114 &8480394775091741918
 MonoBehaviour:
   m_ObjectHideFlags: 0
