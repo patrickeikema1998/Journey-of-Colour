@@ -45,6 +45,11 @@ public class PlayerMovement : MonoBehaviour
             bulletScript.speed = -20;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            jump = true;
+        }
+
         lastPressed = currentPressed;
 
         if (lastPressed == "a") lookingLeft = true;
@@ -55,14 +60,24 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("d")) currentPressed = "d";
 
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
+    }
 
-
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
         {
-            jump = true;
+            isGrounded = false;
         }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            isGrounded = true;
+            jump = false;
+        }
+    }
 
     void FixedUpdate()
     {
@@ -71,30 +86,10 @@ public class PlayerMovement : MonoBehaviour
         Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
         rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
-        if (jump)
+        if (jump && isGrounded)
         {
-            jump = false;
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jump = false;
         }
-
-        GroundCheck();
-    }
-
-    void GroundCheck()
-    {
-        RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
-        {
-            isGrounded = true;
-        }
-        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
-
     }
 }

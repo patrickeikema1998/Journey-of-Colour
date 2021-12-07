@@ -438,7 +438,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rb: {fileID: 4766406252104518662}
   speed: 10
-  jumpForce: 17
+  jumpForce: 20
   isGrounded: 0
   jump: 0
   lookingLeft: 0
@@ -458,8 +458,8 @@ MonoBehaviour:
   rb: {fileID: 4766406252104518662}
   maxFloatTime: 3
   cooldownTime: 10
-  SinYIncrement: 0
-  Amplitude: 0
+  SinYIncrement: 8
+  Amplitude: 0.05
 --- !u!114 &4766406252104518686
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -472,7 +472,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b8e4d9e5644d8a64eaa469bbe893ac81, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpForceTwo: 15
+  jumpForceTwo: 20
 --- !u!114 &4766406252104518680
 MonoBehaviour:
   m_ObjectHideFlags: 0
