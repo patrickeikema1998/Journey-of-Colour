@@ -111,6 +111,7 @@ public class SlimeBossController : MonoBehaviour
                 projectileAttack.burstEnabled = false;
                 beamAttack.enabled = true;
                 stunned = false;
+                beamAttack.ShootBeam();
                 break;
         }
         phase = newPhase;
