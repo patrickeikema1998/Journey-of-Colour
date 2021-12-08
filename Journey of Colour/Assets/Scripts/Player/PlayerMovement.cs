@@ -78,6 +78,7 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GroundCheck();
+
     }
 
     void GroundCheck()
