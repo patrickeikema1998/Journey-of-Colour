@@ -106,11 +106,12 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         xAxis *= speed * Time.deltaTime;
-        transform.position.Set(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        Debug.Log(xAxis);
+        transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
 
         if(xAxis != 0)
         {
-            animationManager.changeAnimationState(animatorAngel,"character_run");
-        }
+            animationManager.changeAnimationState(animatorAngel, "character_run");
+        } 
     }
 }
