@@ -5,11 +5,14 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    Animator animatorAngel,animatorDevil;
+    AnimationManager animationManager;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
 
     private Vector3 PlayerMovementInput;
 
+    float xAxis;
     public float speed;
     public float jumpForce;
 
@@ -24,16 +27,20 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject fireBall;
     private FireBall bulletScript;
-    [SerializeField] private float maxSpeed;
 
     public void Start()
     {
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
+        animatorAngel = GameObject.Find("Angel Player").GetComponent<Animator>();
+        animatorDevil = GameObject.Find("Devil Player").GetComponent<Animator>();
+        animationManager = new AnimationManager();
     }
 
     public void Update()
     {
+        xAxis = Input.GetAxis("Horizontal");
+
         if (!lookingLeft)
         {
             //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -66,7 +73,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-
+        Movement();
 
         if (jump)
         {
@@ -94,5 +101,16 @@ public class PlayerMovement : MonoBehaviour
             isGrounded = false;
         }
 
+    }
+
+    private void Movement()
+    {
+        xAxis *= speed * Time.deltaTime;
+        transform.position.Set(transform.position.x + xAxis, transform.position.y, transform.position.z);
+
+        if(xAxis != 0)
+        {
+            animationManager.changeAnimationState(animatorAngel,"character_run");
+        }
     }
 }

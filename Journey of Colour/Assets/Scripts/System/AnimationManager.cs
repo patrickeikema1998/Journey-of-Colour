@@ -4,17 +4,16 @@ using UnityEngine;
 
 public class AnimationManager : MonoBehaviour
 {
-    Animator animator;
     private string currentState;
 
     private void Start()
     {
-        animator = GetComponent<Animator>();
-
     }
 
-    void changeAnimationState(string newState)
+    public void changeAnimationState(Animator animator,string newState)
     {
+        if (currentState == newState) return;
         animator.Play(newState);
+        currentState = newState;
     }
 }
