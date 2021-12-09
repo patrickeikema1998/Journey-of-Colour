@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    Animator animatorAngel,animatorDevil;
+    [SerializeField] Animator animatorAngel,animatorDevil;
     AnimationManager animationManager;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
@@ -32,8 +32,6 @@ public class PlayerMovement : MonoBehaviour
     {
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
-        animatorAngel = GameObject.Find("Angel Player").GetComponent<Animator>();
-        animatorDevil = GameObject.Find("Devil Player").GetComponent<Animator>();
         animationManager = new AnimationManager();
     }
 
@@ -82,6 +80,8 @@ public class PlayerMovement : MonoBehaviour
         }
 
         GroundCheck();
+        RotateCharacter();
+
 
     }
 
@@ -106,12 +106,26 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         xAxis *= speed * Time.deltaTime;
-        Debug.Log(xAxis);
         transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
 
         if(xAxis != 0)
         {
             animationManager.changeAnimationState(animatorAngel, "character_run");
-        } 
+        } else
+        {
+            animationManager.changeAnimationState(animatorAngel, "character_idle_boy");
+        }
+    }
+
+    private void RotateCharacter()
+    {
+        if (Input.GetAxis("Horizontal") < 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+        }
+        else if (Input.GetAxis("Horizontal") > 0)
+        {
+            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        }
     }
 }
