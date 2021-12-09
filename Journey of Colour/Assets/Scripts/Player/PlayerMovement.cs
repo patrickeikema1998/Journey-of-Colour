@@ -24,7 +24,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject fireBall;
     private FireBall bulletScript;
-
+    [SerializeField] private float maxSpeed;
 
     public void Start()
     {
@@ -66,10 +66,7 @@ public class PlayerMovement : MonoBehaviour
 
     void FixedUpdate()
     {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
 
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
-        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
 
         if (jump)
         {
