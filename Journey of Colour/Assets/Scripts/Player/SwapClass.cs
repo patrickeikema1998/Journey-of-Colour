@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class SwapClass : MonoBehaviour
 {
-
+    [SerializeField]GameObject angel, devil;
     public bool swappable = true;
     public enum playerClasses
     {
@@ -41,9 +41,14 @@ public class SwapClass : MonoBehaviour
 
     void SwapPlayer()
     {
-        if (swappable)
+        if (currentClass == playerClasses.Angel)
         {
-
+            devil.SetActive(false);
+            angel.SetActive(true);
+        } else
+        {
+            devil.SetActive(true);
+            angel.SetActive(false);
         }
     }
 }

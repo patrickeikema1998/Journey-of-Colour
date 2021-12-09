@@ -5,8 +5,7 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
-    [SerializeField] Animator animatorAngel,animatorDevil;
-    AnimationManager animationManager;
+    PlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
 
@@ -32,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
     {
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
-        animationManager = new AnimationManager();
+        playerAnim = GetComponent<PlayerAnimations>();
     }
 
     public void Update()
@@ -72,16 +71,10 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-
-        if (jump)
-        {
-            jump = false;
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        }
-
         GroundCheck();
         RotateCharacter();
 
+        if (jump) Jump();
 
     }
 
@@ -92,40 +85,31 @@ public class PlayerMovement : MonoBehaviour
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
-        {
-            isGrounded = true;
-        }
-        else
-        {
-            isGrounded = false;
-        }
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f)) isGrounded = true;
+        else isGrounded = false;
 
     }
 
     private void Movement()
     {
+
         xAxis *= speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
 
-        if(xAxis != 0)
-        {
-            animationManager.changeAnimationState(animatorAngel, "character_run");
-        } else
-        {
-            animationManager.changeAnimationState(animatorAngel, "character_idle_boy");
-        }
+        if (xAxis != 0 && isGrounded && rb.velocity.y == 0) playerAnim.RunAnimation();
+        else if (isGrounded && rb.velocity.y == 0) playerAnim.IdleAnimation();
     }
 
     private void RotateCharacter()
     {
-        if (Input.GetAxis("Horizontal") < 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-        }
-        else if (Input.GetAxis("Horizontal") > 0)
-        {
-            transform.rotation = Quaternion.Euler(0f, 90f, 0f);
-        }
+        if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+        else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        playerAnim.JumpAnimation();
+        jump = false;
     }
 }
