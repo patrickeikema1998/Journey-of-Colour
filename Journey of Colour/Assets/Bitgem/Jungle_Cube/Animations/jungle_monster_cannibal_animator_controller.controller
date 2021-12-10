@@ -33,7 +33,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jungle_monster_cannibal_gethit
+  m_Name: character_get_hit
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -133,7 +133,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jungle_monster_cannibal_attack
+  m_Name: character_attack_1
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []
@@ -306,7 +306,7 @@ AnimatorState:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jungle_monster_cannibal_death
+  m_Name: character_death
   m_Speed: 1
   m_CycleOffset: 0
   m_Transitions: []

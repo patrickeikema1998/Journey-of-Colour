@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlayerAnimations : MonoBehaviour
 {
+    PlayerMovement playerMovement;
     SwapClass playerClass;
     AnimationManager animationManager;
     [SerializeField] Animator animatorAngel, animatorDevil;
@@ -13,25 +14,38 @@ public class PlayerAnimations : MonoBehaviour
     string jumpVariant2 = "character_jump_2";
     string idle = "character_idle";
     string run = "character_run";
+    string hit = "character_attack_1";
 
     string lastJump;
+    bool isAttacking;
+    const float attackTime = 0.6f;
 
     private void Start()
     {
         lastJump = jumpVariant2;
         animationManager = GameObject.Find("AnimationManager").GetComponent<AnimationManager>();
-        playerClass = GameObject.Find("Player").GetComponent<SwapClass>();
+        playerClass = GetComponent<SwapClass>();
+        playerMovement = GetComponent<PlayerMovement>();
+
     }
 
     private void Update()
     {
+        //changes animator if class is swapped.
         if (playerClass.currentClass == SwapClass.playerClasses.Angel) currentAnimator = animatorAngel;
         else currentAnimator = animatorDevil;
+
+        JumpAnimation();
+        IdleAndRunAnimation();
+        Hit();
+
     }
 
 
-    public void JumpAnimation()
+    void JumpAnimation()
     {
+        if ( Input.GetKey(KeyCode.Space) && playerMovement.isGrounded)
+        {
             if (lastJump == jumpVariant2)
             {
                 animationManager.changeAnimationState(currentAnimator, jumpVariant1);
@@ -42,15 +56,31 @@ public class PlayerAnimations : MonoBehaviour
                 animationManager.changeAnimationState(currentAnimator, jumpVariant2);
                 lastJump = jumpVariant2;
             }
+        }
     }
 
-    public void IdleAnimation()
+    void IdleAndRunAnimation()
     {
-        animationManager.changeAnimationState(currentAnimator, idle);
+        //run
+        if (playerMovement.xAxis != 0 && playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking) animationManager.changeAnimationState(currentAnimator, run);
+        //idle
+        else if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking) animationManager.changeAnimationState(currentAnimator, idle);
     }
 
-    public void RunAnimation()
+    private void Hit()
     {
-        animationManager.changeAnimationState(currentAnimator, run);
+
+        if (Input.GetKey(KeyCode.Mouse0) && playerClass.currentClass == SwapClass.playerClasses.Devil && !isAttacking)
+        {
+            isAttacking = true;
+            animationManager.changeAnimationState(currentAnimator, hit);
+            Invoke("AttackComplete", attackTime);
+        }
+
+    }
+
+    void AttackComplete()
+    {
+        isAttacking = false;
     }
 }

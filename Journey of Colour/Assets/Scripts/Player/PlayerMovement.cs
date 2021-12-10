@@ -5,20 +5,20 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool jump;
+
     PlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
 
     private Vector3 PlayerMovementInput;
 
-    float xAxis;
+    public float xAxis;
     public float speed;
     public float jumpForce;
 
     //public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
-    public bool jump;
-
     public bool lookingLeft;
 
     string lastPressed;
@@ -95,9 +95,6 @@ public class PlayerMovement : MonoBehaviour
 
         xAxis *= speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
-
-        if (xAxis != 0 && isGrounded && rb.velocity.y == 0) playerAnim.RunAnimation();
-        else if (isGrounded && rb.velocity.y == 0) playerAnim.IdleAnimation();
     }
 
     private void RotateCharacter()
@@ -109,7 +106,6 @@ public class PlayerMovement : MonoBehaviour
     private void Jump()
     {
         rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        playerAnim.JumpAnimation();
         jump = false;
     }
 }
