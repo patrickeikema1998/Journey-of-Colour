@@ -6,8 +6,6 @@ public class Spikes : MonoBehaviour
 {
     //necessary objects
     Rigidbody rb;
-    [SerializeField] Rigidbody rbPlayer;
-
     //timer stuff
     CustomTimer holdTimer, damageTimer;
     [SerializeField] float holdTimeSpikes, timeBetweenDamage;

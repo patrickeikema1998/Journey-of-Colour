@@ -4,9 +4,7 @@ using UnityEngine;
 
 public class SwapClass : MonoBehaviour
 {
-    [SerializeField] Material material;
-    // Start is called before the first frame update
-
+    [SerializeField]GameObject angel, devil;
     public bool swappable = true;
     public enum playerClasses
     {
@@ -21,7 +19,7 @@ public class SwapClass : MonoBehaviour
     void Update()
     {
         Controls();
-        SwapColor();
+        SwapPlayer();
     }
 
     void Controls()
@@ -41,18 +39,16 @@ public class SwapClass : MonoBehaviour
         }
     }
 
-    void SwapColor()
+    void SwapPlayer()
     {
-        if (swappable)
+        if (currentClass == playerClasses.Angel)
         {
-            if (currentClass == playerClasses.Angel)
-            {
-                material.color = Color.white;
-            }
-            else if (currentClass == playerClasses.Devil)
-            {
-                material.color = Color.black;
-            }
+            devil.SetActive(false);
+            angel.SetActive(true);
+        } else
+        {
+            devil.SetActive(true);
+            angel.SetActive(false);
         }
     }
 }

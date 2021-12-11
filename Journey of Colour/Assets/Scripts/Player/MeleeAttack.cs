@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
+    PlayerMovement playerMovement;
     [SerializeField] int damage;
     [SerializeField] float attackOffset = 1, attackRange = 1;
     [SerializeField] LayerMask opponentLayer;
@@ -15,6 +16,7 @@ public class MeleeAttack : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         //de attackrange
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);
 
@@ -48,5 +50,6 @@ public class MeleeAttack : MonoBehaviour
                 if (opponent.tag == "Player") opponent.GetComponent<Health>().Damage(damage);
             }
         }
+        
     }
 }

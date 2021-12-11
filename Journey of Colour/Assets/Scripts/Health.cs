@@ -12,12 +12,15 @@ public class Health : MonoBehaviour
 
     public GameObject player;
     public Healthbar healthbar;
+    PlayerAnimations playerAnim;
+
 
     // Start is called before the first frame update
     void Start()
     {
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
+        playerAnim = GetComponent<PlayerAnimations>();
     }
 
     public int GetHealth
@@ -29,6 +32,7 @@ public class Health : MonoBehaviour
     {
         health -= damageAmount;
         healthbar.SetHealth(health);
+        playerAnim.GettingHit();
         if (health <= 0)
         {
             dead = true;

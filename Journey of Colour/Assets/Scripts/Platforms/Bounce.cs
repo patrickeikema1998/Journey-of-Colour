@@ -5,7 +5,8 @@ using UnityEngine;
 public class Bounce : MonoBehaviour
 {
     [SerializeField] float bounceValue = 1;
-   
+
+
     // Update is called once per frame
     void OnCollisionEnter(Collision collision)
     {

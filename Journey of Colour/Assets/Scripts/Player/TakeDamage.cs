@@ -10,6 +10,9 @@ public class TakeDamage : MonoBehaviour
 
     public Healthbar healthbar;
 
+
+
+
     private void Start()
     {
         currentHealth = maxHealth;
@@ -30,7 +33,6 @@ public class TakeDamage : MonoBehaviour
     public void TakeHit(int damage)
     {
         currentHealth -= damage;
-
         healthbar.SetHealth(currentHealth);
     }
 
