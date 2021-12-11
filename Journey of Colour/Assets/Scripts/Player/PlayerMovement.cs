@@ -10,11 +10,12 @@ public class PlayerMovement : MonoBehaviour
     PlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
+    SwapClass playerClass;
 
     private Vector3 PlayerMovementInput;
 
     public float xAxis;
-    public float speed;
+    public float speedAngel, speedDevil;
     public float jumpForce;
 
     //public bool isJumpButtonPressed = false;
@@ -29,6 +30,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Start()
     {
+        playerClass = GetComponent<SwapClass>();
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
         playerAnim = GetComponent<PlayerAnimations>();
@@ -81,17 +83,20 @@ public class PlayerMovement : MonoBehaviour
     void GroundCheck()
     {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f))
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f))
         {
             isGrounded = true;
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, 0.7f)) isGrounded = true;
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f)) isGrounded = true;
         else isGrounded = false;
 
     }
 
     private void Movement()
     {
+        float speed;
+        if (playerClass.currentClass == SwapClass.playerClasses.Angel) speed = speedAngel;
+        else speed = speedDevil;
 
         xAxis *= speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);

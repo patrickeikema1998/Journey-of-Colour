@@ -6,8 +6,7 @@ public class AnimationManager : MonoBehaviour
 {
     private string currentState;
 
-
-    public void changeAnimationState(Animator animator,string newState)
+    public void PlayAnimation(Animator animator,string newState)
     {
         if (currentState != newState)
         {
