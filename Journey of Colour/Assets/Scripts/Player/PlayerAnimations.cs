@@ -18,7 +18,7 @@ public class PlayerAnimations : MonoBehaviour
 
     string lastJump;
     bool isAttacking;
-    const float attackTime = 0.6f;
+    const float attackDelay = 0.6f;
 
     private void Start()
     {
@@ -74,7 +74,7 @@ public class PlayerAnimations : MonoBehaviour
         {
             isAttacking = true;
             animationManager.changeAnimationState(currentAnimator, hit);
-            Invoke("AttackComplete", attackTime);
+            Invoke("AttackComplete", attackDelay);
         }
 
     }
