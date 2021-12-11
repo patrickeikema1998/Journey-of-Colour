@@ -5,7 +5,6 @@ using UnityEngine;
 public class Health : MonoBehaviour
 {
     public int maxHealth = 10;
-
     public int health;
 
     [System.NonSerialized] public bool dead = false;
@@ -13,6 +12,7 @@ public class Health : MonoBehaviour
     public GameObject player;
     public Healthbar healthbar;
     PlayerAnimations playerAnim;
+    MeleeEnemyAnimations meleeEnemyAnim;
 
 
     // Start is called before the first frame update
@@ -20,7 +20,8 @@ public class Health : MonoBehaviour
     {
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-        playerAnim = GetComponent<PlayerAnimations>();
+        if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
+        if (this.gameObject.tag == "Enemy") meleeEnemyAnim = GetComponent<MeleeEnemyAnimations>();
     }
 
     public int GetHealth
@@ -32,7 +33,9 @@ public class Health : MonoBehaviour
     {
         health -= damageAmount;
         healthbar.SetHealth(health);
-        playerAnim.GettingHit();
+
+        if(this.gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
+        if (this.gameObject.tag == "Enemy") meleeEnemyAnim.DoGetHitAnimation();
         if (health <= 0)
         {
             dead = true;

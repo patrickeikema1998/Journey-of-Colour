@@ -53,15 +53,15 @@ public class PlayerAnimations : MonoBehaviour
         }
 
 
-        JumpAnimation();
-        RunAnimation();
-        IdleAnimation();
-        Hit();
-        Floating();
+        DoJumpAnimation();
+        DoRunAnimation();
+        DoIdleAnimation();
+        DoHitAnimation();
+        DoFloatAnimation();
     }
 
 
-    void JumpAnimation()
+    void DoJumpAnimation()
     {
         if ( Input.GetKey(KeyCode.Space) && playerMovement.isGrounded)
         {
@@ -78,19 +78,19 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
-    public void RunAnimation()
+    public void DoRunAnimation()
     {
         if (playerMovement.xAxis != 0 && playerMovement.isGrounded && playerMovement.rb.velocity.y == 0) isRunning = true;
         else isRunning = false;
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
     }
 
-     void IdleAnimation()
+     void DoIdleAnimation()
     {
         if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit) animationManager.PlayAnimation(currentAnimator, idle);
     }
 
-    private void Hit()
+    private void DoHitAnimation()
     {
 
         if (Input.GetKey(KeyCode.Mouse0) && playerClass.currentClass == SwapClass.playerClasses.Devil && !isAttacking)
@@ -102,7 +102,7 @@ public class PlayerAnimations : MonoBehaviour
 
     }
 
-    public void GettingHit()
+    public void DoGetHitAnimation()
     {
         gettingHit = true;
         if (playerClass.currentClass == SwapClass.playerClasses.Angel)
@@ -125,7 +125,7 @@ public class PlayerAnimations : MonoBehaviour
         Invoke("HitComplete", 1f);
     }
 
-    private void Floating()
+    private void DoFloatAnimation()
     {
         if(playerMovement.rb.velocity.y == 0 && !playerMovement.isGrounded && playerClass.currentClass == SwapClass.playerClasses.Angel && !gettingHit)
         {

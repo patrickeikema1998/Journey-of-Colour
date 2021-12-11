@@ -32,7 +32,7 @@ public class MeleeAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (swapClass.currentClass != SwapClass.playerClasses.Angel)
+        if (tag == "Enemy" || swapClass.currentClass != SwapClass.playerClasses.Angel)
         {
             //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
             Collider[] overlaps;
