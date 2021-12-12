@@ -10,6 +10,8 @@ public class Spikes : MonoBehaviour
     CustomTimer holdTimer, damageTimer;
     [SerializeField] float holdTimeSpikes, timeBetweenDamage, moveSpeed;
     [SerializeField] int damage;
+
+    [SerializeField] float moveSpeed;
     float retractedPosY, extractedPosY;
     bool extracted;
 
