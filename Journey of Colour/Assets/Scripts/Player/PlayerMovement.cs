@@ -5,17 +5,21 @@ using UnityEngine;
 
 public class PlayerMovement : MonoBehaviour
 {
+    public bool jump;
+
+    PlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
+    SwapClass playerClass;
 
     private Vector3 PlayerMovementInput;
 
-    public float speed;
+    public float xAxis;
+    public float speedAngel, speedDevil;
     public float jumpForce;
 
-    public bool isJumpButtonPressed = false;
+    //public bool isJumpButtonPressed = false;
     public bool isGrounded = false;
-
     public bool lookingLeft;
 
     string lastPressed;
@@ -26,12 +30,16 @@ public class PlayerMovement : MonoBehaviour
 
     public void Start()
     {
+        playerClass = GetComponent<SwapClass>();
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
+        playerAnim = GetComponent<PlayerAnimations>();
     }
 
     public void Update()
     {
+        xAxis = Input.GetAxis("Horizontal");
+
         if (!lookingLeft)
         {
             //transform.localScale = new Vector3(transform.localScale.x, transform.localScale.y, transform.localScale.z);
@@ -42,10 +50,6 @@ public class PlayerMovement : MonoBehaviour
             //transform.localScale = new Vector3(transform.localScale.x * -1, transform.localScale.y, transform.localScale.z);
             bulletScript.speed = -20;
         }
-        if (Input.GetButtonDown("Jump"))
-            isJumpButtonPressed = true;
-
-
 
         lastPressed = currentPressed;
 
@@ -57,36 +61,56 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetKeyDown("d")) currentPressed = "d";
 
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
-    }
 
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
+
+        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
         {
-            isGrounded = false;
+            jump = true;
         }
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            isGrounded = true;
-            isJumpButtonPressed = false;
-        }
-    }
 
     void FixedUpdate()
     {
-        PlayerMovementInput = new Vector3(Input.GetAxis("Horizontal"), 0f, 0f);
+        Movement();
+        GroundCheck();
+        RotateCharacter();
 
-        Vector3 MoveVector = transform.TransformDirection(PlayerMovementInput) * speed;
-        rb.velocity = new Vector3(MoveVector.x, rb.velocity.y, MoveVector.z);
+        if (jump) Jump();
 
-        if (isJumpButtonPressed && isGrounded)
+    }
+
+    void GroundCheck()
+    {
+        RaycastHit hit;
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f))
         {
-            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-            isJumpButtonPressed = false;
+            isGrounded = true;
         }
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f)) isGrounded = true;
+        else isGrounded = false;
+
+    }
+
+    private void Movement()
+    {
+        float speed;
+        if (playerClass.currentClass == SwapClass.playerClasses.Angel) speed = speedAngel;
+        else speed = speedDevil;
+
+        xAxis *= speed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+    }
+
+    private void RotateCharacter()
+    {
+        if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+        else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+    }
+
+    private void Jump()
+    {
+        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+        jump = false;
     }
 }

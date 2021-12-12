@@ -22,15 +22,15 @@ public class DoubleJump : MonoBehaviour
     private void FixedUpdate()
     {
         this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
-        this.isJumpButtonPressed = GetComponent<PlayerMovement>().isJumpButtonPressed;
+        this.isJumpButtonPressed = GetComponent<PlayerMovement>().jump;
 
-        if (!isGrounded && swapClass.playerClass == 0)
+        if (!isGrounded && swapClass.currentClass == SwapClass.playerClasses.Angel)
         {
             if (isJumpButtonPressed && !jumpedTwice)
             {
-                rb.velocity = new Vector3(rb.velocity.x, 0 , rb.velocity.z);
-                rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
                 isJumpButtonPressed = false;
+                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+                rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
                 jumpedTwice = true;
             }
         }

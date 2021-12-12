@@ -17,18 +17,25 @@ public class BasicBulletPatern : MonoBehaviour
         target = GameObject.Find("Player");
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
         rb.velocity = moveDirection;
-        Destroy(gameObject, 5f);
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == target)
         {
-            Debug.Log("Hit!");
-            target.GetComponent<TakeDamage>().TakeHit(20);
+            //Debug.Log("Hit!");
+            //target.GetComponent<TakeDamage>().TakeHit(2);
+            target.GetComponent<Health>().Damage(15);
         }
 
-        if (collision.gameObject.tag != "Enemy")
-            Destroy(gameObject);
+        Destroy(gameObject);
+
+        //if (collision.gameObject.tag != "Enemy")
+        //    Destroy(gameObject);
     }
 }
