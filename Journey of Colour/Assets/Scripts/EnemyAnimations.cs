@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class MeleeEnemyAnimations : MonoBehaviour
+public class EnemyAnimations : MonoBehaviour
 {
     AnimationManager animationManager;
     Animator anim;
@@ -18,7 +18,8 @@ public class MeleeEnemyAnimations : MonoBehaviour
     bool isGettingHit;
 
 
-    float attackAnimLength = 1f;
+
+    float attackAnimLengthMelee = .8f;
     float gettingHItAnimLength = 1f;
 
     private void Start()
@@ -48,7 +49,7 @@ public class MeleeEnemyAnimations : MonoBehaviour
     {
         isAttacking = true;
         animationManager.PlayAnimation(anim, attack);
-        Invoke("AttackComplete", attackAnimLength);
+        Invoke("AttackComplete", attackAnimLengthMelee);
     }
 
     public void DoDeathAnimation()

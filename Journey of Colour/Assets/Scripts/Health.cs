@@ -12,7 +12,7 @@ public class Health : MonoBehaviour
     public GameObject player;
     public Healthbar healthbar;
     PlayerAnimations playerAnim;
-    MeleeEnemyAnimations meleeEnemyAnim;
+    EnemyAnimations enemyAnim;
 
 
     // Start is called before the first frame update
@@ -21,7 +21,7 @@ public class Health : MonoBehaviour
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
         if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
-        if (this.gameObject.tag == "Enemy") meleeEnemyAnim = GetComponent<MeleeEnemyAnimations>();
+        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
     }
 
     public int GetHealth
@@ -35,7 +35,7 @@ public class Health : MonoBehaviour
         healthbar.SetHealth(health);
 
         if(this.gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
-        if (this.gameObject.tag == "Enemy") meleeEnemyAnim.DoGetHitAnimation();
+        if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
         if (health <= 0)
         {
             dead = true;
