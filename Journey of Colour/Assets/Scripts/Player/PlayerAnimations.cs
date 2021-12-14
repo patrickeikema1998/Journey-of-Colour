@@ -17,6 +17,8 @@ public class PlayerAnimations : MonoBehaviour
     const string gettingHitVariant1 = "character_get_hit";
     const string gettingHitVariant2 = "character_get_hit_2";
     const string floating = "float";
+    const string fireball = "fireball";
+
     string run;
 
 
@@ -62,6 +64,7 @@ public class PlayerAnimations : MonoBehaviour
         DoIdleAnimation();
         DoHitAnimation();
         DoFloatAnimation();
+        DoFireballAnimation();
     }
 
 
@@ -115,7 +118,16 @@ public class PlayerAnimations : MonoBehaviour
         }
 
     }
+    private void DoFireballAnimation()
+    {
 
+        if (Input.GetKey(KeyCode.Mouse1) && playerClass.currentClass == SwapClass.playerClasses.Devil && !isAttacking)
+        {
+            isAttacking = true;
+            animationManager.PlayAnimation(currentAnimator, fireball);
+            Invoke("AttackComplete", attackAnimationTime);
+        }
+    }
     public void DoGetHitAnimation()
     {
         gettingHit = true;
