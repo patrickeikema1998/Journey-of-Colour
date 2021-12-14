@@ -5,7 +5,7 @@ using UnityEngine;
 public class SpearRotation : MonoBehaviour
 {
     Rigidbody rb;
-    float divider = 15f;
+    float divider = 20f;
     float angle;
     float startRotationZ, downRotationZ;
     Vector3 force;
