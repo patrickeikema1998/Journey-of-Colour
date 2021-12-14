@@ -24,7 +24,11 @@ public class PlayerAnimations : MonoBehaviour
     bool isAttacking;
     bool gettingHit;
     bool isRunning;
-    const float attackDelay = 0.6f;
+    bool isIdle;
+    [HideInInspector] public bool isFloating;
+    const float attackAnimationTime = 0.5f;
+    const float gettingHitAnimationTime = 0.7f;
+
 
     private void Start()
     {
@@ -53,15 +57,15 @@ public class PlayerAnimations : MonoBehaviour
         }
 
 
-        JumpAnimation();
-        RunAnimation();
-        IdleAnimation();
-        Hit();
-        Floating();
+        DoJumpAnimation();
+        DoRunAnimation();
+        DoIdleAnimation();
+        DoHitAnimation();
+        DoFloatAnimation();
     }
 
 
-    void JumpAnimation()
+    void DoJumpAnimation()
     {
         if ( Input.GetKey(KeyCode.Space) && playerMovement.isGrounded)
         {
@@ -78,31 +82,41 @@ public class PlayerAnimations : MonoBehaviour
         }
     }
 
-    public void RunAnimation()
+    public void DoRunAnimation()
     {
         if (playerMovement.xAxis != 0 && playerMovement.isGrounded && playerMovement.rb.velocity.y == 0) isRunning = true;
         else isRunning = false;
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
     }
 
-     void IdleAnimation()
+     void DoIdleAnimation()
     {
-        if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit) animationManager.PlayAnimation(currentAnimator, idle);
+        if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit)
+        {
+            if (!isIdle)
+            {
+                animationManager.PlayAnimation(currentAnimator, idle);
+                isIdle = true;
+            }
+        } else
+        {
+            isIdle = false;
+        }
     }
 
-    private void Hit()
+    private void DoHitAnimation()
     {
 
         if (Input.GetKey(KeyCode.Mouse0) && playerClass.currentClass == SwapClass.playerClasses.Devil && !isAttacking)
         {
             isAttacking = true;
             animationManager.PlayAnimation(currentAnimator, hit);
-            Invoke("AttackComplete", attackDelay);
+            Invoke("AttackComplete", attackAnimationTime);
         }
 
     }
 
-    public void GettingHit()
+    public void DoGetHitAnimation()
     {
         gettingHit = true;
         if (playerClass.currentClass == SwapClass.playerClasses.Angel)
@@ -122,12 +136,12 @@ public class PlayerAnimations : MonoBehaviour
             animationManager.PlayAnimation(currentAnimator, gettingHitVariant1);
         }
 
-        Invoke("HitComplete", 1f);
+        Invoke("HitComplete", gettingHitAnimationTime);
     }
 
-    private void Floating()
+    private void DoFloatAnimation()
     {
-        if(playerMovement.rb.velocity.y == 0 && !playerMovement.isGrounded && playerClass.currentClass == SwapClass.playerClasses.Angel && !gettingHit)
+        if(isFloating && !gettingHit)
         {
             animationManager.PlayAnimation(currentAnimator, floating);
         }

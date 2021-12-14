@@ -32,9 +32,9 @@ public class MeleeAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (gameObject.tag == "Enemy" || swapClass.currentClass == SwapClass.playerClasses.Devil)
+        if (tag == "Enemy" || swapClass.currentClass != SwapClass.playerClasses.Angel)
         {
-            //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben wordt er health afgehaald
+            //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
             Collider[] overlaps;
             if (tag.Equals("Player"))
             {
@@ -47,7 +47,7 @@ public class MeleeAttack : MonoBehaviour
 
             foreach (Collider opponent in overlaps)
             {
-                if (opponent.tag == "Player") opponent.GetComponent<Health>().Damage(damage);
+                if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
             }
         }
         

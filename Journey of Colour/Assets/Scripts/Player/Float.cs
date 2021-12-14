@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Float : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     bool isGrounded;
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxFloatTime, cooldownTime;
@@ -66,6 +64,7 @@ public class Float : MonoBehaviour
 
             if (abilityGo)
             {
+                GetComponent<PlayerAnimations>().isFloating = true;
                 swapClass.swappable = false;
                 sinY += SinYIncrement * Time.deltaTime;
                 var sinMovement = Mathf.Sin(sinY) * Amplitude;
@@ -76,6 +75,7 @@ public class Float : MonoBehaviour
 
             if (!abilityGo || maxFloatTimer.finish)
             {
+                GetComponent<PlayerAnimations>().isFloating = false;
                 rb.constraints = normalConstraints;
                 rb.useGravity = true;
                 maxFloatTimer.Reset();

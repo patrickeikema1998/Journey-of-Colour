@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public CharacterController controller;
     MeleeAttack attack;
     Health health;
+    EnemyAnimations animations;
 
     float timeLeft;
 
@@ -23,6 +24,7 @@ public class EnemyController : MonoBehaviour
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();
         timeLeft = attackCooldown;
+        animations = GetComponent<EnemyAnimations>();
     }
 
     // Update is called once per frame
@@ -50,6 +52,7 @@ public class EnemyController : MonoBehaviour
     {
         timeLeft = attackCooldown;
         attack.Attack();
+
     }
 
     void Die()

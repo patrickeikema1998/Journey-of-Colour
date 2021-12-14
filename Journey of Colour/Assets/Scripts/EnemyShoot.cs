@@ -6,8 +6,10 @@ public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
     [SerializeField] GameObject player;
-    [SerializeField] float fireRate = 5f, offsetFloat, enemySight;
-    
+    [SerializeField] float fireRate = 5f, enemySight, offsetFloatY;
+    float offsetFloat;
+    EnemyAnimations anim;
+    [SerializeField] bool spearThrower;
 
     float coolDown;
     
@@ -19,13 +21,14 @@ public class EnemyShoot : MonoBehaviour
 
     void Start()
     {
+        anim = GetComponent<EnemyAnimations>();
         coolDown = fireRate;
     }
 
     // Update is called once per frame
     void Update()
     {
-        offset = new Vector3(offsetFloat, 0, 0);
+        offset = new Vector3(offsetFloat, offsetFloatY, 0);
 
         coolDown -= Time.deltaTime;
 
@@ -49,7 +52,21 @@ public class EnemyShoot : MonoBehaviour
 
     void FireBullet()
     {
+        float attackAnimationLength = .55f;
+        anim.DoAttackAnimation();
         coolDown = fireRate;
-        Instantiate(bullet, transform.position + offset, Quaternion.identity);
+        Invoke("InstantiateBullet", attackAnimationLength);
+    }
+
+    void InstantiateBullet()
+    {
+        if (spearThrower)
+        {
+            Instantiate(bullet, transform.position + offset, bullet.transform.rotation);
+
+        } else
+        {
+            Instantiate(bullet, transform.position + offset, Quaternion.identity);
+        }
     }
 }
