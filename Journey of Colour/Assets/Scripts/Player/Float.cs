@@ -39,7 +39,7 @@ public class Float : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
+        this.isGrounded = GetComponent<PlayerMovement>().canJump;
 
         if (!isGrounded && swapClass.currentClass == 0)
         {
