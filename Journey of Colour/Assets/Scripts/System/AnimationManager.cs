@@ -8,7 +8,7 @@ public class AnimationManager : MonoBehaviour
 
     public void PlayAnimation(Animator animator,string newState)
     {
-        if (currentState != newState)
+        if (currentState != newState) //to prevent animation from spamming
         {
             animator.Play(newState);
             currentState = newState;

@@ -65,7 +65,7 @@ public class PlayerMovement : MonoBehaviour
         if (canJump && Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
-            GetComponent<DoubleJump>().canDoubleJump = true;
+            if(playerClass.IsAngel()) GetComponent<DoubleJump>().canDoubleJump = true;
         }
     }
 
@@ -98,7 +98,7 @@ public class PlayerMovement : MonoBehaviour
     private void Movement()
     {
         float speed;
-        if (playerClass.currentClass == SwapClass.playerClasses.Angel) speed = speedAngel;
+        if (playerClass.IsAngel()) speed = speedAngel;
         else speed = speedDevil;
 
         xAxis *= speed * Time.deltaTime;
