@@ -8,6 +8,7 @@ public class DoubleJump : MonoBehaviour
     bool isGrounded;
     bool isJumpButtonPressed;
     bool jumpedTwice;
+    public bool canDoubleJump;
     Rigidbody rb;
     SwapClass swapClass;
     // Start is called before the first frame update
@@ -21,19 +22,17 @@ public class DoubleJump : MonoBehaviour
     // Update is called once per frame
     private void FixedUpdate()
     {
-        this.isGrounded = GetComponent<PlayerMovement>().isGrounded;
-        this.isJumpButtonPressed = GetComponent<PlayerMovement>().jump;
-
-        if (!isGrounded && swapClass.currentClass == SwapClass.playerClasses.Angel)
+        if (swapClass.currentClass == SwapClass.playerClasses.Angel && Input.GetKeyDown(KeyCode.Space) && canDoubleJump)
         {
-            if (isJumpButtonPressed && !jumpedTwice)
-            {
-                isJumpButtonPressed = false;
-                rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
-                rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
-                jumpedTwice = true;
-            }
+
+            rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
+            rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
+            canDoubleJump = false;
         }
-        else { jumpedTwice = false; }
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") canDoubleJump = false;
     }
 }

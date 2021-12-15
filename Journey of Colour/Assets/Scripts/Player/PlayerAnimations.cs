@@ -70,7 +70,7 @@ public class PlayerAnimations : MonoBehaviour
 
     void DoJumpAnimation()
     {
-        if ( Input.GetKey(KeyCode.Space) && playerMovement.isGrounded)
+        if ( Input.GetKey(KeyCode.Space) && playerMovement.canJump)
         {
             if (lastJump == jumpVariant2)
             {
@@ -87,14 +87,14 @@ public class PlayerAnimations : MonoBehaviour
 
     public void DoRunAnimation()
     {
-        if (playerMovement.xAxis != 0 && playerMovement.isGrounded && playerMovement.rb.velocity.y == 0) isRunning = true;
+        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.rb.velocity.y == 0) isRunning = true;
         else isRunning = false;
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
     }
 
      void DoIdleAnimation()
     {
-        if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit)
+        if (playerMovement.canJump && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit)
         {
             if (!isIdle)
             {
