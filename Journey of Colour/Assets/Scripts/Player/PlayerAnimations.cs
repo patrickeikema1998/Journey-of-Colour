@@ -31,6 +31,7 @@ public class PlayerAnimations : MonoBehaviour
     bool gettingHit;
     bool isRunning;
     bool isIdle;
+    bool isJumping;
     [HideInInspector] public bool isFloating;
 
 
@@ -42,17 +43,15 @@ public class PlayerAnimations : MonoBehaviour
         animationManager = GetComponent<AnimationManager>();
         playerClass = GetComponent<SwapClass>();
         playerMovement = GetComponent<PlayerMovement>();
-
     }
 
     private void Update()
     {
         ChangeAnimatorOnClassSwap();
 
-
+        DoIdleAnimation();
         DoJumpAnimation();
         DoRunAnimation();
-        DoIdleAnimation();
         DoHitAnimation();
         DoFloatAnimation();
         DoFireballAnimation();
@@ -60,14 +59,8 @@ public class PlayerAnimations : MonoBehaviour
 
     void ChangeAnimatorOnClassSwap()
     {
-        if (playerClass.IsAngel())
-        {
-            currentAnimator = animatorAngel;
-        }
-        else
-        {
-            currentAnimator = animatorDevil;
-        }
+        if (playerClass.IsAngel()) currentAnimator = animatorAngel;
+        else currentAnimator = animatorDevil;
     }
 
     void DoJumpAnimation()
@@ -75,6 +68,7 @@ public class PlayerAnimations : MonoBehaviour
         //this statement checks if player should do an animation
         if ((GetComponent<DoubleJump>().canDoubleJump || playerMovement.canJump) && Input.GetKeyDown(KeyCode.Space))
         {
+            isJumping = true;
             //swaps variants
             if (lastJump == jumpVariant2)
             {
@@ -101,8 +95,9 @@ public class PlayerAnimations : MonoBehaviour
 
     void DoIdleAnimation()
     {
+
         //checks if player is standing still. canJump is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
-        if (playerMovement.canJump && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit)
+        if (!isJumping && !isAttacking && !isRunning && !gettingHit)
         {
             animationManager.PlayAnimation(currentAnimator, idle);
 
@@ -111,7 +106,7 @@ public class PlayerAnimations : MonoBehaviour
 
     private void DoHitAnimation()
     {
-
+       
         if (Input.GetKey(KeyCode.Mouse0) && playerClass.IsDevil() && !isAttacking)
         {
             isAttacking = true;
@@ -135,6 +130,7 @@ public class PlayerAnimations : MonoBehaviour
         gettingHit = true;
         if (playerClass.IsAngel())
         {
+            //angel has variants
             if (lastGettingHit == gettingHitVariant2)
             {
                 animationManager.PlayAnimation(currentAnimator, gettingHitVariant1);
@@ -148,9 +144,10 @@ public class PlayerAnimations : MonoBehaviour
         }
         else
         {
+            //devil has no variants
             animationManager.PlayAnimation(currentAnimator, gettingHitVariant1);
         }
-
+        //other animations can play after delay
         Invoke("HitComplete", gettingHitAnimationTime);
     }
 
@@ -171,5 +168,10 @@ public class PlayerAnimations : MonoBehaviour
     {
 
         gettingHit = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") isJumping = false;
     }
 }

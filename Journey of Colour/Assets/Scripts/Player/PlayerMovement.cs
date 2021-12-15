@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
     //public bool isJumpButtonPressed = false;
     public bool canJump = false;
     public bool lookingLeft;
+    public bool isGrounded;
 
     string lastPressed;
     string currentPressed;
@@ -111,4 +112,12 @@ public class PlayerMovement : MonoBehaviour
         else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag =="Ground") isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") isGrounded = false;
+    }
 }
