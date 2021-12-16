@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class RotateEnemy : MonoBehaviour
 {
-    Quaternion left, right;
+    float left, right;
+    [SerializeField] float interpolationSteps;
     GameObject player;
     void Start()
     {
         player = GameObject.Find("Player");
-        left = Quaternion.Euler(0, 270, 0);
-        right = Quaternion.Euler(0, 90, 0);
+        left = 270;
+        right = 90;
     }
 
     // Update is called once per frame
@@ -21,7 +22,7 @@ public class RotateEnemy : MonoBehaviour
 
     void RotateToPlayer()
     {
-        if (player.transform.position.x > transform.position.x) transform.rotation = right;
-        else transform.rotation = left;
+        if (player.transform.position.x > transform.position.x) transform.rotation = Quaternion.Euler(0, Mathf.Lerp(transform.rotation.eulerAngles.y, right, interpolationSteps), 0);
+        else transform.rotation = Quaternion.Euler(0, Mathf.Lerp(transform.rotation.eulerAngles.y, left, interpolationSteps), 0);
     }
 }
