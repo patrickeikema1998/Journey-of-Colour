@@ -101,15 +101,21 @@ public class PlayerMovement : MonoBehaviour
         float speed;
         if (playerClass.IsAngel()) speed = speedAngel;
         else speed = speedDevil;
-
         xAxis *= speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+
+        if (!GetComponent<Float>().isFloating)
+        {
+            transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        }
     }
 
     private void RotateCharacter()
     {
-        if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-        else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        if (!GetComponent<Float>().isFloating)
+        {
+            if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+            else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        }
     }
 
     private void OnCollisionEnter(Collision collision)

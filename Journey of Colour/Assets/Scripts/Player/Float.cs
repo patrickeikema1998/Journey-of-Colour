@@ -4,11 +4,11 @@ using UnityEngine;
 
 public class Float : MonoBehaviour
 {
-    bool isGrounded;
+
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxFloatTime, cooldownTime;
     CustomTimer maxFloatTimer, cooldownTimer;
-    bool abilityGo;
+    public bool isFloating;
 
     SwapClass swapClass;
 
@@ -39,7 +39,8 @@ public class Float : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.isGrounded = GetComponent<PlayerMovement>().canJump;
+        bool isGrounded = GetComponent<PlayerMovement>().canJump;
+
 
         if (!isGrounded && swapClass.currentClass == 0)
         {
@@ -53,16 +54,16 @@ public class Float : MonoBehaviour
                     maxFloatTimer.start = true;
                     rb.useGravity = false;
                     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);         //sets Y velocity on 0 before starting ability, so that player wont fly upwards.
-                    abilityGo = true;
+                    isFloating = true;
                 }
             }
             else
             {
-                abilityGo = false;
+                isFloating = false;
             }
 
 
-            if (abilityGo)
+            if (isFloating)
             {
                 GetComponent<PlayerAnimations>().isFloating = true;
                 swapClass.swappable = false;
@@ -73,7 +74,7 @@ public class Float : MonoBehaviour
                 rb.constraints = freezeXConstraint;
             }
 
-            if (!abilityGo || maxFloatTimer.finish)
+            if (!isFloating || maxFloatTimer.finish)
             {
                 GetComponent<PlayerAnimations>().isFloating = false;
                 rb.constraints = normalConstraints;
