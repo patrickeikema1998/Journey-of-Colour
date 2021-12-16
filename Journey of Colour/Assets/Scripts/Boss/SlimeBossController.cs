@@ -58,18 +58,34 @@ public class SlimeBossController : MonoBehaviour
                 if (health.GetHealth < health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
-                if (health.dead) /*death sequence*/Destroy(gameObject);
+                if (health.dead) /*death sequenceDestroy(gameObject)*/ enabled = false;
                 break;
         }
         
     }
 
     private void OnCollisionEnter(Collision collision)
-    {     
+    {
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
         }
+    }
+
+    public void HitSpikes()
+    {
+        if (phase < 4) Stun();
+        else beamAttack.ShootBeam();
+    }
+
+    public void Stun()
+    {
+        stunTime = 0;
+        stunned = true;
+        bounceAttack.enabled = false;
+        lungeAttack.enabled = false;
+        projectileAttack.enabled = false;
+        beamAttack.enabled = false;
     }
 
     void SwitchPhase(int newPhase)
@@ -116,13 +132,4 @@ public class SlimeBossController : MonoBehaviour
         phase = newPhase;
     }
     
-    public void Stun()
-    {
-        stunTime = 0;
-        stunned = true;
-        bounceAttack.enabled = false;
-        lungeAttack.enabled = false;
-        projectileAttack.enabled = false;
-        beamAttack.enabled = false;
-    }
 }

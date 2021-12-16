@@ -12,11 +12,14 @@ public class BossBeamAttack : MonoBehaviour
     [SerializeField]
     float maxAttackTime = 2;
 
+    SlimeBossController slimeBoss;
+
     float attackTime = 0;
 
     // Start is called before the first frame update
     void Start()
     {
+        slimeBoss = GetComponent<SlimeBossController>();
         BeamProjectile.maxLifeTime = maxAttackTime;
     }
 
@@ -45,6 +48,7 @@ public class BossBeamAttack : MonoBehaviour
             {
                 shooting = false;
                 attackTime = 0;
+                slimeBoss.Stun();
             }
         }
     }

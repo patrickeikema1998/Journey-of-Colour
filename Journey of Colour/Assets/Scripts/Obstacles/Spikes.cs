@@ -92,4 +92,11 @@ public class Spikes : MonoBehaviour
             }
         }
     }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        //checks if other is a slimeboss and if so, sends a signal to the slime boss
+        SlimeBossController slimeBoss = other.gameObject.GetComponent<SlimeBossController>();
+        if (slimeBoss != null) slimeBoss.HitSpikes();
+    }
 }
