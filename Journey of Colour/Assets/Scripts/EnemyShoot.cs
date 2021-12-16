@@ -64,9 +64,13 @@ public class EnemyShoot : MonoBehaviour
         {
             Instantiate(bullet, transform.position + offset, bullet.transform.rotation);
 
-        } else
-        {
-            Instantiate(bullet, transform.position + offset, Quaternion.identity);
+            //this gives the variables given in the inspector to the spear
+            SpearPattern pattern = bullet.GetComponent<SpearPattern>();
+            ThrowForceSpear throwForce = GetComponent<ThrowForceSpear>();
+            pattern.damage = throwForce.damage;
+            pattern.verticalForce = throwForce.verticalForce;
+            pattern.horizontalForce = throwForce.horizontalForce;
         }
+        else Instantiate(bullet, transform.position + offset, Quaternion.identity);
     }
 }

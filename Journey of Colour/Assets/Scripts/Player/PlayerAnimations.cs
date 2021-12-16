@@ -10,6 +10,7 @@ public class PlayerAnimations : MonoBehaviour
     [SerializeField] Animator animatorAngel, animatorDevil;
     Animator currentAnimator;
 
+    //these are all the animation names
     const string jumpVariant1 = "character_jump";
     const string jumpVariant2 = "character_jump_2";
     const string idle = "character_idle";
@@ -17,58 +18,58 @@ public class PlayerAnimations : MonoBehaviour
     const string gettingHitVariant1 = "character_get_hit";
     const string gettingHitVariant2 = "character_get_hit_2";
     const string floating = "float";
-    string run;
-
-
+    const string fireball = "fireball";
+    const string run = "character_run";
+    //changable string to handle animationvariants.
     string lastJump, lastGettingHit;
+
+    //time animation takes, so that idle animation wont play while attacking
+    const float attackAnimationTime = 0.5f;
+    const float gettingHitAnimationTime = 0.7f;
+
     bool isAttacking;
     bool gettingHit;
     bool isRunning;
     bool isIdle;
+    bool isJumping;
     [HideInInspector] public bool isFloating;
-    const float attackAnimationTime = 0.5f;
-    const float gettingHitAnimationTime = 0.7f;
+
 
 
     private void Start()
     {
         lastGettingHit = gettingHitVariant2;
         lastJump = jumpVariant2;
-        animationManager = GameObject.Find("AnimationManager").GetComponent<AnimationManager>();
+        animationManager = GetComponent<AnimationManager>();
         playerClass = GetComponent<SwapClass>();
         playerMovement = GetComponent<PlayerMovement>();
-
     }
 
     private void Update()
     {
-        //changes animator if class is swapped.
-        if (playerClass.currentClass == SwapClass.playerClasses.Angel)
-        {
-            currentAnimator = animatorAngel;
-            //ugly fix for animator
-            run = "character_run_angel";
+        ChangeAnimatorOnClassSwap();
 
-        }
-        else
-        {
-            currentAnimator = animatorDevil;
-            run = "character_run_devil";
-        }
-
-
+        DoIdleAnimation();
         DoJumpAnimation();
         DoRunAnimation();
-        DoIdleAnimation();
         DoHitAnimation();
         DoFloatAnimation();
+        DoFireballAnimation();
     }
 
+    void ChangeAnimatorOnClassSwap()
+    {
+        if (playerClass.IsAngel()) currentAnimator = animatorAngel;
+        else currentAnimator = animatorDevil;
+    }
 
     void DoJumpAnimation()
     {
-        if ( Input.GetKey(KeyCode.Space) && playerMovement.isGrounded)
+        //this statement checks if player should do an animation
+        if ((GetComponent<DoubleJump>().canDoubleJump || playerMovement.canJump) && Input.GetKeyDown(KeyCode.Space))
         {
+            isJumping = true;
+            //swaps variants
             if (lastJump == jumpVariant2)
             {
                 animationManager.PlayAnimation(currentAnimator, jumpVariant1);
@@ -79,35 +80,34 @@ public class PlayerAnimations : MonoBehaviour
                 animationManager.PlayAnimation(currentAnimator, jumpVariant2);
                 lastJump = jumpVariant2;
             }
+
         }
     }
 
     public void DoRunAnimation()
     {
-        if (playerMovement.xAxis != 0 && playerMovement.isGrounded && playerMovement.rb.velocity.y == 0) isRunning = true;
+        //checks if player is running.
+        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.rb.velocity.y == 0) isRunning = true;
         else isRunning = false;
+
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
     }
 
-     void DoIdleAnimation()
+    void DoIdleAnimation()
     {
-        if (playerMovement.isGrounded && playerMovement.rb.velocity.y == 0 && !isAttacking && !isRunning && !gettingHit)
+
+        //checks if player is standing still. canJump is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
+        if (!isJumping && !isAttacking && !isRunning && !gettingHit)
         {
-            if (!isIdle)
-            {
-                animationManager.PlayAnimation(currentAnimator, idle);
-                isIdle = true;
-            }
-        } else
-        {
-            isIdle = false;
+            animationManager.PlayAnimation(currentAnimator, idle);
+
         }
     }
 
     private void DoHitAnimation()
     {
-
-        if (Input.GetKey(KeyCode.Mouse0) && playerClass.currentClass == SwapClass.playerClasses.Devil && !isAttacking)
+       
+        if (Input.GetKey(KeyCode.Mouse0) && playerClass.IsDevil() && !isAttacking)
         {
             isAttacking = true;
             animationManager.PlayAnimation(currentAnimator, hit);
@@ -115,33 +115,45 @@ public class PlayerAnimations : MonoBehaviour
         }
 
     }
+    private void DoFireballAnimation()
+    {
 
+        if (Input.GetKey(KeyCode.Mouse1) && playerClass.IsDevil() && !isAttacking)
+        {
+            isAttacking = true;
+            animationManager.PlayAnimation(currentAnimator, fireball);
+            Invoke("AttackComplete", attackAnimationTime);
+        }
+    }
     public void DoGetHitAnimation()
     {
         gettingHit = true;
-        if (playerClass.currentClass == SwapClass.playerClasses.Angel)
+        if (playerClass.IsAngel())
         {
-            if (lastGettingHit == gettingHitVariant2) 
+            //angel has variants
+            if (lastGettingHit == gettingHitVariant2)
             {
                 animationManager.PlayAnimation(currentAnimator, gettingHitVariant1);
                 lastGettingHit = gettingHitVariant1;
-            } 
+            }
             else
             {
                 animationManager.PlayAnimation(currentAnimator, gettingHitVariant2);
                 lastGettingHit = gettingHitVariant1;
             }
-        } else
+        }
+        else
         {
+            //devil has no variants
             animationManager.PlayAnimation(currentAnimator, gettingHitVariant1);
         }
-
+        //other animations can play after delay
         Invoke("HitComplete", gettingHitAnimationTime);
     }
 
     private void DoFloatAnimation()
     {
-        if(isFloating && !gettingHit)
+        if (isFloating && !gettingHit)
         {
             animationManager.PlayAnimation(currentAnimator, floating);
         }
@@ -156,5 +168,10 @@ public class PlayerAnimations : MonoBehaviour
     {
 
         gettingHit = false;
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") isJumping = false;
     }
 }
