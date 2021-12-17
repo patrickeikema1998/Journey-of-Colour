@@ -1041,10 +1041,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e835a25fcf3300a4fa8796997020105f, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rbPlayer: {fileID: 0}
   holdTimeSpikes: 0
   timeBetweenDamage: 0
   moveSpeed: 3
+  damage: 10
 --- !u!54 &4672674620997918717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1072,8 +1072,8 @@ BoxCollider:
   m_IsTrigger: 1
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 3.2670302, y: 0.55331206, z: 3.734695}
-  m_Center: {x: 0.016878128, y: 0.48773122, z: 0}
+  m_Size: {x: 3.2670302, y: 0.2045201, z: 3.734695}
+  m_Center: {x: 0.016878128, y: 0.31333524, z: 0}
 --- !u!1 &4672674621233666087
 GameObject:
   m_ObjectHideFlags: 0

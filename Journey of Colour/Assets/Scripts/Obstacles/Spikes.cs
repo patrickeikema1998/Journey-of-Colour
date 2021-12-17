@@ -8,9 +8,8 @@ public class Spikes : MonoBehaviour
     Rigidbody rb;
     //timer stuff
     CustomTimer holdTimer, damageTimer;
-    [SerializeField] float holdTimeSpikes, timeBetweenDamage;
-
-    [SerializeField] float moveSpeed;
+    [SerializeField] float holdTimeSpikes, timeBetweenDamage, moveSpeed;
+    [SerializeField] int damage;
     float retractedPosY, extractedPosY;
     bool extracted;
 
@@ -42,7 +41,7 @@ public class Spikes : MonoBehaviour
         {
             if (other.GetComponent<Health>() != null && damageTimer.finish)
             {
-                other.GetComponent<Health>().Damage(10);
+                other.GetComponent<Health>().Damage(damage);
                 damageTimer.Reset();
             }
         }
