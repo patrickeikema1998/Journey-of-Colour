@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 2618941208054284331}
   - component: {fileID: 2611152037877545755}
   - component: {fileID: 2601943148460803785}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: icicle_1
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -26,8 +26,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2615633502105770837}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.4746, y: -0.37, z: -0.27}
-  m_LocalScale: {x: 0.09004854, y: 0.61948895, z: 0.4502427}
+  m_LocalPosition: {x: 0.4746, y: -0.5648, z: 0.065}
+  m_LocalScale: {x: 0.09004854, y: 0.53589463, z: 0.4502427}
   m_Children: []
   m_Father: {fileID: 4170732941539023797}
   m_RootOrder: 0
@@ -60,7 +60,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
+  - {fileID: 2100000, guid: 1b57a0e755b515849bcd7c8624a5f5d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -93,7 +93,7 @@ GameObject:
   - component: {fileID: 2666416463424893438}
   - component: {fileID: 2699581765669968032}
   - component: {fileID: 2693076814352918244}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: icicle_2_LOD0
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,8 +108,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 2668950477076340462}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.493, y: -0.076, z: -0.3}
-  m_LocalScale: {x: 0.11101457, y: 0.91832566, z: 0.98286396}
+  m_LocalPosition: {x: -0.49583, y: -0.5136, z: -0.3}
+  m_LocalScale: {x: 0.09570122, y: 0.48841068, z: 0.98286396}
   m_Children: []
   m_Father: {fileID: 4170732941539023797}
   m_RootOrder: 1
@@ -142,7 +142,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
+  - {fileID: 2100000, guid: 1b57a0e755b515849bcd7c8624a5f5d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -177,9 +177,10 @@ GameObject:
   - component: {fileID: 4153328735141743169}
   - component: {fileID: 7258391229359197214}
   - component: {fileID: 7258391229359197215}
-  m_Layer: 0
+  - component: {fileID: 7258391229359197216}
+  m_Layer: 11
   m_Name: Breaking platform
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -230,7 +231,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
+  - {fileID: 2100000, guid: 1b57a0e755b515849bcd7c8624a5f5d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -264,6 +265,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e286b9fbaa1abb240bd095740f269b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  secondsUntilVibrating: 1
+  secondsUntilBreaking: 3
 --- !u!65 &7258391229359197215
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -277,6 +280,22 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0864273, y: 0.11280036, z: 1.0864365}
   m_Center: {x: -0.00084285735, y: 0.4942032, z: -0.00022923946}
+--- !u!54 &7258391229359197216
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4176353944016882545}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0.05
+  m_UseGravity: 0
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 0
 --- !u!1 &7456675115755188949
 GameObject:
   m_ObjectHideFlags: 0
@@ -288,7 +307,7 @@ GameObject:
   - component: {fileID: 6402723150194235794}
   - component: {fileID: 1066277933722511031}
   - component: {fileID: 2257414877149170543}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: icicle_2_LOD0 (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -303,8 +322,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 7456675115755188949}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: -0.281, y: -0.403, z: -0.13}
-  m_LocalScale: {x: 0.08606797, y: 0.53721, z: 0.762}
+  m_LocalPosition: {x: -0.28336, y: -0.5413, z: -0.13}
+  m_LocalScale: {x: 0.07330667, y: 0.4013007, z: 0.762}
   m_Children: []
   m_Father: {fileID: 4170732941539023797}
   m_RootOrder: 2
@@ -337,7 +356,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
+  - {fileID: 2100000, guid: 1b57a0e755b515849bcd7c8624a5f5d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0
@@ -370,7 +389,7 @@ GameObject:
   - component: {fileID: 1267954363020695647}
   - component: {fileID: 7950171530824353375}
   - component: {fileID: 8833802708489716847}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: icicle_1 (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -385,8 +404,8 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8245382975307517027}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.185, y: -0.5, z: -0.27}
-  m_LocalScale: {x: 0.06566339, y: 0.45173135, z: 0.328317}
+  m_LocalPosition: {x: 0.1822, y: -0.5113, z: 0.042}
+  m_LocalScale: {x: 0.058593307, y: 0.47907898, z: 0.328317}
   m_Children: []
   m_Father: {fileID: 4170732941539023797}
   m_RootOrder: 3
@@ -419,7 +438,7 @@ MeshRenderer:
   m_RenderingLayerMask: 1
   m_RendererPriority: 0
   m_Materials:
-  - {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
+  - {fileID: 2100000, guid: 1b57a0e755b515849bcd7c8624a5f5d1, type: 2}
   m_StaticBatchInfo:
     firstSubMesh: 0
     subMeshCount: 0

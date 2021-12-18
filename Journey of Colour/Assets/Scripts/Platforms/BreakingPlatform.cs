@@ -5,31 +5,45 @@ using UnityEngine;
 public class BreakingPlatform : MonoBehaviour
 {
     float speed = 80f; //how fast it shakes
-    float amount = .08f; //how much it shakes
+    float amount = .03f; //how much it shakes
 
-    CustomTimer vibratingTimer, breakingTimer, returningTimer;
-    [SerializeField] float secondsUntilVibrating, secondsUntilBreaking, secondsUntilReturnPlatform;
+    CustomTimer vibratingTimer, breakingTimer, resetOnCollisionExitTimer;
+    [SerializeField] float secondsUntilVibrating, secondsUntilBreaking;
 
     private void Start()
     {
-        returningTimer = new CustomTimer(secondsUntilReturnPlatform);
+        resetOnCollisionExitTimer = new CustomTimer(2);
         vibratingTimer = new CustomTimer(secondsUntilVibrating);
         breakingTimer = new CustomTimer(secondsUntilBreaking);
 
     }
     private void Update()
     {
+        resetOnCollisionExitTimer.Update();
         vibratingTimer.Update();
         breakingTimer.Update();
-        returningTimer.Update();
 
-        if (returningTimer.finish)
+        if (vibratingTimer.finish)
         {
+            Vibrate();
+            breakingTimer.start = true;
+        }
 
-            returningTimer.Reset();
-            returningTimer.start = false;
-            GetComponent<BoxCollider>().isTrigger = false;
+        if (breakingTimer.finish)
+        {
+            GameObject.Find("Player").transform.parent = null;
+            GetComponentInParent<ReturnBreakingPlatform>().go = true;
+            Destroy(gameObject);
+        }
 
+        if (resetOnCollisionExitTimer.finish)
+        {
+            vibratingTimer.Reset();
+            vibratingTimer.start = false;
+            breakingTimer.Reset();
+            breakingTimer.start = false;
+            resetOnCollisionExitTimer.Reset();
+            resetOnCollisionExitTimer.start = false;
         }
     }
 
@@ -44,39 +58,18 @@ public class BreakingPlatform : MonoBehaviour
         if (collision.gameObject.tag == "Player")
         {
             vibratingTimer.start = true;
-            breakingTimer.start = true;
-        }
-    }
-
-    private void OnCollisionStay(Collision collision)
-    {
-        if (collision.gameObject.tag == "Player")
-        {
-            Debug.Log(vibratingTimer.timeRemaining);
-
-            if (vibratingTimer.finish)
-            {
-                Vibrate();
-                Debug.Log("vibrating timer finished");
-            }
-            
-            if (breakingTimer.finish)
-            {
-                Debug.Log("now triggers!");
-                collision.transform.parent = null;
-                returningTimer.start = true;
-                GetComponent<BoxCollider>().isTrigger = true;
-            }
         }
     }
 
 
     private void OnCollisionExit(Collision collision)
     {
-        Debug.Log("collision exit");
-
-        vibratingTimer.Reset();
-        vibratingTimer.start = false;
+        if (collision.gameObject.tag == "Player")
+        {
+            resetOnCollisionExitTimer.start = true;
+        }
     }
+
+
 
 }
