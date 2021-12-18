@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class ReturnBreakingPlatform : MonoBehaviour
+public class BreakingPlatformSpawner : MonoBehaviour
 {
     [SerializeField] GameObject breakingPlatform;
     [HideInInspector]public bool go;
@@ -20,10 +20,12 @@ public class ReturnBreakingPlatform : MonoBehaviour
         respawnTimer.Update();
         if (go)
         {
+            GameObject.Find("Player").transform.parent = null;
             respawnTimer.start = true;
             go = false;
         }
 
+        //respawn a breaking platform on the same location.
         if (respawnTimer.finish)
         {
             Instantiate(breakingPlatform, transform);

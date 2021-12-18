@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class BreakingPlatform : MonoBehaviour
+public class BreakingPlatformBehavior : MonoBehaviour
 {
     float speed = 80f; //how fast it shakes
     float amount = .03f; //how much it shakes
@@ -31,8 +31,7 @@ public class BreakingPlatform : MonoBehaviour
 
         if (breakingTimer.finish)
         {
-            GameObject.Find("Player").transform.parent = null;
-            GetComponentInParent<ReturnBreakingPlatform>().go = true;
+            GetComponentInParent<BreakingPlatformSpawner>().go = true;
             Destroy(gameObject);
         }
 
