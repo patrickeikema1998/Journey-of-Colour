@@ -30138,6 +30138,11 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8949287569552546981, guid: 177103b96e779734db1afe719f8f853a, type: 3}
   m_PrefabInstance: {fileID: 8949287570435183087}
   m_PrefabAsset: {fileID: 0}
+--- !u!4 &1973236707 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 8949287569552546977, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+  m_PrefabInstance: {fileID: 8949287570435183087}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1974219125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -32583,6 +32588,14 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 1973236693, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: fireBall
+      value: 
+      objectReference: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
+    - target: {fileID: 1973236693, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: playerPos
+      value: 
+      objectReference: {fileID: 1973236707}
     - target: {fileID: 1973236697, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: jumpForce
       value: 18
