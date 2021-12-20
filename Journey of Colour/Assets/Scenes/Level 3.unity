@@ -5386,11 +5386,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4607489187838822, guid: 00e2e59cbc04eab4a982218df54ce70b, type: 3}
   m_PrefabInstance: {fileID: 324497676}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &329329541 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4766406252104518661, guid: 569815516a4f824459d2dc91905f1128, type: 3}
-  m_PrefabInstance: {fileID: 1505115414}
-  m_PrefabAsset: {fileID: 0}
 --- !u!54 &329329553 stripped
 Rigidbody:
   m_CorrespondingSourceObject: {fileID: 4766406252104518662, guid: 569815516a4f824459d2dc91905f1128, type: 3}
@@ -13625,8 +13620,9 @@ GameObject:
   - component: {fileID: 894936473}
   - component: {fileID: 894936472}
   - component: {fileID: 894936471}
-  - component: {fileID: 894936474}
   - component: {fileID: 894936475}
+  - component: {fileID: 894936476}
+  - component: {fileID: 894936474}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13693,7 +13689,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894936470}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 4.87, y: 5.95, z: -14.22}
+  m_LocalPosition: {x: -4.87, y: 5.95, z: -14.22}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -13711,8 +13707,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3304ca5e4d9be8f4bbfae121bebe57a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  player: {fileID: 329329541}
-  startOffset: {x: 0, y: -5, z: 40}
+  player: {fileID: 1973236692}
+  startOffset: {x: -4.87, y: 5.95, z: -14.22}
 --- !u!114 &894936475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13727,6 +13723,22 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   menuPanel: {fileID: 766098613}
   controlPanel: {fileID: 334208543}
+--- !u!114 &894936476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894936470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 127918ede1365e646b9bd3ac9ee4efb5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  startPos: {x: -4.87, y: 5.95, z: -14.22}
+  yOffset: 3
+  normalSpeed: 4.5
+  highSpeed: 6
 --- !u!1001 &899702209
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -5,13 +5,13 @@ using UnityEngine;
 public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
-    
+    [SerializeField] Vector3 startPos;
     [SerializeField] float yOffset, normalSpeed, highSpeed;
 
     float speed;
     float xVelocity;
-    float speederOffset = Screen.width * 0.01f; 
-    Vector3 startPos;
+    float speederOffset = Screen.width * 0.0075f;
+    float startYOffset;
 
     GameObject player;
 
@@ -19,13 +19,9 @@ public class AutomaticScrolling : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        startPos = transform.position;
-    }
-
-    private void Update()
-    {
-        if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
-        else { speed = normalSpeed; }
+        transform.position = startPos;
+        startYOffset = transform.position.y - player.transform.position.y;
+        Debug.Log(startYOffset);
     }
 
     private void LateUpdate()
@@ -34,12 +30,13 @@ public class AutomaticScrolling : MonoBehaviour
         bool changeInY = false;
         float newCameraPositionY = transform.position.y;
 
-        if (currentYOffset > startPos.y + yOffset)
+        if (currentYOffset > startYOffset + yOffset)
         {
             changeInY = true;            
             newCameraPositionY = (player.transform.position.y + currentYOffset) - (currentYOffset - yOffset);
+            Debug.Log("WTF");
         }
-        else if (currentYOffset < startPos.y - yOffset )
+        else if (currentYOffset < startYOffset - yOffset )
         {
             changeInY = true;
             newCameraPositionY = (player.transform.position.y + currentYOffset) - (currentYOffset + yOffset);
@@ -54,5 +51,7 @@ public class AutomaticScrolling : MonoBehaviour
             newCameraPositionY,
             transform.position.z);
 
+        if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
+        else { speed = normalSpeed; }
     }
 }
