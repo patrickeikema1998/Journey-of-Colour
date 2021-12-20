@@ -14,6 +14,7 @@ public class FireBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
 
         rb.velocity = transform.right * speed;

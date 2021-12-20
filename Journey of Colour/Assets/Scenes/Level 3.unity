@@ -13832,6 +13832,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Lantern
       objectReference: {fileID: 0}
+    - target: {fileID: 6884969118669796410, guid: 6a75152763c82a347934eca1cf0bdac5, type: 3}
+      propertyPath: m_Materials.Array.size
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 6884969118669796410, guid: 6a75152763c82a347934eca1cf0bdac5, type: 3}
+      propertyPath: m_Materials.Array.data[1]
+      value: 
+      objectReference: {fileID: 2100000, guid: ab08612e63d71e8419000749e3c68d16, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 6a75152763c82a347934eca1cf0bdac5, type: 3}
 --- !u!4 &901599045 stripped

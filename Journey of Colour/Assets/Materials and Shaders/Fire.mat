@@ -7,8 +7,8 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DistortedIce
-  m_Shader: {fileID: -6465566751694194690, guid: dcd805ab122770843b5ae2bf947e828b, type: 3}
+  m_Name: Fire
+  m_Shader: {fileID: -6465566751694194690, guid: b9d03586b6cc8dd4ca333960e5e043ac, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
   m_EnableInstancingVariants: 0
@@ -19,10 +19,6 @@ Material:
   m_SavedProperties:
     serializedVersion: 3
     m_TexEnvs:
-    - IceTexture:
-        m_Texture: {fileID: 2800000, guid: 273d81c025f73ba408587ef323fe4cde, type: 3}
-        m_Scale: {x: 1, y: 1}
-        m_Offset: {x: 0, y: 0}
     - unity_Lightmaps:
         m_Texture: {fileID: 0}
         m_Scale: {x: 1, y: 1}
@@ -37,12 +33,10 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - FresnalPower: 1.064
-    - Metallic: 0.068
-    - Normals: 0.32
-    - RefractionAmount: 0.259
-    - Smoothness: 0.815
+    - DistortionStrength: 0.89
+    - FireBottomOffset: 2.26
+    - YStretch: 0.77
     m_Colors:
-    - FresnalColor: {r: 0, g: 0.16231874, b: 9.605979, a: 0}
-    - _Color: {r: 2.447059, g: 5.992157, b: 5.8352942, a: 1}
+    - NoiseScale: {r: 1, g: 1, b: 0, a: 0}
+    - _Color: {r: 0.8773585, g: 0.04123812, b: 0, a: 0}
   m_BuildTextureStacks: []

@@ -20,7 +20,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Fresnel Effect
+  m_Name: Fresnel _FireBall
   m_Shader: {fileID: -6465566751694194690, guid: ca4f38e6438609a40900c0469f31e979, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -95,7 +95,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - FresnelPower: 1.71
+    - FresnelPower: 2
     - _AlphaClip: 0
     - _Blend: 0
     - _BumpScale: 1
@@ -123,9 +123,9 @@ Material:
     - _WorkflowMode: 1
     - _ZWrite: 0
     m_Colors:
-    - FresnelColor: {r: 1, g: 1, b: 1, a: 0}
+    - FresnelColor: {r: 31.999996, g: 5.940572, b: 0, a: 0}
     - _BaseColor: {r: 0.4575472, g: 0.8126071, b: 1, a: 0.8862745}
-    - _Color: {r: 0, g: 0.649577, b: 0.9056604, a: 1}
+    - _Color: {r: 0.25, g: 0, b: 0, a: 1}
     - _EmissionColor: {r: 0, g: 0, b: 0, a: 1}
     - _SpecColor: {r: 0.2, g: 0.2, b: 0.2, a: 1}
   m_BuildTextureStacks: []
