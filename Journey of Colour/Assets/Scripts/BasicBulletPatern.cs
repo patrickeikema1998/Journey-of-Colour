@@ -5,6 +5,7 @@ using UnityEngine;
 public class BasicBulletPatern : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 7f;
+    [SerializeField] float playerOffsetY;
     GameObject target;
     Rigidbody rb;
     Vector3 moveDirection;
@@ -16,18 +17,27 @@ public class BasicBulletPatern : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         target = GameObject.Find("Player");
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
+        moveDirection = new Vector3(moveDirection.x, moveDirection.y + playerOffsetY, moveDirection.z);
         rb.velocity = moveDirection;
-        Destroy(gameObject, 5f);
+    }
+
+    private void OnBecameInvisible()
+    {
+        Destroy(gameObject);
     }
 
     private void OnCollisionEnter(Collision collision)
     {
         if (collision.gameObject == target)
         {
-            target.GetComponent<TakeDamage>().TakeHit(20);
+            //Debug.Log("Hit!");
+            //target.GetComponent<TakeDamage>().TakeHit(2);
+            target.GetComponent<Health>().Damage(15);
         }
 
-        if (collision.gameObject.tag != "Enemy")
-            Destroy(gameObject);
+        Destroy(gameObject);
+
+        //if (collision.gameObject.tag != "Enemy")
+        //    Destroy(gameObject);
     }
 }

@@ -4,8 +4,6 @@ using UnityEngine;
 
 public class Float : MonoBehaviour
 {
-    // Start is called before the first frame update
-
     bool isGrounded;
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxFloatTime, cooldownTime;
@@ -45,7 +43,7 @@ public class Float : MonoBehaviour
 
         if (!isGrounded && swapClass.currentClass == 0)
         {
-            if (Input.GetKey(KeyCode.E))
+            if (Input.GetKey("s"))
             {
                 if (cooldownTimer.finish)
                 {
@@ -57,7 +55,8 @@ public class Float : MonoBehaviour
                     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);         //sets Y velocity on 0 before starting ability, so that player wont fly upwards.
                     abilityGo = true;
                 }
-            } else
+            }
+            else
             {
                 abilityGo = false;
             }
@@ -65,6 +64,7 @@ public class Float : MonoBehaviour
 
             if (abilityGo)
             {
+                GetComponent<PlayerAnimations>().isFloating = true;
                 swapClass.swappable = false;
                 sinY += SinYIncrement * Time.deltaTime;
                 var sinMovement = Mathf.Sin(sinY) * Amplitude;
@@ -75,6 +75,7 @@ public class Float : MonoBehaviour
 
             if (!abilityGo || maxFloatTimer.finish)
             {
+                GetComponent<PlayerAnimations>().isFloating = false;
                 rb.constraints = normalConstraints;
                 rb.useGravity = true;
                 maxFloatTimer.Reset();

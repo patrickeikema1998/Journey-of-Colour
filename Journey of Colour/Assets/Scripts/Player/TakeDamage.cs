@@ -9,8 +9,9 @@ public class TakeDamage : MonoBehaviour
     public int currentHealth;
 
     public Healthbar healthbar;
-    public Rigidbody rb;
-    public GameObject panel;
+
+
+
 
     private void Start()
     {
@@ -27,18 +28,11 @@ public class TakeDamage : MonoBehaviour
         //        TakeHit(20);
         //    } 
         //}
-
-        if(currentHealth <= 0)
-        {
-            rb.constraints = RigidbodyConstraints.FreezeAll;
-            panel.SetActive(true);
-        }
     }
 
     public void TakeHit(int damage)
     {
         currentHealth -= damage;
-
         healthbar.SetHealth(currentHealth);
     }
 

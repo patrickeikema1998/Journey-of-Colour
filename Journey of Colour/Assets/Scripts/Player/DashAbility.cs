@@ -33,7 +33,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
-        if (Input.GetKey(KeyCode.W) && coolDown < 0 && swapClass.currentClass == 0)
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.currentClass == 0)
         {
             duration = durationTime;
         }

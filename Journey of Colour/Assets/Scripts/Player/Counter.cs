@@ -23,7 +23,7 @@ public class Counter : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.W))
+        if (Input.GetKeyDown(KeyCode.S))
         {
             keyDown = true;
         }

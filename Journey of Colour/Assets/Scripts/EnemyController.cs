@@ -4,16 +4,18 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    [SerializeField] float speed = 1,
-                           attackCooldown = 3,
-                           attackDetectionRange = 2;
+    [SerializeField]
+    float speed = 1, attackCooldown = 3, attackDetectionRange = 2, enemySight;
     [SerializeField] GameObject player;
 
     public CharacterController controller;
     MeleeAttack attack;
     Health health;
+    EnemyAnimations animations;
 
     float timeLeft;
+
+    float distance;
 
     // Start is called before the first frame update
     void Start()
@@ -22,6 +24,7 @@ public class EnemyController : MonoBehaviour
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();
         timeLeft = attackCooldown;
+        animations = GetComponent<EnemyAnimations>();
     }
 
     // Update is called once per frame
@@ -34,7 +37,11 @@ public class EnemyController : MonoBehaviour
         //transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
 
         //verplaatst de enemy naar voren
-        controller.SimpleMove(transform.forward * speed);
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance < enemySight)
+        {
+            controller.SimpleMove(transform.forward * speed);
+        }
 
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
@@ -45,6 +52,7 @@ public class EnemyController : MonoBehaviour
     {
         timeLeft = attackCooldown;
         attack.Attack();
+
     }
 
     void Die()
