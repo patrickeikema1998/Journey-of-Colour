@@ -5,13 +5,13 @@ using UnityEngine;
 public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
-    [SerializeField] Vector3 startPos;
-    [SerializeField] Quaternion startRot;
+    
     [SerializeField] float yOffset, normalSpeed, highSpeed;
 
     float speed;
     float xVelocity;
-    float speederOffset = Screen.width * 0.01f;
+    float speederOffset = Screen.width * 0.01f; 
+    Vector3 startPos;
 
     GameObject player;
 
@@ -19,8 +19,7 @@ public class AutomaticScrolling : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        transform.position = startPos;
-        transform.rotation = startRot;
+        startPos = transform.position;
     }
 
     private void Update()
