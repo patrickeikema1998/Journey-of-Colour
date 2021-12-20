@@ -37,12 +37,12 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - FresnalPower: 1.064
+    - FresnalPower: 0.434
     - Metallic: 0.068
     - Normals: 0.32
-    - RefractionAmount: 0.259
+    - RefractionAmount: 0.38
     - Smoothness: 0.815
     m_Colors:
-    - FresnalColor: {r: 0, g: 0.16231874, b: 9.605979, a: 0}
+    - FresnalColor: {r: 0, g: 0.1254902, b: 5.992157, a: 0}
     - _Color: {r: 2.447059, g: 5.992157, b: 5.8352942, a: 1}
   m_BuildTextureStacks: []
