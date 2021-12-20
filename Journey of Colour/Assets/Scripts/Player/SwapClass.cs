@@ -14,15 +14,18 @@ public class SwapClass : MonoBehaviour
 
     public playerClasses currentClass;
 
+    private void Start()
+    {
+        currentClass = playerClasses.Angel;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        Controls();
-        SwapPlayer();
+        SwapPlayerClass();
     }
 
-    void Controls()
+    void SwapPlayerClass()
     {
         if (swappable)
         {
@@ -31,24 +34,27 @@ public class SwapClass : MonoBehaviour
                 if(currentClass == playerClasses.Angel)
                 {
                     currentClass = playerClasses.Devil;
+                    devil.SetActive(true);
+                    angel.SetActive(false);
                 } else
                 {
                     currentClass = playerClasses.Angel;
+                    devil.SetActive(false);
+                    angel.SetActive(true);
                 }
             }
         }
     }
 
-    void SwapPlayer()
+    public bool IsAngel()
     {
-        if (currentClass == playerClasses.Angel)
-        {
-            devil.SetActive(false);
-            angel.SetActive(true);
-        } else
-        {
-            devil.SetActive(true);
-            angel.SetActive(false);
-        }
+        if (currentClass == playerClasses.Angel) return true;
+        else return false;
+    }
+
+    public bool IsDevil()
+    {
+        if (currentClass == playerClasses.Devil) return true;
+        else return false;
     }
 }

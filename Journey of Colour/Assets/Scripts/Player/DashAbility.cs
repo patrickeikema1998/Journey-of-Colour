@@ -33,7 +33,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.currentClass == 0)
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
         {
             duration = durationTime;
         }
@@ -43,8 +43,7 @@ public class DashAbility : MonoBehaviour
 
     void Dash()
     {
-        
-        rb.AddRelativeForce(new Vector3(direction*dashForce*100,10,0));
+        rb.AddForce(new Vector3(direction*dashForce*8,10,0));
         coolDown = coolDownTime;
     }
 }

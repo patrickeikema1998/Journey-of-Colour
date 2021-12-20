@@ -25,7 +25,7 @@ public class EnemyAnimations : MonoBehaviour
     private void Start()
     {
         charController = GetComponent<CharacterController>();
-        animationManager = GameObject.Find("AnimationManager").GetComponent<AnimationManager>();
+        animationManager = GetComponent<AnimationManager>();
         anim = GetComponent<Animator>();
     }
 

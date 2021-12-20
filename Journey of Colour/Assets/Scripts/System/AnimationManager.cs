@@ -5,13 +5,14 @@ using UnityEngine;
 public class AnimationManager : MonoBehaviour
 {
     private string currentState;
-
+    private Animator currentAnimator;
     public void PlayAnimation(Animator animator,string newState)
     {
-        if (currentState != newState)
+        if (currentAnimator != animator || currentState != newState) //to prevent animation from spamming
         {
-            animator.Play(newState);
+            currentAnimator = animator;
             currentState = newState;
+            animator.Play(newState);
         }
     }
 }

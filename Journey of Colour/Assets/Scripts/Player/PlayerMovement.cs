@@ -6,7 +6,6 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public bool jump;
-
     PlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
@@ -19,8 +18,9 @@ public class PlayerMovement : MonoBehaviour
     public float jumpForce;
 
     //public bool isJumpButtonPressed = false;
-    public bool isGrounded = false;
+    public bool canJump = false;
     public bool lookingLeft;
+    public bool isGrounded;
 
     string lastPressed;
     string currentPressed;
@@ -63,9 +63,10 @@ public class PlayerMovement : MonoBehaviour
         if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
 
 
-        if (isGrounded && Input.GetKeyDown(KeyCode.Space))
+        if (canJump && Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
+            if(playerClass.IsAngel()) GetComponent<DoubleJump>().canDoubleJump = true;
         }
     }
 
@@ -73,44 +74,56 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-        GroundCheck();
+        JumpCheck();
         RotateCharacter();
 
-        if (jump) Jump();
-
+        if(jump && canJump)
+        {
+            rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+            jump = false;
+        }
     }
 
-    void GroundCheck()
+    void JumpCheck()
     {
         RaycastHit hit;
         if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f))
         {
-            isGrounded = true;
+            canJump = true;
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f)) isGrounded = true;
-        else isGrounded = false;
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f)) canJump = true;
+        else canJump = false;
 
     }
 
     private void Movement()
     {
         float speed;
-        if (playerClass.currentClass == SwapClass.playerClasses.Angel) speed = speedAngel;
+        if (playerClass.IsAngel()) speed = speedAngel;
         else speed = speedDevil;
-
         xAxis *= speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+
+        if (!GetComponent<Float>().isFloating)
+        {
+            transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        }
     }
 
     private void RotateCharacter()
     {
-        if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-        else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        if (!GetComponent<Float>().isFloating)
+        {
+            if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+            else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        }
     }
 
-    private void Jump()
+    private void OnCollisionEnter(Collision collision)
     {
-        rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-        jump = false;
+        if (collision.gameObject.tag =="Ground") isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") isGrounded = false;
     }
 }
