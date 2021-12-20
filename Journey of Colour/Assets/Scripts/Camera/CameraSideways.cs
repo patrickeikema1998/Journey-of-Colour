@@ -6,6 +6,7 @@ public class CameraSideways : MonoBehaviour
 {
     //Camera follows the player from a sideview
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
+    [SerializeField] float xDistance, yDistance;
     public GameObject player;
     public Vector3 startOffset;
 
@@ -20,25 +21,26 @@ public class CameraSideways : MonoBehaviour
         bool changeInX = false;
         bool changeInY = false;
         Vector3 newCameraPosition = transform.position;
-        if (offset.x > startOffset.x + 3)
+        if (offset.x > startOffset.x - xDistance && player.GetComponent<PlayerMovement>().lookingLeft)
+        {
+            //player to left
+            changeInX = true;
+            newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x + xDistance);
+        }
+        else if (offset.x < startOffset.x + xDistance && !player.GetComponent<PlayerMovement>().lookingLeft)
         {
             changeInX = true;
-            newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x - 3);
+            newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x - xDistance);
         }
-        else if (offset.x < startOffset.x - 3)
-        {
-            changeInX = true;
-            newCameraPosition.x = (player.transform.position.x + offset.x) - (offset.x + 3);
-        }
-        if (offset.y > + startOffset.y + 2)
+        if (offset.y > + startOffset.y + yDistance)
         {
             changeInY = true;
-            newCameraPosition.y = (player.transform.position.y + offset.y) - (offset.y - 2);
+            newCameraPosition.y = (player.transform.position.y + offset.y) - (offset.y - yDistance);
         }
-        else if (offset.y < startOffset.y - 2)
+        else if (offset.y < startOffset.y - yDistance)
         {
             changeInY = true;
-            newCameraPosition.y = (player.transform.position.y + offset.y) - (offset.y + 2);
+            newCameraPosition.y = (player.transform.position.y + offset.y) - (offset.y + yDistance);
         }
         if (!changeInX)
         {
