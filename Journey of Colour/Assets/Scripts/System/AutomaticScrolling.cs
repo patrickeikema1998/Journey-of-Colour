@@ -21,7 +21,6 @@ public class AutomaticScrolling : MonoBehaviour
         player = GameObject.Find("Player");
         transform.position = startPos;
         startYOffset = transform.position.y - player.transform.position.y;
-        Debug.Log(startYOffset);
     }
 
     private void LateUpdate()
@@ -30,16 +29,16 @@ public class AutomaticScrolling : MonoBehaviour
         bool changeInY = false;
         float newCameraPositionY = transform.position.y;
 
+        Debug.Log(currentYOffset+" plus: "+ (startYOffset + yOffset)+" minus: "+ (startYOffset - yOffset));
         if (currentYOffset > startYOffset + yOffset)
         {
             changeInY = true;            
-            newCameraPositionY = (player.transform.position.y + currentYOffset) - (currentYOffset - yOffset);
-            Debug.Log("WTF");
+            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset - yOffset);
         }
         else if (currentYOffset < startYOffset - yOffset )
         {
             changeInY = true;
-            newCameraPositionY = (player.transform.position.y + currentYOffset) - (currentYOffset + yOffset);
+            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset + yOffset);
         }
         if (!changeInY)
         {
