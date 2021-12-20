@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01deeba3356ffbc4aa67cf1ab4d15acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakingPlatform: {fileID: 0}
+  breakingPlatform: {fileID: 2255429132177208205, guid: 2b9690e86bf8fbb4bacbb5b655d17b5b, type: 3}
   go: 0
   secondsToRespawn: 5
 --- !u!1 &5212089830111633589
