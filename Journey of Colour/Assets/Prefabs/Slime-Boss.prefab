@@ -735,7 +735,7 @@ MonoBehaviour:
   beam: {fileID: 8568353922927876543, guid: 5e2c7ab435014ce458af8f7ce9fe49a8, type: 3}
   raycastLayer:
     serializedVersion: 2
-    m_Bits: 8192
+    m_Bits: 10241
   damage: 10
   maxAttackTime: 2
 --- !u!135 &6598137198759520925
