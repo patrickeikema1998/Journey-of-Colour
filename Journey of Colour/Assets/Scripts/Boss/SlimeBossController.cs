@@ -75,7 +75,11 @@ public class SlimeBossController : MonoBehaviour
     public void HitSpikes()
     {
         if (phase < 4) Stun();
-        else beamAttack.ShootBeam();
+        else
+        {
+            Stun();
+            Invoke("ShootBeam", maxStunTime - BeamProjectile.maxLifeTime);
+        }
     }
 
     public void Stun()
@@ -88,6 +92,11 @@ public class SlimeBossController : MonoBehaviour
         beamAttack.enabled = false;
     }
 
+    void ShootBeam()
+    {
+        beamAttack.ShootBeam();
+    }
+
     void SwitchPhase(int newPhase)
     {
         switch (newPhase)
@@ -95,6 +104,7 @@ public class SlimeBossController : MonoBehaviour
             case 1:
                 bounceAttack.enabled = true;
                 bounceAttack.jumpCooldown = jumpCooldownPhase1;
+                bounceAttack.bouncyPlatformStuns = true;
                 lungeAttack.enabled = false;
                 projectileAttack.enabled = false;
                 beamAttack.enabled = false;
@@ -103,6 +113,7 @@ public class SlimeBossController : MonoBehaviour
             case 2:
                 bounceAttack.enabled = false;
                 lungeAttack.enabled = true;
+                lungeAttack.bouncyPlatformStuns = false;
                 lungeAttack.jumpCooldown = lungeCooldownPhase2;
                 projectileAttack.enabled = false;
                 beamAttack.enabled = false;
@@ -111,6 +122,7 @@ public class SlimeBossController : MonoBehaviour
             case 3:
                 bounceAttack.enabled = true;
                 bounceAttack.jumpCooldown = jumpCooldownPhase3;
+                bounceAttack.bouncyPlatformStuns = false;
                 lungeAttack.enabled = false;
                 projectileAttack.enabled = true;
                 projectileAttack.shootCooldown = shootCooldownPhase3;
@@ -122,6 +134,7 @@ public class SlimeBossController : MonoBehaviour
                 bounceAttack.enabled = false;
                 lungeAttack.enabled = true;
                 lungeAttack.jumpCooldown = lungeCooldownPhase4;
+                lungeAttack.bouncyPlatformStuns = false;
                 projectileAttack.enabled = true;
                 projectileAttack.shootCooldown = shootCooldownPhase4;
                 projectileAttack.burstEnabled = false;

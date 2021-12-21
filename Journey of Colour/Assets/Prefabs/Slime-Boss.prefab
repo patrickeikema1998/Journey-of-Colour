@@ -684,7 +684,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0087e72536ef82e4fa430098b7425fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVector: {x: 10, y: 25, z: 0}
+  jumpVector: {x: 8, y: 25, z: 0}
+  bouncyPlatformMultiplier: 1.0005
 --- !u!114 &5358125927309129144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -697,9 +698,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ccc76eb8938358944997f77f20ce9787, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVector: {x: 0, y: 0.6, z: 0}
+  jumpVector: {x: 0, y: 1.1, z: 0}
+  bouncyPlatformMultiplier: 2
   player: {fileID: 0}
-  lungeForce: 20
+  lungeForce: 30
 --- !u!114 &-6710222129017690414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -731,6 +733,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beam: {fileID: 8568353922927876543, guid: 5e2c7ab435014ce458af8f7ce9fe49a8, type: 3}
+  raycastLayer:
+    serializedVersion: 2
+    m_Bits: 8192
   damage: 10
   maxAttackTime: 2
 --- !u!135 &6598137198759520925
@@ -740,7 +745,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598137198759520914}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: d4ffce494c1ce2646ae4e34e03d1b340, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -758,7 +763,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e595da2089989c74abeb737126c7c4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 1
+  phase: 4
   meleeDamage: 20
   jumpCooldownPhase1: 1.5
   jumpCooldownPhase3: 1
@@ -796,6 +801,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxHealth: 100
-  health: 0
+  health: 100
   player: {fileID: 0}
   healthbar: {fileID: 1550648044}

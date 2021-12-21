@@ -17,6 +17,9 @@ public class BossBounceAttack : MonoBehaviour
          hitBouncy = false;
 
     [System.NonSerialized]
+    public bool bouncyPlatformStuns = true;
+
+    [System.NonSerialized]
     public float jumpCooldown;
 
     protected float jumpCooldownTimer = 0;
@@ -30,6 +33,7 @@ public class BossBounceAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        
         if (onGround)
         {
             jumpCooldownTimer += Time.deltaTime;
@@ -52,7 +56,7 @@ public class BossBounceAttack : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    {
+    { 
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
@@ -64,10 +68,19 @@ public class BossBounceAttack : MonoBehaviour
             }
         }
         if (collision.gameObject.name.StartsWith("SideWall")) facingLeft = !facingLeft;
-        else if (collision.gameObject.name.Contains("Bounce"))
+        else if (bouncyPlatformStuns && collision.gameObject.name.Contains("Bounce"))
         {
             m_Rigidbody.AddForce((Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * jumpVector.x) * bouncyPlatformMultiplier, ForceMode.VelocityChange);
             hitBouncy = true;
+        }
+    }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+
         }
     }
 }

@@ -14,6 +14,7 @@ public class BossLungeAttack : BossBounceAttack
     {
         m_Rigidbody.AddForce((PlayerDirection + jumpVector).normalized * lungeForce, ForceMode.VelocityChange);
         jumpCooldownTimer = 0;
+        Debug.Log("Jump!");
     }
 
     Vector3 PlayerDirection

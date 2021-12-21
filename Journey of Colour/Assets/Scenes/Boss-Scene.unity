@@ -4394,7 +4394,7 @@ GameObject:
   - component: {fileID: 6763905846237606214}
   - component: {fileID: 2102882109375604662}
   - component: {fileID: 5686755241338453595}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JumpCollision
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4413,7 +4413,7 @@ GameObject:
   - component: {fileID: 6763905845696157215}
   - component: {fileID: 2102882110956962031}
   - component: {fileID: 5686755241888307458}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JumpCollision
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4432,7 +4432,7 @@ GameObject:
   - component: {fileID: 6763905845940848303}
   - component: {fileID: 2102882111282958431}
   - component: {fileID: 5686755242180446642}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: JumpCollision
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4514,17 +4514,9 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpVector.x
-      value: 8
-      objectReference: {fileID: 0}
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpVector.y
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: bouncyPlatformMultiplier
-      value: 1.0005
+    - target: {fileID: -7820600362076951188, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: raycastLayer.m_Bits
+      value: 2049
       objectReference: {fileID: 0}
     - target: {fileID: 1742953978, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_AnchorMax.x
@@ -4541,14 +4533,6 @@ PrefabInstance:
     - target: {fileID: 6598137198759520914, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_Name
       value: Slime-Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: phase
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520922, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: health
-      value: 100
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520922, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: player
@@ -4844,7 +4828,7 @@ GameObject:
   - component: {fileID: 9168764448877546656}
   - component: {fileID: 9168764448877546663}
   - component: {fileID: 9168764448877546662}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounce
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -4941,7 +4925,7 @@ GameObject:
   - component: {fileID: 9168764449187027984}
   - component: {fileID: 9168764449187027991}
   - component: {fileID: 9168764449187027990}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounce (1)
   m_TagString: Ground
   m_Icon: {fileID: 0}
@@ -5053,7 +5037,7 @@ GameObject:
   - component: {fileID: 9168764449427155961}
   - component: {fileID: 9168764449427155966}
   - component: {fileID: 9168764449427155967}
-  m_Layer: 0
+  m_Layer: 11
   m_Name: Bounce (2)
   m_TagString: Ground
   m_Icon: {fileID: 0}
