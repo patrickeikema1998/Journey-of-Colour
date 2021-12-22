@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Journey of Colour/Assets/BeamController.cs.meta
+guid: 9471d83dd5f840a4a89f5dc2cb91b37b
+=======
 guid: adfbcd0bbd0d22d4e85594e814fae1f6
+>>>>>>> main:Journey of Colour/Assets/Bitgem/Cube_World/_Materials/URP_Multicolor_Material/Multicolor shader related/Editor/TextureConverter.cs.meta
 MonoImporter:
   externalObjects: {}
   serializedVersion: 2

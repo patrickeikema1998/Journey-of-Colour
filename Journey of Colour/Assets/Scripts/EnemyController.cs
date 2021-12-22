@@ -11,6 +11,7 @@ public class EnemyController : MonoBehaviour
     public CharacterController controller;
     MeleeAttack attack;
     Health health;
+    EnemyAnimations animations;
 
     float timeLeft;
 
@@ -23,6 +24,8 @@ public class EnemyController : MonoBehaviour
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();
         timeLeft = attackCooldown;
+        animations = GetComponent<EnemyAnimations>();
+
     }
 
     // Update is called once per frame
@@ -44,16 +47,28 @@ public class EnemyController : MonoBehaviour
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
         if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0) Attack();
+
     }
 
     void Attack()
     {
         timeLeft = attackCooldown;
         attack.Attack();
+
     }
 
     void Die()
     {
         Destroy(gameObject);
+
+        //do animation
+       // Invoke("DestroyThis", deathAnimTime);
     }
+
+    void DestroyThis()
+    {
+        Destroy(gameObject);
+    }
+
+   
 }
