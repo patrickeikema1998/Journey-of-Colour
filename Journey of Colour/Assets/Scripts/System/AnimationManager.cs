@@ -6,13 +6,15 @@ public class AnimationManager : MonoBehaviour
 {
     private string currentState;
     private Animator currentAnimator;
+    public bool forceOverride;
     public void PlayAnimation(Animator animator,string newState)
     {
-        if (currentAnimator != animator || currentState != newState) //to prevent animation from spamming
+        if (currentAnimator != animator || currentState != newState || forceOverride) //to prevent animation from spamming
         {
             currentAnimator = animator;
             currentState = newState;
             animator.Play(newState);
+            forceOverride = false;
         }
     }
 }

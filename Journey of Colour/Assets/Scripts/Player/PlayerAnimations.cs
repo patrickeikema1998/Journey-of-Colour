@@ -35,7 +35,6 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public bool isFloating;
 
 
-
     private void Start()
     {
         lastGettingHit = gettingHitVariant2;
@@ -87,20 +86,22 @@ public class PlayerAnimations : MonoBehaviour
     public void DoRunAnimation()
     {
         //checks if player is running.
-        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.rb.velocity.y == 0) isRunning = true;
+        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.isGrounded) isRunning = true;
         else isRunning = false;
 
-        if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
+        if (!gettingHit && !isAttacking && isRunning)
+        {
+            animationManager.forceOverride = true;
+            animationManager.PlayAnimation(currentAnimator, run);
+        }
     }
 
     void DoIdleAnimation()
     {
-
-        //checks if player is standing still. canJump is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
+        //checks if player is standing still. isJumping is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
         if (!isJumping && !isAttacking && !isRunning && !gettingHit)
         {
             animationManager.PlayAnimation(currentAnimator, idle);
-
         }
     }
 
