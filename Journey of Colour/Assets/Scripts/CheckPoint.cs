@@ -17,12 +17,16 @@ public class CheckPoint : MonoBehaviour
     Vector3 beginOffset;
     Vector3 originPos;
 
+    GameObject camera;
+
     void Start()
     {
         health = player.GetComponent<Health>();
         rb = player.GetComponent<Rigidbody>();
         beginOffset = new Vector3(0, 1, 0);
         originPos = transform.position + beginOffset;
+
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
     // Update is called once per frame
     void Update()
@@ -30,12 +34,14 @@ public class CheckPoint : MonoBehaviour
         if (health.health <= 0 && checkPointHit == false)
         {
             player.transform.position = respawnPos + beginOffset;
+            camera.GetComponent<AutomaticScrolling>().Reset();
         }
         else if (health.health <= 0 && checkPointHit)
         {
             //when the player dies and respawns at a checkpoint the playerPos will be set
             //to the respawnPos which will be acitvated when the checkPoints is triggered.
             player.transform.position = respawnPos;
+            camera.GetComponent<AutomaticScrolling>().Reset();
         }
     }
 

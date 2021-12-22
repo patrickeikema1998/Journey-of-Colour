@@ -10,7 +10,7 @@ public class AutomaticScrolling : MonoBehaviour
     public bool moving;
     bool triggered;
 
-    Vector3 startPos, startMovementPos;
+    Vector3 startPos, startMovementPos, offset;
     float speed;
     float xVelocity;
     float speederOffset;
@@ -24,6 +24,7 @@ public class AutomaticScrolling : MonoBehaviour
     {
         player = GameObject.Find("Player");
         startPos = transform.position;
+        offset = transform.position - player.transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
         speederOffset = Screen.width * speedTriggerPercentage;
         moving = true;
@@ -101,5 +102,10 @@ public class AutomaticScrolling : MonoBehaviour
             triggerPos.z
             );
         triggered = true;
+    }
+
+    public void Reset()
+    {
+        transform.position = player.transform.position + offset;
     }
 }

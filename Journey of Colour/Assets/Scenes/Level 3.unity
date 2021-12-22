@@ -13553,6 +13553,7 @@ GameObject:
   - component: {fileID: 894936475}
   - component: {fileID: 894936477}
   - component: {fileID: 894936476}
+  - component: {fileID: 894936474}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -13625,6 +13626,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &894936474
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 894936470}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8153b7e7d467c6141922f54c446e4626, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerSize: {x: 1.5, y: 2.3}
+  deathLimitsX: {x: -8.5, y: 194.5}
+  deathLimitsY: {x: -6, y: 27.5}
+  damage: 10
+  firstTimeCheck: 3
+  secondTimeCheck: 60
 --- !u!114 &894936475
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -13651,6 +13670,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127918ede1365e646b9bd3ac9ee4efb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  deathPos: {x: 0, y: 0, z: 0}
   yOffset: 1.2
   normalSpeed: 4
   highSpeed: 6
