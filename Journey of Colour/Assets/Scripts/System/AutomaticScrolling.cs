@@ -5,22 +5,47 @@ using UnityEngine;
 public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
-    [SerializeField] Vector3 startPos;
-    [SerializeField] float yOffset, normalSpeed, highSpeed;
+    [SerializeField] float yOffset, normalSpeed, highSpeed, freezeTime, speedTriggerPercentage, triggerDistance;
 
+    public bool moving;
+    bool triggered;
+
+    Vector3 startPos, startMovementPos;
     float speed;
     float xVelocity;
-    float speederOffset = Screen.width * 0.0075f;
+    float speederOffset;
     float startYOffset;
 
     GameObject player;
+    CustomTimer freezeTimer;
 
     // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
-        transform.position = startPos;
+        startPos = transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
+        speederOffset = Screen.width * speedTriggerPercentage;
+        moving = true;
+
+        freezeTimer = new CustomTimer(freezeTime);
+        freezeTimer.start = false;
+        freezeTimer.finish = true;
+    }
+
+    private void Update()
+    {
+        freezeTimer.Update();
+
+        if (triggered) 
+        {
+            if (player.transform.position.x >= startMovementPos.x) 
+            { 
+                moving = true;
+                freezeTimer.timeRemaining = 0;
+                triggered = false;
+            }
+        }
     }
 
     private void LateUpdate()
@@ -29,7 +54,6 @@ public class AutomaticScrolling : MonoBehaviour
         bool changeInY = false;
         float newCameraPositionY = transform.position.y;
 
-        Debug.Log(currentYOffset+" plus: "+ (startYOffset + yOffset)+" minus: "+ (startYOffset - yOffset));
         if (currentYOffset > startYOffset + yOffset)
         {
             changeInY = true;            
@@ -50,7 +74,32 @@ public class AutomaticScrolling : MonoBehaviour
             newCameraPositionY,
             transform.position.z);
 
-        if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
-        else { speed = normalSpeed; }
+        if (moving && freezeTimer.finish)
+        {
+            if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
+            else { speed = normalSpeed; }
+        }
+        else 
+        {
+            if (!moving)
+            {
+                freezeTimer.Reset();
+                freezeTimer.start = true;
+                freezeTimer.finish = false;
+            }
+
+            speed = 0;
+            moving = true;
+        }
+    }
+
+    public void Triggered(Vector3 triggerPos) 
+    {
+        startMovementPos = new Vector3(
+            triggerPos.x + triggerDistance,
+            triggerPos.y,
+            triggerPos.z
+            );
+        triggered = true;
     }
 }
