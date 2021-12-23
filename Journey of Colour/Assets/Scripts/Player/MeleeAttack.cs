@@ -32,24 +32,21 @@ public class MeleeAttack : MonoBehaviour
 
     public void Attack()
     {
-        if (tag == "Enemy" || swapClass.currentClass != SwapClass.playerClasses.Angel)
+        //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
+        Collider[] overlaps;
+        if (tag.Equals("Player"))
         {
-            //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
-            Collider[] overlaps;
-            if (tag.Equals("Player"))
-            {
-                overlaps = Physics.OverlapBox(transform.position + (transform.right * attackOffset * playerDirection), attackBox, transform.rotation, opponentLayer);
-            }
-            else
-            {
-                overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
-            }
-
-            foreach (Collider opponent in overlaps)
-            {
-                if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
-            }
+            overlaps = Physics.OverlapBox(transform.position + (transform.right * attackOffset * playerDirection), attackBox, transform.rotation, opponentLayer);
         }
-        
+        else
+        {
+            overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
+        }
+
+        foreach (Collider opponent in overlaps)
+        {
+            if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
+        }
+
     }
 }

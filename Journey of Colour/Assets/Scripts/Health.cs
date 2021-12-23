@@ -11,17 +11,20 @@ public class Health : MonoBehaviour
 
     public GameObject player;
     public Healthbar healthbar;
-    PlayerAnimations playerAnim;
-    EnemyAnimations enemyAnim;
-
+    //PlayerAnimations playerAnim;
+    //EnemyAnimations enemyAnim;
+    PlayerMovement playerMovement;
+    int deathTime = 4;
 
     // Start is called before the first frame update
     void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-        if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
-        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
+        //if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
+        // if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
+        if(gameObject.tag == "Player") GameEvents.current.onRespawnPlayer += PlayerHealthReset;
     }
 
     public int GetHealth
@@ -34,8 +37,8 @@ public class Health : MonoBehaviour
         health -= damageAmount;
         healthbar.SetHealth(health);
 
-        if(this.gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
-        if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
+        if(this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
+        //if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
         if (health <= 0)
         {
             dead = true;
@@ -59,8 +62,20 @@ public class Health : MonoBehaviour
 
         if(health <= 0 && gameObject == player)
         {
-            health = maxHealth;
-            healthbar.SetHealth(health);
+            GameEvents.current.PlayerDeath();
+            //Invoke("InvokeRespawn", deathTime);
+            GameEvents.current.RespawnPlayer();
         }
+    }
+
+    void PlayerHealthReset()
+    {
+        health = maxHealth;
+        healthbar.SetHealth(health);
+    }
+
+    void InvokeRespawn()
+    {
+        GameEvents.current.RespawnPlayer();
     }
 }

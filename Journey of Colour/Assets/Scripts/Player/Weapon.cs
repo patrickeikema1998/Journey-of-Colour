@@ -16,12 +16,15 @@ public class Weapon : MonoBehaviour
     PlayerMovement playerMovement;
     CustomTimer shootTimer;
 
+    float shootAnimationTime = 0.4f;
+
     private void Start()
     {
         swapClass = GetComponent<SwapClass>();
         playerMovement = GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);
         shootTimer.start = true;
+        shootTimer.finish = true;
         bullet = fireBall.GetComponent<FireBall>();
     }
 
@@ -35,13 +38,16 @@ public class Weapon : MonoBehaviour
         {
             if (Input.GetMouseButtonDown(1) && shootTimer.finish == true)
             {
+                playerMovement.PlayerAnim.RangeAttack();
+
                 if (Input.mousePosition.x > playerPos.position.x)
                 {
-                    ShootRight();
+                    Invoke("ShootRight", shootAnimationTime);
                 }
                 else if (Input.mousePosition.x < playerPos.position.x)
                 {
-                    ShootLeft();
+                    Invoke("ShootLeft", shootAnimationTime);
+
                 }
                 shootTimer.Reset();
                 shootTimer.start = true;
