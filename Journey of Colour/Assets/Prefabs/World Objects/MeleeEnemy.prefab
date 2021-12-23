@@ -198,8 +198,7 @@ GameObject:
   - component: {fileID: 668709046760824316}
   - component: {fileID: 668709046760824317}
   - component: {fileID: 668709046760824314}
-  - component: {fileID: 668709046760824304}
-  - component: {fileID: 1275293309760874892}
+  - component: {fileID: 1436486665}
   m_Layer: 6
   m_Name: MeleeEnemy
   m_TagString: Enemy
@@ -234,7 +233,7 @@ Animator:
   m_GameObject: {fileID: 668709046760824315}
   m_Enabled: 1
   m_Avatar: {fileID: 0}
-  m_Controller: {fileID: 9100000, guid: 69150d2820a054b1e884ce79ef40c256, type: 2}
+  m_Controller: {fileID: 9100000, guid: e29f475f6fccacd49b96d037d601c86d, type: 2}
   m_CullingMode: 0
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -294,7 +293,7 @@ MonoBehaviour:
   attackDetectionRange: 2
   enemySight: 10
   player: {fileID: 0}
-  controller: {fileID: 0}
+  controller: {fileID: 668709046760824305}
 --- !u!114 &668709046760824316
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -341,7 +340,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 720
---- !u!114 &668709046760824304
+--- !u!114 &1436486665
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -350,21 +349,10 @@ MonoBehaviour:
   m_GameObject: {fileID: 668709046760824315}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: a416f42c402f9344ea97a363d7327549, type: 3}
+  m_Script: {fileID: 11500000, guid: 618761988bbab44488c9b10c4566a562, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &1275293309760874892
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668709046760824315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 2f4bd89a8d9c23745a3f5295256a768f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
+  movementAnimationBlendSpeed: 10
 --- !u!1 &990934781458983507
 GameObject:
   m_ObjectHideFlags: 0

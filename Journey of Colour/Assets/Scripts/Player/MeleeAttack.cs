@@ -10,8 +10,7 @@ public class MeleeAttack : MonoBehaviour
     [SerializeField] LayerMask opponentLayer;
     Vector3 attackBox;
     int playerDirection = 1;
-
-    SwapClass swapClass;
+    NewEnemyAnimations anim;
 
     // Start is called before the first frame update
     void Start()
@@ -19,8 +18,7 @@ public class MeleeAttack : MonoBehaviour
         playerMovement = GetComponent<PlayerMovement>();
         //de attackrange
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);
-
-        swapClass = GetComponent<SwapClass>();
+        anim = GetComponent<NewEnemyAnimations>();
     }
 
     // Update is called once per frame
@@ -40,6 +38,7 @@ public class MeleeAttack : MonoBehaviour
         }
         else
         {
+            anim.Attack();
             overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
         }
 

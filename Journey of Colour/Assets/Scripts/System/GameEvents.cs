@@ -4,24 +4,17 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Events;
 
-public class GameEvents : MonoBehaviour
+public static class GameEvents
 {
-    public static GameEvents current;
 
-    private void Awake()
-    {
-        current = this;
-    }
-
-    public Action onPlayerDeath;
-    public void PlayerDeath()
+    public static Action onPlayerDeath;
+    public static void PlayerDeath()
     {
         if(onPlayerDeath != null) onPlayerDeath();
     }
 
-    public Action onRespawnPlayer;
-
-    public void RespawnPlayer()
+    public static Action onRespawnPlayer;
+    public static void RespawnPlayer()
     {
         if (onRespawnPlayer != null) onRespawnPlayer();
     }

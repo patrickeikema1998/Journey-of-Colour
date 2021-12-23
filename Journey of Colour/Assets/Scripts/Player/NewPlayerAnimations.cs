@@ -11,6 +11,10 @@ public class NewPlayerAnimations : MonoBehaviour
     public Animator myAnimator;
     float movementAnimationBlendSpeed = 2f;
 
+
+    public int deathAnimTime = 4;
+
+
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -18,8 +22,8 @@ public class NewPlayerAnimations : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         myAnimator = GetComponent<Animator>();
 
-        GameEvents.current.onPlayerDeath += PlayerDeath;
-        GameEvents.current.onRespawnPlayer += stopDeath;
+        GameEvents.onPlayerDeath += PlayerDeath;
+        GameEvents.onRespawnPlayer += stopDeath;
     }
 
     private void Update()

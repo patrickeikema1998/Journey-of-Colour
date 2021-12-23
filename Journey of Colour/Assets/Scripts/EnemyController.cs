@@ -11,8 +11,7 @@ public class EnemyController : MonoBehaviour
     public CharacterController controller;
     MeleeAttack attack;
     Health health;
-    EnemyAnimations animations;
-
+    NewEnemyAnimations anim;
     float timeLeft;
 
     float distance;
@@ -24,15 +23,13 @@ public class EnemyController : MonoBehaviour
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();
         timeLeft = attackCooldown;
-        animations = GetComponent<EnemyAnimations>();
+        anim = GetComponent<NewEnemyAnimations>();
 
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (health.dead) Die();
-
         //zorgt ervoor det de enemy naar de speler wijst
         Vector3 playerDirection = player.transform.position - transform.position;
         //transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
@@ -52,23 +49,13 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
+        anim.Attack();
         timeLeft = attackCooldown;
+        Invoke("DoAttack", anim.attackAnimTime);
+    }
+    void DoAttack()
+    {
         attack.Attack();
-
     }
 
-    void Die()
-    {
-        Destroy(gameObject);
-
-        //do animation
-       // Invoke("DestroyThis", deathAnimTime);
-    }
-
-    void DestroyThis()
-    {
-        Destroy(gameObject);
-    }
-
-   
 }

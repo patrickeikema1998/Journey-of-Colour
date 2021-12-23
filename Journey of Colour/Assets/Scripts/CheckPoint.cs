@@ -27,7 +27,7 @@ public class CheckPoint : MonoBehaviour
         beginOffset = new Vector3(0, 1, 0);
         originPos = transform.position + beginOffset;
 
-        GameEvents.current.onRespawnPlayer += ResetPlayerPos;
+        GameEvents.onRespawnPlayer += ResetPlayerPos;
     }
     // Update is called once per frame
 

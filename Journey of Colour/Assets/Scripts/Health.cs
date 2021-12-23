@@ -14,7 +14,8 @@ public class Health : MonoBehaviour
     //PlayerAnimations playerAnim;
     //EnemyAnimations enemyAnim;
     PlayerMovement playerMovement;
-    int deathTime = 4;
+    NewEnemyAnimations enemyAnim;
+    NewPlayerAnimations playerAnim;
 
     // Start is called before the first frame update
     void Start()
@@ -24,7 +25,12 @@ public class Health : MonoBehaviour
         healthbar.SetMaxHealth(maxHealth);
         //if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
         // if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
-        if(gameObject.tag == "Player") GameEvents.current.onRespawnPlayer += PlayerHealthReset;
+        if (gameObject.tag == "Player")
+        {
+            GameEvents.onRespawnPlayer += PlayerHealthReset;
+            playerAnim = GetComponent<NewPlayerAnimations>();
+        }
+        else if (gameObject.tag == "Enemy") enemyAnim = GetComponent<NewEnemyAnimations>();
     }
 
     public int GetHealth
@@ -38,7 +44,7 @@ public class Health : MonoBehaviour
         healthbar.SetHealth(health);
 
         if(this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
-        //if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
+        if (this.gameObject.tag == "Enemy") enemyAnim.GetHit();
         if (health <= 0)
         {
             dead = true;
@@ -57,14 +63,15 @@ public class Health : MonoBehaviour
     {
         if (dead && gameObject != player)
         {
-            Destroy(gameObject);
+            enemyAnim.Death();
+            Invoke("EnemyDeath", enemyAnim.deathTime);
         }
 
         if(health <= 0 && gameObject == player)
         {
-            GameEvents.current.PlayerDeath();
-            //Invoke("InvokeRespawn", deathTime);
-            GameEvents.current.RespawnPlayer();
+            GameEvents.PlayerDeath();
+            Invoke("InvokePlayerRespawn", playerAnim.deathAnimTime);
+            //GameEvents.RespawnPlayer();
         }
     }
 
@@ -74,8 +81,14 @@ public class Health : MonoBehaviour
         healthbar.SetHealth(health);
     }
 
-    void InvokeRespawn()
+    void InvokePlayerRespawn()
     {
-        GameEvents.current.RespawnPlayer();
+        GameEvents.RespawnPlayer();
     }
+
+    void EnemyDeath()
+    {
+        Destroy(gameObject);
+    }
+
 }
