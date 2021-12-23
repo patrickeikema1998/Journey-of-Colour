@@ -37354,7 +37354,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: phase
-      value: 1
+      value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: maxStunTime
@@ -39620,14 +39620,6 @@ PrefabInstance:
       propertyPath: m_Name
       value: BossPlatformsPhase4
       objectReference: {fileID: 0}
-    - target: {fileID: 3555904235980029330, guid: 22220ed5aef277149b5b23ff8aa82ba6, type: 3}
-      propertyPath: phase
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 3555904235980029330, guid: 22220ed5aef277149b5b23ff8aa82ba6, type: 3}
-      propertyPath: controller
-      value: 
-      objectReference: {fileID: 6598137198058354630}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 22220ed5aef277149b5b23ff8aa82ba6, type: 3}
 --- !u!1 &7534539641988139993

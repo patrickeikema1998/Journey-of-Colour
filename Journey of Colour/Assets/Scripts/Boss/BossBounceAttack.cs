@@ -19,7 +19,7 @@ public class BossBounceAttack : MonoBehaviour
          hitBouncy = false;
 
     [System.NonSerialized]
-    public bool bouncyPlatformStuns = true;
+    public static bool bouncyPlatformStuns = false;
 
     [System.NonSerialized]
     public float jumpCooldown;
