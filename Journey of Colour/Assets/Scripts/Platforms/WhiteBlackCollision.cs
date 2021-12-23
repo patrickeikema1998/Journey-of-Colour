@@ -12,6 +12,7 @@ public class WhiteBlackCollision : MonoBehaviour
     CustomTimer swapColorTimer;
     [SerializeField] Material material;
     [SerializeField] int swapTimeInSeconds;
+    [SerializeField] bool startAsBlack;
 
     string color;
     void Start()
@@ -21,6 +22,9 @@ public class WhiteBlackCollision : MonoBehaviour
 
         playerClass = player.GetComponent<SwapClass>();
         collider = GetComponent<Collider>();
+
+        if (startAsBlack) material.color = Color.black;
+        else material.color = Color.white;
     }
 
     // Update is called once per frame
