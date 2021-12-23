@@ -82,7 +82,7 @@ public class Float : MonoBehaviour
             if (isFloating)
             {
                 playerMovement.canMove = false;
-                GetComponent<PlayerAnimations>().isFloating = true;
+                playerAnim.Floating(true);
                 swapClass.swappable = false;
                 sinY += SinYIncrement * Time.deltaTime;
                 var sinMovement = Mathf.Sin(sinY) * Amplitude;
@@ -95,7 +95,7 @@ public class Float : MonoBehaviour
             if (!isFloating || maxFloatTimer.finish)
             {
                 playerMovement.canMove = true;
-                GetComponent<PlayerAnimations>().isFloating = false;
+                playerAnim.Floating(false);
                 rb.constraints = normalConstraints;
                 rb.useGravity = true;
                 maxFloatTimer.Reset();

@@ -9,22 +9,21 @@ public class EnemyController : MonoBehaviour
     [SerializeField] GameObject player;
 
     public CharacterController controller;
+    NewEnemyAnimations anim;
     MeleeAttack attack;
     Health health;
-    NewEnemyAnimations anim;
     float timeLeft;
-
     float distance;
+
 
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<NewEnemyAnimations>();
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();
         timeLeft = attackCooldown;
-        anim = GetComponent<NewEnemyAnimations>();
-
     }
 
     // Update is called once per frame
@@ -36,14 +35,14 @@ public class EnemyController : MonoBehaviour
 
         //verplaatst de enemy naar voren
         distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance < enemySight)
+        if (distance < enemySight && !health.dead)
         {
             controller.SimpleMove(transform.forward * speed);
         }
 
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
-        if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0) Attack();
+        if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0 && !health.dead) Attack();
 
     }
 
@@ -57,5 +56,6 @@ public class EnemyController : MonoBehaviour
     {
         attack.Attack();
     }
+
 
 }

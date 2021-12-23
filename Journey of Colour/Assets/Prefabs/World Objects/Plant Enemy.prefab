@@ -200,7 +200,7 @@ GameObject:
   - component: {fileID: 668709046760824314}
   - component: {fileID: 1436486665}
   m_Layer: 6
-  m_Name: MeleeEnemy
+  m_Name: Plant Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -353,6 +353,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAnimationBlendSpeed: 10
+  attackAnimTime: 0
+  deathTime: 2
 --- !u!1 &990934781458983507
 GameObject:
   m_ObjectHideFlags: 0

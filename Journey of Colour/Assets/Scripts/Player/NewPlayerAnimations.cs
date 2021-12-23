@@ -9,7 +9,7 @@ public class NewPlayerAnimations : MonoBehaviour
     SwapClass playerClass;
 
     public Animator myAnimator;
-    float movementAnimationBlendSpeed = 2f;
+    float movementAnimationBlendSpeed = 30f;
 
 
     public int deathAnimTime = 4;
@@ -17,6 +17,7 @@ public class NewPlayerAnimations : MonoBehaviour
 
     private void Start()
     {
+        Debug.Log(movementAnimationBlendSpeed);
         player = GameObject.Find("Player");
         playerClass = player.GetComponent<SwapClass>();
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -101,14 +102,13 @@ public class NewPlayerAnimations : MonoBehaviour
 
     public void Death(bool death)
     {
-        if (myAnimator.GetBool("isDead") == false && death)
+        if (!myAnimator.GetBool("isDead") && death)
         {
             int randomDeath = Random.Range(1, 3);
             myAnimator.SetTrigger("death" + randomDeath);
         }
         myAnimator.SetBool("isDead", death);
     }
-
 
     public void RangeAttack()
     {

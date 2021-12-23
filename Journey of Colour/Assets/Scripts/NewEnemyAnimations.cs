@@ -8,11 +8,12 @@ public class NewEnemyAnimations : MonoBehaviour
     Animator myAnimator;
     CharacterController controller;
 
-    public float attackAnimTime = 0.001f, deathTime = 2;
+    [HideInInspector] public float attackAnimTime, deathTime = 2;
 
 
     private void Start()
     {
+        attackAnimTime = .55f;
         controller = GetComponent<CharacterController>();
         myAnimator = GetComponent<Animator>();
     }

@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: jungle_monster_blowpipe_idle_alt
+  m_Name: blowpipe idle alt
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
