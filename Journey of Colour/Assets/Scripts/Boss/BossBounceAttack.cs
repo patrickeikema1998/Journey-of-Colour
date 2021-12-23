@@ -9,8 +9,15 @@ public class BossBounceAttack : MonoBehaviour
     [SerializeField]
     protected Vector3 jumpVector = new Vector3(10, 25);
 
-    bool onGround, 
-         facingLeft = true;
+    [SerializeField]
+    float bouncyPlatformMultiplier = 2;
+
+    bool onGround,
+         facingLeft = false,
+         hitBouncy = false;
+
+    [System.NonSerialized]
+    public bool bouncyPlatformStuns = true;
 
     [System.NonSerialized]
     public float jumpCooldown;
@@ -53,8 +60,18 @@ public class BossBounceAttack : MonoBehaviour
         {
             onGround = true;
             jumpCooldownTimer = 0;
+            if (hitBouncy)
+            {
+                hitBouncy = false;
+                GetComponent<SlimeBossController>().Stun();
+            }
         }
         if (collision.gameObject.name.StartsWith("SideWall")) facingLeft = !facingLeft;
+        else if (bouncyPlatformStuns && collision.gameObject.name.Contains("Bounce"))
+        {
+            m_Rigidbody.AddForce((Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * jumpVector.x) * bouncyPlatformMultiplier, ForceMode.VelocityChange);
+            hitBouncy = true;
+        }
     }
 
     private void OnCollisionStay(Collision collision)
