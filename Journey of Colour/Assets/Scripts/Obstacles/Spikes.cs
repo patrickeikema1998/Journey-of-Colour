@@ -11,7 +11,6 @@ public class Spikes : MonoBehaviour
     [SerializeField] float holdTimeSpikes, timeBetweenDamage, moveSpeed;
     [SerializeField] int damage;
 
-    [SerializeField] float moveSpeed;
     float retractedPosY, extractedPosY;
     bool extracted;
 
@@ -92,5 +91,11 @@ public class Spikes : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SlimeBossController slimeBoss = other.GetComponent<SlimeBossController>();
+        if (slimeBoss != null) slimeBoss.SpikesHit();
     }
 }

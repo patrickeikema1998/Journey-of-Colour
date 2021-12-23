@@ -64,6 +64,26 @@ public class SlimeBossController : MonoBehaviour
         
     }
 
+    public void SpikesHit()
+    {
+        if (phase < 4) Stun();
+        else
+        {
+            Stun();
+            Invoke("ShootBeam", maxStunTime);
+        }
+    }
+
+    public void Stun()
+    {
+        stunTime = 0;
+        stunned = true;
+        bounceAttack.enabled = false;
+        lungeAttack.enabled = false;
+        projectileAttack.enabled = false;
+        beamAttack.enabled = false;
+    }
+
     private void OnCollisionEnter(Collision collision)
     {     
         if (collision.gameObject.CompareTag("Player"))
@@ -111,19 +131,14 @@ public class SlimeBossController : MonoBehaviour
                 projectileAttack.burstEnabled = false;
                 beamAttack.enabled = true;
                 stunned = false;
-                beamAttack.ShootBeam();
                 break;
         }
         phase = newPhase;
     }
     
-    public void Stun()
+    void ShootBeam()
     {
-        stunTime = 0;
-        stunned = true;
-        bounceAttack.enabled = false;
-        lungeAttack.enabled = false;
-        projectileAttack.enabled = false;
-        beamAttack.enabled = false;
+        beamAttack.ShootBeam();
     }
+    
 }

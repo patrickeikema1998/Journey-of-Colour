@@ -56,4 +56,9 @@ public class BossBounceAttack : MonoBehaviour
         }
         if (collision.gameObject.name.StartsWith("SideWall")) facingLeft = !facingLeft;
     }
+
+    private void OnCollisionStay(Collision collision)
+    {
+        onGround = true;
+    }
 }

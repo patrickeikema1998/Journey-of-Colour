@@ -600,7 +600,6 @@ GameObject:
   - component: {fileID: 6598137198759520920}
   - component: {fileID: 6598137198759520921}
   - component: {fileID: 6598137198759520922}
-  - component: {fileID: 6045546699012542347}
   - component: {fileID: 9126506332441091796}
   m_Layer: 12
   m_Name: Slime-Boss
@@ -687,7 +686,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVector: {x: 8, y: 25, z: 0}
-  bouncyPlatformMultiplier: 1.0005
 --- !u!114 &5358125927309129144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -701,7 +699,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVector: {x: 0, y: 1.1, z: 0}
-  bouncyPlatformMultiplier: 2
   player: {fileID: 0}
   lungeForce: 30
 --- !u!114 &-6710222129017690414
@@ -735,9 +732,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beam: {fileID: 8568353922927876543, guid: 5e2c7ab435014ce458af8f7ce9fe49a8, type: 3}
-  raycastLayer:
-    serializedVersion: 2
-    m_Bits: 8192
   damage: 10
   maxAttackTime: 2
 --- !u!135 &6598137198759520925
@@ -747,7 +741,7 @@ SphereCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598137198759520914}
-  m_Material: {fileID: 13400000, guid: d4ffce494c1ce2646ae4e34e03d1b340, type: 2}
+  m_Material: {fileID: 13400000, guid: 0ef73f10d93f4534bb2adac001e31398, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -765,7 +759,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e595da2089989c74abeb737126c7c4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 4
+  phase: 2
   meleeDamage: 20
   jumpCooldownPhase1: 1.5
   jumpCooldownPhase3: 1
@@ -804,20 +798,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 0
---- !u!114 &6045546699012542347
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6598137198759520914}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f68fc395ca963f24d94dad5cf5267fed, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bullet: {fileID: 5675490294247148220, guid: 883f37e65b6d7024bbfe0afbf0afc78f, type: 3}
-  fireRate: 0.3
+  player: {fileID: 0}
+  healthbar: {fileID: 1550648044}
 --- !u!114 &9126506332441091796
 MonoBehaviour:
   m_ObjectHideFlags: 0
