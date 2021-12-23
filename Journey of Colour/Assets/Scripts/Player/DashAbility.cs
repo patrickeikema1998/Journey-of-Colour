@@ -27,23 +27,28 @@ public class DashAbility : MonoBehaviour
         
         coolDown -= Time.deltaTime;
         duration -= Time.deltaTime;
-    }
-    void FixedUpdate()
-    {
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
+
+        //Input check for dash ability
 
         if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
         {
             duration = durationTime;
         }
 
-        if (duration > 0) Dash();
+        if (duration > 0)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            Dash();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        } 
     }
 
+    
     void Dash()
     {
-        rb.AddForce(new Vector3(direction*dashForce*8,10,0));
+        rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
     }
 }
