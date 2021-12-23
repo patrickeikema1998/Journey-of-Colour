@@ -1,4 +1,7 @@
 using UnityEngine;
+using UnityEngine.Events;
+
+public class PhaseEvent : UnityEvent<int> { }
 
 public class SlimeBossController : MonoBehaviour
 {
@@ -9,10 +12,12 @@ public class SlimeBossController : MonoBehaviour
     BossProjectileAttack projectileAttack;
     BossBeamAttack beamAttack;
 
+    public static PhaseEvent PhaseChange = new PhaseEvent();
+
     [SerializeField]
     int phase = 1;
 
-    [SerializeField] 
+    [SerializeField]
     int meleeDamage = 4;
 
     [SerializeField]
@@ -34,6 +39,7 @@ public class SlimeBossController : MonoBehaviour
         lungeAttack = GetComponent<BossLungeAttack>();
         projectileAttack = GetComponent<BossProjectileAttack>();
         beamAttack = GetComponent<BossBeamAttack>();
+
         SwitchPhase(phase);
     }
 
@@ -49,7 +55,7 @@ public class SlimeBossController : MonoBehaviour
         switch (phase)
         {
             case 1:
-                if (health.GetHealth < health.maxHealth / 4 * 3) SwitchPhase(phase + 1);  
+                if (health.GetHealth < health.maxHealth / 4 * 3) SwitchPhase(phase + 1);
                 break;
             case 2:
                 if (health.GetHealth < health.maxHealth / 4 * 2) SwitchPhase(phase + 1);
@@ -58,10 +64,18 @@ public class SlimeBossController : MonoBehaviour
                 if (health.GetHealth < health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
-                if (health.dead) /*death sequence*/Destroy(gameObject);
+                if (health.dead) /*death sequenceDestroy(gameObject)*/ enabled = false;
                 break;
         }
-        
+
+    }
+
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.CompareTag("Player"))
+        {
+            collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
+        }
     }
 
     public void SpikesHit()
@@ -70,7 +84,7 @@ public class SlimeBossController : MonoBehaviour
         else
         {
             Stun();
-            Invoke("ShootBeam", maxStunTime);
+            Invoke("ShootBeam", maxStunTime - BeamProjectile.maxLifeTime);
         }
     }
 
@@ -84,12 +98,9 @@ public class SlimeBossController : MonoBehaviour
         beamAttack.enabled = false;
     }
 
-    private void OnCollisionEnter(Collision collision)
-    {     
-        if (collision.gameObject.CompareTag("Player"))
-        {
-            collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
-        }
+    void ShootBeam()
+    {
+        beamAttack.ShootBeam();
     }
 
     void SwitchPhase(int newPhase)
@@ -99,46 +110,44 @@ public class SlimeBossController : MonoBehaviour
             case 1:
                 bounceAttack.enabled = true;
                 bounceAttack.jumpCooldown = jumpCooldownPhase1;
+                bounceAttack.bouncyPlatformStuns = true;
                 lungeAttack.enabled = false;
                 projectileAttack.enabled = false;
                 beamAttack.enabled = false;
-                stunned = false;
                 break;
             case 2:
                 bounceAttack.enabled = false;
                 lungeAttack.enabled = true;
+                lungeAttack.bouncyPlatformStuns = false;
                 lungeAttack.jumpCooldown = lungeCooldownPhase2;
                 projectileAttack.enabled = false;
                 beamAttack.enabled = false;
-                stunned = false;
                 break;
             case 3:
                 bounceAttack.enabled = true;
                 bounceAttack.jumpCooldown = jumpCooldownPhase3;
+                bounceAttack.bouncyPlatformStuns = false;
                 lungeAttack.enabled = false;
                 projectileAttack.enabled = true;
                 projectileAttack.shootCooldown = shootCooldownPhase3;
                 projectileAttack.burstEnabled = true;
                 beamAttack.enabled = false;
-                stunned = false;
                 break;
             case 4:
                 bounceAttack.enabled = false;
                 lungeAttack.enabled = true;
                 lungeAttack.jumpCooldown = lungeCooldownPhase4;
+                lungeAttack.bouncyPlatformStuns = false;
                 projectileAttack.enabled = true;
                 projectileAttack.shootCooldown = shootCooldownPhase4;
                 projectileAttack.burstEnabled = false;
                 beamAttack.enabled = true;
-                stunned = false;
                 break;
         }
+        stunned = false;
+        PhaseChange.Invoke(newPhase);
         phase = newPhase;
     }
-    
-    void ShootBeam()
-    {
-        beamAttack.ShootBeam();
-    }
-    
+
+
 }

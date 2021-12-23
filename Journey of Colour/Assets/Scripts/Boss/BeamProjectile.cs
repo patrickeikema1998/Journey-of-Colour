@@ -21,6 +21,6 @@ public class BeamProjectile : MonoBehaviour
     private void OnTriggerStay(Collider other)
     {
         Health otherHealth = other.GetComponent<Health>();
-        if (otherHealth != null) otherHealth.Damage(damage);
+        if (otherHealth != null && other.GetComponent<SlimeBossController>() == null) otherHealth.Damage(damage);
     }
 }

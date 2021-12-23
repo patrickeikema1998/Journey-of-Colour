@@ -7,8 +7,10 @@ public class BossBeamAttack : MonoBehaviour
     bool shooting = false;
     [SerializeField]
     BeamProjectile beam;
+
     [SerializeField]
-    int damage = 10;
+    LayerMask raycastLayer;
+
     [SerializeField]
     float maxAttackTime = 2;
 
@@ -49,7 +51,7 @@ public class BossBeamAttack : MonoBehaviour
         {
             shooting = true;
             RaycastHit hit;
-            if (Physics.Raycast(transform.position, RayDirection, out hit, Mathf.Infinity))
+            if (Physics.Raycast(transform.position, RayDirection, out hit, Mathf.Infinity, raycastLayer))
             {
                 float beamScaleY = hit.point.x - (transform.position.x + (transform.lossyScale.x /2));
                 beam.transform.localScale = new Vector3(transform.lossyScale.x, beamScaleY /2, transform.lossyScale.z);

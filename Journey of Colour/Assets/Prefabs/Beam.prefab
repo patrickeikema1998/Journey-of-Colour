@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 6944494113458296529}
   - component: {fileID: 3910782618963505269}
   - component: {fileID: 8568353922927876543}
+  - component: {fileID: -8789746322348637003}
   m_Layer: 0
   m_Name: Beam
   m_TagString: Untagged
@@ -28,7 +29,7 @@ Transform:
   m_GameObject: {fileID: 75605153542956196}
   m_LocalRotation: {x: 0, y: 0, z: 0.7071068, w: 0.7071068}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 2.4882, y: -10.921288, z: 2.4882}
+  m_LocalScale: {x: 2.4882, y: -14.62441, z: 2.4882}
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -95,3 +96,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 348a2743f9c0442479e845838879bf7d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  damage: 3
+--- !u!65 &-8789746322348637003
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 75605153542956196}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1.0000004, y: 2.0000005, z: 1.0000002}
+  m_Center: {x: 0.00000005960466, y: 0, z: -0.00000008940697}
