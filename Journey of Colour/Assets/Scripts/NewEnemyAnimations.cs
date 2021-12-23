@@ -8,12 +8,13 @@ public class NewEnemyAnimations : MonoBehaviour
     Animator myAnimator;
     CharacterController controller;
 
-    [HideInInspector] public float attackAnimTime, deathTime = 2;
+    [HideInInspector] public float plantAttackAnimTime, spearAttackAnimTime, deathTime = 2;
 
 
     private void Start()
     {
-        attackAnimTime = .55f;
+        spearAttackAnimTime = .5f;
+        plantAttackAnimTime = .35f;
         controller = GetComponent<CharacterController>();
         myAnimator = GetComponent<Animator>();
     }
@@ -26,7 +27,7 @@ public class NewEnemyAnimations : MonoBehaviour
     void MovementAndIdle()
     {
         float desiredAnimSpeed;
-        if ((controller.velocity.x > 0.1 || controller.velocity.x < -0.1))
+        if ((controller.velocity.x > .5f || controller.velocity.x < -.5))
         {
             desiredAnimSpeed = 1;
         }

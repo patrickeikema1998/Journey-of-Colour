@@ -6,7 +6,7 @@ public class EnemyController : MonoBehaviour
 {
     [SerializeField]
     float speed = 1, attackCooldown = 3, attackDetectionRange = 2, enemySight;
-    [SerializeField] GameObject player;
+    GameObject player;
 
     public CharacterController controller;
     NewEnemyAnimations anim;
@@ -19,6 +19,7 @@ public class EnemyController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         anim = GetComponent<NewEnemyAnimations>();
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
@@ -50,7 +51,7 @@ public class EnemyController : MonoBehaviour
     {
         anim.Attack();
         timeLeft = attackCooldown;
-        Invoke("DoAttack", anim.attackAnimTime);
+        Invoke("DoAttack", anim.plantAttackAnimTime);
     }
     void DoAttack()
     {

@@ -9,7 +9,7 @@ public class Health : MonoBehaviour
 
     [System.NonSerialized] public bool dead = false;
 
-    public GameObject player;
+    GameObject player;
     public Healthbar healthbar;
     //PlayerAnimations playerAnim;
     //EnemyAnimations enemyAnim;
@@ -21,6 +21,7 @@ public class Health : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
         playerMovement = GetComponent<PlayerMovement>();
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
