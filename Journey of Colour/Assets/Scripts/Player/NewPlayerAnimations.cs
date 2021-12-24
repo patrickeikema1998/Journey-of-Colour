@@ -12,12 +12,10 @@ public class NewPlayerAnimations : MonoBehaviour
     float movementAnimationBlendSpeed = 30f;
 
 
-    public int deathAnimTime = 4;
 
 
     private void Start()
     {
-        Debug.Log(movementAnimationBlendSpeed);
         player = GameObject.Find("Player");
         playerClass = player.GetComponent<SwapClass>();
         playerMovement = player.GetComponent<PlayerMovement>();
@@ -127,4 +125,5 @@ public class NewPlayerAnimations : MonoBehaviour
         playerMovement.canMove = true;
         playerMovement.canTurn = true;
     }
+
 }

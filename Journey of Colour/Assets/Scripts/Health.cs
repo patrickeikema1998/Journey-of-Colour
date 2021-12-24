@@ -16,18 +16,19 @@ public class Health : MonoBehaviour
     PlayerMovement playerMovement;
     NewEnemyAnimations enemyAnim;
     NewPlayerAnimations playerAnim;
+    public int deathAnimTime;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        deathAnimTime = 4;
         player = GameObject.Find("Player");
         playerMovement = GetComponent<PlayerMovement>();
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
 
-        if (gameObject.tag == "Player") playerAnim = GetComponent<NewPlayerAnimations>();
-        else if (gameObject.tag == "Enemy") enemyAnim = GetComponent<NewEnemyAnimations>();
+        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<NewEnemyAnimations>();
 
         GameEvents.onRespawnPlayer += PlayerHealthReset;
     }
@@ -63,8 +64,8 @@ public class Health : MonoBehaviour
         if(health <= 0 && gameObject == player)
         {
             GameEvents.PlayerDeath();
-            //Invoke("InvokePlayerRespawn", playerAnim.deathAnimTime);
-            GameEvents.RespawnPlayer();
+            Invoke("InvokePlayerRespawn", deathAnimTime);
+            //GameEvents.RespawnPlayer();
         }
     }
 
