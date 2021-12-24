@@ -17,12 +17,14 @@ public class Health : MonoBehaviour
     NewEnemyAnimations enemyAnim;
     NewPlayerAnimations playerAnim;
     public int deathAnimTime;
+    CustomTimer deathTimer;
 
 
     // Start is called before the first frame update
     void Start()
     {
         deathAnimTime = 4;
+        deathTimer = new CustomTimer(deathAnimTime);
         player = GameObject.Find("Player");
         playerMovement = GetComponent<PlayerMovement>();
         health = maxHealth;
@@ -56,6 +58,7 @@ public class Health : MonoBehaviour
 
     private void Update()
     {
+        deathTimer.Update();
         if (health <= 0 && gameObject != player)
         {
             EnemyDeath();
@@ -64,8 +67,15 @@ public class Health : MonoBehaviour
         if(health <= 0 && gameObject == player)
         {
             GameEvents.PlayerDeath();
-            Invoke("InvokePlayerRespawn", deathAnimTime);
-            //GameEvents.RespawnPlayer();
+            deathTimer.start = true;
+
+            if (deathTimer.finish)
+            {
+                deathTimer.Reset();
+                deathTimer.start = false;
+                InvokePlayerRespawn();
+            }
+            //Invoke("InvokePlayerRespawn", deathAnimTime);
         }
     }
 
