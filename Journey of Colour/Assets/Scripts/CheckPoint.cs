@@ -17,32 +17,19 @@ public class CheckPoint : MonoBehaviour
     Vector3 beginOffset;
     Vector3 originPos;
 
+    PlayerMovement playerMovement;
     GameObject camera;
 
     void Start()
     {
+        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
         health = player.GetComponent<Health>();
         rb = player.GetComponent<Rigidbody>();
         beginOffset = new Vector3(0, 1, 0);
         originPos = transform.position + beginOffset;
 
+        GameEvents.onRespawnPlayer += ResetPlayerPos;
         camera = GameObject.FindGameObjectWithTag("MainCamera");
-    }
-    // Update is called once per frame
-    void Update()
-    {
-        if (health.health <= 0 && checkPointHit == false)
-        {
-            player.transform.position = respawnPos + beginOffset;
-            camera.GetComponent<AutomaticScrolling>().Reset();
-        }
-        else if (health.health <= 0 && checkPointHit)
-        {
-            //when the player dies and respawns at a checkpoint the playerPos will be set
-            //to the respawnPos which will be acitvated when the checkPoints is triggered.
-            player.transform.position = respawnPos;
-            camera.GetComponent<AutomaticScrolling>().Reset();
-        }
     }
 
     private void OnTriggerEnter(Collider other)
@@ -52,6 +39,17 @@ public class CheckPoint : MonoBehaviour
             respawnPos = originPos;
             gameObject.transform.position = new Vector3(0, 10000, 0);
             checkPointHit = true;
+        }
+    }
+
+    void ResetPlayerPos()
+    {
+        if (!checkPointHit) player.transform.position = respawnPos + beginOffset;
+        else
+        {
+            //when the player dies and respawns at a checkpoint the playerPos will be set
+            //to the respawnPos which will be acitvated when the checkPoints is triggered.
+            player.transform.position = respawnPos;
         }
     }
 }
