@@ -1920,6 +1920,7 @@ GameObject:
   - component: {fileID: 784868315}
   - component: {fileID: 1391726774}
   - component: {fileID: 1906641159}
+  - component: {fileID: 3092623305362296904}
   m_Layer: 6
   m_Name: ShootingEnemyBlowpipe
   m_TagString: Enemy
@@ -2014,7 +2015,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   health: 0
-  player: {fileID: 0}
   healthbar: {fileID: 3636200727610287571}
 --- !u!114 &784868315
 MonoBehaviour:
@@ -2060,5 +2060,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAnimationBlendSpeed: 20
-  attackAnimTime: 0
+  plantAttackAnimTime: 0
+  spearAttackAnimTime: 0
   deathTime: 2
+--- !u!114 &3092623305362296904
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076399584341546324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f8088f179e556498c1133c6ff46ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

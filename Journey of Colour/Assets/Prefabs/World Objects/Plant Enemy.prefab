@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 668709046760824317}
   - component: {fileID: 668709046760824314}
   - component: {fileID: 1436486665}
+  - component: {fileID: 237645592715097211}
   m_Layer: 6
   m_Name: Plant Enemy
   m_TagString: Enemy
@@ -274,7 +275,6 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 0
-  player: {fileID: 0}
   healthbar: {fileID: 2334563176462929928}
 --- !u!114 &668709046760824319
 MonoBehaviour:
@@ -292,7 +292,6 @@ MonoBehaviour:
   attackCooldown: 3
   attackDetectionRange: 2
   enemySight: 10
-  player: {fileID: 0}
   controller: {fileID: 668709046760824305}
 --- !u!114 &668709046760824316
 MonoBehaviour:
@@ -353,8 +352,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   movementAnimationBlendSpeed: 10
-  attackAnimTime: 0
+  plantAttackAnimTime: 0
+  spearAttackAnimTime: 0
   deathTime: 2
+  isMovingEnemy: 1
+--- !u!114 &237645592715097211
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668709046760824315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c4f8088f179e556498c1133c6ff46ed4, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &990934781458983507
 GameObject:
   m_ObjectHideFlags: 0

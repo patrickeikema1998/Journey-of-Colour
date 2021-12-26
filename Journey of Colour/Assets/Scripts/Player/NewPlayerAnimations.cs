@@ -115,13 +115,13 @@ public class NewPlayerAnimations : MonoBehaviour
 
     public void PlayerDeath()
     {
-        playerMovement.PlayerAnim.Death(true);
+        Death(true);
         playerMovement.canTurn = false;
         playerMovement.canMove = false;
     }
     void stopDeath()
     {
-        playerMovement.PlayerAnim.Death(false);
+        Death(false);
         playerMovement.canMove = true;
         playerMovement.canTurn = true;
     }
