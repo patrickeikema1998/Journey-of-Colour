@@ -64,18 +64,24 @@ public class Health : MonoBehaviour
             EnemyDeath();
         }
 
-        if(health <= 0 && gameObject == player)
+        if(gameObject == player) 
         {
-            GameEvents.PlayerDeath();
-            deathTimer.start = true;
-
-            if (deathTimer.finish)
+            if (health <= 0)
             {
-                deathTimer.Reset();
-                deathTimer.start = false;
-                InvokePlayerRespawn();
+                dead = true;
+                GameEvents.PlayerDeath();
+                deathTimer.start = true;
+
+                if (deathTimer.finish)
+                {
+                    deathTimer.Reset();
+                    deathTimer.start = false;
+                    InvokePlayerRespawn();
+                }
+                //Invoke("InvokePlayerRespawn", deathAnimTime);
+
             }
-            //Invoke("InvokePlayerRespawn", deathAnimTime);
+            else dead = false;
         }
     }
 

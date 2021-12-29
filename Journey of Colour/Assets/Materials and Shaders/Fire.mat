@@ -33,9 +33,9 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - DistortionStrength: 0.54
-    - FireBottomOffset: 1.88
-    - YStretch: 0.86
+    - DistortionStrength: 0.86
+    - FireBottomOffset: 2.34
+    - YStretch: 0.74
     m_Colors:
     - NoiseScale: {r: 0.5, g: 0.5, b: 0, a: 0}
     - _Color: {r: 0.8773585, g: 0.04123812, b: 0, a: 0}
