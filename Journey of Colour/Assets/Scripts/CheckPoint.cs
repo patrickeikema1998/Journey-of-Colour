@@ -18,6 +18,7 @@ public class CheckPoint : MonoBehaviour
     Vector3 originPos;
 
     PlayerMovement playerMovement;
+    GameObject camera;
 
     void Start()
     {
@@ -28,8 +29,8 @@ public class CheckPoint : MonoBehaviour
         originPos = transform.position + beginOffset;
 
         GameEvents.onRespawnPlayer += ResetPlayerPos;
+        camera = GameObject.FindGameObjectWithTag("MainCamera");
     }
-    // Update is called once per frame
 
     private void OnTriggerEnter(Collider other)
     {

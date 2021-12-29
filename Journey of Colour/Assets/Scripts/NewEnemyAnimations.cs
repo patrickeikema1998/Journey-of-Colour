@@ -7,8 +7,8 @@ public class NewEnemyAnimations : MonoBehaviour
     [SerializeField]float movementAnimationBlendSpeed = 2f;
     Animator myAnimator;
     CharacterController controller;
-
     [HideInInspector] public float plantAttackAnimTime, spearAttackAnimTime, deathTime = 2;
+    [SerializeField] bool isMovingEnemy;
 
 
     private void Start()
@@ -21,7 +21,7 @@ public class NewEnemyAnimations : MonoBehaviour
 
     private void Update()
     {
-        MovementAndIdle();
+       if(isMovingEnemy)MovementAndIdle();
     }
 
     void MovementAndIdle()
