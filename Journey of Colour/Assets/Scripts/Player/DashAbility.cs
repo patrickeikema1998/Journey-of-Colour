@@ -14,9 +14,11 @@ public class DashAbility : MonoBehaviour
     private float duration;
     SwapClass swapClass;
     NewPlayerAnimations playerAnim;
+    Health playerHealth;
 
     void Start()
     {
+        playerHealth = GetComponent<Health>();
         playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
         coolDown = coolDownTime;
         swapClass = GetComponent<SwapClass>();
@@ -35,7 +37,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
         {
             playerAnim.Dash();
             duration = durationTime;

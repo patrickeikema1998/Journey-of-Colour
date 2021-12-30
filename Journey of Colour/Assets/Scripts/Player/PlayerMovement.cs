@@ -31,7 +31,7 @@ public class PlayerMovement : MonoBehaviour
 
     public GameObject fireBall;
     private FireBall bulletScript;
-
+    Health playerHealth;
     public NewPlayerAnimations PlayerAnim
     {
         get { return playerAnim; }
@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Start()
     {
+        playerHealth = GetComponent<Health>();
         canTurn = true;
         canMove = true;
         meleeAttackCooldownTimer = new CustomTimer(meleeAttackCDInSeconds);
@@ -83,7 +84,7 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("d")) currentPressed = "d";
 
-        if (playerClass.IsDevil() && Input.GetButtonDown("Fire1") && meleeAttackCooldownTimer.finish)
+        if (playerClass.IsDevil() && Input.GetButtonDown("Fire1") && meleeAttackCooldownTimer.finish && !playerHealth.dead)
         {
             meleeAttack.Attack();
             meleeAttackCooldownTimer.Reset();
@@ -105,7 +106,7 @@ public class PlayerMovement : MonoBehaviour
         JumpCheck();
         RotateCharacter();
 
-        if(jump && canJump)
+        if(jump && canJump && !playerHealth.dead)
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
@@ -116,11 +117,11 @@ public class PlayerMovement : MonoBehaviour
     void JumpCheck()
     {
         RaycastHit hit;
-        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f))
+        if (Physics.Raycast(new Vector3(transform.position.x - 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f) && !playerHealth.dead)
         {
             canJump = true;
         }
-        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f)) canJump = true;
+        else if (Physics.Raycast(new Vector3(transform.position.x + 0.5f, transform.position.y, transform.position.z), Vector3.down, out hit, .85f) && !playerHealth.dead) canJump = true;
         else canJump = false;
 
     }
@@ -132,7 +133,7 @@ public class PlayerMovement : MonoBehaviour
         else movementSpeed = movementSpeedDevil;
         xAxis *= movementSpeed * Time.deltaTime;
 
-        if (canMove)
+        if (canMove && !playerHealth.dead)
         {
             transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
         }
@@ -140,7 +141,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void RotateCharacter()
     {
-        if (!GetComponent<Float>().isFloating && canTurn)
+        if (!GetComponent<Float>().isFloating && canTurn && !playerHealth.dead)
         {
             if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
             else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);

@@ -11,6 +11,7 @@ public class Weapon : MonoBehaviour
     public float shootTime;
     private FireBall bullet;
     public GameObject fireBall;
+    Health playerHealth;
 
     SwapClass swapClass;
     PlayerMovement playerMovement;
@@ -20,6 +21,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = GetComponent<Health>();
         swapClass = GetComponent<SwapClass>();
         playerMovement = GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);
@@ -34,7 +36,7 @@ public class Weapon : MonoBehaviour
         shootTimer.Update();
 
         //player can only fire a fireball when he is in class 1. also known as the black colour.
-        if (swapClass.currentClass == SwapClass.playerClasses.Devil)
+        if (swapClass.currentClass == SwapClass.playerClasses.Devil && !playerHealth.dead)
         {
             if (Input.GetMouseButtonDown(1) && shootTimer.finish == true)
             {

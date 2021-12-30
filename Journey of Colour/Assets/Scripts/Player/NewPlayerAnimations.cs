@@ -13,7 +13,6 @@ public class NewPlayerAnimations : MonoBehaviour
 
 
 
-
     private void Start()
     {
         player = GameObject.Find("Player");
@@ -115,15 +114,12 @@ public class NewPlayerAnimations : MonoBehaviour
 
     public void PlayerDeath()
     {
-        Death(true);
-        playerMovement.canTurn = false;
-        playerMovement.canMove = false;
+        playerMovement.PlayerAnim.Death(true);
+
     }
     void stopDeath()
     {
-        Death(false);
-        playerMovement.canMove = true;
-        playerMovement.canTurn = true;
+        playerMovement.PlayerAnim.Death(false);
     }
 
 }
