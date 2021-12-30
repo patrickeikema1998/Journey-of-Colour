@@ -4,84 +4,97 @@ public class SlimeBossController : MonoBehaviour
 {
     Rigidbody m_Rigidbody;
     Health health;
-    EnemyShoot rangedAttack;
+    BossBounceAttack bounceAttack;
+    BossLungeAttack lungeAttack;
+    BossProjectileAttack projectileAttack;
+    BossBeamAttack beamAttack;
 
-    bool onGround;
+    [SerializeField]
     int phase = 1;
 
-    [SerializeField] int meleeDamage = 4;
+    [SerializeField] 
+    int meleeDamage = 4;
 
-    [SerializeField] float jumpCooldownPhase1 = 1, jumpCooldownPhase2 = 1f, jumpCooldownPhase3 = 0.5f,
-                           shootCooldownPhase2 = 2, shootCooldownPhase3 = 1,
-                           burstTime = 1.6f;
-    float jumpCooldown;
-    float jumpCooldownTimer = 0;
+    [SerializeField]
+    float jumpCooldownPhase1 = 1, jumpCooldownPhase3 = 0.5f,
+          lungeCooldownPhase2 = 2, lungeCooldownPhase4 = 1.5f,
+          shootCooldownPhase3 = 2, shootCooldownPhase4 = 2;
 
-    [SerializeField] float jumpForce = 10,
-                           sideForce = 5;
+    [SerializeField]
+    float maxStunTime = 4;
+    float stunTime;
+    bool stunned;
 
-
-    bool facingLeft = true;
     // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();
         health = GetComponent<Health>();
-        rangedAttack = GetComponent<EnemyShoot>();
-        SwitchPhase(1);
+        bounceAttack = GetComponent<BossBounceAttack>();
+        lungeAttack = GetComponent<BossLungeAttack>();
+        projectileAttack = GetComponent<BossProjectileAttack>();
+        beamAttack = GetComponent<BossBeamAttack>();
+        SwitchPhase(phase);
     }
 
     // Update is called once per frame
     void Update()
     {
-        //jumpen doet hij altijd de rest hang af van welke phase
-        if (onGround)
+        if (stunned)
         {
-            jumpCooldownTimer += Time.deltaTime;
-            if (jumpCooldownTimer >= jumpCooldown) Jump();
+            stunTime += Time.deltaTime;
+            if (stunTime >= maxStunTime) SwitchPhase(phase);
         }
+
         switch (phase)
         {
             case 1:
-                if (health.GetHealth < health.maxHealth / 3 * 2) SwitchPhase(phase + 1);  
+                if (health.GetHealth < health.maxHealth / 4 * 3) SwitchPhase(phase + 1);  
                 break;
             case 2:
-                if (health.GetHealth < health.maxHealth / 3) SwitchPhase(phase + 1);
+                if (health.GetHealth < health.maxHealth / 4 * 2) SwitchPhase(phase + 1);
                 break;
             case 3:
-                if (health.dead) /*death sequence*/Destroy(gameObject);
+                if (health.GetHealth < health.maxHealth / 4) SwitchPhase(phase + 1);
+                break;
+            case 4:
+                if (health.dead) /*death sequenceDestroy(gameObject)*/ enabled = false;
                 break;
         }
         
-    }
-
-    void Jump()
-    {
-        m_Rigidbody.AddForce(Vector3.up * jumpForce + (facingLeft ? Vector3.left : Vector3.right) * sideForce, ForceMode.VelocityChange);
-        jumpCooldownTimer = 0;
-    }
-
-    private void OnCollisionExit(Collision collision)
-    {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            onGround = false;
-        }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.CompareTag("Ground"))
-        {
-            onGround = true;
-            jumpCooldownTimer = 0;
-        }
-        else if (collision.gameObject.CompareTag("Player"))
+        if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
         }
-        if (collision.gameObject.name.StartsWith("SideWall")) facingLeft = !facingLeft; 
-        
+    }
+
+    public void HitSpikes()
+    {
+        if (phase < 4) Stun();
+        else
+        {
+            Stun();
+            Invoke("ShootBeam", maxStunTime - BeamProjectile.maxLifeTime);
+        }
+    }
+
+    public void Stun()
+    {
+        stunTime = 0;
+        stunned = true;
+        bounceAttack.enabled = false;
+        lungeAttack.enabled = false;
+        projectileAttack.enabled = false;
+        beamAttack.enabled = false;
+    }
+
+    void ShootBeam()
+    {
+        beamAttack.ShootBeam();
     }
 
     void SwitchPhase(int newPhase)
@@ -89,30 +102,47 @@ public class SlimeBossController : MonoBehaviour
         switch (newPhase)
         {
             case 1:
-                rangedAttack.enabled = false;
-                jumpCooldown = jumpCooldownPhase1;
+                bounceAttack.enabled = true;
+                bounceAttack.jumpCooldown = jumpCooldownPhase1;
+                bounceAttack.bouncyPlatformStuns = true;
+                lungeAttack.enabled = false;
+                projectileAttack.enabled = false;
+                beamAttack.enabled = false;
+                stunned = false;
                 break;
             case 2:
-                InvokeRepeating("InvokeRangedAttack", shootCooldownPhase2, shootCooldownPhase2 + burstTime);
-                jumpCooldown = jumpCooldownPhase2;
+                bounceAttack.enabled = false;
+                lungeAttack.enabled = true;
+                lungeAttack.bouncyPlatformStuns = false;
+                lungeAttack.jumpCooldown = lungeCooldownPhase2;
+                projectileAttack.enabled = false;
+                beamAttack.enabled = false;
+                stunned = false;
                 break;
             case 3:
-                CancelInvoke("InvokeRangedAttack");
-                EndRangedAttack();
-                InvokeRepeating("InvokeRangedAttack", shootCooldownPhase3, shootCooldownPhase3 + burstTime);
-                jumpCooldown = jumpCooldownPhase3;
+                bounceAttack.enabled = true;
+                bounceAttack.jumpCooldown = jumpCooldownPhase3;
+                bounceAttack.bouncyPlatformStuns = false;
+                lungeAttack.enabled = false;
+                projectileAttack.enabled = true;
+                projectileAttack.shootCooldown = shootCooldownPhase3;
+                projectileAttack.burstEnabled = true;
+                beamAttack.enabled = false;
+                stunned = false;
+                break;
+            case 4:
+                bounceAttack.enabled = false;
+                lungeAttack.enabled = true;
+                lungeAttack.jumpCooldown = lungeCooldownPhase4;
+                lungeAttack.bouncyPlatformStuns = false;
+                projectileAttack.enabled = true;
+                projectileAttack.shootCooldown = shootCooldownPhase4;
+                projectileAttack.burstEnabled = false;
+                beamAttack.enabled = true;
+                stunned = false;
                 break;
         }
         phase = newPhase;
     }
-    void InvokeRangedAttack()
-    {
-        rangedAttack.enabled = true;
-        Invoke("EndRangedAttack", burstTime);
-    }
-
-    void EndRangedAttack()
-    {
-        rangedAttack.enabled = false;
-    }
+    
 }

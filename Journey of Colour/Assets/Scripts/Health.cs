@@ -9,19 +9,22 @@ public class Health : MonoBehaviour
 
     [System.NonSerialized] public bool dead = false;
 
-    public GameObject player;
     public Healthbar healthbar;
-    PlayerAnimations playerAnim;
-    EnemyAnimations enemyAnim;
+    //PlayerAnimations playerAnim;
+    //EnemyAnimations enemyAnim;
+    PlayerMovement playerMovement;
+    NewPlayerAnimations playerAnim;
+    NewEnemyAnimations enemyAnim;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        health = maxHealth;
-        healthbar.SetMaxHealth(maxHealth);
-        if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
-        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
+        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<NewEnemyAnimations>();
+        playerMovement = GetComponent<PlayerMovement>();
+
+        HealthReset();
+        GameEvents.onRespawnPlayer += HealthReset;
     }
 
     public int GetHealth
@@ -34,12 +37,8 @@ public class Health : MonoBehaviour
         health -= damageAmount;
         healthbar.SetHealth(health);
 
-        if(this.gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
-        if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
-        if (health <= 0)
-        {
-            dead = true;
-        }
+        if(this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
+        if (this.gameObject.tag == "Enemy") enemyAnim.GetHit();
     }
 
     public void heal(int healAmount)
@@ -47,20 +46,13 @@ public class Health : MonoBehaviour
         health += healAmount;
         healthbar.SetHealth(health);
         if (health > maxHealth) health = maxHealth;
-        dead = false;
     }
 
-    private void Update()
+    void HealthReset()
     {
-        if (dead && gameObject != player)
-        {
-            Destroy(gameObject);
-        }
-
-        if(health <= 0 && gameObject == player)
-        {
-            health = maxHealth;
-            healthbar.SetHealth(health);
-        }
+        health = maxHealth;
+        healthbar.SetHealth(health);
     }
+
+
 }

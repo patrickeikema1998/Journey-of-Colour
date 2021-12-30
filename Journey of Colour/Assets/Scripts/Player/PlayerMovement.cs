@@ -6,20 +6,25 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public bool jump;
-    PlayerAnimations playerAnim;
+    NewPlayerAnimations playerAnim;
     public Rigidbody rb;
     MeleeAttack meleeAttack;
-    SwapClass playerClass;
+    public CustomTimer meleeAttackCooldownTimer;
+    [SerializeField] float meleeAttackCDInSeconds;
+    public SwapClass playerClass;
 
     private Vector3 PlayerMovementInput;
 
-    public float xAxis;
-    public float speedAngel, speedDevil;
+    [HideInInspector] public float xAxis;
+    public float movementSpeedAngel, movementSpeedDevil;
     public float jumpForce;
 
     //public bool isJumpButtonPressed = false;
     public bool canJump = false;
     public bool lookingLeft;
+    public bool isGrounded;
+    public bool canMove;
+    public bool canTurn;
 
     string lastPressed;
     string currentPressed;
@@ -27,16 +32,35 @@ public class PlayerMovement : MonoBehaviour
     public GameObject fireBall;
     private FireBall bulletScript;
 
+    public NewPlayerAnimations PlayerAnim
+    {
+        get { return playerAnim; }
+        set
+        {
+            if (value == playerAnim) return;
+            playerAnim = value;
+        }
+    }
+
     public void Start()
     {
+        canTurn = true;
+        canMove = true;
+        meleeAttackCooldownTimer = new CustomTimer(meleeAttackCDInSeconds);
+        meleeAttackCooldownTimer.start = true;
         playerClass = GetComponent<SwapClass>();
         bulletScript = fireBall.GetComponent<FireBall>();
         meleeAttack = GetComponent<MeleeAttack>();
-        playerAnim = GetComponent<PlayerAnimations>();
     }
 
     public void Update()
     {
+        if (playerClass.IsAngel()) PlayerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
+        else PlayerAnim = GameObject.Find("Devil Player").GetComponent<NewPlayerAnimations>();
+
+
+        meleeAttackCooldownTimer.Update();
+
         xAxis = Input.GetAxis("Horizontal");
 
         if (!lookingLeft)
@@ -59,13 +83,18 @@ public class PlayerMovement : MonoBehaviour
 
         if (Input.GetKeyDown("d")) currentPressed = "d";
 
-        if (Input.GetButtonDown("Fire1")) meleeAttack.Attack();
+        if (playerClass.IsDevil() && Input.GetButtonDown("Fire1") && meleeAttackCooldownTimer.finish)
+        {
+            meleeAttack.Attack();
+            meleeAttackCooldownTimer.Reset();
+            playerAnim.Attack();
+        }
 
 
         if (canJump && Input.GetKeyDown(KeyCode.Space))
         {
             jump = true;
-            GetComponent<DoubleJump>().canDoubleJump = true;
+            if(playerClass.IsAngel()) GetComponent<DoubleJump>().canDoubleJump = true;
         }
     }
 
@@ -80,6 +109,7 @@ public class PlayerMovement : MonoBehaviour
         {
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
+            playerAnim.Jump();
         }
     }
 
@@ -97,18 +127,32 @@ public class PlayerMovement : MonoBehaviour
 
     private void Movement()
     {
-        float speed;
-        if (playerClass.currentClass == SwapClass.playerClasses.Angel) speed = speedAngel;
-        else speed = speedDevil;
+        float movementSpeed;
+        if (playerClass.IsAngel()) movementSpeed = movementSpeedAngel;
+        else movementSpeed = movementSpeedDevil;
+        xAxis *= movementSpeed * Time.deltaTime;
 
-        xAxis *= speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        if (canMove)
+        {
+            transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        }
     }
 
     private void RotateCharacter()
     {
-        if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
-        else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        if (!GetComponent<Float>().isFloating && canTurn)
+        {
+            if (Input.GetAxis("Horizontal") < 0) transform.rotation = Quaternion.Euler(0f, 270f, 0f);
+            else if (Input.GetAxis("Horizontal") > 0) transform.rotation = Quaternion.Euler(0f, 90f, 0f);
+        }
     }
 
+    private void OnCollisionEnter(Collision collision)
+    {
+        if (collision.gameObject.tag =="Ground") isGrounded = true;
+    }
+    private void OnCollisionExit(Collision collision)
+    {
+        if (collision.gameObject.tag == "Ground") isGrounded = false;
+    }
 }

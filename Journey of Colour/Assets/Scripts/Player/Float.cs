@@ -4,11 +4,14 @@ using UnityEngine;
 
 public class Float : MonoBehaviour
 {
-    bool isGrounded;
+
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxFloatTime, cooldownTime;
     CustomTimer maxFloatTimer, cooldownTimer;
-    bool abilityGo;
+    public bool isFloating;
+
+    NewPlayerAnimations playerAnim;
+    PlayerMovement playerMovement;
 
     SwapClass swapClass;
 
@@ -18,8 +21,21 @@ public class Float : MonoBehaviour
 
     RigidbodyConstraints freezeXConstraint, normalConstraints;
 
+    bool startFloatanim;
+    private bool StartFloatAnim
+    {
+        set
+        {
+            if (startFloatanim == value) return;
+            startFloatanim = value;
+            playerAnim.Floating(value);
+        }
+    }
+
     private void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
         maxFloatTimer = new CustomTimer(maxFloatTime);
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
@@ -39,11 +55,12 @@ public class Float : MonoBehaviour
 
     private void FixedUpdate()
     {
-        this.isGrounded = GetComponent<PlayerMovement>().canJump;
+        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
-        if (!isGrounded && swapClass.currentClass == 0)
+
+        if (!isGrounded && swapClass.IsAngel())
         {
-            if (Input.GetKey("s"))
+            if (Input.GetKey(KeyCode.S))
             {
                 if (cooldownTimer.finish)
                 {
@@ -53,33 +70,37 @@ public class Float : MonoBehaviour
                     maxFloatTimer.start = true;
                     rb.useGravity = false;
                     rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);         //sets Y velocity on 0 before starting ability, so that player wont fly upwards.
-                    abilityGo = true;
+                    isFloating = true;
                 }
             }
             else
             {
-                abilityGo = false;
+                isFloating = false;
             }
 
 
-            if (abilityGo)
+            if (isFloating)
             {
-                GetComponent<PlayerAnimations>().isFloating = true;
+                playerMovement.canMove = false;
+                playerAnim.Floating(true);
                 swapClass.swappable = false;
                 sinY += SinYIncrement * Time.deltaTime;
                 var sinMovement = Mathf.Sin(sinY) * Amplitude;
 
                 rb.position = new Vector2(rb.position.x, rb.position.y + sinMovement);
                 rb.constraints = freezeXConstraint;
+                StartFloatAnim = true;
             }
 
-            if (!abilityGo || maxFloatTimer.finish)
+            if (!isFloating || maxFloatTimer.finish)
             {
-                GetComponent<PlayerAnimations>().isFloating = false;
+                playerMovement.canMove = true;
+                playerAnim.Floating(false);
                 rb.constraints = normalConstraints;
                 rb.useGravity = true;
                 maxFloatTimer.Reset();
                 swapClass.swappable = true;
+                StartFloatAnim = false;
             }
         }
     }
