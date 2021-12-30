@@ -13957,10 +13957,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 127918ede1365e646b9bd3ac9ee4efb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  startPos: {x: 1.1, y: 4, z: -14.22}
   yOffset: 1.2
   normalSpeed: 4
   highSpeed: 3
+  freezeTime: 0
+  speedTriggerPercentage: 0
+  triggerDistance: 0
+  moving: 0
 --- !u!114 &894936477
 MonoBehaviour:
   m_ObjectHideFlags: 0
