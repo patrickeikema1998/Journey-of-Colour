@@ -27,11 +27,12 @@ public class DashAbility : MonoBehaviour
         
         coolDown -= Time.deltaTime;
         duration -= Time.deltaTime;
+
+        //checks the last direction the player is facing
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
         //Input check for dash ability
-
         if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
         {
             duration = durationTime;
@@ -42,13 +43,19 @@ public class DashAbility : MonoBehaviour
             rb.constraints = RigidbodyConstraints.FreezePositionY;
             Dash();
             rb.constraints = RigidbodyConstraints.FreezeRotation;
-        } 
+        }
+
+        //makes sure that the player's z-axis reamians zero
+        if (rb.transform.position.z != 0)
+            rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, 0);
     }
 
     
     void Dash()
     {
+        rb.velocity = Vector3.zero;
         rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
+        rb.velocity = Vector3.zero;
     }
 }
