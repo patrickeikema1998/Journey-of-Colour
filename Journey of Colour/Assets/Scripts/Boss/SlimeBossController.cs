@@ -65,10 +65,9 @@ public class SlimeBossController : MonoBehaviour
                 if (health.GetHealth < health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
-                if (health.dead) /*death sequenceDestroy(gameObject)*/ enabled = false;
+                if (health.dead) /*death sequenceDestroy(gameObject)*/ gameObject.SetActive(false);
                 break;
         }
-
     }
 
     private void OnCollisionEnter(Collision collision)
@@ -106,6 +105,8 @@ public class SlimeBossController : MonoBehaviour
 
     void SwitchPhase(int newPhase)
     {
+        gameObject.SetActive(true);
+
         switch (newPhase)
         {
             case 1:
@@ -145,6 +146,7 @@ public class SlimeBossController : MonoBehaviour
                 beamAttack.enabled = true;
                 break;
         }
+        
         stunned = false;
         PhaseChange.Invoke(newPhase);
         phase = newPhase;

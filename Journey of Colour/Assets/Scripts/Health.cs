@@ -20,8 +20,8 @@ public class Health : MonoBehaviour
     {
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
-        if (this.gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
-        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
+        if (gameObject.tag == "Player")  playerAnim = GetComponent<PlayerAnimations>();
+        if (gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
     }
 
     public int GetHealth
@@ -33,13 +33,14 @@ public class Health : MonoBehaviour
     {
         health -= damageAmount;
         healthbar.SetHealth(health);
-
-        if(this.gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
-        if (this.gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
+        
         if (health <= 0)
         {
             dead = true;
         }
+
+        if (gameObject.tag == "Player") playerAnim.DoGetHitAnimation();
+        if (gameObject.tag == "Enemy") enemyAnim.DoGetHitAnimation();
     }
 
     public void heal(int healAmount)
