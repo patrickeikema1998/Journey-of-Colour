@@ -35,9 +35,13 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public bool isFloating;
 
 
+    bool shouldJump;
+
 
     private void Start()
     {
+        shouldJump = false;
+
         lastGettingHit = gettingHitVariant2;
         lastJump = jumpVariant2;
         animationManager = GetComponent<AnimationManager>();
@@ -65,18 +69,22 @@ public class PlayerAnimations : MonoBehaviour
 
     void DoJumpAnimation()
     {
+
+        if (Input.GetKeyDown(KeyCode.Space)) shouldJump = true;
         //this statement checks if player should do an animation
-        if ((GetComponent<DoubleJump>().canDoubleJump || playerMovement.canJump) && Input.GetKeyDown(KeyCode.Space))
+        if (playerMovement.rb.velocity.y > 0 && shouldJump)
         {
             isJumping = true;
             //swaps variants
             if (lastJump == jumpVariant2)
             {
+                shouldJump = false;
                 animationManager.PlayAnimation(currentAnimator, jumpVariant1);
                 lastJump = jumpVariant1;
             }
             else
             {
+                shouldJump = false;
                 animationManager.PlayAnimation(currentAnimator, jumpVariant2);
                 lastJump = jumpVariant2;
             }
@@ -87,7 +95,7 @@ public class PlayerAnimations : MonoBehaviour
     public void DoRunAnimation()
     {
         //checks if player is running.
-        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.rb.velocity.y == 0) isRunning = true;
+        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.isGrounded) isRunning = true;
         else isRunning = false;
 
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
@@ -95,12 +103,10 @@ public class PlayerAnimations : MonoBehaviour
 
     void DoIdleAnimation()
     {
-
-        //checks if player is standing still. canJump is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
+        //checks if player is standing still. isJumping is added, because the y velocity is sometimes 0 in mid-air if the player jumped.
         if (!isJumping && !isAttacking && !isRunning && !gettingHit)
         {
             animationManager.PlayAnimation(currentAnimator, idle);
-
         }
     }
 

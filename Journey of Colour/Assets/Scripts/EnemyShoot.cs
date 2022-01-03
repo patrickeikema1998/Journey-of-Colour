@@ -8,7 +8,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] float fireRate = 5f, enemySight, offsetFloatY;
     float offsetFloat;
-    EnemyAnimations anim;
+    NewEnemyAnimations anim;
     [SerializeField] bool spearThrower;
 
     float coolDown;
@@ -21,7 +21,7 @@ public class EnemyShoot : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<EnemyAnimations>();
+        anim = GetComponent<NewEnemyAnimations>();
         coolDown = fireRate;
     }
 
@@ -52,10 +52,9 @@ public class EnemyShoot : MonoBehaviour
 
     void FireBullet()
     {
-        float attackAnimationLength = .55f;
-        anim.DoAttackAnimation();
+        anim.Attack();
         coolDown = fireRate;
-        Invoke("InstantiateBullet", attackAnimationLength);
+        Invoke("InstantiateBullet", anim.spearAttackAnimTime);
     }
 
     void InstantiateBullet()

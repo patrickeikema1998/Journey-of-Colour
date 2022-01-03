@@ -30,7 +30,6 @@ public class BossBounceAttack : MonoBehaviour
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();   
-
     }
 
     // Update is called once per frame
@@ -61,7 +60,6 @@ public class BossBounceAttack : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
@@ -82,6 +80,9 @@ public class BossBounceAttack : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
-        onGround = true;
+        if (collision.gameObject.CompareTag("Ground"))
+        {
+            onGround = true;
+        }
     }
 }

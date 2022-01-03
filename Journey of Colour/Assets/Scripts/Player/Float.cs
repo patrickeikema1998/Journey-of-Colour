@@ -10,6 +10,9 @@ public class Float : MonoBehaviour
     CustomTimer maxFloatTimer, cooldownTimer;
     public bool isFloating;
 
+    NewPlayerAnimations playerAnim;
+    PlayerMovement playerMovement;
+
     SwapClass swapClass;
 
     private float sinY;
@@ -18,8 +21,21 @@ public class Float : MonoBehaviour
 
     RigidbodyConstraints freezeXConstraint, normalConstraints;
 
+    bool startFloatanim;
+    private bool StartFloatAnim
+    {
+        set
+        {
+            if (startFloatanim == value) return;
+            startFloatanim = value;
+            playerAnim.Floating(value);
+        }
+    }
+
     private void Start()
     {
+        playerMovement = GetComponent<PlayerMovement>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
         maxFloatTimer = new CustomTimer(maxFloatTime);
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
@@ -39,12 +55,12 @@ public class Float : MonoBehaviour
 
     private void FixedUpdate()
     {
-        bool isGrounded = GetComponent<PlayerMovement>().canJump;
+        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
 
-        if (!isGrounded && swapClass.currentClass == 0)
+        if (!isGrounded && swapClass.IsAngel())
         {
-            if (Input.GetKey("s"))
+            if (Input.GetKey(KeyCode.S))
             {
                 if (cooldownTimer.finish)
                 {
@@ -65,22 +81,26 @@ public class Float : MonoBehaviour
 
             if (isFloating)
             {
-                GetComponent<PlayerAnimations>().isFloating = true;
+                playerMovement.canMove = false;
+                playerAnim.Floating(true);
                 swapClass.swappable = false;
                 sinY += SinYIncrement * Time.deltaTime;
                 var sinMovement = Mathf.Sin(sinY) * Amplitude;
 
                 rb.position = new Vector2(rb.position.x, rb.position.y + sinMovement);
                 rb.constraints = freezeXConstraint;
+                StartFloatAnim = true;
             }
 
             if (!isFloating || maxFloatTimer.finish)
             {
-                GetComponent<PlayerAnimations>().isFloating = false;
+                playerMovement.canMove = true;
+                playerAnim.Floating(false);
                 rb.constraints = normalConstraints;
                 rb.useGravity = true;
                 maxFloatTimer.Reset();
                 swapClass.swappable = true;
+                StartFloatAnim = false;
             }
         }
     }

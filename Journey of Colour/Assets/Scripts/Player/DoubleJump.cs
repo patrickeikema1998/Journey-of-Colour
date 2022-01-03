@@ -11,9 +11,11 @@ public class DoubleJump : MonoBehaviour
     public bool canDoubleJump, doubleJump;
     Rigidbody rb;
     SwapClass swapClass;
+    NewPlayerAnimations playerAnim;
     // Start is called before the first frame update
     void Start()
     {
+        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
         rb = this.GetComponent<Rigidbody>();
         jumpedTwice = false;
         swapClass = GetComponent<SwapClass>();
@@ -34,6 +36,7 @@ public class DoubleJump : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
             canDoubleJump = false;
             doubleJump = false;
+            playerAnim.DoubleJump();
         }
     }
 

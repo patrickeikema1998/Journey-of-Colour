@@ -40,7 +40,6 @@ public class SlimeBossController : MonoBehaviour
         lungeAttack = GetComponent<BossLungeAttack>();
         projectileAttack = GetComponent<BossProjectileAttack>();
         beamAttack = GetComponent<BossBeamAttack>();
-
         SwitchPhase(phase);
     }
 
@@ -56,13 +55,13 @@ public class SlimeBossController : MonoBehaviour
         switch (phase)
         {
             case 1:
-                if (health.GetHealth < health.maxHealth / 4 * 3) SwitchPhase(phase + 1);
+                if (health.GetHealth <= health.maxHealth / 4 * 3) SwitchPhase(phase + 1);
                 break;
             case 2:
-                if (health.GetHealth < health.maxHealth / 4 * 2) SwitchPhase(phase + 1);
+                if (health.GetHealth <= health.maxHealth / 4 * 2) SwitchPhase(phase + 1);
                 break;
             case 3:
-                if (health.GetHealth < health.maxHealth / 4) SwitchPhase(phase + 1);
+                if (health.GetHealth <= health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
                 if (health.dead) /*death sequenceDestroy(gameObject)*/ gameObject.SetActive(false);

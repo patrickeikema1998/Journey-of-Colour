@@ -36,6 +36,7 @@ public class BossProjectile : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             other.GetComponent<Health>().Damage(damage);
+            Destroy(gameObject);
         }
         if (!other.CompareTag("Enemy") && !other.CompareTag("Bullet"))
         {
