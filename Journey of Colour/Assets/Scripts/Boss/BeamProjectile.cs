@@ -4,7 +4,6 @@ using UnityEngine;
 
 public class BeamProjectile : MonoBehaviour
 {
-    float originalScale = 13;
     [System.NonSerialized]
     public static float maxLifeTime;
     float lifeTime;
@@ -16,11 +15,7 @@ public class BeamProjectile : MonoBehaviour
     void Update()
     {
         lifeTime += Time.deltaTime;
-        if (lifeTime > maxLifeTime)
-        {
-
-            Destroy(gameObject);
-        }
+        if (lifeTime > maxLifeTime) Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider other)
