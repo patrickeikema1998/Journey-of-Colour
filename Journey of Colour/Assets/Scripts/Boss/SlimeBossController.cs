@@ -5,7 +5,6 @@ public class PhaseEvent : UnityEvent<int> { }
 
 public class SlimeBossController : MonoBehaviour
 {
-    Rigidbody m_Rigidbody;
     Health health;
     BossBounceAttack bounceAttack;
     BossLungeAttack lungeAttack;
@@ -13,6 +12,8 @@ public class SlimeBossController : MonoBehaviour
     BossBeamAttack beamAttack;
 
     public static PhaseEvent PhaseChange = new PhaseEvent();
+
+    Vector3 startPosition;
 
     [SerializeField]
     int phase = 1;
@@ -33,7 +34,7 @@ public class SlimeBossController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        m_Rigidbody = GetComponent<Rigidbody>();
+        startPosition = transform.position;
         health = GetComponent<Health>();
         bounceAttack = GetComponent<BossBounceAttack>();
         lungeAttack = GetComponent<BossLungeAttack>();
@@ -149,5 +150,10 @@ public class SlimeBossController : MonoBehaviour
         phase = newPhase;
     }
 
-
+    public void ResetBossFight()
+    {
+        health.heal(health.maxHealth);
+        transform.position = startPosition;
+        SwitchPhase(1);
+    }
 }
