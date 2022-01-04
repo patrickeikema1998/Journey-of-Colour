@@ -10,12 +10,14 @@ public class AutomaticScrolling : MonoBehaviour
     public bool moving;
     bool triggered;
 
-    Vector3 startPos, startMovementPos, offset;
+    Vector3 startMovementPos, offset;
     float speed;
     float xVelocity;
     float speederOffset;
     float startYOffset;
 
+    Rect screenSize;
+    Vector2 screenSizeCalc;
     GameObject player;
     CustomTimer freezeTimer;
 
@@ -23,10 +25,13 @@ public class AutomaticScrolling : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        startPos = transform.position;
         offset = transform.position - player.transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
-        speederOffset = Screen.width * speedTriggerPercentage;
+
+        screenSize = GetComponent<Camera>().pixelRect;
+        screenSizeCalc = GetComponent<Camera>().WorldToViewportPoint(new Vector3(screenSize.width, screenSize.height, 0f));
+        speederOffset = (screenSizeCalc.x / 2) - (screenSizeCalc.x * speedTriggerPercentage);
+       
         moving = true;
 
         freezeTimer = new CustomTimer(freezeTime);
@@ -70,13 +75,20 @@ public class AutomaticScrolling : MonoBehaviour
             newCameraPositionY = transform.position.y;
         }
 
+        if (player.GetComponent<Health>().GetHealth <= 0) 
+        { 
+            speed = 0;
+            moving = false;
+        }
+
         xVelocity = speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x + xVelocity,
             newCameraPositionY,
             transform.position.z);
-
+        
         if (moving && freezeTimer.finish)
         {
+            Debug.Log("player: "+ player.transform.position.x + " | trigger: " + (transform.position.x + speederOffset) + " | speed: " + speed);
             if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
             else { speed = normalSpeed; }
         }
@@ -107,5 +119,6 @@ public class AutomaticScrolling : MonoBehaviour
     public void Reset()
     {
         transform.position = player.transform.position + offset;
+        moving = true;
     }
 }
