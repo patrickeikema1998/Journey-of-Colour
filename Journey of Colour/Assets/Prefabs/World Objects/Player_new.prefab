@@ -478,7 +478,7 @@ RectTransform:
   m_Children:
   - {fileID: 1291349403}
   m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 4
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
@@ -612,36 +612,6 @@ Transform:
   m_Father: {fileID: 6635044059367021451}
   m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2330538529329680994
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 993643816317321575}
-  m_Layer: 7
-  m_Name: FireBallPointLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &993643816317321575
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330538529329680994}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.4399999, z: -0.718}
-  m_LocalScale: {x: 0.8333331, y: 0.83333325, z: 0.8333331}
-  m_Children: []
-  m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &2726974680396012434
 GameObject:
   m_ObjectHideFlags: 0
@@ -652,7 +622,7 @@ GameObject:
   m_Component:
   - component: {fileID: 2024685874119392762}
   m_Layer: 7
-  m_Name: FireBallPointRight
+  m_Name: FireBallPoint
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -935,7 +905,6 @@ Transform:
   - {fileID: 2647605834071225690}
   - {fileID: 4909877701084508665}
   - {fileID: 2024685874119392762}
-  - {fileID: 993643816317321575}
   - {fileID: 1516268473}
   m_Father: {fileID: 0}
   m_RootOrder: 0
@@ -1116,7 +1085,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   playerPos: {fileID: 8949287569552546977}
-  fireBallPointLeft: {fileID: 993643816317321575}
+  fireBallPointLeft: {fileID: 0}
   fireBallPointRight: {fileID: 2024685874119392762}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
   shootTime: 2
@@ -2024,6 +1993,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
+--- !u!4 &6635044059367021451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5971650810958062724, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
+  m_PrefabInstance: {fileID: 1066220266792107791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5722020611559041859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4729706235099059276, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
@@ -2032,11 +2006,6 @@ GameObject:
 --- !u!4 &4909877701084508665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5397733957514546934, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
-  m_PrefabInstance: {fileID: 1066220266792107791}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6635044059367021451 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5971650810958062724, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
   m_PrefabInstance: {fileID: 1066220266792107791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3630904160044649046

@@ -5,8 +5,7 @@ using UnityEngine;
 public class Weapon : MonoBehaviour
 {
     [SerializeField] Transform playerPos;
-    public Transform fireBallPointLeft;
-    public Transform fireBallPointRight;
+    public GameObject fireBallPoint;
     public GameObject fireBallPrefab;
     public float shootTime;
     private FireBall bullet;
@@ -18,6 +17,7 @@ public class Weapon : MonoBehaviour
     CustomTimer shootTimer;
 
     float shootAnimationTime = 0.4f;
+
 
     private void Start()
     {
@@ -38,36 +38,19 @@ public class Weapon : MonoBehaviour
         //player can only fire a fireball when he is in class 1. also known as the black colour.
         if (swapClass.currentClass == SwapClass.playerClasses.Devil && !playerHealth.dead)
         {
-            if (Input.GetMouseButtonDown(1) && shootTimer.finish == true)
+            if (Input.GetKeyDown(KeyCode.E))
             {
+                Invoke("Shoot", shootAnimationTime);
                 playerMovement.PlayerAnim.RangeAttack();
-
-                if (Input.mousePosition.x > playerPos.position.x)
-                {
-                    Invoke("ShootRight", shootAnimationTime);
-                }
-                else if (Input.mousePosition.x < playerPos.position.x)
-                {
-                    Invoke("ShootLeft", shootAnimationTime);
-
-                }
-                shootTimer.Reset();
-                shootTimer.start = true;
             }
+            shootTimer.Reset();
+            shootTimer.start = true;
         }
     }
 
-    void ShootRight()
+    void Shoot()
     {
         //instantiate a bullet on a certain position (the bulletPoint).
-        Instantiate(fireBallPrefab, fireBallPointRight.position, fireBallPointRight.rotation);
-        bullet.speed = 20;
-    }
-
-    void ShootLeft()
-    {
-        //instantiate a bullet on a certain position (the bulletPoint).
-        Instantiate(fireBallPrefab, fireBallPointLeft.position, fireBallPointLeft.rotation);
-        bullet.speed = -20;
+        Instantiate(fireBallPrefab, fireBallPoint.transform.position, fireBallPoint.transform.rotation);
     }
 }

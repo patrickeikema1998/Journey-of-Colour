@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public float speed  = 20;
+    public float speed;
     public int damage = 5;
 
     public Rigidbody rb;
@@ -16,6 +16,18 @@ public class FireBall : MonoBehaviour
     {
         player = GameObject.Find("Player");
         playerMovement = player.GetComponent<PlayerMovement>();
+
+        //if the player is looking to the right, the bullet has a velocity to the right.
+        if (player.transform.rotation.y > 0)
+        {
+            speed = 20;
+        }
+
+        //if the player is looking to the left, the bullet has a velocity to the left.
+        if (player.transform.rotation.y < 0)
+        {
+            speed = -20;
+        }
 
         rb.velocity = transform.right * speed;
     }
