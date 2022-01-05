@@ -13968,7 +13968,7 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894936470}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 127918ede1365e646b9bd3ac9ee4efb5, type: 3}
   m_Name: 
@@ -33289,6 +33289,10 @@ PrefabInstance:
     - target: {fileID: 928071960, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: m_AnchorMax.y
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236693, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: shootTime
+      value: 0.5
       objectReference: {fileID: 0}
     - target: {fileID: 1973236697, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: movementSpeedAngel

@@ -7,11 +7,11 @@ public class PlayerMovement : MonoBehaviour
 {
     public bool jump;
     NewPlayerAnimations playerAnim;
-    public Rigidbody rb;
+    [HideInInspector]public Rigidbody rb;
     MeleeAttack meleeAttack;
-    public CustomTimer meleeAttackCooldownTimer;
+    CustomTimer meleeAttackCooldownTimer;
     [SerializeField] float meleeAttackCDInSeconds;
-    public SwapClass playerClass;
+    [HideInInspector] public SwapClass playerClass;
 
     private Vector3 PlayerMovementInput;
 
@@ -44,6 +44,7 @@ public class PlayerMovement : MonoBehaviour
 
     public void Start()
     {
+        rb = GetComponent<Rigidbody>();
         playerHealth = GetComponent<Health>();
         canTurn = true;
         canMove = true;
@@ -104,7 +105,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         JumpCheck();
-        RotateCharacter();
+        HandleRotation();
 
         if(jump && canJump && !playerHealth.dead)
         {
@@ -139,7 +140,7 @@ public class PlayerMovement : MonoBehaviour
         }
     }
 
-    private void RotateCharacter()
+    private void HandleRotation()
     {
         if (!GetComponent<Float>().isFloating && canTurn && !playerHealth.dead)
         {

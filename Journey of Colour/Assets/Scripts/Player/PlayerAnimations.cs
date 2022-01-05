@@ -5,7 +5,7 @@ using UnityEngine;
 public class PlayerAnimations : MonoBehaviour
 {
     PlayerMovement playerMovement;
-    SwapClass playerClass;
+    [HideInInspector] SwapClass playerClass;
     AnimationManager animationManager;
     [SerializeField] Animator animatorAngel, animatorDevil;
     Animator currentAnimator;
@@ -25,6 +25,7 @@ public class PlayerAnimations : MonoBehaviour
 
     //time animation takes, so that idle animation wont play while attacking
     const float attackAnimationTime = 0.5f;
+    const float fireBallAnimationTime = 0.2f;
     const float gettingHitAnimationTime = 0.7f;
 
     bool isAttacking;
@@ -128,7 +129,7 @@ public class PlayerAnimations : MonoBehaviour
         {
             isAttacking = true;
             animationManager.PlayAnimation(currentAnimator, fireball);
-            Invoke("AttackComplete", attackAnimationTime);
+            Invoke("AttackComplete", fireBallAnimationTime);
         }
     }
     public void DoGetHitAnimation()

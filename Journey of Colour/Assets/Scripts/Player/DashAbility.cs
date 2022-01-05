@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class DashAbility : MonoBehaviour
 {
-    [SerializeField] Rigidbody rb;
+    Rigidbody rb;
     [SerializeField] float dashForce = 10;
     [SerializeField] float coolDownTime = 0.2f;
     [SerializeField] float durationTime = 0.25f;
@@ -18,6 +18,7 @@ public class DashAbility : MonoBehaviour
 
     void Start()
     {
+        rb = GetComponent<Rigidbody>();
         playerHealth = GetComponent<Health>();
         playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
         coolDown = coolDownTime;
