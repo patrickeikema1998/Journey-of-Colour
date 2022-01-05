@@ -15,7 +15,7 @@ public class DeathFall : MonoBehaviour
     {
         if (other.gameObject.tag == "DeathFall")
         {
-            health.Damage(100);
+            health.Damage(1000);
         }
     }
 }
