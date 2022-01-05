@@ -23,7 +23,7 @@ public class Counter : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (Input.GetKeyDown(GameManager.GM.counterAbility))
         {
             keyDown = true;
         }

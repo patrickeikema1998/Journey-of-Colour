@@ -37,7 +37,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
+        if (Input.GetKeyDown(GameManager.GM.dashAbility) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
         {
             playerAnim.Dash();
             duration = durationTime;

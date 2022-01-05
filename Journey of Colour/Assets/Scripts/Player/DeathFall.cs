@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DeathFall : MonoBehaviour
 {
+    private Rigidbody rb;
     private Health health;
 
     private void Start()

@@ -60,7 +60,7 @@ public class Float : MonoBehaviour
 
         if (!isGrounded && swapClass.IsAngel())
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKey(GameManager.GM.floatAbility))
             {
                 if (cooldownTimer.finish)
                 {

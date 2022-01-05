@@ -38,7 +38,7 @@ public class Weapon : MonoBehaviour
         //player can only fire a fireball when he is in class 1. also known as the black colour.
         if (swapClass.currentClass == SwapClass.playerClasses.Devil && !playerHealth.dead)
         {
-            if (Input.GetKeyDown(KeyCode.E))
+            if (Input.GetKeyDown(GameManager.GM.fireBallAbility))
             {
                 Invoke("Shoot", shootAnimationTime);
                 playerMovement.PlayerAnim.RangeAttack();
