@@ -13,14 +13,14 @@ public class DashAbility : MonoBehaviour
     private float coolDown;
     private float duration;
     SwapClass swapClass;
-    NewPlayerAnimations playerAnim;
+    PlayerAnimations playerAnim;
     Health playerHealth;
 
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerHealth = GetComponent<Health>();
-        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
         swapClass = GetComponent<SwapClass>();
         duration = 0;

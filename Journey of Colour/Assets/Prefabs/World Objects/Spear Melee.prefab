@@ -312,9 +312,9 @@ GameObject:
   - component: {fileID: 1558805917532245826}
   - component: {fileID: 1558805917532245827}
   - component: {fileID: 1558805917532245824}
-  - component: {fileID: 1558805917532245825}
   - component: {fileID: 1558805917532245830}
   - component: {fileID: 4000144106861878693}
+  - component: {fileID: 5704906988920056414}
   m_Layer: 0
   m_Name: Spear Melee
   m_TagString: Untagged
@@ -395,6 +395,7 @@ MonoBehaviour:
   maxHealth: 20
   health: 0
   healthbar: {fileID: 7205373779140515240}
+  deathAnimTime: 0
 --- !u!114 &1558805917532245949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -458,23 +459,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rotationSpeed: 720
---- !u!114 &1558805917532245825
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1558805917532245831}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618761988bbab44488c9b10c4566a562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementAnimationBlendSpeed: 30
-  plantAttackAnimTime: 0
-  spearAttackAnimTime: 0
-  deathTime: 2
-  isMovingEnemy: 1
 --- !u!114 &1558805917532245830
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -502,6 +486,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f8088f179e556498c1133c6ff46ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &5704906988920056414
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1558805917532245831}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3197772f5c4365e40a3113c0aca0da43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementAnimationBlendSpeed: 2
+  plantAttackAnimTime: 0
+  spearAttackAnimTime: 0
+  deathTime: 2
+  isMovingEnemy: 0
 --- !u!1 &1578665234642827150
 GameObject:
   m_ObjectHideFlags: 0

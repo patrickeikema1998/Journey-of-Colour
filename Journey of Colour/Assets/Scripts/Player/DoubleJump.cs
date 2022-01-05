@@ -11,11 +11,11 @@ public class DoubleJump : MonoBehaviour
     public bool canDoubleJump, doubleJump;
     Rigidbody rb;
     SwapClass swapClass;
-    NewPlayerAnimations playerAnim;
+    PlayerAnimations playerAnim;
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         rb = this.GetComponent<Rigidbody>();
         jumpedTwice = false;
         swapClass = GetComponent<SwapClass>();

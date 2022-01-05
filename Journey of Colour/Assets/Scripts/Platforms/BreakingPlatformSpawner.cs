@@ -6,7 +6,7 @@ public class BreakingPlatformSpawner : MonoBehaviour
 {
     [SerializeField] GameObject breakingPlatform;
     [HideInInspector]public bool go;
-    CustomTimer respawnTimer;
+    public CustomTimer respawnTimer;
     [SerializeField] float secondsToRespawn;
     // Start is called before the first frame update
     void Start()
@@ -18,14 +18,7 @@ public class BreakingPlatformSpawner : MonoBehaviour
     void Update()
     {
         respawnTimer.Update();
-        if (go)
-        {
-            GameObject.Find("Player").transform.parent = null;
-            respawnTimer.start = true;
-            go = false;
-        }
-
-        //respawn a breaking platform on the same location.
+        //when timer is finished, respawns a breaking platform on the same location.
         if (respawnTimer.finish)
         {
             Instantiate(breakingPlatform, transform);

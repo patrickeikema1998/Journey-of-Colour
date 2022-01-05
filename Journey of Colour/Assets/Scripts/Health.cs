@@ -14,8 +14,8 @@ public class Health : MonoBehaviour
     //PlayerAnimations playerAnim;
     //EnemyAnimations enemyAnim;
     PlayerMovement playerMovement;
-    NewEnemyAnimations enemyAnim;
-    NewPlayerAnimations playerAnim;
+    EnemyAnimations enemyAnim;
+    PlayerAnimations playerAnim;
     public int deathAnimTime;
     CustomTimer deathTimer;
 
@@ -30,7 +30,7 @@ public class Health : MonoBehaviour
         health = maxHealth;
         healthbar.SetMaxHealth(maxHealth);
 
-        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<NewEnemyAnimations>();
+        if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
 
         GameEvents.onRespawnPlayer += PlayerHealthReset;
     }

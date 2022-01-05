@@ -844,8 +844,8 @@ GameObject:
   - component: {fileID: 2269593399322258703}
   - component: {fileID: 813237357}
   - component: {fileID: 813237358}
-  - component: {fileID: 614511601}
   - component: {fileID: 9130470793619809362}
+  - component: {fileID: 6801558565166488389}
   m_Layer: 6
   m_Name: ShootingEnemySpear
   m_TagString: Enemy
@@ -941,6 +941,7 @@ MonoBehaviour:
   maxHealth: 15
   health: 0
   healthbar: {fileID: 378257023646595608}
+  deathAnimTime: 0
 --- !u!114 &2269593399322258703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -987,22 +988,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolationSteps: 0.05
---- !u!114 &614511601
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269593399322258702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618761988bbab44488c9b10c4566a562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementAnimationBlendSpeed: 10
-  plantAttackAnimTime: 0
-  spearAttackAnimTime: 0
-  deathTime: 2
 --- !u!114 &9130470793619809362
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1015,6 +1000,23 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f8088f179e556498c1133c6ff46ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &6801558565166488389
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269593399322258702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3197772f5c4365e40a3113c0aca0da43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementAnimationBlendSpeed: 2
+  plantAttackAnimTime: 0
+  spearAttackAnimTime: 0
+  deathTime: 2
+  isMovingEnemy: 0
 --- !u!1 &2486645252215975910
 GameObject:
   m_ObjectHideFlags: 0

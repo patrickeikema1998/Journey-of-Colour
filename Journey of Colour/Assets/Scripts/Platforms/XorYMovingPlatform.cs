@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class XorYMovingPlatform : MonoBehaviour
+public class XAndYMovingPlatform : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
     [SerializeField] float maxMovement, speed, waitTime;

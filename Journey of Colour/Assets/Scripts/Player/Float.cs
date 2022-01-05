@@ -10,7 +10,7 @@ public class Float : MonoBehaviour
     CustomTimer maxFloatTimer, cooldownTimer;
     public bool isFloating;
 
-    NewPlayerAnimations playerAnim;
+    PlayerAnimations playerAnim;
     PlayerMovement playerMovement;
 
     SwapClass swapClass;
@@ -35,7 +35,7 @@ public class Float : MonoBehaviour
     private void Start()
     {
         playerMovement = GetComponent<PlayerMovement>();
-        playerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         maxFloatTimer = new CustomTimer(maxFloatTime);
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;

@@ -6,7 +6,7 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     public bool jump;
-    NewPlayerAnimations playerAnim;
+    PlayerAnimations playerAnim;
     [HideInInspector]public Rigidbody rb;
     MeleeAttack meleeAttack;
     CustomTimer meleeAttackCooldownTimer;
@@ -32,7 +32,7 @@ public class PlayerMovement : MonoBehaviour
     public GameObject fireBall;
     private FireBall bulletScript;
     Health playerHealth;
-    public NewPlayerAnimations PlayerAnim
+    public PlayerAnimations PlayerAnim
     {
         get { return playerAnim; }
         set
@@ -45,6 +45,7 @@ public class PlayerMovement : MonoBehaviour
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
+        rb.sleepThreshold = 0.0f;
         playerHealth = GetComponent<Health>();
         canTurn = true;
         canMove = true;
@@ -57,8 +58,8 @@ public class PlayerMovement : MonoBehaviour
 
     public void Update()
     {
-        if (playerClass.IsAngel()) PlayerAnim = GameObject.Find("Angel Player").GetComponent<NewPlayerAnimations>();
-        else PlayerAnim = GameObject.Find("Devil Player").GetComponent<NewPlayerAnimations>();
+        if (playerClass.IsAngel()) PlayerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
+        else PlayerAnim = GameObject.Find("Devil Player").GetComponent<PlayerAnimations>();
 
 
         meleeAttackCooldownTimer.Update();

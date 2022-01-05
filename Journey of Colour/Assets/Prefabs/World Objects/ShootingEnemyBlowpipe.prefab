@@ -1919,8 +1919,8 @@ GameObject:
   - component: {fileID: 784868314}
   - component: {fileID: 784868315}
   - component: {fileID: 1391726774}
-  - component: {fileID: 1906641159}
   - component: {fileID: 3092623305362296904}
+  - component: {fileID: 569928265495714184}
   m_Layer: 6
   m_Name: ShootingEnemyBlowpipe
   m_TagString: Enemy
@@ -2016,6 +2016,7 @@ MonoBehaviour:
   maxHealth: 15
   health: 0
   healthbar: {fileID: 3636200727610287571}
+  deathAnimTime: 0
 --- !u!114 &784868315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2047,22 +2048,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   interpolationSteps: 0.05
---- !u!114 &1906641159
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9076399584341546324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 618761988bbab44488c9b10c4566a562, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  movementAnimationBlendSpeed: 20
-  plantAttackAnimTime: 0
-  spearAttackAnimTime: 0
-  deathTime: 2
 --- !u!114 &3092623305362296904
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2075,3 +2060,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c4f8088f179e556498c1133c6ff46ed4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &569928265495714184
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076399584341546324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3197772f5c4365e40a3113c0aca0da43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  movementAnimationBlendSpeed: 2
+  plantAttackAnimTime: 0
+  spearAttackAnimTime: 0
+  deathTime: 2
+  isMovingEnemy: 0

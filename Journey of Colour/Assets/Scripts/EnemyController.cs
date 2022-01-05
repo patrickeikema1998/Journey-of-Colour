@@ -9,7 +9,7 @@ public class EnemyController : MonoBehaviour
     GameObject player;
 
     public CharacterController controller;
-    NewEnemyAnimations anim;
+    EnemyAnimations anim;
     MeleeAttack attack;
     Health health;
     float timeLeft;
@@ -20,7 +20,7 @@ public class EnemyController : MonoBehaviour
     void Start()
     {
         player = GameObject.Find("Player");
-        anim = GetComponent<NewEnemyAnimations>();
+        anim = GetComponent<EnemyAnimations>();
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<Health>();

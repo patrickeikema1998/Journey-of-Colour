@@ -8,7 +8,7 @@ public class EnemyShoot : MonoBehaviour
     [SerializeField] GameObject player;
     [SerializeField] float fireRate = 5f, enemySight, offsetFloatY;
     float offsetFloat;
-    NewEnemyAnimations anim;
+    EnemyAnimations anim;
     [SerializeField] bool spearThrower;
 
     float coolDown;
@@ -21,7 +21,7 @@ public class EnemyShoot : MonoBehaviour
 
     void Start()
     {
-        anim = GetComponent<NewEnemyAnimations>();
+        anim = GetComponent<EnemyAnimations>();
         coolDown = fireRate;
     }
 
