@@ -1057,10 +1057,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   damage: 15
   attackOffset: 1
-  attackRange: 1
+  attackRange: 1.3
   opponentLayer:
     serializedVersion: 2
     m_Bits: 4160
+  centerOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1973236704
 MonoBehaviour:
   m_ObjectHideFlags: 0
