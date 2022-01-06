@@ -10,6 +10,7 @@ public class Spikes : MonoBehaviour
     CustomTimer holdTimer, damageTimer;
     [SerializeField] float holdTimeSpikes, timeBetweenDamage, moveSpeed;
     [SerializeField] int damage;
+
     float retractedPosY, extractedPosY;
     bool extracted;
 
@@ -90,5 +91,11 @@ public class Spikes : MonoBehaviour
                 }
             }
         }
+    }
+
+    private void OnTriggerEnter(Collider other)
+    {
+        SlimeBossController slimeBoss = other.GetComponent<SlimeBossController>();
+        if (slimeBoss != null) slimeBoss.SpikesHit();
     }
 }

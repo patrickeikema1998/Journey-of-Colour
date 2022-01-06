@@ -4,25 +4,42 @@ using UnityEngine;
 
 public class BossBeamAttack : MonoBehaviour
 {
+    float originalBeamScale = 13;
+
     bool shooting = false;
     [SerializeField]
     BeamProjectile beam;
+
     [SerializeField]
     LayerMask raycastLayer;
-    [SerializeField]
-    int damage = 10;
+
     [SerializeField]
     float maxAttackTime = 2;
 
-    SlimeBossController slimeBoss;
-
     float attackTime = 0;
+
+    SlimeBossController slimeBoss;
 
     // Start is called before the first frame update
     void Start()
     {
-        slimeBoss = GetComponent<SlimeBossController>();
         BeamProjectile.maxLifeTime = maxAttackTime;
+        slimeBoss = GetComponent<SlimeBossController>();
+    }
+
+    // Update is called once per frame
+    void Update()
+    {
+
+        if (shooting)
+        {
+            attackTime += Time.deltaTime;
+            if (attackTime >= maxAttackTime)
+            {
+                shooting = false;
+                attackTime = 0;
+            }
+        }
     }
 
     Vector3 RayDirection
@@ -32,13 +49,23 @@ public class BossBeamAttack : MonoBehaviour
 
     public void ShootBeam()
     {
-        shooting = true;
-        RaycastHit hit;
-        if (Physics.Raycast(transform.position, RayDirection, out hit, Mathf.Infinity, raycastLayer))
+        if (!shooting)
         {
-            float beamScaleY = hit.point.x - (transform.position.x + (transform.lossyScale.x /2));
-            beam.transform.localScale = new Vector3(transform.lossyScale.x, beamScaleY /2, transform.lossyScale.z);
-            Instantiate(beam, transform.position + new Vector3((beamScaleY / 2) + (transform.lossyScale.x / 2 * RayDirection.x), 0), Quaternion.Euler(0, 0, 90));
+            shooting = true;
+            RaycastHit hit;
+            if (Physics.Raycast(transform.position, RayDirection, out hit, Mathf.Infinity, raycastLayer))
+            {
+                float beamScaleY = hit.point.x - (transform.position.x + (transform.lossyScale.x /2));
+                beam.transform.localScale = new Vector3(transform.lossyScale.x, beamScaleY /2, transform.lossyScale.z);
+                Instantiate(beam, transform.position + new Vector3((beamScaleY / 2) + (transform.lossyScale.x / 2 * RayDirection.x), 0), Quaternion.Euler(0, 0, 90));
+                beam.transform.localScale = new Vector3(transform.lossyScale.x, originalBeamScale, transform.lossyScale.z);
+                Invoke("StunBoss", maxAttackTime);
+            }
         }
+    }
+
+    void StunBoss()
+    {
+        slimeBoss.Stun();
     }
 }

@@ -44,9 +44,14 @@ public class Health : MonoBehaviour
     {
         health -= damageAmount;
         healthbar.SetHealth(health);
+        
+        if (health <= 0)
+        {
+            dead = true;
+        }
 
-        if(this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
-        if (this.gameObject.tag == "Enemy") enemyAnim.GetHit();
+        if(gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
+        if (gameObject.tag == "Enemy") enemyAnim.GetHit();
     }
 
     public void heal(int healAmount)

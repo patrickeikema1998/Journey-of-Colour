@@ -8,6 +8,8 @@ public class BossBounceAttack : MonoBehaviour
 
     [SerializeField]
     protected Vector3 jumpVector = new Vector3(10, 25);
+    [SerializeField]
+    protected Vector2 jumpRandomizerRange = new Vector2(0, 5);
 
     [SerializeField]
     float bouncyPlatformMultiplier = 2;
@@ -17,7 +19,7 @@ public class BossBounceAttack : MonoBehaviour
          hitBouncy = false;
 
     [System.NonSerialized]
-    public bool bouncyPlatformStuns = true;
+    public static bool bouncyPlatformStuns = false;
 
     [System.NonSerialized]
     public float jumpCooldown;
@@ -33,7 +35,6 @@ public class BossBounceAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
         if (onGround)
         {
             jumpCooldownTimer += Time.deltaTime;
@@ -43,7 +44,9 @@ public class BossBounceAttack : MonoBehaviour
 
     protected virtual void Jump()
     {
-        m_Rigidbody.AddForce(Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * jumpVector.x, ForceMode.VelocityChange);
+        float xRandomizer = Random.Range(jumpRandomizerRange.x, jumpRandomizerRange.y);
+
+        m_Rigidbody.AddForce(Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * (jumpVector.x + xRandomizer), ForceMode.VelocityChange);
         jumpCooldownTimer = 0;
         
     }
@@ -56,7 +59,7 @@ public class BossBounceAttack : MonoBehaviour
     }
 
     private void OnCollisionEnter(Collision collision)
-    { 
+    {
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
@@ -80,7 +83,6 @@ public class BossBounceAttack : MonoBehaviour
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;
-
         }
     }
 }

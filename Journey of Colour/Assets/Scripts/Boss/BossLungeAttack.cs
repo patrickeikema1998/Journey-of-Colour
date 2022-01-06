@@ -12,9 +12,10 @@ public class BossLungeAttack : BossBounceAttack
 
     protected override void Jump()
     {
-        m_Rigidbody.AddForce((PlayerDirection + jumpVector).normalized * lungeForce, ForceMode.VelocityChange);
+        float jumpRandomizer = Random.Range(jumpRandomizerRange.x, jumpRandomizerRange.y);
+
+        m_Rigidbody.AddForce((PlayerDirection + (jumpVector * jumpRandomizer)).normalized * lungeForce * jumpRandomizer, ForceMode.VelocityChange);
         jumpCooldownTimer = 0;
-        Debug.Log("Jump!");
     }
 
     Vector3 PlayerDirection
