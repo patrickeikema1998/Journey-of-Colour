@@ -41,6 +41,7 @@ public class SlimeBossController : MonoBehaviour
         projectileAttack = GetComponent<BossProjectileAttack>();
         beamAttack = GetComponent<BossBeamAttack>();
         SwitchPhase(phase);
+        GameEvents.onRespawnPlayer += ResetBossFight;
     }
 
     // Update is called once per frame
