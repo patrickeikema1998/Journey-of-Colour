@@ -13,6 +13,7 @@ public class PlayerDeath : MonoBehaviour
     {
         deathAnimTime = 4;
         deathTimer = new CustomTimer(deathAnimTime);
+        deathTimer.start = false;
         health = GetComponent<Health>();
     }
 
@@ -21,24 +22,21 @@ public class PlayerDeath : MonoBehaviour
     {
         deathTimer.Update();
 
-        if (health.health <= 0)
+        if (health.dead && !deathTimer.start)
         {
             //starts death of player
             GameEvents.PlayerDeath();
-            deathTimer.start = true;
-
-            //if timer's finished, start respawn
-            if (deathTimer.finish)
-            {
-                deathTimer.Reset();
-                deathTimer.start = false;
-                InvokePlayerRespawn();
-            }
+            deathTimer.start = true;      
         }
-
+        //if timer's finished, start respawn
+        if (deathTimer.finish)
+        {
+            health.dead = false;
+            deathTimer.Reset();
+            deathTimer.start = false;
+            InvokePlayerRespawn();
+        }
     }
-
-
     void InvokePlayerRespawn()
     {
         GameEvents.RespawnPlayer();

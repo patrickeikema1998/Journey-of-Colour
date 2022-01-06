@@ -64,7 +64,7 @@ public class EnemyShoot : MonoBehaviour
             Instantiate(bullet, transform.position + offset, bullet.transform.rotation);
 
             //this gives the variables given in the inspector to the spear
-            SpearPattern pattern = bullet.GetComponent<SpearPattern>();
+            SpearBehavior pattern = bullet.GetComponent<SpearBehavior>();
             ThrowForceSpear throwForce = GetComponent<ThrowForceSpear>();
             pattern.damage = throwForce.damage;
             pattern.verticalForce = throwForce.verticalForce;

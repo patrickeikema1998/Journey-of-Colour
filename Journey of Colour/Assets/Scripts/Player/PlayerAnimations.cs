@@ -114,12 +114,12 @@ public class PlayerAnimations : MonoBehaviour
 
     public void PlayerDeath()
     {
-        playerMovement.PlayerAnim.Death(true);
+        Death(true);
 
     }
     void stopDeath()
     {
-        playerMovement.PlayerAnim.Death(false);
+        Death(false);
     }
 
 }

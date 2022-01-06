@@ -44,18 +44,20 @@ public class CheckPoint : MonoBehaviour
 
     void ResetPlayerPos()
     {
+        AutomaticScrolling scrolling = camera.GetComponent<AutomaticScrolling>();
+
         if (!checkPointHit) 
         {
             rb.velocity = Vector3.zero;
             player.transform.position = respawnPos + beginOffset;
-            camera.GetComponent<AutomaticScrolling>().Reset();
+            if(scrolling.isActiveAndEnabled) scrolling.Reset();
         }
         else
         {
             //when the player dies and respawns at a checkpoint the playerPos will be set
             //to the respawnPos which will be acitvated when the checkPoints is triggered.
             player.transform.position = respawnPos;
-            camera.GetComponent<AutomaticScrolling>().Reset();
+            if(scrolling.isActiveAndEnabled) scrolling.Reset();
         }
     }
 }

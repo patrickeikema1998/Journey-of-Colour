@@ -9,30 +9,28 @@ public class Health : MonoBehaviour
 
     [System.NonSerialized] public bool dead = false;
 
-    GameObject player;
     public Healthbar healthbar;
     //PlayerAnimations playerAnim;
     //EnemyAnimations enemyAnim;
     PlayerMovement playerMovement;
-    EnemyAnimations enemyAnim;
     PlayerAnimations playerAnim;
-    public int deathAnimTime;
-    CustomTimer deathTimer;
+    EnemyAnimations enemyAnim;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        deathAnimTime = 4;
-        deathTimer = new CustomTimer(deathAnimTime);
-        player = GameObject.Find("Player");
-        playerMovement = GetComponent<PlayerMovement>();
-        health = maxHealth;
-        healthbar.SetMaxHealth(maxHealth);
-
         if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
+        playerMovement = GetComponent<PlayerMovement>();
 
-        GameEvents.onRespawnPlayer += PlayerHealthReset;
+        HealthReset();
+        GameEvents.onRespawnPlayer += HealthReset;
+    }
+
+    private void Update()
+    {
+        if (health <= 0) dead = true;
+        else dead = false;
     }
 
     public int GetHealth
@@ -45,7 +43,7 @@ public class Health : MonoBehaviour
         health -= damageAmount;
         healthbar.SetHealth(health);
 
-        if(this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
+        if (this.gameObject.tag == "Player") playerMovement.PlayerAnim.GetHit();
         if (this.gameObject.tag == "Enemy") enemyAnim.GetHit();
     }
 
@@ -56,55 +54,11 @@ public class Health : MonoBehaviour
         if (health > maxHealth) health = maxHealth;
     }
 
-    private void Update()
-    {
-        deathTimer.Update();
-        if (health <= 0 && gameObject != player)
-        {
-            EnemyDeath();
-        }
-
-        if(gameObject == player) 
-        {
-            if (health <= 0)
-            {
-                dead = true;
-                GameEvents.PlayerDeath();
-                deathTimer.start = true;
-
-                if (deathTimer.finish)
-                {
-                    deathTimer.Reset();
-                    deathTimer.start = false;
-                    InvokePlayerRespawn();
-                }
-                //Invoke("InvokePlayerRespawn", deathAnimTime);
-
-            }
-            else dead = false;
-        }
-    }
-
-    void PlayerHealthReset()
+    void HealthReset()
     {
         health = maxHealth;
         healthbar.SetHealth(health);
     }
 
-    void InvokePlayerRespawn()
-    {
-        GameEvents.RespawnPlayer();
-    }
 
-    void EnemyDeath()
-    {
-        dead = true;
-        enemyAnim.Death();
-        Invoke("DestroyGameObj", enemyAnim.deathTime);
-    }
-
-    void DestroyGameObj()
-    {
-        Destroy(gameObject);
-    }
 }
