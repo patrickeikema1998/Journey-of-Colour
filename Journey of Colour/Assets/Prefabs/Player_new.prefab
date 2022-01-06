@@ -732,8 +732,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 100
   health: 100
-  player: {fileID: 8949287569552546981}
   healthbar: {fileID: 8949287569552546976}
+  deathAnimTime: 0
 --- !u!114 &8949287569552546976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -776,7 +776,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 8949287569552546981}
-  checkPoints: []
 --- !u!114 &1973236701
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -805,12 +804,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 20
   attackOffset: 1
-  attackRange: 1
+  attackRange: 1.3
   opponentLayer:
     serializedVersion: 2
     m_Bits: 4160
+  centerOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &7146849904889621198
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -825,6 +825,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   animatorAngel: {fileID: 4875668572618948536}
   animatorDevil: {fileID: 2536817448300685708}
+  isFloating: 0
 --- !u!114 &1973236704
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -838,6 +839,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpForceTwo: 20
+  canDoubleJump: 0
+  doubleJump: 0
 --- !u!114 &1973236697
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -852,11 +855,18 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: 0
   rb: {fileID: 8949287569552546978}
+  meleeAttackCooldownTimer: {fileID: 0}
+  meleeAttackCDInSeconds: 0
+  playerClass: {fileID: 0}
   xAxis: 0
-  speed: 10
+  movementSpeedAngel: 0
+  movementSpeedDevil: 0
   jumpForce: 20
-  isGrounded: 0
+  canJump: 0
   lookingLeft: 0
+  isGrounded: 0
+  canMove: 0
+  canTurn: 0
   fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &1973236693
 MonoBehaviour:
@@ -870,10 +880,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  playerPos: {fileID: 0}
   fireBallPointLeft: {fileID: 0}
   fireBallPointRight: {fileID: 0}
   fireBallPrefab: {fileID: 0}
   shootTime: 0
+  fireBall: {fileID: 0}
 --- !u!114 &1973236705
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -889,6 +901,7 @@ MonoBehaviour:
   rb: {fileID: 8949287569552546978}
   maxFloatTime: 5
   cooldownTime: 1
+  isFloating: 0
   SinYIncrement: 3
   Amplitude: 0.008
 --- !u!1001 &1066220266792107791

@@ -1055,12 +1055,13 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 20
   attackOffset: 1
-  attackRange: 1
+  attackRange: 1.3
   opponentLayer:
     serializedVersion: 2
     m_Bits: 4160
+  centerOffset: {x: 0, y: 1, z: 0}
 --- !u!114 &1973236704
 MonoBehaviour:
   m_ObjectHideFlags: 0
