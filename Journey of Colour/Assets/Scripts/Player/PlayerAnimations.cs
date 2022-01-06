@@ -82,8 +82,10 @@ public class PlayerAnimations : MonoBehaviour
 
     public void Floating(bool floating)
     {
-        if (floating) myAnimator.SetTrigger("startFloat");
-        else myAnimator.SetTrigger("stopFloat");
+        if ((floating && !myAnimator.GetBool("floating")) || (!floating && myAnimator.GetBool("floating")))
+        {
+            myAnimator.SetBool("floating", floating);
+        }
     }
 
     public void GetHit()

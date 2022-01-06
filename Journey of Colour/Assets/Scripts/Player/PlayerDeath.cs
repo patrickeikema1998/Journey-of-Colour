@@ -24,21 +24,16 @@ public class PlayerDeath : MonoBehaviour
 
         if (health.dead && !deathTimer.start)
         {
-            //starts death of player
+            //starts death event of player
             GameEvents.PlayerDeath();
             deathTimer.start = true;      
         }
-        //if timer's finished, start respawn
         if (deathTimer.finish)
         {
-            health.dead = false;
+            //start respawn event
             deathTimer.Reset();
             deathTimer.start = false;
-            InvokePlayerRespawn();
+            GameEvents.RespawnPlayer();
         }
-    }
-    void InvokePlayerRespawn()
-    {
-        GameEvents.RespawnPlayer();
     }
 }

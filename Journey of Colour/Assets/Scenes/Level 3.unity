@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1307011262}
-  m_IndirectSpecularColor: {r: 0.39426726, g: 0.49599367, b: 0.6216614, a: 1}
+  m_IndirectSpecularColor: {r: 0.39426774, g: 0.4959941, b: 0.6216615, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -30716,6 +30716,19 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 8949287569552546981, guid: 177103b96e779734db1afe719f8f853a, type: 3}
   m_PrefabInstance: {fileID: 8949287570435183087}
   m_PrefabAsset: {fileID: 0}
+--- !u!114 &1973236706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1973236692}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd1db8a298874145940a2d4fbbc2002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimTime: 0
 --- !u!1001 &1974219125
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33304,7 +33317,27 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1973236697, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: meleeAttackCDInSeconds
-      value: 1.5
+      value: 0.8
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236702, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: damage
+      value: 5
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236705, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: speed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236705, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: amount
+      value: 0.01
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236705, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: floatSpeed
+      value: 2
+      objectReference: {fileID: 0}
+    - target: {fileID: 1973236705, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: floatDistance
+      value: 0.01
       objectReference: {fileID: 0}
     - target: {fileID: 8949287569552546977, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: m_RootOrder

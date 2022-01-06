@@ -27,6 +27,8 @@ public class SwapClass : MonoBehaviour
         SwapPlayerClass();
     }
 
+
+    //this method swaps the playerclass enum and enables the corresponding gameobject.
     void SwapPlayerClass()
     {
         if (swappable && !playerHealth.dead)
@@ -48,6 +50,7 @@ public class SwapClass : MonoBehaviour
         }
     }
 
+    //checks if the current class is angel or devil
     public bool IsAngel()
     {
         if (currentClass == playerClasses.Angel) return true;
