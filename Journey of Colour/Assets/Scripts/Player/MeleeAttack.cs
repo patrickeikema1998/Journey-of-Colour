@@ -4,17 +4,14 @@ using UnityEngine;
 
 public class MeleeAttack : MonoBehaviour
 {
-    PlayerMovement playerMovement;
     [SerializeField] int damage;
     [SerializeField] float attackOffset = 1, attackRange = 1;
     [SerializeField] LayerMask opponentLayer;
     Vector3 attackBox;
-    int playerDirection = 1;
 
     // Start is called before the first frame update
     void Start()
     {
-        playerMovement = GetComponent<PlayerMovement>();
         //de attackrange
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);
     }
@@ -22,22 +19,14 @@ public class MeleeAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetAxis("Horizontal") < 0) playerDirection = -1;
-        if (Input.GetAxis("Horizontal") > 0) playerDirection = 1;
+        Debug.DrawLine(transform.position + (transform.forward * attackOffset), transform.position + (transform.forward * attackOffset) + (transform.forward * attackBox.x));
     }
 
     public void Attack()
     {
         //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
         Collider[] overlaps;
-        if (tag.Equals("Player"))
-        {
-            overlaps = Physics.OverlapBox(transform.position + (transform.right * attackOffset * playerDirection), attackBox, transform.rotation, opponentLayer);
-        }
-        else
-        {
-            overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
-        }
+        overlaps = Physics.OverlapBox(transform.position + (transform.forward * attackOffset), attackBox, transform.rotation, opponentLayer);
 
         foreach (Collider opponent in overlaps)
         {
