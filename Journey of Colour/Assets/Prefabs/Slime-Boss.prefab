@@ -685,7 +685,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0087e72536ef82e4fa430098b7425fd1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jumpVector: {x: 8, y: 25, z: 0}
+  jumpVector: {x: 7, y: 25, z: 0}
+  jumpRandomizerRange: {x: 0, y: 3}
+  bouncyPlatformMultiplier: 1.4
 --- !u!114 &5358125927309129144
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -699,8 +701,10 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   jumpVector: {x: 0, y: 1.1, z: 0}
+  jumpRandomizerRange: {x: 1, y: 1.2}
+  bouncyPlatformMultiplier: 2
   player: {fileID: 0}
-  lungeForce: 30
+  lungeForce: 25
 --- !u!114 &-6710222129017690414
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -732,7 +736,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   beam: {fileID: 8568353922927876543, guid: 5e2c7ab435014ce458af8f7ce9fe49a8, type: 3}
-  damage: 10
+  raycastLayer:
+    serializedVersion: 2
+    m_Bits: 9
   maxAttackTime: 2
 --- !u!135 &6598137198759520925
 SphereCollider:
@@ -759,7 +765,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e595da2089989c74abeb737126c7c4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 2
+  phase: 1
   meleeDamage: 20
   jumpCooldownPhase1: 1.5
   jumpCooldownPhase3: 1
@@ -767,7 +773,7 @@ MonoBehaviour:
   lungeCooldownPhase4: 1.5
   shootCooldownPhase3: 3
   shootCooldownPhase4: 4
-  maxStunTime: 5
+  maxStunTime: 4
 --- !u!54 &6598137198759520921
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -776,7 +782,7 @@ Rigidbody:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 6598137198759520914}
   serializedVersion: 2
-  m_Mass: 100
+  m_Mass: 50
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
@@ -796,10 +802,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
+  maxHealth: 300
   health: 0
-  player: {fileID: 0}
   healthbar: {fileID: 1550648044}
+  deathAnimTime: 0
 --- !u!114 &9126506332441091796
 MonoBehaviour:
   m_ObjectHideFlags: 0

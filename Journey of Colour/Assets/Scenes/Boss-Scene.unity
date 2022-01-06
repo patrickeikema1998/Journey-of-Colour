@@ -8086,6 +8086,10 @@ PrefabInstance:
       propertyPath: movementSpeedDevil
       value: 8
       objectReference: {fileID: 0}
+    - target: {fileID: 1973236697, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+      propertyPath: meleeAttackCDInSeconds
+      value: 1.5
+      objectReference: {fileID: 0}
     - target: {fileID: 3455949587550924768, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: m_TagString
       value: Player
@@ -8144,7 +8148,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8949287569552547007, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: maxHealth
-      value: 300
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 177103b96e779734db1afe719f8f853a, type: 3}
@@ -37254,22 +37258,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
-    - target: {fileID: -7820600362076951188, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: raycastLayer.m_Bits
-      value: 9
-      objectReference: {fileID: 0}
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpVector.x
-      value: 7
-      objectReference: {fileID: 0}
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpRandomizerRange.y
-      value: 3
-      objectReference: {fileID: 0}
-    - target: {fileID: -3823990716156129755, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: bouncyPlatformMultiplier
-      value: 1.4
-      objectReference: {fileID: 0}
     - target: {fileID: 1742953978, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_AnchorMax.x
       value: 0
@@ -37282,41 +37270,9 @@ PrefabInstance:
       propertyPath: player
       value: 
       objectReference: {fileID: 787519465}
-    - target: {fileID: 5358125927309129144, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: lungeForce
-      value: 25
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358125927309129144, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpVector.y
-      value: 1.1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358125927309129144, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpRandomizerRange.x
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 5358125927309129144, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: jumpRandomizerRange.y
-      value: 1.2
-      objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520914, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_Name
       value: Slime-Boss
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: phase
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: maxStunTime
-      value: 4
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520921, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: m_Mass
-      value: 50
-      objectReference: {fileID: 0}
-    - target: {fileID: 6598137198759520922, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
-      propertyPath: player
-      value: 
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_RootOrder
