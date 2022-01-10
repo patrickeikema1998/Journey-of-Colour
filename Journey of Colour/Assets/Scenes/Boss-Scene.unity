@@ -8150,7 +8150,9 @@ PrefabInstance:
       propertyPath: maxHealth
       value: 100
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1038443752, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+    - {fileID: 1082666150, guid: 177103b96e779734db1afe719f8f853a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 177103b96e779734db1afe719f8f853a, type: 3}
 --- !u!1 &772263682
 GameObject:
@@ -10205,6 +10207,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 894984215}
   m_Mesh: {fileID: 4300002, guid: ee85d6d651ae95340a1b3e442a215185, type: 3}
+--- !u!1 &895158749 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3455949587550924768, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+  m_PrefabInstance: {fileID: 769808284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &895158750
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 895158749}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAnimator: {fileID: 0}
 --- !u!1 &896367195
 GameObject:
   m_ObjectHideFlags: 0
@@ -16108,6 +16128,24 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1505334683}
   m_Mesh: {fileID: 4300002, guid: ee85d6d651ae95340a1b3e442a215185, type: 3}
+--- !u!1 &1508525912 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5722020611559041859, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+  m_PrefabInstance: {fileID: 769808284}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &1508525913
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1508525912}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAnimator: {fileID: 0}
 --- !u!1 &1510666499
 GameObject:
   m_ObjectHideFlags: 0

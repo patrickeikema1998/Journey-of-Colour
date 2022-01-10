@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 1307011262}
-  m_IndirectSpecularColor: {r: 0.39426774, g: 0.4959941, b: 0.6216615, a: 1}
+  m_IndirectSpecularColor: {r: 0.39426726, g: 0.49599367, b: 0.6216614, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -11815,6 +11815,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4835789832631930, guid: bdf8e7438a7816543998181bd3067573, type: 3}
   m_PrefabInstance: {fileID: 866395268}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &747615908 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 3455949587550924768, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+  m_PrefabInstance: {fileID: 8949287570435183087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &747615909
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 747615908}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAnimator: {fileID: 0}
 --- !u!1001 &749156524
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -12309,6 +12327,24 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4418469335166708, guid: 5286e490afadac545ae3a1595b1e96e1, type: 3}
   m_PrefabInstance: {fileID: 957151273}
   m_PrefabAsset: {fileID: 0}
+--- !u!1 &772729490 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5722020611559041859, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+  m_PrefabInstance: {fileID: 8949287570435183087}
+  m_PrefabAsset: {fileID: 0}
+--- !u!114 &772729491
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 772729490}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAnimator: {fileID: 0}
 --- !u!1001 &774986475
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -33387,5 +33423,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 1082666150, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+    - {fileID: 1038443752, guid: 177103b96e779734db1afe719f8f853a, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 177103b96e779734db1afe719f8f853a, type: 3}
