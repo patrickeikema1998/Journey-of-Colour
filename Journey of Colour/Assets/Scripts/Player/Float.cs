@@ -69,35 +69,46 @@ public class Float : MonoBehaviour
     {
         if (isFloating && !maxFloatTimer.finish)
         {
-            //timer
-            maxFloatTimer.start = true;
-
-            //animation
-            playerAnim.Floating(true);
-
-            //stopping movement and constrains.
-            rb.useGravity = false;
-            swapClass.swappable = false;
-            playerMovement.canMove = false;
-            rb.velocity = Vector3.zero;
-
-            //tiny movement in mid air based on sinus waves.
-            transform.position = new Vector3(transform.position.x, transform.position.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), transform.position.z);
+            StartFloat();
         }
         else if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
         {
-            stoppedFloating = true;
-            //timers
-            maxFloatTimer.Reset();
-            maxFloatTimer.start = false;
-
-            //animation
-            playerAnim.Floating(false);
-
-            //constrains
-            swapClass.swappable = true;
-            playerMovement.canMove = true;
-            rb.useGravity = true;
+            StopFloat();
         }
+    }
+
+    void StartFloat()
+    {
+        //timer
+        maxFloatTimer.start = true;
+
+        //animation
+        playerAnim.Floating(true);
+
+        //stopping movement and constrains.
+        rb.useGravity = false;
+        swapClass.swappable = false;
+        playerMovement.canMove = false;
+        rb.velocity = Vector3.zero;
+
+        //tiny movement in mid air based on sinus waves.
+        var pos = transform.position;
+        transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
+    }
+
+    void StopFloat()
+    {
+        stoppedFloating = true;
+        //timers
+        maxFloatTimer.Reset();
+        maxFloatTimer.start = false;
+
+        //animation
+        playerAnim.Floating(false);
+
+        //constrains
+        swapClass.swappable = true;
+        playerMovement.canMove = true;
+        rb.useGravity = true;
     }
 }
