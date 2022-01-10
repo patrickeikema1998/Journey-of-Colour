@@ -195,7 +195,6 @@ GameObject:
   - component: {fileID: 668709046760824305}
   - component: {fileID: 668709046760824318}
   - component: {fileID: 668709046760824319}
-  - component: {fileID: 668709046760824316}
   - component: {fileID: 668709046760824317}
   - component: {fileID: 668709046760824314}
   - component: {fileID: 237645592715097211}
@@ -276,7 +275,6 @@ MonoBehaviour:
   maxHealth: 20
   health: 0
   healthbar: {fileID: 2334563176462929928}
-  deathAnimTime: 0
 --- !u!114 &668709046760824319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,21 +292,6 @@ MonoBehaviour:
   attackDetectionRange: 2
   enemySight: 10
   controller: {fileID: 668709046760824305}
---- !u!114 &668709046760824316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668709046760824315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 0
-  enemyForce: 30
-  counterDistance: 3
 --- !u!114 &668709046760824317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +310,7 @@ MonoBehaviour:
   opponentLayer:
     serializedVersion: 2
     m_Bits: 128
+  centerOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &668709046760824314
 MonoBehaviour:
   m_ObjectHideFlags: 0

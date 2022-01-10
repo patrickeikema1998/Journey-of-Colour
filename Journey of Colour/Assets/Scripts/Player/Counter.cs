@@ -5,7 +5,7 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] float bulletForce, enemyForce, counterDistance;
+    [SerializeField] float thrownObjectForce, stationaryEnemyForce, counterDistance;
     private bool keyDown;
     private CharacterController controller;
     private SwapClass swapClass;
@@ -47,22 +47,22 @@ public class Counter : MonoBehaviour
                     this.controller = GetComponent<EnemyController>().controller;
                     if (controller != null)
                     {
+                        if (dir.x == 0) { dir.x = 1; }
                         transform.forward = (new Vector3(
                         dir.x,
                         dir.y,
                         dir.z)
                         );
 
-                        controller.SimpleMove(transform.forward * enemyForce);
+                        controller.SimpleMove(transform.forward * stationaryEnemyForce);
                     }
                 }
                 else
                 {
-                    //works only because the enemy is taller than the player
-                    //y and z are switched on purpose (enemy does not move)
-                    dir = new Vector3(dir.x, dir.z, dir.y);
+                    if (dir.x == 0) { dir.x = 1; }
+                    dir = new Vector3(dir.x, dir.y, dir.z);
 
-                    GetComponent<Rigidbody>().AddForce(dir * enemyForce, ForceMode.Impulse);
+                    GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
                 }
 
             }
@@ -70,7 +70,8 @@ public class Counter : MonoBehaviour
             // If the object we hit is a bullet
             if (gameObject.tag == "Bullet")
             {
-                GetComponent<Rigidbody>().AddForce(dir * bulletForce, ForceMode.Impulse);
+                if (dir.x == 0) { dir.x = 1; }
+                GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
             }
             keyDown = false;
         }
@@ -86,7 +87,7 @@ public class Counter : MonoBehaviour
     //        // If the object we hit is the enemy
     //        if (c.gameObject.tag == "Enemy")
     //        {
-    //            float force = enemyForce;
+    //            float force = stationaryEnemyForce;
 
     //            if (c.gameObject.GetComponent<Rigidbody>() == null)
     //            {
@@ -98,12 +99,12 @@ public class Counter : MonoBehaviour
     //                    dir.y,
     //                    dir.z)
     //                    );
-    //                    controller.SimpleMove(c.gameObject.transform.forward * enemyForce);
+    //                    controller.SimpleMove(c.gameObject.transform.forward * stationaryEnemyForce);
     //                }
     //            }
     //            else
     //            {
-    //                c.gameObject.GetComponent<Rigidbody>().AddForce(dir * enemyForce, ForceMode.Impulse);
+    //                c.gameObject.GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
     //            }
 
     //        }
@@ -111,8 +112,8 @@ public class Counter : MonoBehaviour
     //        // If the object we hit is a bullet
     //        if (c.gameObject.tag == "Bullet")
     //        {
-    //            float force = bulletForce;
-    //            c.gameObject.GetComponent<Rigidbody>().AddForce(dir * bulletForce, ForceMode.Impulse);
+    //            float force = thrownObjectForce;
+    //            c.gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
     //        }
 
     //        keyDown = false;

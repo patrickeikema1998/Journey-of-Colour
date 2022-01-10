@@ -13,11 +13,10 @@ GameObject:
   - component: {fileID: 4534522587213458173}
   - component: {fileID: 5117962251874426876}
   - component: {fileID: 5117962251874426878}
-  - component: {fileID: 1212505416082709097}
   - component: {fileID: 4127739048658794454}
   m_Layer: 0
   m_Name: throwing_spear
-  m_TagString: Untagged
+  m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -115,21 +114,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 0.35480466, y: 1.8766761, z: 0.25780028}
   m_Center: {x: 0, y: 0.059029326, z: -0.000000007450581}
---- !u!114 &1212505416082709097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 5117962251874426867}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 40
-  enemyForce: 0
-  counterDistance: 3
 --- !u!114 &4127739048658794454
 MonoBehaviour:
   m_ObjectHideFlags: 0

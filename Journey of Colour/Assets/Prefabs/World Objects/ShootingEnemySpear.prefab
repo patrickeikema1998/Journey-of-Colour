@@ -839,7 +839,6 @@ GameObject:
   - component: {fileID: 1456043148258899892}
   - component: {fileID: 1422678960327428896}
   - component: {fileID: 2269593399322258698}
-  - component: {fileID: 2269593399322258701}
   - component: {fileID: 2269593399322258700}
   - component: {fileID: 2269593399322258703}
   - component: {fileID: 813237357}
@@ -911,21 +910,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.91, z: 0}
---- !u!114 &2269593399322258701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269593399322258702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 0
-  enemyForce: 12
-  counterDistance: 3
 --- !u!114 &2269593399322258700
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -941,7 +925,6 @@ MonoBehaviour:
   maxHealth: 15
   health: 0
   healthbar: {fileID: 378257023646595608}
-  deathAnimTime: 0
 --- !u!114 &2269593399322258703
 MonoBehaviour:
   m_ObjectHideFlags: 0
