@@ -5,131 +5,78 @@ using UnityEngine;
 
 public class Counter : MonoBehaviour
 {
-    [SerializeField] float thrownObjectForce, stationaryEnemyForce, counterDistance;
-    private bool keyDown;
+    [SerializeField] float thrownObjectForce, stationaryEnemyForce, counterAreaHeight, fadeTime;
     private CharacterController controller;
-    private SwapClass swapClass;
+    private CustomTimer fadeTimer;
 
     private GameObject player;
-    private float distance;
     //https://www.youtube.com/watch?v=_w7GU2NIxUE
     //https://answers.unity.com/questions/1100879/push-object-in-opposite-direction-of-collision.html
 
     private void Start()
     {
         player = GameObject.FindGameObjectWithTag("Player");
-        swapClass = player.GetComponent<SwapClass>();
+        fadeTimer = new CustomTimer(fadeTime);
     }
-
-    public void Update()
+    private void Update()
     {
-        if (Input.GetKeyDown(KeyCode.S))
+        if (fadeTimer.finish) 
         {
-            keyDown = true;
+            
         }
-
-        distance = Vector3.Distance(transform.position, player.transform.position);
-        if (keyDown) { Redirect(); }
     }
 
-    void Redirect()
+    private void OnTriggerStay(Collider other)
     {
+        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Bullet") 
+        { 
+            Redirect(other);
+            fadeTimer.start = true;
+        }
+        else { }
+    }
 
-        if (keyDown && swapClass.currentClass == SwapClass.playerClasses.Devil && distance <= counterDistance)
+    void Redirect(Collider collider)
+    {
+        GameObject gameObject = collider.gameObject;
+        Debug.Log(gameObject.tag);
+        transform.position = new Vector3(player.transform.position.x, player.transform.position.y + (counterAreaHeight/2), player.transform.position.z);
+        Vector3 dir = (gameObject.transform.position - player.transform.position).normalized;
+
+        // If the object we hit is the enemy
+        if (gameObject.tag == "Enemy")
         {
-            Vector3 dir = (transform.position - player.transform.position).normalized;
-
-            // If the object we hit is the enemy
-            if (gameObject.tag == "Enemy")
+            if (GetComponent<Rigidbody>() == null)
             {
-                if (GetComponent<Rigidbody>() == null)
-                {
-                    this.controller = GetComponent<EnemyController>().controller;
-                    if (controller != null)
-                    {
-                        if (dir.x == 0) { dir.x = 1; }
-                        transform.forward = (new Vector3(
-                        dir.x,
-                        dir.y,
-                        dir.z)
-                        );
-
-                        controller.SimpleMove(transform.forward * stationaryEnemyForce);
-                    }
-                }
-                else
+                //controller = gameObject.GetComponent<CharacterController>();
+                controller = gameObject.GetComponent<EnemyController>().controller;
+                if (controller != null)
                 {
                     if (dir.x == 0) { dir.x = 1; }
-                    dir = new Vector3(dir.x, dir.y, dir.z);
+                    transform.forward = (new Vector3(
+                    dir.x,
+                    dir.y,
+                    dir.z)
+                    );
 
-                    GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
+                    controller.SimpleMove(gameObject.transform.forward * stationaryEnemyForce);
                 }
-
             }
-
-            // If the object we hit is a bullet
-            if (gameObject.tag == "Bullet")
+            else
             {
                 if (dir.x == 0) { dir.x = 1; }
-                GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
+                dir = new Vector3(dir.x, dir.y, dir.z);
+
+                gameObject.GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
             }
-            keyDown = false;
+
+        }
+
+        // If the object we hit is a bullet
+        if (gameObject.tag == "Bullet")
+        {
+            if (dir.x == 0) { dir.x = 1; }
+            gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
         }
     }
-    //void OnTriggerEnter(Collider c)
-    //{
-    //    Debug.Log("SAVE ME");
-    //    if (keyDown && swapClass.currentClass == SwapClass.playerClasses.Devil)
-    //    {
-    //        Vector3 dir = (c.gameObject.transform.position - transform.position).normalized;
-
-
-    //        // If the object we hit is the enemy
-    //        if (c.gameObject.tag == "Enemy")
-    //        {
-    //            float force = stationaryEnemyForce;
-
-    //            if (c.gameObject.GetComponent<Rigidbody>() == null)
-    //            {
-    //                this.controller = c.GetComponent<EnemyController>().controller;
-    //                if (controller != null)
-    //                {
-    //                    c.gameObject.transform.forward = (new Vector3(
-    //                    dir.x,
-    //                    dir.y,
-    //                    dir.z)
-    //                    );
-    //                    controller.SimpleMove(c.gameObject.transform.forward * stationaryEnemyForce);
-    //                }
-    //            }
-    //            else
-    //            {
-    //                c.gameObject.GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
-    //            }
-
-    //        }
-
-    //        // If the object we hit is a bullet
-    //        if (c.gameObject.tag == "Bullet")
-    //        {
-    //            float force = thrownObjectForce;
-    //            c.gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
-    //        }
-
-    //        keyDown = false;
-    //    }
-    //}
 }
-//// If the object we hit is the enemy
-//if (c.gameObject.tag == "Enemy")
-//{
-//    // force is how forcefully we will push the player away from the enemy.
-//    float force = 6;
-//    // Calculate Angle Between the collision point and the player
-//    Vector3 dir = c.contacts[0].point - transform.position;
-//    // We then get the opposite (-Vector3) and normalize it
-//    dir = -dir.normalized;
-//    // And finally we add force in the direction of dir and multiply it by force. 
-//    // This will push back the player
-//    GetComponent<Rigidbody>().AddForce(dir * force);
-//}

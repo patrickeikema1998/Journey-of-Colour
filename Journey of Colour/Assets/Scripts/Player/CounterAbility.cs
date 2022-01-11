@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class CounterAbility : MonoBehaviour
 {
-    [SerializeField] float thrownObjectForce, stationaryEnemyForce;
+    [SerializeField] float thrownObjectForce, stationaryEnemyForce, counterAreaHeight, cooldownTime;
+    public GameObject CounterPrefab;
     private bool keyDown;
-    private CharacterController controller;
     private SwapClass swapClass;
+    private CustomTimer cooldownTimer;
 
     private GameObject player;
     //https://www.youtube.com/watch?v=_w7GU2NIxUE
@@ -17,6 +18,7 @@ public class CounterAbility : MonoBehaviour
     {
         player = GameObject.FindGameObjectWithTag("Player");
         swapClass = player.GetComponent<SwapClass>();
+        cooldownTimer = new CustomTimer(cooldownTime);
     }
 
     public void Update()
@@ -27,11 +29,17 @@ public class CounterAbility : MonoBehaviour
         }
 
         if (keyDown && swapClass.currentClass == SwapClass.playerClasses.Devil ) 
-        { Counter(); }
+        { 
+            Counter();
+            cooldownTimer.start = true;
+        }
+
+        if (cooldownTimer.finish) { cooldownTimer.Reset(); }
     }
 
     void Counter()
     {
-
+        Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + counterAreaHeight/2, transform.position.z), transform.rotation);
+        keyDown = false;
     }
 }
