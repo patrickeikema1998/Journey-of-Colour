@@ -7,6 +7,7 @@ public class BossBeamAttack : MonoBehaviour
     float originalBeamScale = 13;
 
     bool shooting = false;
+
     [SerializeField]
     BeamProjectile beam;
 
@@ -30,7 +31,6 @@ public class BossBeamAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
         if (shooting)
         {
             attackTime += Time.deltaTime;
