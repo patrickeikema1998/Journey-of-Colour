@@ -10,6 +10,7 @@ public class SlimeBossController : MonoBehaviour
     BossLungeAttack lungeAttack;
     BossProjectileAttack projectileAttack;
     BossBeamAttack beamAttack;
+    ParticleSystem stunParticles;
 
     public static PhaseEvent PhaseChange = new PhaseEvent();
 
@@ -36,6 +37,7 @@ public class SlimeBossController : MonoBehaviour
     {
         startPosition = transform.position;
         health = GetComponent<BossHealth>();
+        stunParticles = GetComponent<ParticleSystem>();
         bounceAttack = GetComponent<BossBounceAttack>();
         lungeAttack = GetComponent<BossLungeAttack>();
         projectileAttack = GetComponent<BossProjectileAttack>();
@@ -96,6 +98,7 @@ public class SlimeBossController : MonoBehaviour
         lungeAttack.enabled = false;
         projectileAttack.enabled = false;
         beamAttack.enabled = false;
+        stunParticles.Play();
     }
 
     void ShootBeam()
