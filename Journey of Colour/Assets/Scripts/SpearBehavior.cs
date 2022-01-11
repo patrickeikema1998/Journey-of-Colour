@@ -18,6 +18,7 @@ public class SpearBehavior : MonoBehaviour
     float angle;
     float startRotationZ, downRotationZ;
     bool onGround;
+    public bool deflected;
 
     void Start()
     {
@@ -35,7 +36,10 @@ public class SpearBehavior : MonoBehaviour
 
     void Update()
     {
-        RotateSpear();
+        if (!deflected)
+        {
+            RotateSpear();
+        }
     }
 
     //rotates spear based on y velocity.
