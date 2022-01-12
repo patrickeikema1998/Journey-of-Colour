@@ -109,7 +109,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  thrownObjectForce: 20
+  thrownObjectForce: 15
   stationaryEnemyForce: 12
   timeToVisible: 0.2
   fadeTime: 2

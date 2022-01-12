@@ -10,7 +10,8 @@ public class SpearBehavior : MonoBehaviour
 
     [SerializeField] float timeOnGround;
     [HideInInspector] public float horizontalForce, verticalForce;
-    [HideInInspector] public int damage;
+    [HideInInspector] public int damage; 
+    private int enemyDamage = 5;
 
     Rigidbody rb;
     GameObject player;
@@ -19,6 +20,7 @@ public class SpearBehavior : MonoBehaviour
     float startRotationZ, downRotationZ;
     public bool onGround;
     public bool deflected;
+    private bool spearDeflected;
 
     void Start()
     {
@@ -65,22 +67,78 @@ public class SpearBehavior : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        //if colliding with player and spear not on the ground, hit the player and destroy spear.
-        if (collision.gameObject == player && !onGround)
+        switch (onGround)
         {
-            player.GetComponent<Health>().Damage(damage);
-            DestroyThis();
+            case true:
+                break;
+            case false:
+                switch (collision.gameObject.tag)
+                {
+                    case "Player":
+                        player.GetComponent<Health>().Damage(damage);
+                        DestroyThis();
+                        break;
+                    case "Enemy":
+                        collision.gameObject.GetComponent<Health>().Damage(enemyDamage);
+                        DestroyThis();
+                        break;
+                    case "Bullet":
+                        if (!spearDeflected)
+                        {
+                            Deflect();
+                            spearDeflected = true;
+                            deflected = true;
+                        }
+                        break;
+                }
+                GetComponent<BoxCollider>().isTrigger = true;
+                rb.isKinematic = true;
+                Invoke("DestroyThis", timeOnGround);
+                onGround = true;
+                break;
+            default:
+                Debug.Log("onGround is empty");
+                break;
         }
-        //if colliding with anything else than player and spear is not on the ground, stop spear from colliding and moving and destroy it after some time.
-        else if (!onGround)
-        {
-            GetComponent<BoxCollider>().isTrigger = true;
-            rb.isKinematic = true;
-            Invoke("DestroyThis", timeOnGround);
-            onGround = true;
-        }
+
+        ////if colliding with player and spear not on the ground, hit the player and destroy spear.
+        //if (collision.gameObject == player && !onGround)
+        //{
+        //    player.GetComponent<Health>().Damage(damage);
+        //    DestroyThis();
+        //}
+        //else if (collision.gameObject.tag == "Enemy" && !onGround)
+        //{
+        //    collision.gameObject.GetComponent<Health>().Damage(enemyDamage);
+        //    DestroyThis();
+        //}
+        ////if colliding with another spear
+        //else if (collision.gameObject.tag == "Bullet" && !spearDeflected)
+        //{
+        //    Deflect();
+        //    spearDeflected = true;
+        //    deflected = true;
+        //}
+        ////if colliding with anything else than player and spear is not on the ground, stop spear from colliding and moving and destroy it after some time.
+        //else if (!onGround)
+        //{
+        //    GetComponent<BoxCollider>().isTrigger = true;
+        //    rb.isKinematic = true;
+        //    Invoke("DestroyThis", timeOnGround);
+        //    onGround = true;
+        //}
     }
 
+    //this only exists for invokes.
+    void Deflect()
+    {transform.rotation = new Quaternion(
+            transform.rotation.x,
+            -transform.rotation.y,
+            transform.rotation.z,
+            -transform.rotation.w
+        );
+    }    
+    
     //this only exists for invokes.
     void DestroyThis()
     {

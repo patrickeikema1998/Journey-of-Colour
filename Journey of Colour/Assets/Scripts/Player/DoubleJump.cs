@@ -8,7 +8,7 @@ public class DoubleJump : MonoBehaviour
     bool isGrounded;
     bool isJumpButtonPressed;
     bool jumpedTwice;
-    public bool canDoubleJump, doubleJump;
+    [HideInInspector] public bool canDoubleJump, doubleJump;
     Rigidbody rb;
     SwapClass swapClass;
     PlayerAnimations playerAnim;

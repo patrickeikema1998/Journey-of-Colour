@@ -30764,8 +30764,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0d357f8e4d6378d4fba25e953a11d722, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  counterAreaHeight: 3
   cooldownTime: 4
+  playerHeight: 1.95
   CounterPrefab: {fileID: 6950707689654773020, guid: 1a3d22b262003934f99e886099ea062a, type: 3}
 --- !u!114 &1973236706
 MonoBehaviour:
