@@ -4,7 +4,8 @@ using UnityEngine;
 
 public class CounterAbility : MonoBehaviour
 {
-    [SerializeField] float counterAreaHeight, cooldownTime;
+    [SerializeField] float cooldownTime;
+    [Range(0, 4)] public float playerHeight;
     public GameObject CounterPrefab;
     private bool keyDown, once;
     private SwapClass swapClass;
@@ -50,6 +51,6 @@ public class CounterAbility : MonoBehaviour
 
     void Counter()
     {
-        Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + counterAreaHeight/2, transform.position.z), transform.rotation);
+        Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + playerHeight/2, transform.position.z), transform.rotation);
     }
 }

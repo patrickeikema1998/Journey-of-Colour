@@ -17,7 +17,7 @@ public class SpearBehavior : MonoBehaviour
 
     float angle;
     float startRotationZ, downRotationZ;
-    bool onGround;
+    public bool onGround;
     public bool deflected;
 
     void Start()
