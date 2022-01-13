@@ -754,7 +754,7 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
---- !u!114 &1038443752
+--- !u!114 &2315533214412091315
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -767,7 +767,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 0}
---- !u!114 &1082666150
+--- !u!114 &7466585166015843903
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -914,6 +914,8 @@ GameObject:
   - component: {fileID: 1973236697}
   - component: {fileID: 1973236693}
   - component: {fileID: 1973236705}
+  - component: {fileID: 8535697551660171880}
+  - component: {fileID: 1973236706}
   m_Layer: 7
   m_Name: Player_new
   m_TagString: Player
@@ -963,7 +965,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8949287569552546981}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 72ae958d516221542bc94851ebd5ef07, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -984,7 +986,6 @@ MonoBehaviour:
   maxHealth: 100
   health: 100
   healthbar: {fileID: 8949287569552546976}
-  deathAnimTime: 0
 --- !u!114 &8949287569552546976
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1011,9 +1012,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   rb: {fileID: 8949287569552546978}
-  dashForce: 12
-  coolDownTime: 0.2
-  durationTime: 0.25
+  dashForce: 250
+  coolDownTime: 0.5
+  durationTime: 0.4
 --- !u!114 &7909688683903341602
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1055,7 +1056,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e35a7f4bd213e8a4cb4d1f564cd101c2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  damage: 15
+  damage: 5
   attackOffset: 1
   attackRange: 1.3
   opponentLayer:
@@ -1091,12 +1092,11 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   jump: 0
   rb: {fileID: 8949287569552546978}
-  meleeAttackCooldownTimer: {fileID: 0}
-  meleeAttackCDInSeconds: 0.5
+  meleeAttackCDInSeconds: 0.8
   playerClass: {fileID: 0}
   xAxis: 0
-  movementSpeedAngel: 12
-  movementSpeedDevil: 7
+  movementSpeedAngel: 16
+  movementSpeedDevil: 8
   jumpForce: 18
   canJump: 0
   lookingLeft: 0
@@ -1120,7 +1120,7 @@ MonoBehaviour:
   fireBallPointLeft: {fileID: 993643816317321575}
   fireBallPointRight: {fileID: 2024685874119392762}
   fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
-  shootTime: 2
+  shootTime: 0.5
   fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &1973236705
 MonoBehaviour:
@@ -1134,12 +1134,39 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 030554113da3c4a458caa6e5176b7280, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 8949287569552546978}
   maxFloatTime: 5
   cooldownTime: 1
+  floatSpeed: 2
+  floatDistance: 0.01
   isFloating: 0
-  SinYIncrement: 3
-  Amplitude: 0.008
+--- !u!114 &8535697551660171880
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949287569552546981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d357f8e4d6378d4fba25e953a11d722, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  cooldownTime: 4
+  playerHeight: 1.95
+  CounterPrefab: {fileID: 6950707689654773020, guid: 1a3d22b262003934f99e886099ea062a, type: 3}
+--- !u!114 &1973236706
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949287569552546981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5cd1db8a298874145940a2d4fbbc2002, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  deathAnimTime: 0
 --- !u!1001 &1066220266792107791
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -2025,6 +2052,11 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
+--- !u!4 &6635044059367021451 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 5971650810958062724, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
+  m_PrefabInstance: {fileID: 1066220266792107791}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &5722020611559041859 stripped
 GameObject:
   m_CorrespondingSourceObject: {fileID: 4729706235099059276, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
@@ -2033,11 +2065,6 @@ GameObject:
 --- !u!4 &4909877701084508665 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 5397733957514546934, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
-  m_PrefabInstance: {fileID: 1066220266792107791}
-  m_PrefabAsset: {fileID: 0}
---- !u!4 &6635044059367021451 stripped
-Transform:
-  m_CorrespondingSourceObject: {fileID: 5971650810958062724, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
   m_PrefabInstance: {fileID: 1066220266792107791}
   m_PrefabAsset: {fileID: 0}
 --- !u!1001 &3630904160044649046
