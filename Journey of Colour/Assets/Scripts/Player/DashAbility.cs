@@ -17,6 +17,7 @@ public class DashAbility : MonoBehaviour
     PlayerAnimations playerAnim;
     Health playerHealth;
     PlayerMovement movement;
+    Float _float;
 
     void Start()
     {
@@ -31,7 +32,7 @@ public class DashAbility : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        //countdown for timers
         coolDown -= Time.deltaTime;
         duration -= Time.deltaTime;
 
@@ -39,14 +40,14 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0 && movement.canMove == true) direction = -1;
         if (Input.GetAxis("Horizontal") > 0 && movement.canMove == true) direction = 1;
 
-
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
+        //Checks if player is able to dash
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead && !_float.isFloating)
         {
             playerAnim.Dash();
             rb.velocity = Vector3.zero;
             duration = durationTime;
         }
-
+        //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
         if (duration > 0)
         {
             rb.useGravity = false;
