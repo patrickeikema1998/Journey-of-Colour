@@ -16,6 +16,10 @@ public class Health : MonoBehaviour
     PlayerAnimations playerAnim;
     EnemyAnimations enemyAnim;
 
+    //Particles
+    [SerializeField]
+    ParticleSystem bloodParticles;
+
 
     // Start is called before the first frame update
     void Start()
@@ -45,6 +49,7 @@ public class Health : MonoBehaviour
 
         if (this.gameObject.tag == "Player" && playerMovement != null) playerMovement.PlayerAnim.GetHit();
         if (this.gameObject.tag == "Enemy" && enemyAnim != null) enemyAnim.GetHit();
+        if (bloodParticles != null) bloodParticles.Play();
     }
 
     public void heal(int healAmount)

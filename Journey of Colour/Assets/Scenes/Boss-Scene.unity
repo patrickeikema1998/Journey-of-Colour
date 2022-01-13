@@ -15253,7 +15253,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 8949287569552547007, guid: 177103b96e779734db1afe719f8f853a, type: 3}
       propertyPath: maxHealth
-      value: 1000000
+      value: 100
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 1082666150, guid: 177103b96e779734db1afe719f8f853a, type: 3}
@@ -37340,6 +37340,10 @@ PrefabInstance:
     - target: {fileID: 6598137198759520914, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_Name
       value: Slime-Boss
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: phase
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_RootOrder
