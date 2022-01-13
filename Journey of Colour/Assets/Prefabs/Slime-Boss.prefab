@@ -10437,7 +10437,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e595da2089989c74abeb737126c7c4c7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  phase: 4
+  phase: 1
   meleeDamage: 20
   jumpCooldownPhase1: 1.5
   jumpCooldownPhase3: 1

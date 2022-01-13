@@ -11,6 +11,10 @@ public class Health : MonoBehaviour
 
     [System.NonSerialized] public bool dead = false;
 
+    //Particles
+    [SerializeField]
+    ParticleSystem bloodParticles;
+
     public int GetHealth
     {
         get { return health; }
@@ -20,6 +24,8 @@ public class Health : MonoBehaviour
     {
         health -= damageAmount;
         SetHealthBar(health);
+
+        if (bloodParticles != null) bloodParticles.Play();
     }
 
     internal void SetHealthBar(int health)
