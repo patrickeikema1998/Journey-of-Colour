@@ -8,6 +8,7 @@ public class Float : MonoBehaviour
     [SerializeField] float maxFloatTime, cooldownTime;
     CustomTimer maxFloatTimer, cooldownTimer;
 
+    GameObject player;
     Rigidbody rb;
     PlayerAnimations playerAnim;
     PlayerMovement playerMovement;
@@ -23,10 +24,11 @@ public class Float : MonoBehaviour
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
 
-        rb = GetComponent<Rigidbody>();
-        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
-        playerMovement = GetComponent<PlayerMovement>();
-        swapClass = GetComponent<SwapClass>();
+        player = transform.parent.gameObject;
+        rb = player.GetComponent<Rigidbody>();
+        playerAnim = GetComponent<PlayerAnimations>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+        swapClass = player.GetComponent<SwapClass>();
     }
 
     private void Update()
@@ -44,9 +46,8 @@ public class Float : MonoBehaviour
 
     void CheckAndHandleInput()
     {
-        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
-        if (!isGrounded && swapClass.IsAngel())
+        if (!playerMovement.isGrounded)
         {
             if (Input.GetKeyDown(KeyCode.S) && cooldownTimer.finish)
             {
@@ -90,6 +91,7 @@ public class Float : MonoBehaviour
         rb.useGravity = false;
         swapClass.swappable = false;
         playerMovement.canMove = false;
+        playerMovement.canTurn = false;
         rb.velocity = Vector3.zero;
 
         //tiny movement in mid air based on sinus waves.
@@ -99,6 +101,7 @@ public class Float : MonoBehaviour
 
     void StopFloat()
     {
+
         isFloating = false;
         stoppedFloating = true;
         //timers
@@ -111,6 +114,7 @@ public class Float : MonoBehaviour
         //constrains
         swapClass.swappable = true;
         playerMovement.canMove = true;
+        playerMovement.canTurn = true;
         rb.useGravity = true;
     }
 }

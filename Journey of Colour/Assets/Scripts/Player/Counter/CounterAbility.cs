@@ -31,7 +31,7 @@ public class CounterAbility : MonoBehaviour
         }
         else { keyDown = false; }
 
-        if (keyDown && swapClass.currentClass == SwapClass.playerClasses.Devil) 
+        if (keyDown) 
         {
             if (cooldownTimer.finish && !once)
             {

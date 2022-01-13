@@ -5,7 +5,6 @@ using UnityEngine;
 public class DashAbility : MonoBehaviour
 {
 
-    [SerializeField] Rigidbody rb;
     [SerializeField] float dashForce = 80;
     [SerializeField] float coolDownTime = 0.5f;
     [SerializeField] float durationTime = 0.2f;
@@ -13,6 +12,8 @@ public class DashAbility : MonoBehaviour
     private float direction;
     private float coolDown;
     private float duration;
+    GameObject player;
+    Rigidbody rb;
     SwapClass swapClass;
     PlayerAnimations playerAnim;
     Health playerHealth;
@@ -21,12 +22,14 @@ public class DashAbility : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
+        rb = player.GetComponent<Rigidbody>();
         _float = GetComponent<Float>();
-        playerHealth = GetComponent<Health>();
-        movement = GetComponent<PlayerMovement>();
-        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
+        playerHealth = player.GetComponent<Health>();
+        movement = player.GetComponent<PlayerMovement>();
+        playerAnim = GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
-        swapClass = GetComponent<SwapClass>();
+        swapClass = player.GetComponent<SwapClass>();
         duration = durationTime;
         direction = 1;
     }
@@ -42,7 +45,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0 && movement.canMove == true) direction = 1;
 
         //Checks if player is able to dash
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead && !_float.isFloating)
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && !playerHealth.dead && !_float.isFloating)
         {
             playerAnim.Dash();
             rb.velocity = Vector3.zero;

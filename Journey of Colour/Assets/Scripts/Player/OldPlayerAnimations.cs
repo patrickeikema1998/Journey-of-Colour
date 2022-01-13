@@ -96,8 +96,8 @@ public class OldPlayerAnimations : MonoBehaviour
     public void DoRunAnimation()
     {
         //checks if player is running.
-        if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.isGrounded) isRunning = true;
-        else isRunning = false;
+        //if (playerMovement.xAxis != 0 && playerMovement.canJump && playerMovement.isGrounded) isRunning = true;
+        //else isRunning = false;
 
         if (!gettingHit && !isAttacking && isRunning) animationManager.PlayAnimation(currentAnimator, run);
     }

@@ -4,30 +4,35 @@ using UnityEngine;
 
 public class Weapon : MonoBehaviour
 {
-    [SerializeField] Transform playerPos;
     public Transform fireBallPointLeft;
     public Transform fireBallPointRight;
     public GameObject fireBallPrefab;
     public float shootTime;
     private FireBall bullet;
     public GameObject fireBall;
+    private FireBall bulletScript;
     Health playerHealth;
 
+    GameObject player;
     SwapClass swapClass;
     PlayerMovement playerMovement;
+    PlayerAnimations anim;
     CustomTimer shootTimer;
 
     float shootAnimationTime = 0.4f;
 
     private void Start()
     {
-        playerHealth = GetComponent<Health>();
-        swapClass = GetComponent<SwapClass>();
-        playerMovement = GetComponent<PlayerMovement>();
+        player = transform.parent.gameObject;
+        playerHealth = player.GetComponent<Health>();
+        swapClass = player.GetComponent<SwapClass>();
+        playerMovement = player.GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);
         shootTimer.start = true;
         shootTimer.finish = true;
         bullet = fireBall.GetComponent<FireBall>();
+        anim = GetComponent<PlayerAnimations>();
+        bulletScript = fireBall.GetComponent<FireBall>();
     }
 
     // Update is called once per frame
@@ -36,24 +41,22 @@ public class Weapon : MonoBehaviour
         shootTimer.Update();
 
         //player can only fire a fireball when he is in class 1. also known as the black colour.
-        if (swapClass.currentClass == SwapClass.playerClasses.Devil && !playerHealth.dead)
+        
+        if (Input.GetMouseButtonDown(1) && shootTimer.finish && !playerHealth.dead)
         {
-            if (Input.GetMouseButtonDown(1) && shootTimer.finish == true)
+            anim.RangeAttack();
+
+            if (Input.mousePosition.x > player.transform.position.x)
             {
-                playerMovement.PlayerAnim.RangeAttack();
-
-                if (Input.mousePosition.x > playerPos.position.x)
-                {
-                    Invoke("ShootRight", shootAnimationTime);
-                }
-                else if (Input.mousePosition.x < playerPos.position.x)
-                {
-                    Invoke("ShootLeft", shootAnimationTime);
-
-                }
-                shootTimer.Reset();
-                shootTimer.start = true;
+                Invoke("ShootRight", shootAnimationTime);
             }
+            else if (Input.mousePosition.x < player.transform.position.x)
+            {
+                Invoke("ShootLeft", shootAnimationTime);
+
+            }
+            shootTimer.Reset();
+            shootTimer.start = true;
         }
     }
 

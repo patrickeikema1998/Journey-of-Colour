@@ -59,7 +59,7 @@ public class PlayerAnimations : MonoBehaviour
     {
 
 
-        if (playerMovement.playerClass.IsDevil())
+        if (playerClass.IsDevil())
         {
             int randomJump = Random.Range(1, 3);
             myAnimator.SetTrigger("jump" + randomJump);
