@@ -4,10 +4,11 @@ using UnityEngine;
 
 public class DashAbility : MonoBehaviour
 {
-    Rigidbody rb;
-    [SerializeField] float dashForce = 10;
-    [SerializeField] float coolDownTime = 0.2f;
-    [SerializeField] float durationTime = 0.25f;
+
+    [SerializeField] Rigidbody rb;
+    [SerializeField] float dashForce = 80;
+    [SerializeField] float coolDownTime = 0.5f;
+    [SerializeField] float durationTime = 0.4f;
 
     private float direction;
     private float coolDown;
@@ -18,7 +19,6 @@ public class DashAbility : MonoBehaviour
 
     void Start()
     {
-        rb = GetComponent<Rigidbody>();
         playerHealth = GetComponent<Health>();
         playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
@@ -32,11 +32,11 @@ public class DashAbility : MonoBehaviour
         
         coolDown -= Time.deltaTime;
         duration -= Time.deltaTime;
-    }
-    void FixedUpdate()
-    {
+
+        //checks the last direction the player is facing
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
+
 
         if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
         {
@@ -44,14 +44,25 @@ public class DashAbility : MonoBehaviour
             duration = durationTime;
         }
 
-        if (duration > 0) Dash();
+        if (duration > 0)
+        {
+            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            Dash();
+            rb.constraints = RigidbodyConstraints.FreezeRotation;
+        }
+
+        //makes sure that the player's z-axis reamians zero
+        if (rb.transform.position.z != 0)
+            rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, 0);
     }
+
 
     public void Dash()
     {
-        rb.AddForce(new Vector3(direction*dashForce*8,10,0));
+        rb.velocity = Vector3.zero;
+        rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
+        rb.velocity = Vector3.zero;
     }
-
     
 }
