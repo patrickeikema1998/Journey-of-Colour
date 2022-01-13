@@ -754,6 +754,23 @@ MeshRenderer:
   m_SortingLayer: 0
   m_SortingOrder: 0
   m_AdditionalVertexStreams: {fileID: 0}
+--- !u!114 &636924351257444760
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3455949587550924768}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  fireBallPointLeft: {fileID: 993643816317321575}
+  fireBallPointRight: {fileID: 2024685874119392762}
+  fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
+  shootTime: 0.5
+  fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &2315533214412091315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -767,24 +784,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 0}
---- !u!114 &636924351257444760
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 3455949587550924768}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: e111acef1d11db84587da4ac30df3e2a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerPos: {fileID: 8949287569552546977}
-  fireBallPointLeft: {fileID: 993643816317321575}
-  fireBallPointRight: {fileID: 2024685874119392762}
-  fireBallPrefab: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
-  shootTime: 0.5
-  fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &3528809385398245304
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -804,6 +803,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 4160
   centerOffset: {x: 0, y: 1, z: 0}
+  meleeAttackCDInSeconds: 0
 --- !u!114 &3938667952006119726
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1062,8 +1062,8 @@ BoxCollider:
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
-  m_Size: {x: 1, y: 1.9607258, z: 0.80803204}
-  m_Center: {x: 5.188616e-17, y: 0.9653691, z: 0.008467982}
+  m_Size: {x: 1, y: 1.9546564, z: 0.80803204}
+  m_Center: {x: -5.188616e-17, y: 0.9684038, z: 0.008467982}
 --- !u!114 &8949287569552547007
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1133,20 +1133,14 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96e36e1fe3046504b980f8f2da883abb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  jump: 0
   rb: {fileID: 8949287569552546978}
-  meleeAttackCDInSeconds: 0.8
   playerClass: {fileID: 0}
   xAxis: 0
   movementSpeedAngel: 16
   movementSpeedDevil: 8
-  jumpForce: 18
-  canJump: 0
-  lookingLeft: 0
   isGrounded: 0
   canMove: 0
   canTurn: 0
-  fireBall: {fileID: 5928994377740698145, guid: 7e2cead554eb2314480df4c5f38b849f, type: 3}
 --- !u!114 &1973236706
 MonoBehaviour:
   m_ObjectHideFlags: 0

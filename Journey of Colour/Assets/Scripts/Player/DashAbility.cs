@@ -52,16 +52,20 @@ public class DashAbility : MonoBehaviour
             duration = durationTime;
         }
         //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
-        if (duration > 0)
+
+        if (!_float.isFloating)
         {
-            rb.useGravity = false;
-            movement.canMove = false;
-            Dash();
-        }
-        else
-        {
-            movement.canMove = true;
-            if (duration<-0.4) rb.useGravity = true;
+            if (duration > 0)
+            {
+                rb.useGravity = false;
+                movement.canMove = false;
+                Dash();
+            }
+            else
+            {
+                movement.canMove = true;
+                if (duration < -0.4) rb.useGravity = true;
+            }
         }
     }
 

@@ -29,6 +29,8 @@ public class Float : MonoBehaviour
         playerAnim = GetComponent<PlayerAnimations>();
         playerMovement = player.GetComponent<PlayerMovement>();
         swapClass = player.GetComponent<SwapClass>();
+
+        stoppedFloating = true;
     }
 
     private void Update()
@@ -58,10 +60,8 @@ public class Float : MonoBehaviour
             if(Input.GetKeyUp(KeyCode.S))
             {
                 isFloating = false;
-                stoppedFloating = true;
             }
         }
-
     }
 
     void HandleFloatAbility()
@@ -74,6 +74,7 @@ public class Float : MonoBehaviour
         }
         if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
         {
+            Debug.Log("should stop floating");
             cooldownTimer.start = true;
             StopFloat();
         }
@@ -95,8 +96,8 @@ public class Float : MonoBehaviour
         rb.velocity = Vector3.zero;
 
         //tiny movement in mid air based on sinus waves.
-        var pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
+        var pos = player.transform.position;
+        player.transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
     }
 
     void StopFloat()

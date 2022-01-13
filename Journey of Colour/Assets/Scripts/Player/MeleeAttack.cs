@@ -44,14 +44,14 @@ public class MeleeAttack : MonoBehaviour
 
     Vector3 BoxCenter
     {
-        get { return transform.position + (transform.forward * attackOffset) + centerOffset; }
+        get { return player.transform.position + (transform.forward * attackOffset) + centerOffset; }
     }
 
     public void Attack()
     {
         //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
         Collider[] overlaps;
-        overlaps = Physics.OverlapBox(BoxCenter, attackBox, transform.rotation, opponentLayer);
+        overlaps = Physics.OverlapBox(BoxCenter, attackBox, player.transform.rotation, opponentLayer);
 
         foreach (Collider opponent in overlaps)
         {
