@@ -21,6 +21,7 @@ public class DashAbility : MonoBehaviour
 
     void Start()
     {
+        _float = GetComponent<Float>();
         playerHealth = GetComponent<Health>();
         movement = GetComponent<PlayerMovement>();
         playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
@@ -57,7 +58,7 @@ public class DashAbility : MonoBehaviour
         else
         {
             movement.canMove = true;
-            if (duration<-0.2) rb.useGravity = true;
+            if (duration<-0.4) rb.useGravity = true;
         }
     }
 
