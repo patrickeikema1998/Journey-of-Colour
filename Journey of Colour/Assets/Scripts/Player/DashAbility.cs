@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class DashAbility : MonoBehaviour
 {
+
     [SerializeField] Rigidbody rb;
     [SerializeField] float dashForce = 80;
     [SerializeField] float coolDownTime = 0.5f;
@@ -36,8 +37,8 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") < 0) direction = -1;
         if (Input.GetAxis("Horizontal") > 0) direction = 1;
 
-        //Input check for dash ability
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
+
+        if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
         {
             playerAnim.Dash();
             duration = durationTime;
@@ -55,6 +56,7 @@ public class DashAbility : MonoBehaviour
             rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, 0);
     }
 
+
     public void Dash()
     {
         rb.velocity = Vector3.zero;
@@ -62,6 +64,5 @@ public class DashAbility : MonoBehaviour
         coolDown = coolDownTime;
         rb.velocity = Vector3.zero;
     }
-
     
 }
