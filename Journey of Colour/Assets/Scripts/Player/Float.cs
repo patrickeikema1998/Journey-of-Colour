@@ -48,18 +48,16 @@ public class Float : MonoBehaviour
 
         if (!isGrounded && swapClass.IsAngel())
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKeyDown(KeyCode.S) && cooldownTimer.finish)
             {
-                if (cooldownTimer.finish)
-                {
-                    isFloating = true;
-                    stoppedFloating = false;
-                    cooldownTimer.Reset();
-                }
+                isFloating = true;
+                stoppedFloating = false;
+                
             }
-            else
+            if(Input.GetKeyUp(KeyCode.S))
             {
                 isFloating = false;
+                stoppedFloating = true;
             }
         }
 
@@ -69,10 +67,13 @@ public class Float : MonoBehaviour
     {
         if (isFloating && !maxFloatTimer.finish)
         {
+            cooldownTimer.Reset();
+            cooldownTimer.start = false;
             StartFloat();
         }
-        else if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
+        if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
         {
+            cooldownTimer.start = true;
             StopFloat();
         }
     }
@@ -98,6 +99,7 @@ public class Float : MonoBehaviour
 
     void StopFloat()
     {
+        isFloating = false;
         stoppedFloating = true;
         //timers
         maxFloatTimer.Reset();
