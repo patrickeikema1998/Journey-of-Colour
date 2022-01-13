@@ -17,6 +17,10 @@ public class Float : MonoBehaviour
     [HideInInspector] public bool isFloating;
     bool stoppedFloating;
 
+    //Particles
+    [SerializeField] ParticleSystem floatParticles;
+
+
     private void Start()
     {
         maxFloatTimer = new CustomTimer(maxFloatTime);
@@ -27,6 +31,13 @@ public class Float : MonoBehaviour
         playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         playerMovement = GetComponent<PlayerMovement>();
         swapClass = GetComponent<SwapClass>();
+
+        //set particle duration
+        if(floatParticles != null)
+        {
+            var particleMain = floatParticles.main;
+            particleMain.duration = maxFloatTime;
+        }
     }
 
     private void Update()
@@ -94,6 +105,9 @@ public class Float : MonoBehaviour
         //tiny movement in mid air based on sinus waves.
         var pos = transform.position;
         transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
+
+        //start particleSystem
+        if (floatParticles != null && !floatParticles.isPlaying) floatParticles.Play();
     }
 
     void StopFloat()
@@ -110,5 +124,8 @@ public class Float : MonoBehaviour
         swapClass.swappable = true;
         playerMovement.canMove = true;
         rb.useGravity = true;
+
+        //stop particleSystem
+        if (floatParticles != null) floatParticles.Stop();
     }
 }
