@@ -5,9 +5,9 @@ using UnityEngine;
 public class DashAbility : MonoBehaviour
 {
     [SerializeField] Rigidbody rb;
-    [SerializeField] float dashForce = 10;
-    [SerializeField] float coolDownTime = 0.2f;
-    [SerializeField] float durationTime = 0.25f;
+    [SerializeField] float dashForce = 80;
+    [SerializeField] float coolDownTime = 0.5f;
+    [SerializeField] float durationTime = 0.4f;
 
     private float direction;
     private float coolDown;
