@@ -8,7 +8,7 @@ public class DashAbility : MonoBehaviour
     [SerializeField] Rigidbody rb;
     [SerializeField] float dashForce = 80;
     [SerializeField] float coolDownTime = 0.5f;
-    [SerializeField] float durationTime = 0.4f;
+    [SerializeField] float durationTime = 0.2f;
 
     private float direction;
     private float coolDown;
@@ -16,14 +16,16 @@ public class DashAbility : MonoBehaviour
     SwapClass swapClass;
     PlayerAnimations playerAnim;
     Health playerHealth;
+    PlayerMovement movement;
 
     void Start()
     {
         playerHealth = GetComponent<Health>();
+        movement = GetComponent<PlayerMovement>();
         playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
         swapClass = GetComponent<SwapClass>();
-        duration = 0;
+        duration = durationTime;
         direction = 1;
     }
     // Update is called once per frame
@@ -34,35 +36,36 @@ public class DashAbility : MonoBehaviour
         duration -= Time.deltaTime;
 
         //checks the last direction the player is facing
-        if (Input.GetAxis("Horizontal") < 0) direction = -1;
-        if (Input.GetAxis("Horizontal") > 0) direction = 1;
+        if (Input.GetAxis("Horizontal") < 0 && movement.canMove == true) direction = -1;
+        if (Input.GetAxis("Horizontal") > 0 && movement.canMove == true) direction = 1;
 
 
         if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel() && !playerHealth.dead)
         {
             playerAnim.Dash();
+            rb.velocity = Vector3.zero;
             duration = durationTime;
         }
 
         if (duration > 0)
         {
-            rb.constraints = RigidbodyConstraints.FreezePositionY;
+            rb.useGravity = false;
+            movement.canMove = false;
             Dash();
-            rb.constraints = RigidbodyConstraints.FreezeRotation;
         }
-
-        //makes sure that the player's z-axis reamians zero
-        if (rb.transform.position.z != 0)
-            rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, 0);
+        else
+        {
+            movement.canMove = true;
+            if (duration<-0.2) rb.useGravity = true;
+        }
     }
 
 
     public void Dash()
     {
-        rb.velocity = Vector3.zero;
+        rb.velocity = new Vector3(rb.velocity.x,0,0);
         rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
-        rb.velocity = Vector3.zero;
     }
     
 }
