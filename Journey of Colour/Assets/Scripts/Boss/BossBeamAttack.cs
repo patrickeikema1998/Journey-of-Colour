@@ -42,7 +42,7 @@ public class BossBeamAttack : MonoBehaviour
         }
     }
 
-    Vector3 RayDirection
+    public Vector3 RayDirection
     {
         get { return new Vector3((transform.position.x < 0) ? 1 : -1, 0); }
     }
@@ -59,6 +59,9 @@ public class BossBeamAttack : MonoBehaviour
                 beam.transform.localScale = new Vector3(transform.lossyScale.x, beamScaleY /2, transform.lossyScale.z);
                 Instantiate(beam, transform.position + new Vector3((beamScaleY / 2) + (transform.lossyScale.x / 2 * RayDirection.x), 0), Quaternion.Euler(0, 0, 90));
                 beam.transform.localScale = new Vector3(transform.lossyScale.x, originalBeamScale, transform.lossyScale.z);
+
+                slimeBoss.chargingParticles.Stop();
+
                 Invoke("StunBoss", maxAttackTime);
             }
         }

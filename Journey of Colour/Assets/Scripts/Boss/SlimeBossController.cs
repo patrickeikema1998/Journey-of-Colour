@@ -10,7 +10,8 @@ public class SlimeBossController : MonoBehaviour
     BossLungeAttack lungeAttack;
     BossProjectileAttack projectileAttack;
     BossBeamAttack beamAttack;
-    ParticleSystem stunParticles;
+    [System.NonSerialized] public ParticleSystem stunParticles;
+    [System.NonSerialized] public ParticleSystem chargingParticles;
 
     public static PhaseEvent PhaseChange = new PhaseEvent();
 
@@ -36,7 +37,9 @@ public class SlimeBossController : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        stunParticles = GetComponent<ParticleSystem>();
+        stunParticles = GetComponentsInChildren<ParticleSystem>()[0];
+        chargingParticles = GetComponentsInChildren<ParticleSystem>()[1];
+        
         health = GetComponent<Health>();
         bounceAttack = GetComponent<BossBounceAttack>();
         lungeAttack = GetComponent<BossLungeAttack>();
@@ -86,7 +89,14 @@ public class SlimeBossController : MonoBehaviour
         else
         {
             Stun();
-            Invoke("ShootBeam", maxStunTime - BeamProjectile.maxLifeTime);
+
+            var chargingParticlesShape = chargingParticles.shape;
+            chargingParticlesShape.scale = new Vector3(chargingParticles.shape.scale.x, chargingParticles.shape.scale.y, beamAttack.RayDirection.x);
+            chargingParticlesShape.position = new Vector3(chargingParticles.shape.position.x * beamAttack.RayDirection.x, chargingParticles.shape.position.y, chargingParticles.shape.position.z);
+            
+            chargingParticles.Play();
+            Invoke("Stun", maxStunTime);
+            Invoke("ShootBeam", maxStunTime);
         }
     }
 
@@ -98,11 +108,13 @@ public class SlimeBossController : MonoBehaviour
         lungeAttack.enabled = false;
         projectileAttack.enabled = false;
         beamAttack.enabled = false;
+        stunParticles.Clear();
         stunParticles.Play();
     }
 
     void ShootBeam()
     {
+        beamAttack.enabled = true;
         beamAttack.ShootBeam();
     }
 
