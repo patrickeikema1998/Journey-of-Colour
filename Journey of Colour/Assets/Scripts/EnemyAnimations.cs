@@ -4,75 +4,61 @@ using UnityEngine;
 
 public class EnemyAnimations : MonoBehaviour
 {
-    AnimationManager animationManager;
-    Animator anim;
-    CharacterController charController;
+    [SerializeField]float movementAnimationBlendSpeed = 2f;
+    Animator myAnimator;
+    CharacterController controller;
+    [HideInInspector] public float plantAttackAnimTime, spearAttackAnimTime, deathTime = 2;
+    [SerializeField] bool isMovingEnemy;
 
-    const string walk = "walk";
-    const string idle = "idle";
-    const string attack = "attack";
-    const string death = "death";
-    const string getHit = "gethit";
-
-    bool isAttacking;
-    bool isGettingHit;
-
-
-
-    float attackAnimLengthMelee = .8f;
-    float gettingHItAnimLength = 1f;
 
     private void Start()
     {
-        charController = GetComponent<CharacterController>();
-        animationManager = GetComponent<AnimationManager>();
-        anim = GetComponent<Animator>();
+        spearAttackAnimTime = .5f;
+        plantAttackAnimTime = .35f;
+        controller = GetComponent<CharacterController>();
+        myAnimator = GetComponent<Animator>();
     }
 
     private void Update()
     {
-        DoWalkAnimation();
-        DoIdleAnimation();
+       if(isMovingEnemy)MovementAndIdle();
     }
 
-    private void DoWalkAnimation()
+    void MovementAndIdle()
     {
-        if (charController.velocity.x != 0 && !isAttacking && !isGettingHit) animationManager.PlayAnimation(anim, walk);
+        float desiredAnimSpeed;
+        if ((controller.velocity.x > .5f || controller.velocity.x < -.5))
+        {
+            desiredAnimSpeed = 1;
+        }
+        else
+        {
+            desiredAnimSpeed = 0;
+        }
+
+        if (desiredAnimSpeed == 0 && myAnimator.GetFloat("speed") < 0.1)
+        {
+            myAnimator.SetFloat("speed", 0);
+        }
+        else
+        {
+            myAnimator.SetFloat("speed", Mathf.Lerp(myAnimator.GetFloat("speed"), desiredAnimSpeed, movementAnimationBlendSpeed * Time.deltaTime));
+
+        }
+    }
+    public void Attack()
+    {
+        myAnimator.SetTrigger("attack");
     }
 
-    private void DoIdleAnimation()
+    public void GetHit()
     {
-        if (charController.velocity.x == 0 && !isAttacking && !isGettingHit) animationManager.PlayAnimation(anim, idle);
+        myAnimator.SetTrigger("getHit");
     }
 
-    public void DoAttackAnimation()
+    public void Death()
     {
-        isAttacking = true;
-        animationManager.PlayAnimation(anim, attack);
-        Invoke("AttackComplete", attackAnimLengthMelee);
-    }
-
-    public void DoDeathAnimation()
-    {
-        animationManager.PlayAnimation(anim, death);
-    }
-
-    public void DoGetHitAnimation()
-    {
-        isGettingHit = true;
-        animationManager.PlayAnimation(anim, getHit);
-        Invoke("GettingHitComplete", gettingHItAnimLength);
-
-    }
-
-    private void AttackComplete()
-    {
-        isAttacking = false;
-    }
-
-    private void GettingHitComplete()
-    {
-        isGettingHit = false;
+        if(!myAnimator.GetBool("isDead"))
+        myAnimator.SetBool("isDead", true);
     }
 }
-

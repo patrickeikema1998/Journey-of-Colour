@@ -43,6 +43,6 @@ Material:
     - RefractionAmount: 0.38
     - Smoothness: 0.815
     m_Colors:
-    - FresnalColor: {r: 0, g: 0.1254902, b: 5.992157, a: 0}
-    - _Color: {r: 2.447059, g: 5.992157, b: 5.8352942, a: 1}
+    - FresnalColor: {r: 0, g: 0.0627451, b: 2.9960785, a: 0}
+    - _Color: {r: 0.6117647, g: 1.4980392, b: 1.4588236, a: 1}
   m_BuildTextureStacks: []

@@ -6,6 +6,7 @@ public class SwapClass : MonoBehaviour
 {
     [SerializeField]GameObject angel, devil;
     public bool swappable = true;
+    Health playerHealth;
     public enum playerClasses
     {
         Angel = 0,
@@ -16,6 +17,7 @@ public class SwapClass : MonoBehaviour
 
     private void Start()
     {
+        playerHealth = GetComponent<Health>();
         currentClass = playerClasses.Angel;
     }
 
@@ -25,9 +27,11 @@ public class SwapClass : MonoBehaviour
         SwapPlayerClass();
     }
 
+
+    //this method swaps the playerclass enum and enables the corresponding gameobject.
     void SwapPlayerClass()
     {
-        if (swappable)
+        if (swappable && !playerHealth.dead)
         {
             if (Input.GetKeyDown(KeyCode.W))
             {
@@ -46,6 +50,7 @@ public class SwapClass : MonoBehaviour
         }
     }
 
+    //checks if the current class is angel or devil
     public bool IsAngel()
     {
         if (currentClass == playerClasses.Angel) return true;

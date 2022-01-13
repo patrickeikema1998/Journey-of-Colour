@@ -346,8 +346,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e286b9fbaa1abb240bd095740f269b67, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsUntilVibrating: 1
-  secondsUntilBreaking: 3
+  secondsUntilVibrating: 0.5
+  secondsUntilBreaking: 2
 --- !u!65 &5212089829549871456
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -355,7 +355,7 @@ BoxCollider:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 5212089829549871458}
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 13400000, guid: 308b8b29b564a3a42931de58f815e680, type: 2}
   m_IsTrigger: 0
   m_Enabled: 1
   serializedVersion: 2
@@ -405,7 +405,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 01deeba3356ffbc4aa67cf1ab4d15acb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  breakingPlatform: {fileID: 0}
+  breakingPlatform: {fileID: 2255429132177208205, guid: 2b9690e86bf8fbb4bacbb5b655d17b5b, type: 3}
   go: 0
   secondsToRespawn: 5
 --- !u!1 &5212089830111633589

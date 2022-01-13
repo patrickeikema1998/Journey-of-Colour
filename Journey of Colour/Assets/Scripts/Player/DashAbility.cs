@@ -13,9 +13,13 @@ public class DashAbility : MonoBehaviour
     private float coolDown;
     private float duration;
     SwapClass swapClass;
+    PlayerAnimations playerAnim;
+    Health playerHealth;
 
     void Start()
     {
+        playerHealth = GetComponent<Health>();
+        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
         swapClass = GetComponent<SwapClass>();
         duration = 0;
@@ -35,6 +39,7 @@ public class DashAbility : MonoBehaviour
         //Input check for dash ability
         if (Input.GetMouseButtonDown(0) && coolDown < 0 && swapClass.IsAngel())
         {
+            playerAnim.Dash();
             duration = durationTime;
         }
 
@@ -50,12 +55,13 @@ public class DashAbility : MonoBehaviour
             rb.transform.position = new Vector3(rb.transform.position.x, rb.transform.position.y, 0);
     }
 
-    
-    void Dash()
+    public void Dash()
     {
         rb.velocity = Vector3.zero;
         rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
         rb.velocity = Vector3.zero;
     }
+
+    
 }

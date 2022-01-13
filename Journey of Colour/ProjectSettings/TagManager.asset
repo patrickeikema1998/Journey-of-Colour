@@ -7,6 +7,7 @@ TagManager:
   - Ground
   - Enemy
   - Bullet
+  - CamTrigger
   layers:
   - Default
   - TransparentFX
@@ -17,7 +18,7 @@ TagManager:
   - Enemy
   - Player
   - Checkpoint
-  - 
+  - Landscape
   - 
   - Platform
   - Boss
