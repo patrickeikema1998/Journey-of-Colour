@@ -12,6 +12,7 @@ public class EnemyController : MonoBehaviour
     EnemyAnimations anim;
     MeleeAttack attack;
     EnemyHealth health;
+    PlayerHealth playerHealth;
     float timeLeft;
     float distance, minimumDistance;
     Vector2 randomSoundPitch = new Vector2(1, 1.31f);
@@ -27,6 +28,7 @@ public class EnemyController : MonoBehaviour
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<EnemyHealth>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         timeLeft = attackCooldown;
         minimumDistance = 1.5f;
     }
@@ -40,7 +42,7 @@ public class EnemyController : MonoBehaviour
         Vector3 playerDirection = player.transform.position - transform.position;
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
-        if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0 && !health.dead) Attack();
+        if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0 && !health.dead && !playerHealth.dead) Attack();
 
     }
 
