@@ -154,7 +154,7 @@ public class SlimeBossController : MonoBehaviour
 
     public void ResetBossFight()
     {
-        health.heal(health.maxHealth);
+        health.Heal(health.maxHealth);
         transform.position = startPosition;
         SwitchPhase(1);
     }

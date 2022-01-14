@@ -392,7 +392,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 20
   health: 0
-  healthbar: {fileID: 7205373779140515240}
+  slider: {fileID: 7205373779140515243}
 --- !u!114 &1558805917532245949
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -429,6 +429,7 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   centerOffset: {x: 0, y: 0, z: 0}
+  meleeAttackCDInSeconds: 0
 --- !u!114 &1558805917532245824
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1609,7 +1610,6 @@ GameObject:
   m_Component:
   - component: {fileID: 7205373779140515241}
   - component: {fileID: 7205373779140515243}
-  - component: {fileID: 7205373779140515240}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -1690,19 +1690,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &7205373779140515240
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7205373779140515246}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 7205373779140515243}
 --- !u!1 &7205373779593358902
 GameObject:
   m_ObjectHideFlags: 0

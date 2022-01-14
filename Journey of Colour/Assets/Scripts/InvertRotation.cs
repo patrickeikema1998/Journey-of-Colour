@@ -4,11 +4,16 @@ using UnityEngine;
 
 public class InvertRotation : MonoBehaviour
 {
-    [SerializeField] GameObject enemy;
+    GameObject enemy;
+
+    private void Start()
+    {
+        enemy = this.gameObject;
+    }
 
     // Update is called once per frame
     void Update()
     {
-        transform.rotation = new Quaternion(0, -enemy.transform.rotation.y, 0, 0);
+        transform.rotation = new Quaternion(0, enemy.transform.rotation.y, 0, 0);
     }
 }

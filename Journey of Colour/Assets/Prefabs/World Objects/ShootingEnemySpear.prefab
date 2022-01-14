@@ -257,7 +257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 378257023646595606}
   - component: {fileID: 378257023646595609}
-  - component: {fileID: 378257023646595608}
   m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
@@ -330,7 +329,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 378257022825465428}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -338,19 +337,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &378257023646595608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378257023646595611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 378257023646595609}
 --- !u!1 &378257023712527832
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +349,7 @@ GameObject:
   - component: {fileID: 378257023712527828}
   - component: {fileID: 378257023712527831}
   - component: {fileID: 378257023712527830}
+  - component: {fileID: 472014886893305022}
   m_Layer: 6
   m_Name: CanvasShootEnemy
   m_TagString: Untagged
@@ -451,6 +438,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &472014886893305022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378257023712527832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921be3f35efe92f40b0ad27685e4ae0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 2269593399322258702}
 --- !u!1 &378257024453554032
 GameObject:
   m_ObjectHideFlags: 0
@@ -924,7 +924,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   health: 0
-  healthbar: {fileID: 378257023646595608}
+  slider: {fileID: 378257023646595609}
 --- !u!114 &2269593399322258703
 MonoBehaviour:
   m_ObjectHideFlags: 0

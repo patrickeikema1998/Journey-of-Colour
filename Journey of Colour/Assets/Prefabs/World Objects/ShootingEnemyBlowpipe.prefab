@@ -338,7 +338,6 @@ GameObject:
   m_Component:
   - component: {fileID: 5116700518301567463}
   - component: {fileID: 4919807216590138356}
-  - component: {fileID: 3636200727610287571}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -411,7 +410,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 6630669452871866095}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -419,19 +418,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &3636200727610287571
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1241668937621071305}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 4919807216590138356}
 --- !u!1 &1330931781100947844
 GameObject:
   m_ObjectHideFlags: 0
@@ -1203,6 +1189,7 @@ GameObject:
   - component: {fileID: 1802117652693618939}
   - component: {fileID: 9001227434127355728}
   - component: {fileID: 2549859620780667663}
+  - component: {fileID: 626469762795354264}
   m_Layer: 5
   m_Name: CanvasShootEnemy
   m_TagString: Untagged
@@ -1291,6 +1278,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &626469762795354264
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5918769784662589337}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921be3f35efe92f40b0ad27685e4ae0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  enemy: {fileID: 9076399584341546324}
 --- !u!1 &5921908686475122063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1999,7 +1999,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxHealth: 15
   health: 0
-  healthbar: {fileID: 3636200727610287571}
+  slider: {fileID: 4919807216590138356}
 --- !u!114 &784868315
 MonoBehaviour:
   m_ObjectHideFlags: 0

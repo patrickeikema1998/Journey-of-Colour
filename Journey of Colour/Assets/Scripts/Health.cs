@@ -1,15 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class Health : MonoBehaviour
 {
     public int maxHealth = 10;
     public int health;
+    [SerializeField] Slider slider;
 
     [System.NonSerialized] public bool dead = false;
 
-    public Healthbar healthbar;
     //PlayerAnimations playerAnim;
     //EnemyAnimations enemyAnim;
     PlayerMovement playerMovement;
@@ -17,12 +18,12 @@ public class Health : MonoBehaviour
     EnemyAnimations enemyAnim;
 
 
+
     // Start is called before the first frame update
     void Start()
     {
         if (this.gameObject.tag == "Enemy") enemyAnim = GetComponent<EnemyAnimations>();
-        playerMovement = GetComponent<PlayerMovement>();
-
+        if(this.gameObject.tag == "Player") playerMovement = GetComponent<PlayerMovement>();
         HealthReset();
         GameEvents.onRespawnPlayer += HealthReset;
     }
@@ -41,24 +42,28 @@ public class Health : MonoBehaviour
     public void Damage(int damageAmount)
     {
         health -= damageAmount;
-        healthbar.SetHealth(health);
+        SetHealthBar(health);
 
         if (this.gameObject.tag == "Player" && playerMovement != null) GetComponentInChildren<PlayerAnimations>().GetHit();
         if (this.gameObject.tag == "Enemy" && enemyAnim != null) enemyAnim.GetHit();
     }
 
-    public void heal(int healAmount)
+    public void Heal(int healAmount)
     {
         health += healAmount;
-        healthbar.SetHealth(health);
+        SetHealthBar(health);
         if (health > maxHealth) health = maxHealth;
     }
 
     void HealthReset()
     {
         health = maxHealth;
-        healthbar.SetHealth(health);
+        SetHealthBar(health);
     }
 
+    public void SetHealthBar(int health)
+    {
+        slider.value = (float)health/maxHealth;
+    }
 
 }
