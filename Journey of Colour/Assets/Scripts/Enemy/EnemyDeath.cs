@@ -6,6 +6,7 @@ public class EnemyDeath : MonoBehaviour
 {
     EnemyHealth health;
     EnemyAnimations anim;
+    bool go;
 
 
     // Start is called before the first frame update
@@ -18,8 +19,10 @@ public class EnemyDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health.dead)
+        if(health.dead && !go)
         {
+            go = true;
+            AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "Death", true);
             anim.Death();
             Invoke("DestroyGameObj", anim.deathTime);
         }

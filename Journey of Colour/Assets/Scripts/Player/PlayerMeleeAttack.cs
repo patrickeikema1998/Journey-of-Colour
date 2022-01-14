@@ -9,6 +9,7 @@ public class PlayerMeleeAttack : MeleeAttack
     PlayerHealth health;
     CustomTimer meleeAttackCooldownTimer;
     [SerializeField] float meleeAttackCDInSeconds;
+    Vector2 randomSoundPitch = new Vector2(1, 1.31f);
 
 
     // Start is called before the first frame update
@@ -34,7 +35,7 @@ public class PlayerMeleeAttack : MeleeAttack
         if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
         {
             base.Attack();
-            AudioManager.instance.PlayOrStop("attack" + Random.Range(1, 4), true);
+            AudioManager.instance.PlayOrStop("attack", true, randomSoundPitch);
             meleeAttackCooldownTimer.Reset();
             anim.Attack();
         }

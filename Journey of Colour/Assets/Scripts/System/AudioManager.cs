@@ -41,5 +41,15 @@ public class AudioManager : MonoBehaviour
         else if (!play) s.source.Stop();
     }
 
+   public void PlayOrStop(string name, bool play, Vector2 randomPitch)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
+
+        s.source.pitch = UnityEngine.Random.Range(randomPitch.x, randomPitch.y);
+
+        if (play && !s.source.isPlaying) s.source.Play();
+        else if (!play) s.source.Stop();
+    }
 
 }

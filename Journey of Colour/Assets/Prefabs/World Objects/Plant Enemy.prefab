@@ -199,6 +199,7 @@ GameObject:
   - component: {fileID: 237645592715097211}
   - component: {fileID: 1884388492777155695}
   - component: {fileID: 7530278213431198783}
+  - component: {fileID: 7586675524648726730}
   m_Layer: 6
   m_Name: Plant Enemy
   m_TagString: Enemy
@@ -277,7 +278,6 @@ MonoBehaviour:
   attackDetectionRange: 2
   enemySight: 10
   controller: {fileID: 668709046760824305}
-  typeOfEnemy: plant
 --- !u!114 &668709046760824317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -351,6 +351,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3e5f5b3aab9b66840a6a721b5a843e1c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &7586675524648726730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668709046760824315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5d189404df7b04199857f8feadc556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfEnemy: plant
 --- !u!1 &990934781458983507
 GameObject:
   m_ObjectHideFlags: 0
