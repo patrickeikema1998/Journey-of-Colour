@@ -13,42 +13,56 @@ public class EnemyController : MonoBehaviour
     MeleeAttack attack;
     EnemyHealth health;
     float timeLeft;
-    float distance;
+    float distance, minimumDistance;
+    [SerializeField][Tooltip("This will be used for sounds")] string typeOfEnemy;
 
 
     // Start is called before the first frame update
     void Start()
     {
+
         player = GameObject.Find("Player");
         anim = GetComponent<EnemyAnimations>();
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
         health = GetComponent<EnemyHealth>();
         timeLeft = attackCooldown;
+        minimumDistance = 1.5f;
     }
 
     // Update is called once per frame
     void Update()
     {
-        //zorgt ervoor det de enemy naar de speler wijst
+        Movement();
+
+        //zorgt ervoor dat de enemy naar de speler wijst
         Vector3 playerDirection = player.transform.position - transform.position;
-        //transform.forward = new Vector3(playerDirection.x, 0, playerDirection.z);
-
-        //verplaatst de enemy naar voren
-        distance = Vector3.Distance(transform.position, player.transform.position);
-        if (distance < enemySight && !health.dead)
-        {
-            controller.SimpleMove(transform.forward * speed);
-        }
-
         //kijkt of de enemy aan kan vallen
         if (timeLeft > 0) timeLeft -= Time.deltaTime;
         if (Vector3.SqrMagnitude(playerDirection) < attackDetectionRange * attackDetectionRange && timeLeft < 0 && !health.dead) Attack();
 
     }
 
+    void Movement()
+    {
+   
+
+        //verplaatst de enemy naar voren
+        distance = Vector3.Distance(transform.position, player.transform.position);
+        if (distance < enemySight && !health.dead && distance > minimumDistance)
+        {
+            controller.SimpleMove(transform.forward * speed);
+        }
+        else
+        {
+            //make it stop so that animations also stop.
+            controller.Move(Vector3.zero);
+        }
+    }
+
     void Attack()
     {
+        AudioManager.instance.PlayOrStop( typeOfEnemy + "Attack" , true);
         anim.Attack();
         timeLeft = attackCooldown;
         Invoke("DoAttack", anim.plantAttackAnimTime);

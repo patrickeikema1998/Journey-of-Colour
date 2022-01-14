@@ -18,9 +18,8 @@ public class EnemyDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if(health.health <= 0)
+        if(health.dead)
         {
-            health.dead = true;
             anim.Death();
             Invoke("DestroyGameObj", anim.deathTime);
         }

@@ -35,7 +35,6 @@ public class EnemyAnimations : MonoBehaviour
         {
             desiredAnimSpeed = 0;
         }
-
         if (desiredAnimSpeed == 0 && myAnimator.GetFloat("speed") < 0.1)
         {
             myAnimator.SetFloat("speed", 0);

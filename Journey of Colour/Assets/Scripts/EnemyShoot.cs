@@ -10,6 +10,7 @@ public class EnemyShoot : MonoBehaviour
     float offsetFloat;
     EnemyAnimations anim;
     [SerializeField] bool spearThrower;
+    [SerializeField][Tooltip("This will be used for sounds")] string typeOfEnemy;
 
     float coolDown;
     
@@ -52,6 +53,7 @@ public class EnemyShoot : MonoBehaviour
 
     void FireBullet()
     {
+        AudioManager.instance.PlayOrStop(typeOfEnemy + "Attack" ,true);
         anim.Attack();
         coolDown = fireRate;
         Invoke("InstantiateBullet", anim.spearAttackAnimTime);

@@ -1290,7 +1290,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921be3f35efe92f40b0ad27685e4ae0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 9076399584341546324}
 --- !u!1 &5921908686475122063
 GameObject:
   m_ObjectHideFlags: 0
@@ -1997,9 +1996,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 15
-  health: 0
-  slider: {fileID: 4919807216590138356}
 --- !u!114 &784868315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2018,6 +2014,7 @@ MonoBehaviour:
   enemySight: 15
   offsetFloatY: 1
   spearThrower: 0
+  typeOfEnemy: blowPipe
 --- !u!114 &1391726774
 MonoBehaviour:
   m_ObjectHideFlags: 0

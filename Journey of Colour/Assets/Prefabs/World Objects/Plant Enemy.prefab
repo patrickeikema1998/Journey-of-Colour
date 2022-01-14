@@ -277,6 +277,7 @@ MonoBehaviour:
   attackDetectionRange: 2
   enemySight: 10
   controller: {fileID: 668709046760824305}
+  typeOfEnemy: plant
 --- !u!114 &668709046760824317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -296,7 +297,6 @@ MonoBehaviour:
     serializedVersion: 2
     m_Bits: 128
   centerOffset: {x: 0, y: 0, z: 0}
-  meleeAttackCDInSeconds: 0
 --- !u!114 &668709046760824314
 MonoBehaviour:
   m_ObjectHideFlags: 0
