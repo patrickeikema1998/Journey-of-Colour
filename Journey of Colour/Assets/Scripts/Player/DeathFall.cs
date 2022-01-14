@@ -5,11 +5,11 @@ using UnityEngine;
 public class DeathFall : MonoBehaviour
 {
     private Rigidbody rb;
-    private Health health;
+    private PlayerHealth health;
 
     private void Start()
     {
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
     }
 
     private void OnTriggerEnter(Collider other)

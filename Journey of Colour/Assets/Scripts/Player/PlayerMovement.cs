@@ -19,14 +19,14 @@ public class PlayerMovement : MonoBehaviour
     public bool canTurn;
 
     string lastPressed;
-    Health playerHealth;
+    PlayerHealth playerHealth;
 
 
     public void Start()
     {
         rb = GetComponent<Rigidbody>();
         rb.sleepThreshold = 0.0f;
-        playerHealth = GetComponent<Health>();
+        playerHealth = GetComponent<PlayerHealth>();
         canTurn = true;
         canMove = true;
         playerClass = GetComponent<SwapClass>();

@@ -4,14 +4,14 @@ using UnityEngine;
 
 public class EnemyDeath : MonoBehaviour
 {
-    Health health;
+    EnemyHealth health;
     EnemyAnimations anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
-        health = GetComponent<Health>();
+        health = GetComponent<EnemyHealth>();
         anim = GetComponent<EnemyAnimations>();
     }
 

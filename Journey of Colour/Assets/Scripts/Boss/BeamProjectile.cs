@@ -20,7 +20,7 @@ public class BeamProjectile : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Health otherHealth = other.GetComponent<Health>();
+        PlayerHealth otherHealth = other.GetComponent<PlayerHealth>();
         if (otherHealth != null && other.GetComponent<SlimeBossController>() == null) otherHealth.Damage(damage);
     }
 }

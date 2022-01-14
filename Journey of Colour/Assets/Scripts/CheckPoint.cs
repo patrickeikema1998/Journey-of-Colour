@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public GameObject player;
-    private Health health;
+    private PlayerHealth health;
     private Rigidbody rb;
     bool checkPointHit = false;
 
@@ -23,7 +23,7 @@ public class CheckPoint : MonoBehaviour
     void Start()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        health = player.GetComponent<Health>();
+        health = player.GetComponent<PlayerHealth>();
         rb = player.GetComponent<Rigidbody>();
         beginOffset = Vector3.up;
         originPos = transform.position + beginOffset;

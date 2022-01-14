@@ -11,7 +11,7 @@ public class Weapon : MonoBehaviour
     private FireBall bullet;
     public GameObject fireBall;
     private FireBall bulletScript;
-    Health playerHealth;
+    PlayerHealth playerHealth;
 
     GameObject player;
     SwapClass swapClass;
@@ -24,7 +24,7 @@ public class Weapon : MonoBehaviour
     private void Start()
     {
         player = transform.parent.gameObject;
-        playerHealth = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         swapClass = player.GetComponent<SwapClass>();
         playerMovement = player.GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);

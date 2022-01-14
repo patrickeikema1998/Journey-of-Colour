@@ -78,7 +78,7 @@ public class AutomaticScrolling : MonoBehaviour
             newCameraPositionY = transform.position.y;
         }
 
-        if (player.GetComponent<Health>().GetHealth <= 0) 
+        if (player.GetComponent<PlayerHealth>().GetHealth <= 0) 
         { 
             speed = 0;
             moving = false;

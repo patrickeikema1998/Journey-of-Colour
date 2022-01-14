@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class PlayerDeath : MonoBehaviour
 {
-    Health health;
+    PlayerHealth health;
     public int deathAnimTime;
     CustomTimer deathTimer;
 
@@ -14,7 +14,7 @@ public class PlayerDeath : MonoBehaviour
         deathAnimTime = 4;
         deathTimer = new CustomTimer(deathAnimTime);
         deathTimer.start = false;
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame

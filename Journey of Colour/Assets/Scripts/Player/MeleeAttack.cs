@@ -12,7 +12,7 @@ public class MeleeAttack : MonoBehaviour
 
     PlayerAnimations anim;
     GameObject player;
-    Health playerHealth;
+    PlayerHealth playerHealth;
     CustomTimer meleeAttackCooldownTimer;
     [SerializeField] float meleeAttackCDInSeconds;
 
@@ -26,7 +26,7 @@ public class MeleeAttack : MonoBehaviour
         meleeAttackCooldownTimer.start = true;
         player = GameObject.Find("Player");
         anim = GetComponent<PlayerAnimations>();
-        playerHealth = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<PlayerHealth>();
 
     }
 

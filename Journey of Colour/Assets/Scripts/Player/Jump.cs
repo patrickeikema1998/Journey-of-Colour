@@ -7,7 +7,7 @@ public class Jump : MonoBehaviour
     public bool jump;
     public bool canJump;
     public float jumpForce;
-    Health health;
+    PlayerHealth health;
     SwapClass playerClass;
     Rigidbody rb;
 
@@ -16,7 +16,7 @@ public class Jump : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         playerClass = GetComponent<SwapClass>();
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
     }
 
     // Update is called once per frame

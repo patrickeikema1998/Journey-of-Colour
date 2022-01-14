@@ -75,11 +75,11 @@ public class SpearBehavior : MonoBehaviour
                 switch (collision.gameObject.tag)
                 {
                     case "Player":
-                        player.GetComponent<Health>().Damage(damage);
+                        player.GetComponent<PlayerHealth>().Damage(damage);
                         DestroyThis();
                         break;
                     case "Enemy":
-                        collision.gameObject.GetComponent<Health>().Damage(enemyDamage);
+                        collision.gameObject.GetComponent<EnemyHealth>().Damage(enemyDamage);
                         DestroyThis();
                         break;
                     case "Bullet":

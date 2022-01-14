@@ -6,7 +6,7 @@ public class SwapClass : MonoBehaviour
 {
     [SerializeField]GameObject angel, devil;
     public bool swappable = true;
-    Health playerHealth;
+    PlayerHealth playerHealth;
     public enum playerClasses
     {
         Angel = 0,
@@ -17,7 +17,7 @@ public class SwapClass : MonoBehaviour
 
     private void Start()
     {
-        playerHealth = GetComponent<Health>();
+        playerHealth = GetComponent<PlayerHealth>();
         currentClass = playerClasses.Angel;
     }
 

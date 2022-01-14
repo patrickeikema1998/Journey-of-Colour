@@ -40,9 +40,9 @@ public class Spikes : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            if (other.GetComponent<Health>() != null && damageTimer.finish)
+            if (other.GetComponent<PlayerHealth>() != null && damageTimer.finish)
             {
-                other.GetComponent<Health>().Damage(damage);
+                other.GetComponent<PlayerHealth>().Damage(damage);
                 damageTimer.Reset();
             }
         }

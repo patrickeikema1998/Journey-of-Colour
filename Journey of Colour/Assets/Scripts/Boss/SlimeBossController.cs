@@ -5,7 +5,7 @@ public class PhaseEvent : UnityEvent<int> { }
 
 public class SlimeBossController : MonoBehaviour
 {
-    Health health;
+    BossHealth health;
     BossBounceAttack bounceAttack;
     BossLungeAttack lungeAttack;
     BossProjectileAttack projectileAttack;
@@ -35,7 +35,7 @@ public class SlimeBossController : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        health = GetComponent<Health>();
+        health = GetComponent<BossHealth>();
         bounceAttack = GetComponent<BossBounceAttack>();
         lungeAttack = GetComponent<BossLungeAttack>();
         projectileAttack = GetComponent<BossProjectileAttack>();
@@ -74,7 +74,7 @@ public class SlimeBossController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
+            collision.gameObject.GetComponent<PlayerHealth>().Damage(meleeDamage);
         }
     }
 

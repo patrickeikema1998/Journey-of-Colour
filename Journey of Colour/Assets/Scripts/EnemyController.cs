@@ -11,7 +11,7 @@ public class EnemyController : MonoBehaviour
     public CharacterController controller;
     EnemyAnimations anim;
     MeleeAttack attack;
-    Health health;
+    EnemyHealth health;
     float timeLeft;
     float distance;
 
@@ -23,7 +23,7 @@ public class EnemyController : MonoBehaviour
         anim = GetComponent<EnemyAnimations>();
         controller = GetComponent<CharacterController>();
         attack = GetComponent<MeleeAttack>();
-        health = GetComponent<Health>();
+        health = GetComponent<EnemyHealth>();
         timeLeft = attackCooldown;
     }
 

@@ -16,7 +16,7 @@ public class DashAbility : MonoBehaviour
     Rigidbody rb;
     SwapClass swapClass;
     PlayerAnimations playerAnim;
-    Health playerHealth;
+    PlayerHealth playerHealth;
     PlayerMovement movement;
     Float _float;
 
@@ -25,7 +25,7 @@ public class DashAbility : MonoBehaviour
         player = GameObject.Find("Player");
         rb = player.GetComponent<Rigidbody>();
         _float = GetComponent<Float>();
-        playerHealth = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         movement = player.GetComponent<PlayerMovement>();
         playerAnim = GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
