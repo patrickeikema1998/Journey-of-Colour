@@ -51,13 +51,13 @@ public class Float : MonoBehaviour
 
         if (!playerMovement.isGrounded)
         {
-            if (Input.GetKeyDown(KeyCode.S) && cooldownTimer.finish)
+            if (Input.GetKeyDown(GameManager.GM.floatAbility) && cooldownTimer.finish)
             {
                 isFloating = true;
                 stoppedFloating = false;
                 
             }
-            if(Input.GetKeyUp(KeyCode.S))
+            if(Input.GetKeyUp(GameManager.GM.floatAbility))
             {
                 isFloating = false;
             }

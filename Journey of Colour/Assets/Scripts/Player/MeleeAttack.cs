@@ -34,7 +34,7 @@ public class MeleeAttack : MonoBehaviour
     {
         meleeAttackCooldownTimer.Update();
 
-        if (Input.GetButtonDown("Fire1") && meleeAttackCooldownTimer.finish && !health.dead)
+        if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
         {
             Attack();
             meleeAttackCooldownTimer.Reset();

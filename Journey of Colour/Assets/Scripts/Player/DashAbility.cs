@@ -45,7 +45,7 @@ public class DashAbility : MonoBehaviour
         if (Input.GetAxis("Horizontal") > 0 && movement.canMove == true) direction = 1;
 
         //Checks if player is able to dash
-        if (Input.GetMouseButtonDown(0) && coolDown < 0 && !playerHealth.dead && !_float.isFloating)
+        if (Input.GetKeyDown(GameManager.GM.dashAbility) && coolDown < 0 && !playerHealth.dead && !_float.isFloating)
         {
             playerAnim.Dash();
             rb.velocity = Vector3.zero;

@@ -42,7 +42,7 @@ public class Weapon : MonoBehaviour
 
         //player can only fire a fireball when he is in class 1. also known as the black colour.
         
-        if (Input.GetMouseButtonDown(1) && shootTimer.finish && !playerHealth.dead)
+        if (Input.GetKeyDown(GameManager.GM.fireBallAbility) && shootTimer.finish && !playerHealth.dead)
         {
             anim.RangeAttack();
 
