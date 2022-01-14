@@ -33,7 +33,7 @@ public class SwapClass : MonoBehaviour
     {
         if (swappable && !playerHealth.dead)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(GameManager.GM.switchPlayer))
             {
                 if(currentClass == playerClasses.Angel)
                 {
