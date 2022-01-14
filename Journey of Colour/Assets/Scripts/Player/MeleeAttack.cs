@@ -12,7 +12,7 @@ public class MeleeAttack : MonoBehaviour
 
     PlayerAnimations anim;
     GameObject player;
-    Health health;
+    Health playerHealth;
     CustomTimer meleeAttackCooldownTimer;
     [SerializeField] float meleeAttackCDInSeconds;
 
@@ -24,9 +24,9 @@ public class MeleeAttack : MonoBehaviour
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);
         meleeAttackCooldownTimer = new CustomTimer(meleeAttackCDInSeconds);
         meleeAttackCooldownTimer.start = true;
-        player = transform.parent.gameObject;
+        player = GameObject.Find("Player");
         anim = GetComponent<PlayerAnimations>();
-        health = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<Health>();
 
     }
 
@@ -34,7 +34,7 @@ public class MeleeAttack : MonoBehaviour
     {
         meleeAttackCooldownTimer.Update();
 
-        if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
+        if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !playerHealth.dead)
         {
             AudioManager.instance.PlayOrStop("attack" + Random.Range(1,4), true);
             Attack();
@@ -45,18 +45,19 @@ public class MeleeAttack : MonoBehaviour
 
     Vector3 BoxCenter
     {
-        get { return player.transform.position + (transform.forward * attackOffset) + centerOffset; }
+        get { return transform.position + (transform.forward * attackOffset) + centerOffset; }
     }
 
     public void Attack()
     {
         //maakt een array van alle colliders binnen de attackRange en als deze een health component hebben word er health afgehaald
         Collider[] overlaps;
-        overlaps = Physics.OverlapBox(BoxCenter, attackBox, player.transform.rotation, opponentLayer);
+        overlaps = Physics.OverlapBox(BoxCenter, attackBox, transform.rotation, opponentLayer);
 
         foreach (Collider opponent in overlaps)
         {
-            if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
+            if (opponent.GetComponent<EnemyHealth>() != null) opponent.GetComponent<EnemyHealth>().Damage(damage);
+            else if (opponent.GetComponent<PlayerHealth>() != null) opponent.GetComponent<PlayerHealth>().Damage(damage);
         }
     }
 }
