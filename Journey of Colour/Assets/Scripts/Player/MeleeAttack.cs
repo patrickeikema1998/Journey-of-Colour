@@ -36,6 +36,7 @@ public class MeleeAttack : MonoBehaviour
 
         if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
         {
+            AudioManager.instance.PlayOrStop("attack" + Random.Range(1,4), true);
             Attack();
             meleeAttackCooldownTimer.Reset();
             anim.Attack();

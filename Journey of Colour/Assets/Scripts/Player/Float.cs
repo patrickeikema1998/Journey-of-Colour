@@ -16,7 +16,7 @@ public class Float : MonoBehaviour
 
     [SerializeField] private float floatSpeed, floatDistance;
     [HideInInspector] public bool isFloating;
-    bool stoppedFloating;
+    bool startedFloating, stoppedFloating;
 
     private void Start()
     {
@@ -55,9 +55,9 @@ public class Float : MonoBehaviour
             {
                 isFloating = true;
                 stoppedFloating = false;
-                
+                startedFloating = false;
             }
-            if(Input.GetKeyUp(GameManager.GM.floatAbility))
+            if (Input.GetKeyUp(GameManager.GM.floatAbility))
             {
                 isFloating = false;
             }
@@ -82,19 +82,25 @@ public class Float : MonoBehaviour
 
     void StartFloat()
     {
-        //timer
-        maxFloatTimer.start = true;
+        if (!startedFloating)
+        {
+            AudioManager.instance.PlayOrStop("float", true);
 
-        //animation
-        playerAnim.Floating(true);
+            startedFloating = true;
+            //timer
+            maxFloatTimer.start = true;
 
-        //stopping movement and constrains.
-        rb.useGravity = false;
-        swapClass.swappable = false;
-        playerMovement.canMove = false;
-        playerMovement.canTurn = false;
-        rb.velocity = Vector3.zero;
+            //animation
+            playerAnim.Floating(true);
 
+            //stopping movement and constrains.
+            rb.useGravity = false;
+            swapClass.swappable = false;
+            playerMovement.canMove = false;
+            playerMovement.canTurn = false;
+            rb.velocity = Vector3.zero;
+        }
+        
         //tiny movement in mid air based on sinus waves.
         var pos = player.transform.position;
         player.transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
@@ -102,6 +108,7 @@ public class Float : MonoBehaviour
 
     void StopFloat()
     {
+        AudioManager.instance.PlayOrStop("float", false);
 
         isFloating = false;
         stoppedFloating = true;

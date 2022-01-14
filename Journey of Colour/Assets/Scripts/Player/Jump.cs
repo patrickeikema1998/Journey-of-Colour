@@ -30,6 +30,7 @@ public class Jump : MonoBehaviour
 
         if (jump && canJump && !health.dead)
         {
+            AudioManager.instance.PlayOrStop("jump", true);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
             GetComponentInChildren<PlayerAnimations>().Jump();

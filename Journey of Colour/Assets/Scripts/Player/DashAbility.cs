@@ -51,8 +51,8 @@ public class DashAbility : MonoBehaviour
             rb.velocity = Vector3.zero;
             duration = durationTime;
         }
-        //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
 
+        //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
         if (!_float.isFloating)
         {
             if (duration > 0)
@@ -67,11 +67,13 @@ public class DashAbility : MonoBehaviour
                 if (duration < -0.4) rb.useGravity = true;
             }
         }
+
     }
 
 
     public void Dash()
     {
+        AudioManager.instance.PlayOrStop("dash", true);
         rb.velocity = new Vector3(rb.velocity.x,0,0);
         rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;
