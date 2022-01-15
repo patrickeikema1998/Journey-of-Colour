@@ -27,6 +27,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //when timer is finished, starts to vibrate and starts the breaking timer.
         if (vibratingTimer.finish)
         {
+            AudioManager.instance.PlayOrStop("iceCrack", true);
             Vibrate();
             breakingTimer.start = true;
         }
@@ -36,6 +37,8 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //tells the platform spawner to start spawning and destroys the object.
         if (breakingTimer.finish)
         {
+            AudioManager.instance.PlayOrStop("iceBreak", true);
+            AudioManager.instance.PlayOrStop("iceCrack", false);
             GetComponentInParent<BreakingPlatformSpawner>().respawnTimer.start = true;
             Destroy(gameObject);
         }
@@ -44,6 +47,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //when the timer is finished, resets all timers.
         if (OnExitingCollisionTimer.finish)
         {
+            AudioManager.instance.PlayOrStop("iceCrack", false);
             vibratingTimer.Reset();
             vibratingTimer.start = false;
             breakingTimer.Reset();

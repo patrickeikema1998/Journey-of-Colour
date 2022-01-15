@@ -8,6 +8,7 @@ public class Float : MonoBehaviour
     [SerializeField] float maxFloatTime, cooldownTime;
     CustomTimer maxFloatTimer, cooldownTimer;
 
+    GameObject player;
     Rigidbody rb;
     PlayerAnimations playerAnim;
     PlayerMovement playerMovement;
@@ -15,7 +16,7 @@ public class Float : MonoBehaviour
 
     [SerializeField] private float floatSpeed, floatDistance;
     [HideInInspector] public bool isFloating;
-    bool stoppedFloating;
+    bool startedFloating, stoppedFloating;
 
     //Particles
     [SerializeField] ParticleSystem floatParticles;
@@ -27,11 +28,14 @@ public class Float : MonoBehaviour
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
 
-        rb = GetComponent<Rigidbody>();
-        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
-        playerMovement = GetComponent<PlayerMovement>();
-        swapClass = GetComponent<SwapClass>();
+        player = transform.parent.gameObject;
+        rb = player.GetComponent<Rigidbody>();
+        playerAnim = GetComponent<PlayerAnimations>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+        swapClass = player.GetComponent<SwapClass>();
 
+        stoppedFloating = true;
+        
         //set particle duration
         if(floatParticles != null)
         {
@@ -55,63 +59,72 @@ public class Float : MonoBehaviour
 
     void CheckAndHandleInput()
     {
-        bool isGrounded = GetComponent<PlayerMovement>().isGrounded;
 
-        if (!isGrounded && swapClass.IsAngel())
+        if (!playerMovement.isGrounded)
         {
-            if (Input.GetKey(KeyCode.S))
+            if (Input.GetKeyDown(GameManager.GM.floatAbility) && cooldownTimer.finish)
             {
-                if (cooldownTimer.finish)
-                {
-                    isFloating = true;
-                    stoppedFloating = false;
-                    cooldownTimer.Reset();
-                }
+                isFloating = true;
+                stoppedFloating = false;
+                startedFloating = false;
             }
-            else
+            if (Input.GetKeyUp(GameManager.GM.floatAbility))
             {
                 isFloating = false;
             }
         }
-
     }
 
     void HandleFloatAbility()
     {
         if (isFloating && !maxFloatTimer.finish)
         {
+            cooldownTimer.Reset();
+            cooldownTimer.start = false;
             StartFloat();
         }
-        else if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
+        if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
         {
+            Debug.Log("should stop floating");
+            cooldownTimer.start = true;
             StopFloat();
         }
     }
 
     void StartFloat()
     {
-        //timer
-        maxFloatTimer.start = true;
+        if (!startedFloating)
+        {
+            AudioManager.instance.PlayOrStop("float", true);
 
-        //animation
-        playerAnim.Floating(true);
+            startedFloating = true;
+            //timer
+            maxFloatTimer.start = true;
 
-        //stopping movement and constrains.
-        rb.useGravity = false;
-        swapClass.swappable = false;
-        playerMovement.canMove = false;
-        rb.velocity = Vector3.zero;
+            //animation
+            playerAnim.Floating(true);
 
+            //stopping movement and constrains.
+            rb.useGravity = false;
+            swapClass.swappable = false;
+            playerMovement.canMove = false;
+            playerMovement.canTurn = false;
+            rb.velocity = Vector3.zero;
+        }
+        
         //tiny movement in mid air based on sinus waves.
-        var pos = transform.position;
-        transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
-
+        var pos = player.transform.position;
+        player.transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
+        
         //start particleSystem
         if (floatParticles != null && !floatParticles.isPlaying) floatParticles.Play();
     }
 
     void StopFloat()
     {
+        AudioManager.instance.PlayOrStop("float", false);
+
+        isFloating = false;
         stoppedFloating = true;
         //timers
         maxFloatTimer.Reset();
@@ -123,6 +136,7 @@ public class Float : MonoBehaviour
         //constrains
         swapClass.swappable = true;
         playerMovement.canMove = true;
+        playerMovement.canTurn = true;
         rb.useGravity = true;
 
         //stop particleSystem

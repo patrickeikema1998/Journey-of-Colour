@@ -193,13 +193,13 @@ GameObject:
   - component: {fileID: 147611606546941761}
   - component: {fileID: 398237082172861421}
   - component: {fileID: 668709046760824305}
-  - component: {fileID: 668709046760824318}
   - component: {fileID: 668709046760824319}
-  - component: {fileID: 668709046760824316}
   - component: {fileID: 668709046760824317}
   - component: {fileID: 668709046760824314}
   - component: {fileID: 237645592715097211}
   - component: {fileID: 1884388492777155695}
+  - component: {fileID: 7530278213431198783}
+  - component: {fileID: 7586675524648726730}
   m_Layer: 6
   m_Name: Plant Enemy
   m_TagString: Enemy
@@ -261,22 +261,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 1.05, z: 0.06}
---- !u!114 &668709046760824318
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668709046760824315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 20
-  health: 0
-  healthbar: {fileID: 2334563176462929928}
-  deathAnimTime: 0
 --- !u!114 &668709046760824319
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -294,21 +278,6 @@ MonoBehaviour:
   attackDetectionRange: 2
   enemySight: 10
   controller: {fileID: 668709046760824305}
---- !u!114 &668709046760824316
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 668709046760824315}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 0
-  enemyForce: 30
-  counterDistance: 3
 --- !u!114 &668709046760824317
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -327,6 +296,7 @@ MonoBehaviour:
   opponentLayer:
     serializedVersion: 2
     m_Bits: 128
+  centerOffset: {x: 0, y: 0, z: 0}
 --- !u!114 &668709046760824314
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -369,6 +339,31 @@ MonoBehaviour:
   spearAttackAnimTime: 0
   deathTime: 2
   isMovingEnemy: 0
+--- !u!114 &7530278213431198783
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668709046760824315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5f5b3aab9b66840a6a721b5a843e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &7586675524648726730
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 668709046760824315}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5d189404df7b04199857f8feadc556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfEnemy: plant
 --- !u!1 &990934781458983507
 GameObject:
   m_ObjectHideFlags: 0
@@ -764,7 +759,6 @@ GameObject:
   m_Component:
   - component: {fileID: 2334563176462929929}
   - component: {fileID: 2334563176462929931}
-  - component: {fileID: 2334563176462929928}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -837,7 +831,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 2334563177626030718}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -845,19 +839,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &2334563176462929928
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2334563176462929942}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 2334563176462929931}
 --- !u!1 &2334563176803683087
 GameObject:
   m_ObjectHideFlags: 0
@@ -1046,7 +1027,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 921be3f35efe92f40b0ad27685e4ae0a, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  enemy: {fileID: 668709046760824315}
 --- !u!1 &2334563177303254547
 GameObject:
   m_ObjectHideFlags: 0

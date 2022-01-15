@@ -6,7 +6,8 @@ public class SwapClass : MonoBehaviour
 {
     [SerializeField]GameObject angel, devil;
     public bool swappable = true;
-    Health playerHealth;
+    
+    PlayerHealth playerHealth;
 
     //Particle System
     [SerializeField] ParticleSystem swapParticles;
@@ -21,7 +22,7 @@ public class SwapClass : MonoBehaviour
 
     private void Start()
     {
-        playerHealth = GetComponent<Health>();
+        playerHealth = GetComponent<PlayerHealth>();
         currentClass = playerClasses.Angel;
     }
 
@@ -37,7 +38,7 @@ public class SwapClass : MonoBehaviour
     {
         if (swappable && !playerHealth.dead)
         {
-            if (Input.GetKeyDown(KeyCode.W))
+            if (Input.GetKeyDown(GameManager.GM.switchPlayer))
             {
                 if(currentClass == playerClasses.Angel)
                 {

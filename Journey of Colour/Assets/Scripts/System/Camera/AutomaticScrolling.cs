@@ -5,9 +5,12 @@ using UnityEngine;
 public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
-    [SerializeField] float yOffset, normalSpeed, highSpeed, freezeTime, speedTriggerPercentage, triggerDistance;
-
-    public bool moving;
+    [SerializeField] [Range(0f, 5f)] float yOffset;
+    [SerializeField] float normalSpeed, highSpeed, freezeTime;
+    [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
+    [SerializeField] [Range(0f, 10f)] float triggerDistance;
+    
+    [HideInInspector] public bool moving;
     bool triggered;
 
     Vector3 startMovementPos, offset;
@@ -75,7 +78,7 @@ public class AutomaticScrolling : MonoBehaviour
             newCameraPositionY = transform.position.y;
         }
 
-        if (player.GetComponent<Health>().GetHealth <= 0) 
+        if (player.GetComponent<PlayerHealth>().GetHealth <= 0) 
         { 
             speed = 0;
             moving = false;

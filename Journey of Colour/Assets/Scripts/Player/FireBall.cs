@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public float speed  = 20;
+    public float speed;
     public int damage = 5;
 
     public Rigidbody rb;
@@ -33,8 +33,8 @@ public class FireBall : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<Health>().Damage(damage);
+            collision.GetComponent<EnemyHealth>().Damage(damage);
         }
-        Destroy(gameObject);
+        if(collision.tag != "CamTrigger") Destroy(gameObject);
     }
 }

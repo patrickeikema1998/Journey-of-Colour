@@ -257,7 +257,6 @@ GameObject:
   m_Component:
   - component: {fileID: 378257023646595606}
   - component: {fileID: 378257023646595609}
-  - component: {fileID: 378257023646595608}
   m_Layer: 6
   m_Name: Slider
   m_TagString: Untagged
@@ -330,7 +329,7 @@ MonoBehaviour:
   m_TargetGraphic: {fileID: 0}
   m_FillRect: {fileID: 378257022825465428}
   m_HandleRect: {fileID: 0}
-  m_Direction: 0
+  m_Direction: 1
   m_MinValue: 0
   m_MaxValue: 1
   m_WholeNumbers: 0
@@ -338,19 +337,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &378257023646595608
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 378257023646595611}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 378257023646595609}
 --- !u!1 &378257023712527832
 GameObject:
   m_ObjectHideFlags: 0
@@ -363,6 +349,7 @@ GameObject:
   - component: {fileID: 378257023712527828}
   - component: {fileID: 378257023712527831}
   - component: {fileID: 378257023712527830}
+  - component: {fileID: 472014886893305022}
   m_Layer: 6
   m_Name: CanvasShootEnemy
   m_TagString: Untagged
@@ -451,6 +438,18 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &472014886893305022
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 378257023712527832}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 921be3f35efe92f40b0ad27685e4ae0a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &378257024453554032
 GameObject:
   m_ObjectHideFlags: 0
@@ -839,13 +838,13 @@ GameObject:
   - component: {fileID: 1456043148258899892}
   - component: {fileID: 1422678960327428896}
   - component: {fileID: 2269593399322258698}
-  - component: {fileID: 2269593399322258701}
-  - component: {fileID: 2269593399322258700}
   - component: {fileID: 2269593399322258703}
   - component: {fileID: 813237357}
   - component: {fileID: 813237358}
   - component: {fileID: 9130470793619809362}
   - component: {fileID: 6801558565166488389}
+  - component: {fileID: 6190753559835796698}
+  - component: {fileID: 6364201334194418088}
   m_Layer: 6
   m_Name: ShootingEnemySpear
   m_TagString: Enemy
@@ -911,37 +910,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.91, z: 0}
---- !u!114 &2269593399322258701
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269593399322258702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 0
-  enemyForce: 12
-  counterDistance: 3
---- !u!114 &2269593399322258700
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2269593399322258702}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  maxHealth: 15
-  health: 0
-  healthbar: {fileID: 378257023646595608}
-  deathAnimTime: 0
 --- !u!114 &2269593399322258703
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1017,6 +985,31 @@ MonoBehaviour:
   spearAttackAnimTime: 0
   deathTime: 2
   isMovingEnemy: 0
+--- !u!114 &6190753559835796698
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269593399322258702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5f5b3aab9b66840a6a721b5a843e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6364201334194418088
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 2269593399322258702}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8e5d189404df7b04199857f8feadc556, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  typeOfEnemy: spearThrow
 --- !u!1 &2486645252215975910
 GameObject:
   m_ObjectHideFlags: 0

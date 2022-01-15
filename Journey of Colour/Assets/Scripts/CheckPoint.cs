@@ -5,7 +5,7 @@ using UnityEngine;
 public class CheckPoint : MonoBehaviour
 {
     public GameObject player;
-    private Health health;
+    private PlayerHealth health;
     private Rigidbody rb;
     bool checkPointHit = false;
 
@@ -23,9 +23,9 @@ public class CheckPoint : MonoBehaviour
     void Start()
     {
         playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
-        health = player.GetComponent<Health>();
+        health = player.GetComponent<PlayerHealth>();
         rb = player.GetComponent<Rigidbody>();
-        beginOffset = new Vector3(0, 1, 0);
+        beginOffset = Vector3.up;
         originPos = transform.position + beginOffset;
 
         GameEvents.onRespawnPlayer += ResetPlayerPos;
@@ -34,10 +34,10 @@ public class CheckPoint : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.layer == 7)
+        if (other.gameObject.tag == "CheckPoint")
         {
             respawnPos = originPos;
-            gameObject.transform.position = new Vector3(0, 10000, 0);
+            other.gameObject.transform.position = new Vector3(0, 10000, 0);
             checkPointHit = true;
         }
     }
@@ -56,6 +56,7 @@ public class CheckPoint : MonoBehaviour
         {
             //when the player dies and respawns at a checkpoint the playerPos will be set
             //to the respawnPos which will be acitvated when the checkPoints is triggered.
+            rb.velocity = Vector3.zero;
             player.transform.position = respawnPos;
             if(scrolling.isActiveAndEnabled) scrolling.Reset();
         }

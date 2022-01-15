@@ -8,22 +8,28 @@ public class DoubleJump : MonoBehaviour
     bool isGrounded;
     bool isJumpButtonPressed;
     bool jumpedTwice;
-    public bool canDoubleJump, doubleJump;
+    [HideInInspector] public bool canDoubleJump, doubleJump;
+    GameObject player;
     Rigidbody rb;
+    PlayerMovement playerMovement;
     SwapClass swapClass;
     PlayerAnimations playerAnim;
+    Jump jump;
     // Start is called before the first frame update
     void Start()
     {
-        playerAnim = GameObject.Find("Angel Player").GetComponent<PlayerAnimations>();
-        rb = this.GetComponent<Rigidbody>();
+        player = GameObject.Find("Player");
+        jump = player.GetComponentInChildren<Jump>();
+        playerAnim = GetComponent<PlayerAnimations>();
+        rb = player.GetComponent<Rigidbody>();
+        playerMovement = player.GetComponent<PlayerMovement>();
+        swapClass = player.GetComponent<SwapClass>();
         jumpedTwice = false;
-        swapClass = GetComponent<SwapClass>();
     }
 
     private void Update()
     {
-        if (swapClass.currentClass == SwapClass.playerClasses.Angel && Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !GetComponent<PlayerMovement>().canJump) doubleJump = true;
+        if (Input.GetKeyDown(KeyCode.Space) && canDoubleJump && !jump.canJump) doubleJump = true;
     }
 
     // Update is called once per frame
@@ -31,7 +37,7 @@ public class DoubleJump : MonoBehaviour
     {
         if (doubleJump)
         {
-
+            AudioManager.instance.PlayOrStop("doubleJump", true);
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
             canDoubleJump = false;

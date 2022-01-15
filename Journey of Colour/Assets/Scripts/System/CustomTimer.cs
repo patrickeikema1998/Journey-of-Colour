@@ -24,7 +24,7 @@ public class CustomTimer : MonoBehaviour
 
 
     // Update is called once per frame
-    public void Update()
+    public virtual void Update()
     {
         if (start)
         {
@@ -42,7 +42,7 @@ public class CustomTimer : MonoBehaviour
         }
     }
 
-    public void Reset()
+    public virtual void Reset()
     {
         timeRemaining = initialTimeInSeconds;
         finish = false;

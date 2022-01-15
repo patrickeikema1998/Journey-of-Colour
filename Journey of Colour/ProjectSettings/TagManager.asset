@@ -8,6 +8,8 @@ TagManager:
   - Enemy
   - Bullet
   - CamTrigger
+  - DeathFall
+  - CheckPoint
   layers:
   - Default
   - TransparentFX

@@ -31,14 +31,14 @@ public class CameraDeath : MonoBehaviour
         if (player.transform.position.x < (currentCameraPos.x - screenSizeCalc.x / 2) - (playerSize.x * corrector)
             || player.transform.position.x > (currentCameraPos.x + screenSizeCalc.x /2) + (playerSize.x * corrector))
         {
-            player.GetComponent<Health>().health = 0;
+            player.GetComponent<PlayerHealth>().health = 0;
         }
 
         if (!player.GetComponent<PlayerMovement>().isGrounded)
         {
             if (player.transform.position.y < deathLimitsY.x || player.transform.position.y > deathLimitsY.y)
             {
-                player.GetComponent<Health>().health -= damage;
+                player.GetComponent<PlayerHealth>().health -= damage;
             }
         }
     }
