@@ -7,6 +7,10 @@ public class SwapClass : MonoBehaviour
     [SerializeField]GameObject angel, devil;
     public bool swappable = true;
     Health playerHealth;
+
+    //Particle System
+    [SerializeField] ParticleSystem swapParticles;
+
     public enum playerClasses
     {
         Angel = 0,
@@ -46,6 +50,9 @@ public class SwapClass : MonoBehaviour
                     devil.SetActive(false);
                     angel.SetActive(true);
                 }
+
+                //Activate particles
+                if (swapParticles != null) swapParticles.Play();
             }
         }
     }
