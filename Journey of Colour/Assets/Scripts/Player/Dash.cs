@@ -44,6 +44,8 @@ public class Dash : MonoBehaviour
 
         if(Input.GetKeyDown(GameManager.GM.dashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
         {
+            //animation and sound
+            AudioManager.instance.PlayOrStop("dash", true);
             anim.Dash();
             //changes direction based on rotation
             if (transform.parent.rotation.eulerAngles.y == 270) wantedPosX = transform.parent.position.x + dashRangeLeft;
