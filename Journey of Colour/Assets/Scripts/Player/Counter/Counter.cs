@@ -101,7 +101,7 @@ public class Counter : MonoBehaviour
                     idList[id] = true;
                     //deflected = true;
                 }
-                AudioManager.instance.PlayOrStop("counter", true);
+                AudioManager.instance.Play("counter");
                 gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
                 break;
             default:

@@ -1914,12 +1914,12 @@ GameObject:
   - component: {fileID: 8556287310635601902}
   - component: {fileID: 8157338910069010624}
   - component: {fileID: 4260453841071015460}
-  - component: {fileID: 784868314}
   - component: {fileID: 784868315}
   - component: {fileID: 1391726774}
   - component: {fileID: 3092623305362296904}
   - component: {fileID: 569928265495714184}
   - component: {fileID: 6057825477099173782}
+  - component: {fileID: 3504474486368434103}
   m_Layer: 6
   m_Name: ShootingEnemyBlowpipe
   m_TagString: Enemy
@@ -1985,18 +1985,6 @@ CharacterController:
   m_SkinWidth: 0.08
   m_MinMoveDistance: 0.001
   m_Center: {x: 0, y: 0.79, z: 0}
---- !u!114 &784868314
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 9076399584341546324}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &784868315
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2010,7 +1998,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   bullet: {fileID: 5675490294247148220, guid: 883f37e65b6d7024bbfe0afbf0afc78f, type: 3}
-  player: {fileID: 0}
   fireRate: 3
   enemySight: 15
   offsetFloatY: 1
@@ -2070,3 +2057,15 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   typeOfEnemy: blowPipe
+--- !u!114 &3504474486368434103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 9076399584341546324}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3e5f5b3aab9b66840a6a721b5a843e1c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

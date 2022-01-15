@@ -51,6 +51,7 @@ public class CounterAbility : MonoBehaviour
 
     void Counter()
     {
+        AudioManager.instance.PlayOrStop("counterInitiate", true);
         Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + playerHeight/2, transform.position.z), transform.rotation);
     }
 }

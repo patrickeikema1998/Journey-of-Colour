@@ -5,11 +5,12 @@ using UnityEngine;
 public class EnemyShoot : MonoBehaviour
 {
     [SerializeField] GameObject bullet;
-    [SerializeField] GameObject player;
+    GameObject player;
     [SerializeField] float fireRate = 5f, enemySight, offsetFloatY;
     float offsetFloat;
     EnemyAnimations anim;
     [SerializeField] bool spearThrower;
+    EnemyHealth health;
 
     float coolDown;
     
@@ -21,8 +22,10 @@ public class EnemyShoot : MonoBehaviour
 
     void Start()
     {
+        player = GameObject.Find("Player");
         anim = GetComponent<EnemyAnimations>();
         coolDown = fireRate;
+        health = GetComponent<EnemyHealth>();
     }
 
     // Update is called once per frame
@@ -34,7 +37,7 @@ public class EnemyShoot : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, player.transform.position);
 
-        if (coolDown < 0 && distance < enemySight)
+        if (coolDown < 0 && distance < enemySight && !health.dead)
         {
             FireBullet();
         }

@@ -47,6 +47,16 @@ public class Dash : MonoBehaviour
             //animation and sound
             AudioManager.instance.PlayOrStop("dash", true);
             anim.Dash();
+
+            //start timers
+            trailTimer.start = true;
+            trail.enabled = true;
+
+            //constrains
+            movement.canMove = false;
+            movement.canTurn = false;
+            rb.useGravity = false;
+
             //changes direction based on rotation
             if (transform.parent.rotation.eulerAngles.y == 270) wantedPosX = transform.parent.position.x + dashRangeLeft;
             else wantedPosX = transform.parent.position.x + dashRangeRight;
@@ -72,11 +82,6 @@ public class Dash : MonoBehaviour
     {
         if (dash)
         {
-            trailTimer.start = true;
-            trail.enabled = true;
-            //constrains
-            movement.canMove = false;
-            movement.canTurn = false;
             rb.velocity = Vector3.zero;
 
             //the actual dash.
@@ -89,6 +94,7 @@ public class Dash : MonoBehaviour
                 dash = false;
                 movement.canTurn = true;
                 movement.canMove = true;
+                rb.useGravity = true;
             }
         }
     }

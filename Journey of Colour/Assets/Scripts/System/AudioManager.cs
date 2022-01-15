@@ -29,7 +29,13 @@ public class AudioManager : MonoBehaviour
 
             s.source.volume = s.volume;
             s.source.pitch = s.pitch;
+            s.source.spatialBlend = 1f;
         }
+    }
+
+    private void Start()
+    {
+        PlayOrStop("birds", true);
     }
 
     public void PlayOrStop(string name, bool play)
@@ -50,6 +56,14 @@ public class AudioManager : MonoBehaviour
 
         if (play && !s.source.isPlaying) s.source.Play();
         else if (!play) s.source.Stop();
+    }
+
+    public void Play(string name)
+    {
+        Sound s = Array.Find(sounds, sound => sound.name == name);
+        if (s == null) return;
+
+        s.source.Play();
     }
 
 }

@@ -10,6 +10,7 @@ public class Jump : MonoBehaviour
     PlayerHealth health;
     SwapClass playerClass;
     Rigidbody rb;
+    Vector2 angelPitch, devilPitch;
 
     // Start is called before the first frame update
     void Start()
@@ -17,6 +18,9 @@ public class Jump : MonoBehaviour
         rb = GetComponent<Rigidbody>();
         playerClass = GetComponent<SwapClass>();
         health = GetComponent<PlayerHealth>();
+
+        angelPitch = new Vector2(1.2f, 1.3f);
+        devilPitch = new Vector2(1f, 1f);
     }
 
     // Update is called once per frame
@@ -30,7 +34,8 @@ public class Jump : MonoBehaviour
 
         if (jump && canJump && !health.dead)
         {
-            AudioManager.instance.PlayOrStop("jump", true);
+            if (playerClass.IsAngel()) AudioManager.instance.PlayOrStop("jump", true, angelPitch);
+            else AudioManager.instance.PlayOrStop("jump", true, devilPitch);
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
             GetComponentInChildren<PlayerAnimations>().Jump();
