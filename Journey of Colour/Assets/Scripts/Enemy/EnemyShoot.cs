@@ -11,6 +11,7 @@ public class EnemyShoot : MonoBehaviour
     EnemyAnimations anim;
     [SerializeField] bool spearThrower;
     EnemyHealth health;
+    [SerializeField] AudioSource sound;
 
     float coolDown;
     
@@ -55,7 +56,7 @@ public class EnemyShoot : MonoBehaviour
 
     void FireBullet()
     {
-        AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "Attack" ,true);
+        sound.Play();
         anim.Attack();
         coolDown = fireRate;
         Invoke("InstantiateBullet", anim.spearAttackAnimTime);

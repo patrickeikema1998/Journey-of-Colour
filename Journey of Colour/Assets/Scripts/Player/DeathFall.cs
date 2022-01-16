@@ -4,19 +4,9 @@ using UnityEngine;
 
 public class DeathFall : MonoBehaviour
 {
-    private Rigidbody rb;
-    private PlayerHealth health;
-
-    private void Start()
+    float deathHeight = -12f;
+    private void Update()
     {
-        health = GetComponent<PlayerHealth>();
-    }
-
-    private void OnTriggerEnter(Collider other)
-    {
-        if (other.gameObject.tag == "DeathFall")
-        {
-            health.Damage(1000);
-        }
+        if (transform.position.y < deathHeight) GameEvents.RespawnPlayer();
     }
 }

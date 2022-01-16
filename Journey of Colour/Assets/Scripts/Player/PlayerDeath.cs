@@ -6,9 +6,10 @@ public class PlayerDeath : MonoBehaviour
 {
     PlayerHealth health;
     public int deathAnimTime;
-    CustomTimer deathTimer;
+    [HideInInspector]CustomTimer deathTimer;
     SwapClass playerClass;
     Vector2 angelPitch, devilPitch;
+    [SerializeField] AudioSource sound;
     bool deathStarted;
 
     // Start is called before the first frame update
@@ -34,8 +35,9 @@ public class PlayerDeath : MonoBehaviour
             GameEvents.PlayerDeath();
             deathTimer.start = true;
             deathStarted = true;
-            if (playerClass.IsAngel()) AudioManager.instance.PlayOrStop("death", true, angelPitch);
-            else AudioManager.instance.PlayOrStop("death", true, devilPitch);
+            if (playerClass.IsAngel()) sound.pitch = Random.Range(angelPitch.x, angelPitch.y);
+            else sound.pitch = Random.Range(devilPitch.x, devilPitch.y);
+            sound.Play();
         }
         if (deathTimer.finish)
         {

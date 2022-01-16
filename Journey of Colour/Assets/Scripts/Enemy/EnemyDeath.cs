@@ -6,6 +6,7 @@ public class EnemyDeath : MonoBehaviour
 {
     EnemyHealth health;
     EnemyAnimations anim;
+    [SerializeField] AudioSource sound;
     bool go;
 
 
@@ -22,7 +23,7 @@ public class EnemyDeath : MonoBehaviour
         if(health.dead && !go)
         {
             go = true;
-            AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "Death", true);
+            sound.Play();
             anim.Death();
             Invoke("DestroyGameObj", anim.deathTime);
         }

@@ -15,6 +15,7 @@ public class EnemyController : MonoBehaviour
     PlayerHealth playerHealth;
     float timeLeft;
     float distance, minimumDistance;
+    [SerializeField] AudioSource sound;
     Vector2 randomSoundPitch = new Vector2(1, 1.31f);
 
 
@@ -65,7 +66,9 @@ public class EnemyController : MonoBehaviour
 
     void Attack()
     {
-        AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "Attack" , true, randomSoundPitch);
+        sound.pitch = Random.Range(randomSoundPitch.x, randomSoundPitch.y);
+        sound.Play();
+
         anim.Attack();
         timeLeft = attackCooldown;
         Invoke("DoAttack", anim.plantAttackAnimTime);

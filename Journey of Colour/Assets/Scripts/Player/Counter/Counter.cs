@@ -13,6 +13,7 @@ public class Counter : MonoBehaviour
 
     private CharacterController controller;
     private FadeTimer fadeTimer;
+    [SerializeField] AudioSource reflectSound; 
 
     private GameObject player;
 
@@ -101,7 +102,7 @@ public class Counter : MonoBehaviour
                     idList[id] = true;
                     //deflected = true;
                 }
-                AudioManager.instance.Play("counter");
+                reflectSound.Play();
                 gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
                 break;
             default:

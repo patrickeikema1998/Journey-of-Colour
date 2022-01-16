@@ -17,6 +17,7 @@ public class Float : MonoBehaviour
     [SerializeField] private float floatSpeed, floatDistance;
     [HideInInspector] public bool isFloating;
     bool startedFloating, stoppedFloating;
+    [SerializeField] AudioSource sound;
 
     private void Start()
     {
@@ -84,7 +85,7 @@ public class Float : MonoBehaviour
     {
         if (!startedFloating)
         {
-            AudioManager.instance.PlayOrStop("float", true);
+            sound.Play();
 
             startedFloating = true;
             //timer
@@ -108,7 +109,7 @@ public class Float : MonoBehaviour
 
     void StopFloat()
     {
-        AudioManager.instance.PlayOrStop("float", false);
+        sound.Stop();
 
         isFloating = false;
         stoppedFloating = true;

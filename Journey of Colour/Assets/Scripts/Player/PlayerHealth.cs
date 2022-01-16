@@ -7,6 +7,7 @@ public class PlayerHealth : Health
 {
     SwapClass playerClass;
     Vector2 angelPitch, devilPitch;
+    [SerializeField] AudioSource damageSound;
     private void Start()
     {
         slider = GameObject.Find("Health Panel").GetComponentInChildren<Slider>();
@@ -24,12 +25,13 @@ public class PlayerHealth : Health
 
     public override void Damage(int damageAmount)
     {
+        if ((health - damageAmount) > 0) damageSound.Play();
         base.Damage(damageAmount);
         GetComponentInChildren<PlayerAnimations>().GetHit();
 
-        if (playerClass.IsAngel()) AudioManager.instance.PlayOrStop("getHit", true, angelPitch);
-        else AudioManager.instance.PlayOrStop("getHit", true, devilPitch);
-
+        //sounds
+        if (playerClass.IsAngel()) damageSound.pitch = Random.Range(angelPitch.x, angelPitch.y);
+        else damageSound.pitch = Random.Range(devilPitch.x, devilPitch.y);
     }
 
     void HealthReset()

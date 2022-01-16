@@ -7,7 +7,7 @@ public class EnemyHealth : Health
 {
 
     Vector2 randomSoundPitch = new Vector2(1, 1.31f);
-    [SerializeField] bool randomPitch = true;
+    [SerializeField] AudioSource damageSound;
 
     // Start is called before the first frame update
     void Start()
@@ -22,11 +22,8 @@ public class EnemyHealth : Health
 
     public override void Damage(int damageAmount)
     {
-        if ((health - damageAmount) > 0)
-        {
-            if (randomPitch) AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "GetHit", true, randomSoundPitch);
-            else AudioManager.instance.PlayOrStop(GetComponent<EnemyType>().typeOfEnemy + "GetHit", true);
-        }
+        //sounds
+        if ((health - damageAmount) >= 0) damageSound.Play();
         base.Damage(damageAmount);
         GetComponentInChildren<EnemyAnimations>().GetHit();
     }

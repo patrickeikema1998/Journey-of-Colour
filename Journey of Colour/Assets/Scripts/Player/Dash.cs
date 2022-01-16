@@ -14,6 +14,7 @@ public class Dash : MonoBehaviour
     PlayerAnimations anim;
     GameObject player;
     TrailRenderer trail;
+    [SerializeField] AudioSource sound;
 
     // Start is called before the first frame update
     void Start()
@@ -45,7 +46,7 @@ public class Dash : MonoBehaviour
         if(Input.GetKeyDown(GameManager.GM.dashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
         {
             //animation and sound
-            AudioManager.instance.PlayOrStop("dash", true);
+            sound.Play();
             anim.Dash();
 
             //start timers

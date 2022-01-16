@@ -73,7 +73,6 @@ public class DashAbility : MonoBehaviour
 
     public void Dash()
     {
-        AudioManager.instance.PlayOrStop("dash", true);
         rb.velocity = new Vector3(rb.velocity.x,0,0);
         rb.AddForce(new Vector3(direction*dashForce,0,0));
         coolDown = coolDownTime;

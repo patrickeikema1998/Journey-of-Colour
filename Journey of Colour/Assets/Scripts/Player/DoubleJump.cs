@@ -15,6 +15,9 @@ public class DoubleJump : MonoBehaviour
     SwapClass swapClass;
     PlayerAnimations playerAnim;
     Jump jump;
+    [SerializeField] AudioSource jumpSound;
+    Vector2 pitch;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -25,6 +28,7 @@ public class DoubleJump : MonoBehaviour
         playerMovement = player.GetComponent<PlayerMovement>();
         swapClass = player.GetComponent<SwapClass>();
         jumpedTwice = false;
+        pitch = new Vector2(1.2f, 1.3f);
     }
 
     private void Update()
@@ -37,7 +41,8 @@ public class DoubleJump : MonoBehaviour
     {
         if (doubleJump)
         {
-            AudioManager.instance.PlayOrStop("doubleJump", true);
+            jumpSound.pitch = Random.Range(pitch.x, pitch.y);
+            jumpSound.Play();
             rb.velocity = new Vector3(rb.velocity.x, 0, rb.velocity.z);
             rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
             canDoubleJump = false;

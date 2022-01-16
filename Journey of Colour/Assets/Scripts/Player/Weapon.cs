@@ -12,6 +12,7 @@ public class Weapon : MonoBehaviour
     public GameObject fireBall;
     private FireBall bulletScript;
     PlayerHealth playerHealth;
+    [SerializeField] AudioSource fireSound;
 
     GameObject player;
     SwapClass swapClass;
@@ -45,7 +46,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(GameManager.GM.fireBallAbility) && shootTimer.finish && !playerHealth.dead)
         {
             anim.RangeAttack();
-
+            fireSound.Play();
             if (Input.mousePosition.x > player.transform.position.x)
             {
                 Invoke("ShootRight", shootAnimationTime);
