@@ -52,7 +52,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
         {
             crackSound.Stop(); ;
             vibratingTimer.Reset();
-            vibratingTimer.start = false;
+            vibratingTimer.start = false;   
             breakingTimer.Reset();
             breakingTimer.start = false;
             OnExitingCollisionTimer.Reset();
