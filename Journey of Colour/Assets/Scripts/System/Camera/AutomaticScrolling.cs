@@ -91,7 +91,6 @@ public class AutomaticScrolling : MonoBehaviour
         
         if (moving && freezeTimer.finish)
         {
-            Debug.Log("player: "+ player.transform.position.x + " | trigger: " + (transform.position.x + speederOffset) + " | speed: " + speed);
             if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
             else { speed = normalSpeed; }
         }

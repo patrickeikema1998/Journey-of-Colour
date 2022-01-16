@@ -17,10 +17,12 @@ public class DoubleJump : MonoBehaviour
     Jump jump;
     [SerializeField] AudioSource jumpSound;
     Vector2 pitch;
+    [HideInInspector] public bool landed;
 
     // Start is called before the first frame update
     void Start()
     {
+        landed = true;
         player = GameObject.Find("Player");
         jump = player.GetComponentInChildren<Jump>();
         playerAnim = GetComponent<PlayerAnimations>();
@@ -47,8 +49,12 @@ public class DoubleJump : MonoBehaviour
             rb.AddForce(Vector3.up * jumpForceTwo, ForceMode.Impulse);
             canDoubleJump = false;
             doubleJump = false;
+
+            landed = false;
             playerAnim.DoubleJump();
         }
+
+        if (jump.canJump) { landed = true; }
     }
 
 

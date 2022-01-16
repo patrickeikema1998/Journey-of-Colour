@@ -14,6 +14,8 @@ public class Weapon : MonoBehaviour
     PlayerHealth playerHealth;
     [SerializeField] AudioSource fireSound;
 
+
+    [HideInInspector] public float cdTime;
     GameObject player;
     SwapClass swapClass;
     PlayerMovement playerMovement;
@@ -24,6 +26,7 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        cdTime = shootTime;
         player = transform.parent.gameObject;
         playerHealth = player.GetComponent<PlayerHealth>();
         swapClass = player.GetComponent<SwapClass>();

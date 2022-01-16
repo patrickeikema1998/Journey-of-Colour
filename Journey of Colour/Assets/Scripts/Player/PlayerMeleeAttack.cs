@@ -12,10 +12,12 @@ public class PlayerMeleeAttack : MeleeAttack
     Vector2 randomSoundPitch = new Vector2(1f, 1.1f);
     [SerializeField] AudioSource sound;
 
+    [HideInInspector] public float cdTime;
 
     // Start is called before the first frame update
     void Start()
     {
+        cdTime = meleeAttackCDInSeconds;
         anim = GetComponent<PlayerAnimations>();
         health = transform.parent.gameObject.GetComponent<PlayerHealth>();
         attackBox = new Vector3(attackRange / 2, attackRange / 4, attackRange / 2);

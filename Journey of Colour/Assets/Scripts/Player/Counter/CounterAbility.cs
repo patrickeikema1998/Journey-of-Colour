@@ -11,12 +11,14 @@ public class CounterAbility : MonoBehaviour
     private SwapClass swapClass;
     private CustomTimer cooldownTimer;
 
+    [HideInInspector] public float cdTime;
     private GameObject player;
     //https://www.youtube.com/watch?v=_w7GU2NIxUE
     //https://answers.unity.com/questions/1100879/push-object-in-opposite-direction-of-collision.html
 
     private void Start()
     {
+        cdTime = cooldownTime;
         player = GameObject.FindGameObjectWithTag("Player");
         swapClass = player.GetComponent<SwapClass>();
         cooldownTimer = new CustomTimer(cooldownTime);
