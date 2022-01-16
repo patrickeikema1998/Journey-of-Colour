@@ -14,8 +14,7 @@ public class AudioSlider : MonoBehaviour
 
     private void Start()
     {
-        //slider.value = PlayerPrefs.GetFloat(volumeParamter, slider.value);
-
+        slider.value = PlayerPrefs.GetFloat(volumeParamter, slider.value);
     }
 
     private void Awake()
@@ -24,7 +23,7 @@ public class AudioSlider : MonoBehaviour
     }
     private void OnDisable()
     {
-        //PlayerPrefs.SetFloat(volumeParamter, slider.value);
+        PlayerPrefs.SetFloat(volumeParamter, slider.value);
     }
     private void HandleSlider(float value)
     {
