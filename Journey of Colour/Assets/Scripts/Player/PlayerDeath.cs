@@ -11,6 +11,8 @@ public class PlayerDeath : MonoBehaviour
     Vector2 angelPitch, devilPitch;
     [SerializeField] AudioSource sound;
     bool deathStarted;
+    float deathHeight = -12f;
+
 
     // Start is called before the first frame update
     void Start()
@@ -47,5 +49,8 @@ public class PlayerDeath : MonoBehaviour
             GameEvents.RespawnPlayer();
             deathStarted = false;
         }
+
+        if (transform.position.y < deathHeight) GameEvents.RespawnPlayer();
+
     }
 }

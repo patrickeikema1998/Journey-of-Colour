@@ -36,7 +36,7 @@ public class CheckPoint : MonoBehaviour
     {
         if (other.gameObject.tag == "CheckPoint")
         {
-            respawnPos = originPos;
+            respawnPos = other.transform.position + beginOffset;
             other.gameObject.transform.position = new Vector3(0, 10000, 0);
             checkPointHit = true;
         }
