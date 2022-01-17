@@ -5,7 +5,7 @@ using UnityEngine;
 public class CameraTrigger : MonoBehaviour
 {
     [SerializeField] string trigger;
-    [SerializeField] float freezeTime;
+    [SerializeField] float freezeTime, speedChange;
     [SerializeField] [Range(0f, 10f)] float freezeDistance;
 
     Vector3 startMovementPos;
@@ -18,24 +18,31 @@ public class CameraTrigger : MonoBehaviour
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.Find("Player");
 
-        freezeTimer = new CustomTimer(freezeTime);
-        //freezeTimer.start = false;
-        freezeTimer.finish = true;
+        switch (trigger) {
+
+            case "Pause":
+                PauseStart();
+                break;
+            default:
+                break;
+        }
     }
 
 
     private void Update()
     {
-        freezeTimer.Update();
-        //Debug.Log(player.transform.position + " startm " + startMovementPos+" timerfinish"+ freezeTimer.finish +" timerem "+ freezeTimer.timeRemaining);
-
         if (triggered)
         {
-            if (player.transform.position.x >= startMovementPos.x || freezeTimer.finish)
+            switch (trigger)
             {
-                camera.GetComponent<AutomaticScrolling>().moving = true;
-                freezeTimer.timeRemaining = 0;
-                triggered = false;
+                case "Pause":
+                    PauseUpdate();
+                    break;
+                case "Speed":
+                    SpeedUpdate();
+                    break;
+                default:
+                    break;
             }
         }
     }
@@ -50,12 +57,45 @@ public class CameraTrigger : MonoBehaviour
                         camera.GetComponent<AutomaticScrolling>().moving = false;
                         Triggered(transform.position, freezeDistance);
                         freezeTimer.Reset();
+                        triggered = true;
                         break;
                     default:
+                        triggered = true;
                         break;
                 }
                 break;
-        } 
+            default:
+                break;
+        }
+    }
+
+    void PauseStart()
+    {
+        freezeTimer = new CustomTimer(freezeTime);
+        freezeTimer.finish = true;
+    }
+
+    void PauseUpdate()
+    {
+        freezeTimer.Update();
+
+        if (player.transform.position.x >= startMovementPos.x || freezeTimer.finish)
+        {
+            camera.GetComponent<AutomaticScrolling>().moving = true;
+            freezeTimer.timeRemaining = 0;
+            triggered = false;
+            Invoke("DestroyObject", 0f);
+        }
+    }
+
+    void SpeedUpdate() 
+    {
+        camera.GetComponent<AutomaticScrolling>().speedTrigger = true;
+        camera.GetComponent<AutomaticScrolling>().normalSpeed = camera.GetComponent<AutomaticScrolling>().normalSpeed + speedChange;
+        camera.GetComponent<AutomaticScrolling>().highSpeed = camera.GetComponent<AutomaticScrolling>().highSpeed + speedChange;
+        Debug.Log(camera.GetComponent<AutomaticScrolling>().normalSpeed + " save me " + camera.GetComponent<AutomaticScrolling>().highSpeed);
+        triggered = false;
+            Invoke("DestroyObject", 0f);
     }
 
     public void Triggered(Vector3 triggerPos, float distance)
@@ -65,6 +105,10 @@ public class CameraTrigger : MonoBehaviour
             triggerPos.y,
             triggerPos.z
             );
-        triggered = true;
+    }
+
+    void DestroyObject()
+    {
+        Destroy(this.gameObject);
     }
 }
