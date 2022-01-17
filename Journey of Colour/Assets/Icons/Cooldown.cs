@@ -13,17 +13,19 @@ public class Cooldown : MonoBehaviour
 
     SwapClass swapClass;
     SwapClass.playerClasses prevClass;
-    private string disabled = "X";
+    private string disabled = "";
     private float cooldownTime;
     private bool disable;
     private bool onGround;
     private KeyCode key;        
     private CustomTimer timer;
+    private GameObject player;
 
     // Start is called before the first frame update
     void Start()
     {
-        swapClass = GameObject.Find("Player").GetComponent<SwapClass>();
+        player = GameObject.Find("Player");
+        swapClass = player.GetComponent<SwapClass>();
         prevClass = swapClass.currentClass;
 
         PickAbility();
@@ -55,7 +57,7 @@ public class Cooldown : MonoBehaviour
                 switch (ability)
                 {
                     case "DoubleJump":
-                        onGround = GameObject.Find("Player").GetComponentInChildren<DoubleJump>().landed;
+                        onGround = player.GetComponentInChildren<DoubleJump>().landed;
                         switch (onGround)
                         {
                             case false:
@@ -63,6 +65,22 @@ public class Cooldown : MonoBehaviour
                                 break;
                             default:
                                 CooledDown();
+                                break;
+                        }
+                        break;
+                    case "Float":
+                        switch (player.GetComponentInChildren<Float>().cooldownTimer.finish)
+                        {
+                            case false:
+                                timeText.text = (player.GetComponentInChildren<Float>().cooldownTimer.timeRemaining).ToString("F1");
+                                cooldownImage.fillAmount = player.GetComponentInChildren<Float>().cooldownTimer.timeRemaining / cooldownTime;
+                                break;
+                            case true:
+                                CooledDown();
+                                if (Input.GetKeyDown(key))
+                                {
+                                    timeText.gameObject.SetActive(true);
+                                }
                                 break;
                         }
                         break;
@@ -151,21 +169,21 @@ public class Cooldown : MonoBehaviour
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
                         timeText.text = disabled;
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                     case "Counter":
                         disable = true;
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
                         timeText.text = disabled;
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                     case "Fireball":
                         disable = true;
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
                         timeText.text = disabled;
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                     case "Dash":
                         disable = false;
@@ -212,20 +230,20 @@ public class Cooldown : MonoBehaviour
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
                         timeText.text = disabled;
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                     case "DoubleJump":
                         disable = true;
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                     case "Float":
                         disable = true;
                         cooldownImage.fillAmount = 1f;
                         timeText.gameObject.SetActive(true);
                         timeText.text = disabled;
-                        abilityText.text = "";
+                        abilityText.text = disabled;
                         break;
                 }
                 break;
