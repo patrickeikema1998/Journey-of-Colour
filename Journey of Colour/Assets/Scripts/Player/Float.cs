@@ -6,7 +6,8 @@ public class Float : MonoBehaviour
 {
 
     [SerializeField] float maxFloatTime, cooldownTime;
-    CustomTimer maxFloatTimer, cooldownTimer;
+    CustomTimer maxFloatTimer;
+    [HideInInspector] public CustomTimer cooldownTimer;
 
     GameObject player;
     Rigidbody rb;
