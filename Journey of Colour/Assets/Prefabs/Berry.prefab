@@ -128,3 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 25
   playerOffsetY: 2
+  damage: 15

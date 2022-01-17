@@ -6,6 +6,7 @@ public class BasicBulletPatern : MonoBehaviour
 {
     [SerializeField] float moveSpeed = 7f;
     [SerializeField] float playerOffsetY;
+    [SerializeField] int damage;
     GameObject target;
     Rigidbody rb;
     Vector3 moveDirection;
@@ -32,7 +33,10 @@ public class BasicBulletPatern : MonoBehaviour
         {
             //Debug.Log("Hit!");
             //target.GetComponent<TakeDamage>().TakeHit(2);
-            target.GetComponent<PlayerHealth>().Damage(15);
+            target.GetComponent<PlayerHealth>().Damage(damage);
+        }
+        else if(collision.gameObject.tag == "Enemy"){
+            collision.gameObject.GetComponent<EnemyHealth>().Damage(damage);
         }
 
         Destroy(gameObject);
