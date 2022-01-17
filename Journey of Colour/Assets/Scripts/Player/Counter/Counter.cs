@@ -62,35 +62,30 @@ public class Counter : MonoBehaviour
 
         id = gameObject.GetInstanceID();
         if (!idList.ContainsKey(id)) { idList.Add(id,false); }
-    
+
         switch (gameObject.tag)
         {
             case "Enemy":
-                switch (gameObject.GetComponent<Rigidbody>())
-                {
-                    case null:
-                        switch (gameObject.GetComponent<Rigidbody>())
-                        {
-                            case null:
-                                break;
-                            default:
-                                gameObject.transform.forward = (new Vector3(
-                                dir.x,
-                                dir.y,
-                                0)
-                                );
-                                controller.SimpleMove(gameObject.transform.forward * stationaryEnemyForce);
-                                break;
-                        }
-                        break;
-                    default:
+                { 
+                    if (gameObject.GetComponent<Rigidbody>() == null)
+                    {
+                        gameObject.transform.forward = (new Vector3(
+                        dir.x,
+                        dir.y,
+                        0)
+                        );
+                        controller = gameObject.GetComponent<CharacterController>();
+                        controller.SimpleMove(gameObject.transform.forward * stationaryEnemyForce);
+                    }
+                    else
+                    {
                         dir = new Vector3(dir.x, dir.y, 0);
                         gameObject.GetComponent<Rigidbody>().AddForce(dir * stationaryEnemyForce, ForceMode.Impulse);
-                        break;
-                }
+                    }
+                } 
                 break;
             case "Bullet":
-                if (gameObject.GetComponent<SpearBehavior>() != null && idList[id] == false /*&& !deflected*/ && !gameObject.GetComponent<SpearBehavior>().onGround)
+                if (gameObject.GetComponent<SpearBehavior>() != null && idList[id] == false && !gameObject.GetComponent<SpearBehavior>().onGround)
                 {
                     gameObject.GetComponent<SpearBehavior>().deflected = true;
                     gameObject.transform.rotation = new Quaternion(
@@ -100,7 +95,6 @@ public class Counter : MonoBehaviour
                         -gameObject.transform.rotation.w
                         );
                     idList[id] = true;
-                    //deflected = true;
                 }
                 reflectSound.Play();
                 gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);

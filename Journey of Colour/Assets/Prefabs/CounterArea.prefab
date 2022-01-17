@@ -270,7 +270,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   thrownObjectForce: 15
-  stationaryEnemyForce: 12
+  stationaryEnemyForce: 20
   timeToVisible: 0.2
   fadeTime: 2
   timeToInvisible: 0.8

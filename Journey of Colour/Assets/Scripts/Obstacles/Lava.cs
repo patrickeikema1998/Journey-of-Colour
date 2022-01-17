@@ -19,7 +19,6 @@ public class Lava : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        Debug.Log("HOI");
         if (other.gameObject.tag == "Player")
         {
             other.gameObject.GetComponent<Rigidbody>().velocity *= 0.7f;

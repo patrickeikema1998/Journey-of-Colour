@@ -13,24 +13,32 @@ public class MenuPanels : MonoBehaviour
     private void Start()
     {
         automaticScrolling = GameObject.Find("Main Camera").GetComponent<AutomaticScrolling>();
-
     }
 
     void Update()
     {
-        if (menuPanel.activeInHierarchy || controlPanel.activeInHierarchy || settingsPanel.activeInHierarchy) automaticScrolling.moving = false;
-        else automaticScrolling.moving = true;
-
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             if (!menuPanel.activeInHierarchy && !controlPanel.activeInHierarchy && !settingsPanel.activeInHierarchy)
+            {
                 menuPanel.SetActive(true);
+                automaticScrolling.moving = false;
+            }
             else if (menuPanel.activeInHierarchy)
+            {
                 menuPanel.SetActive(false);
+                automaticScrolling.moving = true;
+            }
             else if (controlPanel.activeInHierarchy)
+            {
                 controlPanel.SetActive(false);
+                automaticScrolling.moving = true;
+            }
             else if (settingsPanel.activeInHierarchy)
+            {
                 settingsPanel.SetActive(false);
+                automaticScrolling.moving = true;
+            }
         }
 
     }

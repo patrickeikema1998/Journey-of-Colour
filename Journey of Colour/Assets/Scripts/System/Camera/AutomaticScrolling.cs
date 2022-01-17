@@ -6,23 +6,23 @@ public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
     [SerializeField] [Range(0f, 5f)] float yOffset;
-    [SerializeField] float normalSpeed, highSpeed, freezeTime;
+    [SerializeField] float normalSpeed, highSpeed/*, freezeTime*/;
     [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
-    [SerializeField] [Range(0f, 10f)] float triggerDistance;
     
-    [HideInInspector] public bool moving;
+    [HideInInspector] public bool moving/*, frozen*/;
     bool triggered;
+    
 
-    Vector3 startMovementPos, offset;
+    Vector3 /*startMovementPos,*/ offset;
     float speed;
-    float xVelocity;
+    float xSpeed;
     float speederOffset;
     float startYOffset;
 
     Rect screenSize;
     Vector2 screenSizeCalc;
     GameObject player;
-    CustomTimer freezeTimer;
+    //CustomTimer freezeTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -36,25 +36,6 @@ public class AutomaticScrolling : MonoBehaviour
         speederOffset = (screenSizeCalc.x / 2) - (screenSizeCalc.x * speedTriggerPercentage);
        
         moving = true;
-
-        freezeTimer = new CustomTimer(freezeTime);
-        freezeTimer.start = false;
-        freezeTimer.finish = true;
-    }
-
-    private void Update()
-    {
-        freezeTimer.Update();
-
-        if (triggered) 
-        {
-            if (player.transform.position.x >= startMovementPos.x) 
-            { 
-                moving = true;
-                freezeTimer.timeRemaining = 0;
-                triggered = false;
-            }
-        }
     }
 
     private void LateUpdate()
@@ -84,38 +65,20 @@ public class AutomaticScrolling : MonoBehaviour
             moving = false;
         }
 
-        xVelocity = speed * Time.deltaTime;
-        transform.position = new Vector3(transform.position.x + xVelocity,
+        xSpeed = speed * Time.deltaTime;
+        transform.position = new Vector3(transform.position.x + xSpeed,
             newCameraPositionY,
             transform.position.z);
         
-        if (moving && freezeTimer.finish)
+        if (moving)
         {
             if (player.transform.position.x >= transform.position.x + speederOffset) { speed = highSpeed; }
             else { speed = normalSpeed; }
         }
         else 
         {
-            if (!moving)
-            {
-                freezeTimer.Reset();
-                freezeTimer.start = true;
-                freezeTimer.finish = false;
-            }
-
             speed = 0;
-            moving = true;
         }
-    }
-
-    public void Triggered(Vector3 triggerPos) 
-    {
-        startMovementPos = new Vector3(
-            triggerPos.x + triggerDistance,
-            triggerPos.y,
-            triggerPos.z
-            );
-        triggered = true;
     }
 
     public void Reset()
