@@ -12,8 +12,10 @@ public class Cooldown : MonoBehaviour
     [SerializeField] Image cooldownImage;
 
     SwapClass swapClass;
+    SwapClass.playerClasses prevClass;
     private string disabled = "X";
     private float cooldownTime;
+    private bool disable;
     private bool onGround;
     private KeyCode key;        
     private CustomTimer timer;
@@ -21,93 +23,72 @@ public class Cooldown : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        PickAbility(); 
-
         swapClass = GameObject.Find("Player").GetComponent<SwapClass>();
+        prevClass = swapClass.currentClass;
+
+        PickAbility();
 
         timeText.gameObject.SetActive(false);
         timer = new CustomTimer(cooldownTime);
         timer.finish = true;
         cooldownImage.fillAmount = 0.0f;
+        abilityText.enableAutoSizing = true;
+
+        DisableCooldowns();
     }
 
     // Update is called once per frame
     void Update()
     {
-        switch (ability) 
+
+        if (swapClass.currentClass != prevClass)
         {
-            case "DoubleJump":
-                onGround = GameObject.Find("Player").GetComponentInChildren<DoubleJump>().landed;
-                switch (onGround) 
+            DisableCooldowns();
+            prevClass = swapClass.currentClass;
+        }
+
+        switch (disable) 
+        {
+            case true:
+                break;
+            case false:
+                switch (ability)
                 {
-                    case false:
-                        UseDoubleJump();
+                    case "DoubleJump":
+                        onGround = GameObject.Find("Player").GetComponentInChildren<DoubleJump>().landed;
+                        switch (onGround)
+                        {
+                            case false:
+                                UseDoubleJump();
+                                break;
+                            default:
+                                CooledDown();
+                                break;
+                        }
                         break;
                     default:
-                        CooledDown();
-                        break;
-                }
-                break;
-            default:
-                switch (timer.finish)
-                {
-                    case false:
-                        timeText.text = (timer.timeRemaining).ToString("F1");
-                        cooldownImage.fillAmount = timer.timeRemaining / cooldownTime;
-                        break;
-                    case true:
-                        CooledDown();
-                        if (Input.GetKeyDown(key))
+                        switch (timer.finish)
                         {
-                            UseAbility();
+                            case false:
+                                timeText.text = (timer.timeRemaining).ToString("F1");
+                                cooldownImage.fillAmount = timer.timeRemaining / cooldownTime;
+                                break;
+                            case true:
+                                CooledDown();
+                                if (Input.GetKeyDown(key))
+                                {
+                                    UseAbility();
+                                }
+                                break;
                         }
                         break;
                 }
                 break;
-        }
+        }        
 
         timer.Update();   
     }
-    private void DisableCooldowns()
-    {
-        switch (swapClass.currentClass)
-        {
-            case SwapClass.playerClasses.Angel:
-                switch (ability)
-                {
-                    case "Melee":
-                        cooldownTime = cooldowns[0];
-                        key = GameManager.GM.meleeAbility;
-                        break;
-                    case "Counter":
-                        cooldownTime = cooldowns[1];
-                        key = GameManager.GM.counterAbility;
-                        break;
-                    case "Fireball":
-                        cooldownTime = cooldowns[2];
-                        key = GameManager.GM.fireBallAbility;
-                        break;                    
-                }
-                break;
-            case SwapClass.playerClasses.Devil:
-            //case "Dash":
-            //    cooldownTime = cooldowns[3];
-            //    key = GameManager.GM.dashAbility;
-            //    abilityText.text = key.ToString();
-            //    break;
-            //case "DoubleJump":
-            //    cooldownTime = cooldowns[4];
-            //    key = KeyCode.Space;
-            //    abilityText.text = key.ToString();
-            //    break;
-            //case "Float":
-            //    cooldownTime = cooldowns[5];
-            //    key = GameManager.GM.floatAbility;
-            //    abilityText.text = key.ToString();
-            //    break;
-                break;
-        }
-    }
+   
 
     public void UseAbility()
     {
@@ -156,5 +137,98 @@ public class Cooldown : MonoBehaviour
                 break;
         }
         abilityText.text = key.ToString();
+    }
+
+    private void DisableCooldowns()
+    {
+        switch (swapClass.currentClass)
+        {
+            case SwapClass.playerClasses.Angel:
+                switch (ability)
+                {
+                    case "Melee":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        timeText.text = disabled;
+                        abilityText.text = "";
+                        break;
+                    case "Counter":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        timeText.text = disabled;
+                        abilityText.text = "";
+                        break;
+                    case "Fireball":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        timeText.text = disabled;
+                        abilityText.text = "";
+                        break;
+                    case "Dash":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        key = GameManager.GM.dashAbility;
+                        abilityText.text = key.ToString();
+                        break;
+                    case "DoubleJump":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        abilityText.text = KeyCode.Space.ToString();
+                        break;
+                    case "Float":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        key = GameManager.GM.floatAbility;
+                        abilityText.text = key.ToString();
+                        break;
+                }
+                break;
+            case SwapClass.playerClasses.Devil:
+                switch (ability)
+                {
+                    case "Melee":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        key = GameManager.GM.meleeAbility;
+                        abilityText.text = key.ToString();
+                        break;
+                    case "Counter":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        key = GameManager.GM.counterAbility;
+                        abilityText.text = key.ToString();
+                        break;
+                    case "Fireball":
+                        disable = false;
+                        cooldownImage.fillAmount = 0f;
+                        key = GameManager.GM.fireBallAbility;
+                        abilityText.text = key.ToString();
+                        break;
+                    case "Dash":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        timeText.text = disabled;
+                        abilityText.text = "";
+                        break;
+                    case "DoubleJump":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        abilityText.text = "";
+                        break;
+                    case "Float":
+                        disable = true;
+                        cooldownImage.fillAmount = 1f;
+                        timeText.gameObject.SetActive(true);
+                        timeText.text = disabled;
+                        abilityText.text = "";
+                        break;
+                }
+                break;
+        }
     }
 }
