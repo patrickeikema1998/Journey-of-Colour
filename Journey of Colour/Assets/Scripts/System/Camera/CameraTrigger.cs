@@ -5,10 +5,11 @@ using UnityEngine;
 public class CameraTrigger : MonoBehaviour
 {
     [SerializeField] string trigger;
-    [SerializeField] float freezeTime, speedChange;
+    [SerializeField] float freezeTime, speedChange, lerpSpeed, lerpDistance;
     [SerializeField] [Range(0f, 10f)] float freezeDistance;
 
-    Vector3 startMovementPos;
+    [SerializeField] Vector3 WantedMove;
+    Vector3 startMovementPos, targetPos;
 
     bool triggered;
     GameObject camera, player;
@@ -18,10 +19,13 @@ public class CameraTrigger : MonoBehaviour
         camera = GameObject.FindGameObjectWithTag("MainCamera");
         player = GameObject.Find("Player");
 
-        switch (trigger) {
-
+        switch (trigger) 
+        {
+            //sets the needed variables per desired action
             case "Pause":
                 PauseStart();
+                break;
+            case "Lerp":
                 break;
             default:
                 break;
@@ -31,6 +35,7 @@ public class CameraTrigger : MonoBehaviour
 
     private void Update()
     {
+        //Updates the desired action
         if (triggered)
         {
             switch (trigger)
@@ -41,6 +46,9 @@ public class CameraTrigger : MonoBehaviour
                 case "Speed":
                     SpeedUpdate();
                     break;
+                case "Lerp":
+                    LerpUpdate();
+                    break;
                 default:
                     break;
             }
@@ -49,6 +57,7 @@ public class CameraTrigger : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
+        //Checks if the player triggered the gameObject and which action is desired
         switch (other.tag) {
             case "Player":
                 switch (trigger)
@@ -57,6 +66,14 @@ public class CameraTrigger : MonoBehaviour
                         camera.GetComponent<AutomaticScrolling>().moving = false;
                         Triggered(transform.position, freezeDistance);
                         freezeTimer.Reset();
+                        triggered = true;
+                        break;
+                    case "Lerp":
+                        targetPos = new Vector3(
+                            camera.transform.position.x + WantedMove.x,
+                            camera.transform.position.y + WantedMove.y,
+                            camera.transform.position.z + WantedMove.z
+                            );
                         triggered = true;
                         break;
                     default:
@@ -69,12 +86,15 @@ public class CameraTrigger : MonoBehaviour
         }
     }
 
+    //Sets timers
     void PauseStart()
     {
         freezeTimer = new CustomTimer(freezeTime);
         freezeTimer.finish = true;
     }
 
+    //Updates the timer and checks if the player has reached the position
+    //at which the movement will be restarted
     void PauseUpdate()
     {
         freezeTimer.Update();
@@ -90,14 +110,31 @@ public class CameraTrigger : MonoBehaviour
 
     void SpeedUpdate() 
     {
+        //Sets the speeds to the new values
         camera.GetComponent<AutomaticScrolling>().speedTrigger = true;
         camera.GetComponent<AutomaticScrolling>().normalSpeed = camera.GetComponent<AutomaticScrolling>().normalSpeed + speedChange;
         camera.GetComponent<AutomaticScrolling>().highSpeed = camera.GetComponent<AutomaticScrolling>().highSpeed + speedChange;
-        Debug.Log(camera.GetComponent<AutomaticScrolling>().normalSpeed + " save me " + camera.GetComponent<AutomaticScrolling>().highSpeed);
+
         triggered = false;
+        Invoke("DestroyObject", 0f);
+    }
+    void LerpUpdate()
+    {
+        //Lerps to the newly desired position (targetPos)
+        camera.transform.position = new Vector3(
+            Mathf.Lerp(camera.transform.position.x, targetPos.x, lerpSpeed * Time.deltaTime),
+            Mathf.Lerp(camera.transform.position.y, targetPos.y, lerpSpeed * Time.deltaTime),
+            Mathf.Lerp(camera.transform.position.z, targetPos.z, lerpSpeed * Time.deltaTime));
+
+        //Destroys object when desired distance has been reached
+        if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
+        {
+            triggered = false;
             Invoke("DestroyObject", 0f);
+        }
     }
 
+    //Pause state has been triggered, saves the position which will activate movement
     public void Triggered(Vector3 triggerPos, float distance)
     {
         startMovementPos = new Vector3(
@@ -107,6 +144,7 @@ public class CameraTrigger : MonoBehaviour
             );
     }
 
+    //Destroys the object
     void DestroyObject()
     {
         Destroy(this.gameObject);

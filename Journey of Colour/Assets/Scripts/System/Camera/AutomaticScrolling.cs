@@ -5,7 +5,7 @@ using UnityEngine;
 public class AutomaticScrolling : MonoBehaviour
 {
     //https://answers.unity.com/questions/299102/improve-smooth-2d-side-scroller-camera-to-look-mor.html
-    [SerializeField] [Range(0f, 5f)] float yOffset;
+    [SerializeField] public Vector2 yOffset;
     [SerializeField] public float normalSpeed, highSpeed/*, freezeTime*/;
     [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
     
@@ -31,8 +31,10 @@ public class AutomaticScrolling : MonoBehaviour
         offset = transform.position - player.transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
 
+        //Calculate the distance to the left and right side of the screen in worldspace
         screenSize = GetComponent<Camera>().pixelRect;
         screenSizeCalc = GetComponent<Camera>().WorldToViewportPoint(new Vector3(screenSize.width, screenSize.height, 0f));
+        //Calculate the distance used to check if the player has reached the right side of the screen
         speederOffset = (screenSizeCalc.x / 2) - (screenSizeCalc.x * speedTriggerPercentage);
 
         speed = normalSpeed;
@@ -46,27 +48,34 @@ public class AutomaticScrolling : MonoBehaviour
         bool changeInY = false;
         float newCameraPositionY = transform.position.y;
 
-        if (currentYOffset > startYOffset + yOffset)
+        //Checks if the player Moved along the y-axis
+        //and moves if a certain distance along the y-axis had been met
+        if (currentYOffset > startYOffset + yOffset.x)
         {
+            //Up
             changeInY = true;
-            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset - yOffset);
+            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset - yOffset.x);
         }
-        else if (currentYOffset < startYOffset - yOffset)
+        else if (currentYOffset < startYOffset - yOffset.y)
         {
+            //Down
             changeInY = true;
-            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset + yOffset);
+            newCameraPositionY = (player.transform.position.y + startYOffset + currentYOffset) - (currentYOffset + yOffset.y);
         }
         if (!changeInY)
         {
+            //No movement (movement not big enough)
             newCameraPositionY = transform.position.y;
         }
 
         if (player.GetComponent<PlayerHealth>().GetHealth <= 0)
         {
+            //Player is dead so the camera stops moving
             speed = 0;
             moving = false;
         }
 
+        //Calculates the movement of the camera (no velocity since a constant speed was desired)
         xSpeed = speed * Time.deltaTime;
         transform.position = new Vector3(transform.position.x + xSpeed,
             newCameraPositionY,
@@ -74,10 +83,10 @@ public class AutomaticScrolling : MonoBehaviour
 
         if (moving)
         {
-
-            //Debug.Log(speed);
+            //if the camera moves and the right side of the screen has been reached
             switch (OverSpeederLimit()) {
                 case true:
+                    //right side of the screen
                     speed = highSpeed;
                     break;
                 case false:
@@ -93,12 +102,14 @@ public class AutomaticScrolling : MonoBehaviour
 
     bool OverSpeederLimit() 
     {
+        //If right side of the screen return true
         if (player.transform.position.x >= transform.position.x + speederOffset) { return true; }
         else { return false; }
     }
 
     public void Reset()
     {
+        //Resets the camera offset to the starting camera offset
         transform.position = player.transform.position + offset;
         moving = true;
     }
