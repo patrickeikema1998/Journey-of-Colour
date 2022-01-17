@@ -87,7 +87,6 @@ public class Float : MonoBehaviour
         }
         if ((!isFloating || maxFloatTimer.finish) && !stoppedFloating)
         {
-            Debug.Log("should stop floating");
             cooldownTimer.start = true;
             StopFloat();
         }

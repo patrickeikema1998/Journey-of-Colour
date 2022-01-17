@@ -72,15 +72,12 @@ public class Cooldown : MonoBehaviour
                         switch (player.GetComponentInChildren<Float>().cooldownTimer.finish)
                         {
                             case false:
+                                timeText.gameObject.SetActive(true);
                                 timeText.text = (player.GetComponentInChildren<Float>().cooldownTimer.timeRemaining).ToString("F1");
                                 cooldownImage.fillAmount = player.GetComponentInChildren<Float>().cooldownTimer.timeRemaining / cooldownTime;
                                 break;
                             case true:
                                 CooledDown();
-                                if (Input.GetKeyDown(key))
-                                {
-                                    timeText.gameObject.SetActive(true);
-                                }
                                 break;
                         }
                         break;
