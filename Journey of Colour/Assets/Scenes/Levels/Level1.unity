@@ -11377,24 +11377,6 @@ Transform:
   m_CorrespondingSourceObject: {fileID: 4142404485789888, guid: 3b1b7ff8423c20a479447c6a5af16694, type: 3}
   m_PrefabInstance: {fileID: 291316456}
   m_PrefabAsset: {fileID: 0}
---- !u!1 &293114935 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5722020611559041859, guid: 177103b96e779734db1afe719f8f853a, type: 3}
-  m_PrefabInstance: {fileID: 1332761911}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &293114936
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 293114935}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd07b87ddab634749a4041f3f401cecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myAnimator: {fileID: 0}
 --- !u!1 &293118472
 GameObject:
   m_ObjectHideFlags: 0
@@ -48182,9 +48164,7 @@ PrefabInstance:
       propertyPath: m_Name
       value: Player
       objectReference: {fileID: 0}
-    m_RemovedComponents:
-    - {fileID: 3630904161393244349, guid: 177103b96e779734db1afe719f8f853a, type: 3}
-    - {fileID: 1066220265801985783, guid: 177103b96e779734db1afe719f8f853a, type: 3}
+    m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 177103b96e779734db1afe719f8f853a, type: 3}
 --- !u!1001 &1334972948
 PrefabInstance:
@@ -53611,24 +53591,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 24, y: 12, z: 6}
   m_Center: {x: 11, y: -5, z: 0}
---- !u!1 &1457168157 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 3455949587550924768, guid: 177103b96e779734db1afe719f8f853a, type: 3}
-  m_PrefabInstance: {fileID: 1332761911}
-  m_PrefabAsset: {fileID: 0}
---- !u!114 &1457168161
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1457168157}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: bd07b87ddab634749a4041f3f401cecd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  myAnimator: {fileID: 0}
 --- !u!1001 &1459775215
 PrefabInstance:
   m_ObjectHideFlags: 0
