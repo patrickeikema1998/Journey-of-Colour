@@ -110,6 +110,7 @@ GameObject:
   - component: {fileID: 7903724063691956804}
   - component: {fileID: 7903724063691956805}
   - component: {fileID: 844284247}
+  - component: {fileID: 3565146863007374376}
   m_Layer: 11
   m_Name: Horizontal_Vertical 1
   m_TagString: Ground
@@ -194,11 +195,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: baed351dfa9523240aada1194d3f67bc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  rb: {fileID: 7903724063691956805}
   maxMovement: 3
-  speed: 5
   waitTime: 3
+  speed: 5
   vertical: 0
+  horizontal: 0
 --- !u!54 &7903724063691956805
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -228,3 +229,15 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1.0864273, y: 1.093592, z: 1.0864365}
   m_Center: {x: -0.0008428693, y: 0.0038073063, z: -0.00022923946}
+--- !u!114 &3565146863007374376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7903724063691956806}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 52a02d9542a3aff428ce7fd1f4c7c8c9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -21,7 +21,7 @@ public class Spikes : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         extractedPosY = rb.position.y;
-        retractedPosY = rb.position.y - 0.4f;
+        retractedPosY = rb.position.y - 1.2f;
         extracted = true;
         holdTimer = new CustomTimer(holdTimeSpikes);
         damageTimer = new CustomTimer(timeBetweenDamage);
