@@ -19,6 +19,10 @@ public class Float : MonoBehaviour
     bool startedFloating, stoppedFloating;
     [SerializeField] AudioSource sound;
 
+    //Particles
+    [SerializeField] ParticleSystem floatParticles;
+
+
     private void Start()
     {
         maxFloatTimer = new CustomTimer(maxFloatTime);
@@ -32,6 +36,13 @@ public class Float : MonoBehaviour
         swapClass = player.GetComponent<SwapClass>();
 
         stoppedFloating = true;
+
+        //set particle duration
+        if(floatParticles != null)
+        {
+            var particleMain = floatParticles.main;
+            particleMain.duration = maxFloatTime;
+        }
     }
 
     private void Update()
@@ -105,6 +116,9 @@ public class Float : MonoBehaviour
         //tiny movement in mid air based on sinus waves.
         var pos = player.transform.position;
         player.transform.position = new Vector3(pos.x, pos.y + (Mathf.Sin(Time.fixedTime * floatSpeed) * floatDistance), pos.z);
+
+        //start particleSystem
+        if (floatParticles != null && !floatParticles.isPlaying) floatParticles.Play();
     }
 
     void StopFloat()
@@ -125,5 +139,8 @@ public class Float : MonoBehaviour
         playerMovement.canMove = true;
         playerMovement.canTurn = true;
         rb.useGravity = true;
+
+        //stop particleSystem
+        if (floatParticles != null) floatParticles.Stop();
     }
 }
