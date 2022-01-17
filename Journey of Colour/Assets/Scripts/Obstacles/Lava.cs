@@ -27,7 +27,7 @@ public class Lava : MonoBehaviour
 
         if (lavaTimer.finish && other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Health>().Damage(30);
+            other.gameObject.GetComponent<PlayerHealth>().Damage(30);
             lavaTimer.Reset();
         }
 

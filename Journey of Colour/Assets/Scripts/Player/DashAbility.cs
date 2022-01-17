@@ -16,7 +16,7 @@ public class DashAbility : MonoBehaviour
     Rigidbody rb;
     SwapClass swapClass;
     PlayerAnimations playerAnim;
-    Health playerHealth;
+    PlayerHealth playerHealth;
     PlayerMovement movement;
     Float _float;
 
@@ -25,7 +25,7 @@ public class DashAbility : MonoBehaviour
         player = GameObject.Find("Player");
         rb = player.GetComponent<Rigidbody>();
         _float = GetComponent<Float>();
-        playerHealth = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         movement = player.GetComponent<PlayerMovement>();
         playerAnim = GetComponent<PlayerAnimations>();
         coolDown = coolDownTime;
@@ -51,8 +51,8 @@ public class DashAbility : MonoBehaviour
             rb.velocity = Vector3.zero;
             duration = durationTime;
         }
-        //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
 
+        //Dashes only when the duration is higher than zero, so that you can decide the duration of the dash
         if (!_float.isFloating)
         {
             if (duration > 0)
@@ -67,6 +67,7 @@ public class DashAbility : MonoBehaviour
                 if (duration < -0.4) rb.useGravity = true;
             }
         }
+
     }
 
 

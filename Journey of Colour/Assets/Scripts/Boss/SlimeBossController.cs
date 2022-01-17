@@ -5,11 +5,13 @@ public class PhaseEvent : UnityEvent<int> { }
 
 public class SlimeBossController : MonoBehaviour
 {
-    Health health;
+    BossHealth health;
     BossBounceAttack bounceAttack;
     BossLungeAttack lungeAttack;
     BossProjectileAttack projectileAttack;
     BossBeamAttack beamAttack;
+    [System.NonSerialized] public ParticleSystem stunParticles;
+    [System.NonSerialized] public ParticleSystem chargingParticles;
 
     public static PhaseEvent PhaseChange = new PhaseEvent();
 
@@ -35,7 +37,9 @@ public class SlimeBossController : MonoBehaviour
     void Start()
     {
         startPosition = transform.position;
-        health = GetComponent<Health>();
+        health = GetComponent<BossHealth>();
+        stunParticles = GetComponentsInChildren<ParticleSystem>()[0];
+        chargingParticles = GetComponentsInChildren<ParticleSystem>()[1];
         bounceAttack = GetComponent<BossBounceAttack>();
         lungeAttack = GetComponent<BossLungeAttack>();
         projectileAttack = GetComponent<BossProjectileAttack>();
@@ -74,7 +78,7 @@ public class SlimeBossController : MonoBehaviour
     {
         if (collision.gameObject.CompareTag("Player"))
         {
-            collision.gameObject.GetComponent<Health>().Damage(meleeDamage);
+            collision.gameObject.GetComponent<PlayerHealth>().Damage(meleeDamage);
         }
     }
 
@@ -84,7 +88,14 @@ public class SlimeBossController : MonoBehaviour
         else
         {
             Stun();
-            Invoke("ShootBeam", maxStunTime - BeamProjectile.maxLifeTime);
+
+            var chargingParticlesShape = chargingParticles.shape;
+            chargingParticlesShape.scale = new Vector3(chargingParticles.shape.scale.x, chargingParticles.shape.scale.y, beamAttack.RayDirection.x);
+            chargingParticlesShape.position = new Vector3(chargingParticles.shape.position.x * beamAttack.RayDirection.x, chargingParticles.shape.position.y, chargingParticles.shape.position.z);
+            
+            chargingParticles.Play();
+            Invoke("Stun", maxStunTime);
+            Invoke("ShootBeam", maxStunTime);
         }
     }
 
@@ -96,10 +107,13 @@ public class SlimeBossController : MonoBehaviour
         lungeAttack.enabled = false;
         projectileAttack.enabled = false;
         beamAttack.enabled = false;
+        stunParticles.Clear();
+        stunParticles.Play();
     }
 
     void ShootBeam()
     {
+        beamAttack.enabled = true;
         beamAttack.ShootBeam();
     }
 
@@ -154,7 +168,7 @@ public class SlimeBossController : MonoBehaviour
 
     public void ResetBossFight()
     {
-        health.heal(health.maxHealth);
+        health.Heal(health.maxHealth);
         transform.position = startPosition;
         SwitchPhase(1);
     }

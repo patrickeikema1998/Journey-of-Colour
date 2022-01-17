@@ -10,7 +10,8 @@ public class Spikes : MonoBehaviour
     CustomTimer holdTimer, damageTimer;
     [SerializeField] float holdTimeSpikes, timeBetweenDamage, moveSpeed;
     [SerializeField] int damage;
-
+    [SerializeField] AudioSource soundExtract, soundRetract;
+    bool soundPlaying;
     float retractedPosY, extractedPosY;
     bool extracted;
 
@@ -40,9 +41,9 @@ public class Spikes : MonoBehaviour
     {
         if (other.gameObject.layer == 7)
         {
-            if (other.GetComponent<Health>() != null && damageTimer.finish)
+            if (other.GetComponent<PlayerHealth>() != null && damageTimer.finish)
             {
-                other.GetComponent<Health>().Damage(damage);
+                other.GetComponent<PlayerHealth>().Damage(damage);
                 damageTimer.Reset();
             }
         }
@@ -65,21 +66,35 @@ public class Spikes : MonoBehaviour
         {
             if (extracted)
             {
+                if (!soundPlaying)
+                {
+                    soundRetract.Play();
+                    soundPlaying = true;
+                }
+
                 //if the posY is higher than the 
                 if (rb.position.y > retractedPosY)
                 {
                     rb.velocity = new Vector3(rb.velocity.x, -moveSpeed, rb.velocity.z);
+
                 }
                 else
                 {
                     rb.position = new Vector3(rb.position.x, retractedPosY, rb.position.z);
                     rb.velocity = Vector3.zero;
                     extracted = false;
+                    soundPlaying = false;
                     holdTimer.Reset();
                 }
             } else
             {
-                if(rb.position.y < extractedPosY)
+                if (!soundPlaying)
+                {
+                    soundExtract.Play();
+                    soundPlaying = true;
+                }
+
+                if (rb.position.y < extractedPosY)
                 {
                     rb.velocity = new Vector3(rb.velocity.x, moveSpeed, rb.velocity.z);
                 } else
@@ -87,6 +102,7 @@ public class Spikes : MonoBehaviour
                     rb.position = new Vector3(rb.position.x, extractedPosY, rb.position.z);
                     rb.velocity = Vector3.zero;
                     extracted = true;
+                    soundPlaying = false;
                     holdTimer.Reset();
                 }
             }

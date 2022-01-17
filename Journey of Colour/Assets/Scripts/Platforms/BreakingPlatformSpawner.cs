@@ -6,7 +6,7 @@ public class BreakingPlatformSpawner : MonoBehaviour
 {
     [SerializeField] GameObject breakingPlatform;
     [HideInInspector]public bool go;
-    public CustomTimer respawnTimer;
+    [HideInInspector]public CustomTimer respawnTimer;
     [SerializeField] float secondsToRespawn;
     // Start is called before the first frame update
     void Start()

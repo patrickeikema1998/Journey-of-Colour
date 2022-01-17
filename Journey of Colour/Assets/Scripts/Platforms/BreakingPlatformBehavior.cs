@@ -9,6 +9,9 @@ public class BreakingPlatformBehavior : MonoBehaviour
 
     CustomTimer vibratingTimer, breakingTimer, OnExitingCollisionTimer;
     [SerializeField] float secondsUntilVibrating, secondsUntilBreaking;
+    [SerializeField] AudioSource crackSound, breakSound;
+
+
 
     private void Start()
     {
@@ -27,6 +30,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //when timer is finished, starts to vibrate and starts the breaking timer.
         if (vibratingTimer.finish)
         {
+            if(!crackSound.isPlaying) crackSound.Play();
             Vibrate();
             breakingTimer.start = true;
         }
@@ -36,6 +40,8 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //tells the platform spawner to start spawning and destroys the object.
         if (breakingTimer.finish)
         {
+            breakSound.Play();
+            crackSound.Stop();
             GetComponentInParent<BreakingPlatformSpawner>().respawnTimer.start = true;
             Destroy(gameObject);
         }
@@ -44,8 +50,9 @@ public class BreakingPlatformBehavior : MonoBehaviour
         //when the timer is finished, resets all timers.
         if (OnExitingCollisionTimer.finish)
         {
+            crackSound.Stop(); ;
             vibratingTimer.Reset();
-            vibratingTimer.start = false;
+            vibratingTimer.start = false;   
             breakingTimer.Reset();
             breakingTimer.start = false;
             OnExitingCollisionTimer.Reset();

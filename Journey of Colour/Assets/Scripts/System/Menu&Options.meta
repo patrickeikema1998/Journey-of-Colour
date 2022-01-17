@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD:Journey of Colour/Assets/Scripts/System/Menu&Options.meta
 guid: c77d927ebd5c52342a7d8ae821db8a46
+=======
+guid: 6cd783788f49690478fb76ee37d31da2
+>>>>>>> main:Journey of Colour/Assets/Audio/Enemy.meta
 folderAsset: yes
 DefaultImporter:
   externalObjects: {}

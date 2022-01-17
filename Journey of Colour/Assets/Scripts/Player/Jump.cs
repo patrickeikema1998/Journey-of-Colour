@@ -4,19 +4,23 @@ using UnityEngine;
 
 public class Jump : MonoBehaviour
 {
-    public bool jump;
-    public bool canJump;
+    [HideInInspector] public bool jump, canJump;
     public float jumpForce;
-    Health health;
+    PlayerHealth health;
     SwapClass playerClass;
     Rigidbody rb;
+    [SerializeField] AudioSource sound;
+    Vector2 angelPitch, devilPitch;
 
     // Start is called before the first frame update
     void Start()
     {
         rb = GetComponent<Rigidbody>();
         playerClass = GetComponent<SwapClass>();
-        health = GetComponent<Health>();
+        health = GetComponent<PlayerHealth>();
+
+        angelPitch = new Vector2(1.1f, 1.2f);
+        devilPitch = new Vector2(0.9f, 1f);
     }
 
     // Update is called once per frame
@@ -30,6 +34,9 @@ public class Jump : MonoBehaviour
 
         if (jump && canJump && !health.dead)
         {
+            if (playerClass.IsAngel()) sound.pitch = Random.Range(angelPitch.x, angelPitch.y);
+            else sound.pitch = Random.Range(devilPitch.x, devilPitch.y);
+            sound.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
             GetComponentInChildren<PlayerAnimations>().Jump();

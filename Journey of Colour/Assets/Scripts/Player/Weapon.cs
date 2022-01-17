@@ -11,8 +11,11 @@ public class Weapon : MonoBehaviour
     private FireBall bullet;
     public GameObject fireBall;
     private FireBall bulletScript;
-    Health playerHealth;
+    PlayerHealth playerHealth;
+    [SerializeField] AudioSource fireSound;
 
+
+    [HideInInspector] public float cdTime;
     GameObject player;
     SwapClass swapClass;
     PlayerMovement playerMovement;
@@ -23,8 +26,9 @@ public class Weapon : MonoBehaviour
 
     private void Start()
     {
+        cdTime = shootTime;
         player = transform.parent.gameObject;
-        playerHealth = player.GetComponent<Health>();
+        playerHealth = player.GetComponent<PlayerHealth>();
         swapClass = player.GetComponent<SwapClass>();
         playerMovement = player.GetComponent<PlayerMovement>();
         shootTimer = new CustomTimer(shootTime);
@@ -45,7 +49,7 @@ public class Weapon : MonoBehaviour
         if (Input.GetKeyDown(GameManager.GM.fireBallAbility) && shootTimer.finish && !playerHealth.dead)
         {
             anim.RangeAttack();
-
+            fireSound.Play();
             if (Input.mousePosition.x > player.transform.position.x)
             {
                 Invoke("ShootRight", shootAnimationTime);
