@@ -8,14 +8,20 @@ public class XAndYMovingPlatform : MonoBehaviour
     [SerializeField] float maxMovement, waitTime;
     [SerializeField] [Tooltip("Make speed negative if the platform should start going left or downwards.")] float speed;
     [SerializeField] bool vertical, horizontal;
+    GameObject player;
+    [SerializeField] float activationRange;
 
+    float initialPosY, initialPosX;
     float movedDist;
     float xPos, yPos;
+    bool go;
 
 
     // Start is called before the first frame update
     void Start()
     {
+        player = GameObject.Find("Player");
+
         waitTimer = new CustomTimer(waitTime);
         waitTimer.start = true;
 
@@ -27,8 +33,10 @@ public class XAndYMovingPlatform : MonoBehaviour
     private void Update()
     {
         waitTimer.Update();
+        float distance = Mathf.Abs(player.transform.position.x - transform.position.x);
+        if (distance < activationRange) go = true;
 
-        if (waitTimer.finish && movedDist < maxMovement)
+        if (waitTimer.finish && movedDist < maxMovement && go)
         {
             // this simply keeps track of moved distance
             movedDist += Mathf.Abs(speed) * Time.deltaTime;
@@ -43,6 +51,7 @@ public class XAndYMovingPlatform : MonoBehaviour
             {
                 xPos += speed * Time.deltaTime;
                 transform.position = new Vector3(xPos, transform.position.y, transform.position.z);
+
             }
         }
 
