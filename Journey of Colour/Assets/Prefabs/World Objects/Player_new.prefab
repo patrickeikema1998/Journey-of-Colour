@@ -10972,7 +10972,8 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6504649211612055149, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: c3dcc781e5221dc4497307e63ba10e69, type: 3}
 --- !u!4 &4909877701084508665 stripped
 Transform:
@@ -11055,7 +11056,8 @@ PrefabInstance:
       propertyPath: m_Name
       value: Devil Player
       objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 6523784481571158823, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
 --- !u!4 &2647605834071225690 stripped
 Transform:
