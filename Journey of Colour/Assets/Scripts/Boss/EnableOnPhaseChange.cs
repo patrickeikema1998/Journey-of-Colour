@@ -15,6 +15,7 @@ public class EnableOnPhaseChange : MonoBehaviour
 
     void CheckPhaseChange(int phase)
     {
+        //enables the object if the required phase is activated
         if (phase == this.phase) gameObject.SetActive(true);
         else gameObject.SetActive(false);
     }

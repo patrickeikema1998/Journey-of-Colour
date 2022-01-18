@@ -12724,7 +12724,9 @@ MonoBehaviour:
   highSpeed: 15
   speedTriggerPercentage: 0.125
   moving: 0
+  reset: 0
   speedTrigger: 0
+  xSpeed: 0
 --- !u!114 &320990486
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -67568,7 +67570,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 906656465987848993, guid: 825126d6b932279498b6018d3c777f60, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 232.85
+      value: 233.09
       objectReference: {fileID: 0}
     - target: {fileID: 906656465987848993, guid: 825126d6b932279498b6018d3c777f60, type: 3}
       propertyPath: m_LocalPosition.y
@@ -67614,6 +67616,10 @@ PrefabInstance:
       propertyPath: winScreen
       value: 
       objectReference: {fileID: 1694462576}
+    - target: {fileID: 906656465987848998, guid: 825126d6b932279498b6018d3c777f60, type: 3}
+      propertyPath: m_IsTrigger
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 906656465987848999, guid: 825126d6b932279498b6018d3c777f60, type: 3}
       propertyPath: m_Enabled
       value: 0

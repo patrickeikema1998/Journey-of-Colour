@@ -31,6 +31,7 @@ public class BossBeamAttack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //timers
         if (shooting)
         {
             attackTime += Time.deltaTime;
@@ -44,6 +45,7 @@ public class BossBeamAttack : MonoBehaviour
 
     public Vector3 RayDirection
     {
+        //the direction in which the beam has to shoot
         get { return new Vector3((transform.position.x < 0) ? 1 : -1, 0); }
     }
 
@@ -52,6 +54,8 @@ public class BossBeamAttack : MonoBehaviour
         if (!shooting)
         {
             shooting = true;
+
+            //spawns the beam and scales it to reach the other end of the stage
             RaycastHit hit;
             if (Physics.Raycast(transform.position, RayDirection, out hit, Mathf.Infinity, raycastLayer))
             {
@@ -69,6 +73,7 @@ public class BossBeamAttack : MonoBehaviour
 
     void StunBoss()
     {
+        //stuns the boss
         slimeBoss.Stun();
     }
 }

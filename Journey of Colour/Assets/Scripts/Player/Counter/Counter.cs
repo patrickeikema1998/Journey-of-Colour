@@ -53,7 +53,10 @@ public class Counter : MonoBehaviour
 
     void Redirect(Collider collider)
     {
+        //Gets colliding gameobject
         GameObject gameObject = collider.gameObject;
+
+        //Calculate direction from the player to the gameobject
         Vector3 dir = new Vector3(
             gameObject.transform.position.x - player.transform.position.x,
             0,
@@ -67,6 +70,7 @@ public class Counter : MonoBehaviour
         {
             case "Enemy":
                 { 
+                    //If it is an enemy then push into opposite direction
                     if (gameObject.GetComponent<Rigidbody>() == null)
                     {
                         gameObject.transform.forward = (new Vector3(
@@ -85,6 +89,7 @@ public class Counter : MonoBehaviour
                 } 
                 break;
             case "Bullet":
+                //if bullet than change the rotation and check if this bullet has already been redirected
                 if (gameObject.GetComponent<SpearBehavior>() != null && idList[id] == false && !gameObject.GetComponent<SpearBehavior>().onGround)
                 {
                     gameObject.GetComponent<SpearBehavior>().deflected = true;
@@ -96,6 +101,7 @@ public class Counter : MonoBehaviour
                         );
                     idList[id] = true;
                 }
+                //Push into new direction
                 reflectSound.Play();
                 gameObject.GetComponent<Rigidbody>().AddForce(dir * thrownObjectForce, ForceMode.Impulse);
                 break;
