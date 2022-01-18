@@ -8,10 +8,10 @@ public class AutomaticScrolling : MonoBehaviour
     [SerializeField] public Vector2 yOffset;
     [SerializeField] public float normalSpeed, highSpeed/*, freezeTime*/;
     [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
-    
+
     [HideInInspector] public bool moving, reset;
     [HideInInspector] public bool speedTrigger;
-    
+
 
     Vector3 /*startMovementPos,*/ offset;
     float speed;
@@ -90,7 +90,8 @@ public class AutomaticScrolling : MonoBehaviour
         if (moving)
         {
             //if the camera moves and the right side of the screen has been reached
-            switch (OverSpeederLimit()) {
+            switch (OverSpeederLimit())
+            {
                 case true:
                     //right side of the screen
                     speed = highSpeed;
@@ -98,9 +99,9 @@ public class AutomaticScrolling : MonoBehaviour
                 case false:
                     speed = normalSpeed;
                     break;
-            } 
+            }
         }
-        else 
+        else
         {
             speed = 0;
         }
@@ -108,7 +109,7 @@ public class AutomaticScrolling : MonoBehaviour
         reset = false;
     }
 
-    bool OverSpeederLimit() 
+    bool OverSpeederLimit()
     {
         //If right side of the screen return true
         if (player.transform.position.x >= transform.position.x + speederOffset) { return true; }
@@ -125,12 +126,15 @@ public class AutomaticScrolling : MonoBehaviour
         ActivateObject();
     }
 
-    //enables CameraTrigger the object
+    //enables CameraTrigger, the objects
     void ActivateObject()
     {
-        foreach( GameObject trigger in gameObjects)
+        foreach (GameObject trigger in gameObjects)
         {
-            if (trigger.GetComponent<CameraTrigger>().enabled == false) { trigger.GetComponent<CameraTrigger>().enabled = true;
+            if (trigger.GetComponent<CameraTrigger>().enabled == false)
+            {
+                trigger.GetComponent<CameraTrigger>().enabled = true;
+            }
         }
     }
 }

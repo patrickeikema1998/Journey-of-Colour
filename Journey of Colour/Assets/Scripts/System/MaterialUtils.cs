@@ -2,7 +2,7 @@ using UnityEngine;
 
 public static class MaterialUtils
 {
-    //https://answers.unity.com/questions/999594/change-material-rendering-mode-but-dont-update-mat.html
+    //https://www.youtube.com/watch?v=YCi4BnnQV2s
     public enum BlendMode
     {
         Opaque,
@@ -13,6 +13,7 @@ public static class MaterialUtils
     {
         switch (blendMode)
         {
+            //Sets the blendmode of the renderer to transparent
             case BlendMode.Transparent:
                 material.SetOverrideTag("RenderType", "Transparent");
                 material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.SrcAlpha);
@@ -24,6 +25,7 @@ public static class MaterialUtils
                 material.renderQueue = (int)UnityEngine.Rendering.RenderQueue.Transparent;
                 material.SetFloat("_Mode", 3.0f);
                 break;
+            //Sets the blendmode of the renderer to Opaque
             case BlendMode.Opaque:
                 material.SetOverrideTag("RenderType", "");
                 material.SetInt("_SrcBlend", (int)UnityEngine.Rendering.BlendMode.One);

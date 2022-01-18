@@ -27,6 +27,7 @@ public class CameraDeath : MonoBehaviour
         
     }
 
+    //Gets all playens and checks if all the colliders form the children of the object are visible in said planes
     private bool Visible(GameObject Object)
     {
         Plane[] planes = GeometryUtility.CalculateFrustumPlanes(Camera.main);

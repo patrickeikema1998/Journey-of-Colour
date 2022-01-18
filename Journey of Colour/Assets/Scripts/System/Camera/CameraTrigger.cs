@@ -61,12 +61,14 @@ public class CameraTrigger : MonoBehaviour
                 switch (trigger)
                 {
                     case "Pause":
+                        //starts timer and sets the position of the trigger
                         camera.GetComponent<AutomaticScrolling>().moving = false;
                         Triggered(transform.position, freezeDistance);
                         freezeTimer.Reset();
                         triggered = true;
                         break;
                     case "Lerp":
+                        //sets the targeted position
                         targetPos = new Vector3(
                             camera.transform.position.x + WantedMove.x,
                             camera.transform.position.y + WantedMove.y,

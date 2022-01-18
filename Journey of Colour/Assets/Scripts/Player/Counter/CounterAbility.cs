@@ -35,6 +35,7 @@ public class CounterAbility : MonoBehaviour
 
         if (keyDown) 
         {
+            //If counter is usable and the update has already checked this
             if (cooldownTimer.finish && !once)
             {
                 cooldownTimer.Reset();
@@ -42,6 +43,7 @@ public class CounterAbility : MonoBehaviour
             }
         }
 
+        //Counter is usable
         if (cooldownTimer.start && once)
         {
             Counter();
@@ -53,6 +55,7 @@ public class CounterAbility : MonoBehaviour
 
     void Counter()
     {
+        //Create a temporary CounterArea
         Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + playerHeight/2, transform.position.z), transform.rotation);
     }
 }
