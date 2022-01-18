@@ -9,7 +9,7 @@ public class AutomaticScrolling : MonoBehaviour
     [SerializeField] public float normalSpeed, highSpeed/*, freezeTime*/;
     [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
     
-    [HideInInspector] public bool moving/*, frozen*/;
+    [HideInInspector] public bool moving, reset;
     [HideInInspector] public bool speedTrigger;
     
 
@@ -22,14 +22,18 @@ public class AutomaticScrolling : MonoBehaviour
     Rect screenSize;
     Vector2 screenSizeCalc;
     GameObject player;
+
+    GameObject[] gameObjects;
     //CustomTimer freezeTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        reset = true;
         player = GameObject.Find("Player");
         offset = transform.position - player.transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
+        gameObjects = GameObject.FindGameObjectsWithTag("CamTrigger");
 
         //Calculate the distance to the left and right side of the screen in worldspace
         screenSize = GetComponent<Camera>().pixelRect;
@@ -98,6 +102,8 @@ public class AutomaticScrolling : MonoBehaviour
         {
             speed = 0;
         }
+
+        reset = false;
     }
 
     bool OverSpeederLimit() 
@@ -112,5 +118,16 @@ public class AutomaticScrolling : MonoBehaviour
         //Resets the camera offset to the starting camera offset
         transform.position = player.transform.position + offset;
         moving = true;
+        ActivateObject();
+    }
+
+    //enables CameraTrigger the object
+    void ActivateObject()
+    {
+        foreach( GameObject trigger in gameObjects)
+        {
+            Debug.Log(trigger.name);
+            if (trigger.GetComponent<CameraTrigger>().enabled == false) { trigger.GetComponent<CameraTrigger>().enabled = true; Debug.Log(trigger.GetComponent<CameraTrigger>().enabled); }
+        }
     }
 }

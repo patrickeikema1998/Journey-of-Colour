@@ -21,7 +21,7 @@ public class Lava : MonoBehaviour
     {
         if (other.gameObject.tag == "Player")
         {
-            other.gameObject.GetComponent<Rigidbody>().velocity *= 0.7f;
+            other.gameObject.GetComponent<Rigidbody>().velocity *= 0.4f;
         }
 
         if (lavaTimer.finish && other.gameObject.tag == "Player")

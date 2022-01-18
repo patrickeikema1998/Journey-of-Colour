@@ -20,18 +20,11 @@ public class CameraDeath : MonoBehaviour
     void Update()
     {
         //Checks if the player is visible from the main camera
-        if (!Visible(player)) 
+        if (!Visible(player) && player.GetComponent<PlayerDeath>().waitTimer.finish) 
         {
-            player.GetComponent<PlayerHealth>().health = 0;
+            GetComponent<PlayerHealth>().health = 0;
         }
-
-        if (!player.GetComponent<PlayerMovement>().isGrounded)
-        {
-            if (player.transform.position.y < deathLimitsY.x || player.transform.position.y > deathLimitsY.y)
-            {
-                player.GetComponent<PlayerHealth>().health -= damage;
-            }
-        }
+        
     }
 
     private bool Visible(GameObject Object)
