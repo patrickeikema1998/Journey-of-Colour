@@ -9930,7 +9930,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1550648046}
   - component: {fileID: 1550648045}
-  - component: {fileID: 1550648044}
   m_Layer: 5
   m_Name: Slider
   m_TagString: Untagged
@@ -10011,19 +10010,6 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &1550648044
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1550648043}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: caab89403a7f923418e7095b87eafb1f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  slider: {fileID: 1550648045}
 --- !u!1 &1742953977
 GameObject:
   m_ObjectHideFlags: 0
@@ -10269,8 +10255,7 @@ GameObject:
   - component: {fileID: 6598137198759520925}
   - component: {fileID: 6598137198759520920}
   - component: {fileID: 6598137198759520921}
-  - component: {fileID: 6598137198759520922}
-  - component: {fileID: 9126506332441091796}
+  - component: {fileID: 2093819732}
   m_Layer: 12
   m_Name: Slime-Boss
   m_TagString: Enemy
@@ -10462,7 +10447,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 88
   m_CollisionDetection: 1
---- !u!114 &6598137198759520922
+--- !u!114 &2093819732
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10471,24 +10456,8 @@ MonoBehaviour:
   m_GameObject: {fileID: 6598137198759520914}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8e00225a49143ba4eb2372dfcb19b892, type: 3}
+  m_Script: {fileID: 11500000, guid: ef2ac04e355e14e4b9972153b6df0d21, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxHealth: 100
-  health: 0
-  healthbar: {fileID: 1550648044}
---- !u!114 &9126506332441091796
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 6598137198759520914}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 9576783a3a715f2499c97dba0bb06a30, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  bulletForce: 0
-  enemyForce: 40
-  counterDistance: 3
+  bloodParticles: {fileID: 0}
+  bossHealth: 300
