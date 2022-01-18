@@ -20,6 +20,7 @@ public class PlayerMovement : MonoBehaviour
 
     string lastPressed;
     PlayerHealth playerHealth;
+    [SerializeField] LayerMask layerMask;
 
 
     public void Start()
@@ -41,7 +42,8 @@ public class PlayerMovement : MonoBehaviour
     void FixedUpdate()
     {
         Movement();
-        HandleRotation();  
+        HandleRotation();
+       // StopStickingWall();
     }
 
     private void Movement()
@@ -51,11 +53,19 @@ public class PlayerMovement : MonoBehaviour
         else movementSpeed = movementSpeedDevil;
         xAxis *= movementSpeed * Time.deltaTime;
 
-        if (canMove && !playerHealth.dead)
+        if (canMove && !playerHealth.dead && !((Physics.Raycast(transform.position, xAxis < 0 ?  Vector3.left : Vector3.right, 0.5f, layerMask))))
         {
             rb.velocity = new Vector3(xAxis, rb.velocity.y, rb.velocity.z); 
-            //rb.AddForce(new Vector3(xAxis, 0,0), ForceMode.Acceleration);
             //transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+        }
+    }
+
+    void StopStickingWall()
+    {
+        
+        if(xAxis != 0 && (Physics.Raycast(transform.position, Vector3.right, 0.01f, layerMask) || Physics.Raycast(transform.position, Vector3.left, 0.01f, layerMask)))
+        {
+            rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
         }
     }
 
