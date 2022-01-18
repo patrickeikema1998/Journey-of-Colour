@@ -33,7 +33,7 @@ public class FireBall : MonoBehaviour
     {
         if (collision.tag == "Enemy")
         {
-            collision.GetComponent<EnemyHealth>().Damage(damage);
+            collision.GetComponent<Health>().Damage(damage);
         }
         if(collision.tag != "CamTrigger") Destroy(gameObject);
     }
