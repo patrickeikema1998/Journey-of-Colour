@@ -6,8 +6,8 @@ using UnityEngine;
 public class PlayerMovement : MonoBehaviour
 {
     PlayerAnimations playerAnim;
-    [HideInInspector]public Rigidbody rb;
-    [HideInInspector]public SwapClass playerClass;
+    [HideInInspector] public Rigidbody rb;
+    [HideInInspector] public SwapClass playerClass;
     private Vector3 PlayerMovementInput;
 
     [HideInInspector] public float xAxis;
@@ -21,7 +21,7 @@ public class PlayerMovement : MonoBehaviour
     string lastPressed;
     PlayerHealth playerHealth;
     [SerializeField] LayerMask layerMask;
-    BoxCollider playerCollider;
+    [SerializeField] BoxCollider playerCollider;
 
 
     public void Start()
@@ -32,12 +32,11 @@ public class PlayerMovement : MonoBehaviour
         canTurn = true;
         canMove = true;
         playerClass = GetComponent<SwapClass>();
-        playerCollider = GetComponent<BoxCollider>();
     }
 
     public void Update()
     {
-        xAxis = Input.GetAxis("Horizontal");       
+        xAxis = Input.GetAxis("Horizontal");
     }
 
 
@@ -45,7 +44,7 @@ public class PlayerMovement : MonoBehaviour
     {
         Movement();
         HandleRotation();
-       // StopStickingWall();
+        // StopStickingWall();
     }
 
     private void Movement()
@@ -55,17 +54,17 @@ public class PlayerMovement : MonoBehaviour
         else movementSpeed = movementSpeedDevil;
         xAxis *= movementSpeed * Time.deltaTime;
 
-        if (canMove && !playerHealth.dead && !((Physics.BoxCast(transform.position + playerCollider.size/2, playerCollider.size/2,  xAxis < 0 ?  Vector3.left : Vector3.right,Quaternion.identity, 0.5f, layerMask))))
+        if (canMove && !playerHealth.dead)
         {
-            rb.velocity = new Vector3(xAxis, rb.velocity.y, rb.velocity.z); 
+            rb.velocity = new Vector3(xAxis, rb.velocity.y, rb.velocity.z);
             //transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
         }
     }
 
     void StopStickingWall()
     {
-        
-        if(xAxis != 0 && (Physics.Raycast(transform.position, Vector3.right, 0.01f, layerMask) || Physics.Raycast(transform.position, Vector3.left, 0.01f, layerMask)))
+
+        if (xAxis != 0 && (Physics.Raycast(transform.position, Vector3.right, 0.01f, layerMask) || Physics.Raycast(transform.position, Vector3.left, 0.01f, layerMask)))
         {
             rb.velocity = new Vector3(0, rb.velocity.y, rb.velocity.z);
         }
@@ -82,7 +81,7 @@ public class PlayerMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag =="Ground") isGrounded = true;
+        if (collision.gameObject.tag == "Ground") isGrounded = true;
     }
     private void OnCollisionExit(Collision collision)
     {
