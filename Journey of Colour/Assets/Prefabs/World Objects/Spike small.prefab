@@ -740,7 +740,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 3
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
@@ -1215,7 +1215,7 @@ MonoBehaviour:
   damage: 34
   soundExtract: {fileID: 3416388008012680823}
   soundRetract: {fileID: 5147979729224847210}
-  retractDistance: 0.6
+  retractDistance: 0.7
 --- !u!54 &4672674620997918717
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -1946,7 +1946,7 @@ AudioSource:
   Priority: 128
   DopplerLevel: 1
   MinDistance: 3
-  MaxDistance: 10
+  MaxDistance: 20
   Pan2D: 0
   rolloffMode: 2
   BypassEffects: 0
