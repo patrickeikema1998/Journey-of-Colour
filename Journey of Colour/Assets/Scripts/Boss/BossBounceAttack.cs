@@ -26,15 +26,14 @@ public class BossBounceAttack : MonoBehaviour
 
     protected float jumpCooldownTimer = 0;
 
-    // Start is called before the first frame update
     void Start()
     {
         m_Rigidbody = GetComponent<Rigidbody>();   
     }
 
-    // Update is called once per frame
     void Update()
     {
+        //jumps if on the ground and after timer
         if (onGround)
         {
             jumpCooldownTimer += Time.deltaTime;
@@ -44,6 +43,7 @@ public class BossBounceAttack : MonoBehaviour
 
     protected virtual void Jump()
     {
+        //adds a partially randomized force upward
         float xRandomizer = Random.Range(jumpRandomizerRange.x, jumpRandomizerRange.y);
 
         m_Rigidbody.AddForce(Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * (jumpVector.x + xRandomizer), ForceMode.VelocityChange);
@@ -52,6 +52,7 @@ public class BossBounceAttack : MonoBehaviour
     }
     private void OnCollisionExit(Collision collision)
     {
+        //handles onGround bool
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = false;
@@ -64,15 +65,18 @@ public class BossBounceAttack : MonoBehaviour
         {
             onGround = true;
             jumpCooldownTimer = 0;
+            //handles stun after collision with bouncy platform
             if (hitBouncy)
             {
                 hitBouncy = false;
                 GetComponent<SlimeBossController>().Stun();
             }
         }
+        //switches directions if it hits the sidewall
         if (collision.gameObject.name.StartsWith("SideWall")) facingLeft = !facingLeft;
         else if (bouncyPlatformStuns && collision.gameObject.name.Contains("Bounce"))
         {
+            //adds extra bounce when it hits a bouncy platform
             m_Rigidbody.AddForce((Vector3.up * jumpVector.y + (facingLeft ? Vector3.left : Vector3.right) * jumpVector.x) * bouncyPlatformMultiplier, ForceMode.VelocityChange);
             hitBouncy = true;
         }
@@ -80,6 +84,7 @@ public class BossBounceAttack : MonoBehaviour
 
     private void OnCollisionStay(Collision collision)
     {
+        //handles onGround bool
         if (collision.gameObject.CompareTag("Ground"))
         {
             onGround = true;

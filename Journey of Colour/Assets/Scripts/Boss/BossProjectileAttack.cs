@@ -27,9 +27,9 @@ public class BossProjectileAttack : MonoBehaviour
 
     float shootCooldownTimer = 0;
 
-    // Update is called once per frame
     void Update()
     {
+        //shoots a ring of projectiles after a set amount of time, and a burst after a set amount of rings
         shootCooldownTimer += Time.deltaTime;
         if (shootCooldownTimer >= shootCooldown)
         {
@@ -48,6 +48,7 @@ public class BossProjectileAttack : MonoBehaviour
         }
     }
 
+    //shoots a bunch of projectiles in a row
     void Burst()
     {
         for (int i = 0; i < burstShotAmount; i++)
@@ -57,6 +58,7 @@ public class BossProjectileAttack : MonoBehaviour
         Invoke("Stun", burstTime * burstShotAmount);
     }
 
+    //shoots a ring of projectiles
     void Shoot()
     {
         float degrees = 360 / bulletAmount;
@@ -68,6 +70,7 @@ public class BossProjectileAttack : MonoBehaviour
 
     void Stun()
     {
+        //stuns the boss
         controller.Stun();
     }
 }
