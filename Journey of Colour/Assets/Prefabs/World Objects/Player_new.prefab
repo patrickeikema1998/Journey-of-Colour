@@ -10587,7 +10587,7 @@ Transform:
   m_Father: {fileID: 8949287569552546977}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &3441207736128390613
+--- !u!114 &2366306593432405958
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10596,11 +10596,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 3455949587550924768}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Script: {fileID: 11500000, guid: bd07b87ddab634749a4041f3f401cecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 0}
---- !u!114 &7251148671230378209
+--- !u!114 &7577573365247478400
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -10609,7 +10609,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 5722020611559041859}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Script: {fileID: 11500000, guid: bd07b87ddab634749a4041f3f401cecd, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 0}
@@ -11024,6 +11024,10 @@ PrefabInstance:
       propertyPath: sound
       value: 
       objectReference: {fileID: 449361041}
+    - target: {fileID: 1689170772, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: damage
+      value: 70
+      objectReference: {fileID: 0}
     - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
       propertyPath: fireSound
       value: 

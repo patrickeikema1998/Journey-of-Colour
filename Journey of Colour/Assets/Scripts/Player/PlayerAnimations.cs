@@ -77,7 +77,7 @@ public class PlayerAnimations : MonoBehaviour
 
     public void Attack()
     {
-        myAnimator.SetTrigger("attack");       
+        myAnimator.SetTrigger("attack");
     }
 
     public void Floating(bool floating)
