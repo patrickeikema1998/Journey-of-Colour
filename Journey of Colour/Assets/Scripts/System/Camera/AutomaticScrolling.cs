@@ -130,8 +130,7 @@ public class AutomaticScrolling : MonoBehaviour
     {
         foreach( GameObject trigger in gameObjects)
         {
-            Debug.Log(trigger.name);
-            if (trigger.GetComponent<CameraTrigger>().enabled == false) { trigger.GetComponent<CameraTrigger>().enabled = true; Debug.Log(trigger.GetComponent<CameraTrigger>().enabled); }
+            if (trigger.GetComponent<CameraTrigger>().enabled == false) { trigger.GetComponent<CameraTrigger>().enabled = true;
         }
     }
 }
