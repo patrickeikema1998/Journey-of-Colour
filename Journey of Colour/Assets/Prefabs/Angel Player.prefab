@@ -6134,6 +6134,7 @@ GameObject:
   - component: {fileID: 772729496}
   - component: {fileID: 1023676920}
   - component: {fileID: 6504649211612055149}
+  - component: {fileID: 2991380795996612806}
   m_Layer: 7
   m_Name: Angel Player
   m_TagString: Player
@@ -6309,6 +6310,7 @@ MonoBehaviour:
   canDoubleJump: 0
   doubleJump: 0
   jumpSound: {fileID: 0}
+  landed: 0
 --- !u!114 &772729496
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6323,6 +6325,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   maxFloatTime: 5
   cooldownTime: 5
+  cooldownTimer: {fileID: 0}
   floatSpeed: 2
   floatDistance: 0.01
   isFloating: 0
@@ -6342,6 +6345,19 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   myAnimator: {fileID: 0}
 --- !u!114 &6504649211612055149
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4729706235099059276}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 546ee6ed14757174d9b65521e74c73dc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  myAnimator: {fileID: 0}
+--- !u!114 &2991380795996612806
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}

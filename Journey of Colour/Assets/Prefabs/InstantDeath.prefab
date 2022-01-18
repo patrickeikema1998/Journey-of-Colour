@@ -15,7 +15,7 @@ GameObject:
   - component: {fileID: 5830413698736051515}
   - component: {fileID: 9201591832094762720}
   m_Layer: 0
-  m_Name: Berry
+  m_Name: InstantDeath
   m_TagString: Bullet
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -128,4 +128,4 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 25
   playerOffsetY: 2
-  damage: 15
+  damage: 100

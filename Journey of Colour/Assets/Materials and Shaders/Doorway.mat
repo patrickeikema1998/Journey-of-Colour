@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: DistortedIce
+  m_Name: Doorway
   m_Shader: {fileID: -6465566751694194690, guid: dcd805ab122770843b5ae2bf947e828b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -37,7 +37,7 @@ Material:
         m_Offset: {x: 0, y: 0}
     m_Ints: []
     m_Floats:
-    - Alpha: 1
+    - Alpha: 0.35
     - FresnalPower: 0.434
     - Metallic: 0.068
     - Normals: 0.32
