@@ -14,12 +14,14 @@ public class BeamProjectile : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        //dissapears after set time
         lifeTime += Time.deltaTime;
         if (lifeTime > maxLifeTime) Destroy(gameObject);
     }
 
     private void OnTriggerStay(Collider other)
     {
+        //only damages the player
         PlayerHealth otherHealth = other.GetComponent<PlayerHealth>();
         if (otherHealth != null && other.GetComponent<SlimeBossController>() == null) otherHealth.Damage(damage);
     }

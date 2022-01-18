@@ -22,6 +22,7 @@ public class MeleeAttack : MonoBehaviour
 
     Vector3 BoxCenter
     {
+        //returns the center of the attack box
         get { return transform.position + (transform.forward * attackOffset) + centerOffset; }
     }
 
@@ -33,9 +34,8 @@ public class MeleeAttack : MonoBehaviour
 
         foreach (Collider opponent in overlaps)
         {
-            if (opponent.GetComponent<EnemyHealth>() != null) opponent.GetComponent<EnemyHealth>().Damage(damage);
-            else if (opponent.GetComponent<BossHealth>() != null) opponent.GetComponent<BossHealth>().Damage(damage);
-            else if (opponent.GetComponent<PlayerHealth>() != null) opponent.GetComponent<PlayerHealth>().Damage(damage);
+            //checks wether the opponet has a health component and damages it
+            if (opponent.GetComponent<Health>() != null) opponent.GetComponent<Health>().Damage(damage);
         }
     }
 }

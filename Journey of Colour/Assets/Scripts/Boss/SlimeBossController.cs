@@ -13,6 +13,7 @@ public class SlimeBossController : MonoBehaviour
     [System.NonSerialized] public ParticleSystem stunParticles;
     [System.NonSerialized] public ParticleSystem chargingParticles;
 
+    //controls the phase outside of the slimeboss object
     public static PhaseEvent PhaseChange = new PhaseEvent();
 
     Vector3 startPosition;
@@ -59,6 +60,7 @@ public class SlimeBossController : MonoBehaviour
 
         switch (phase)
         {
+            //checks the health and switches phase
             case 1:
                 if (health.GetHealth <= health.maxHealth / 4 * 3) SwitchPhase(phase + 1);
                 break;
@@ -69,13 +71,14 @@ public class SlimeBossController : MonoBehaviour
                 if (health.GetHealth <= health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
-                if (health.dead) /*death sequenceDestroy(gameObject)*/ gameObject.SetActive(false);
+                if (health.dead) gameObject.SetActive(false);
                 break;
         }
     }
 
     private void OnCollisionEnter(Collision collision)
     {
+        //damages the player on contact
         if (collision.gameObject.CompareTag("Player"))
         {
             collision.gameObject.GetComponent<PlayerHealth>().Damage(meleeDamage);
@@ -88,7 +91,7 @@ public class SlimeBossController : MonoBehaviour
         else
         {
             Stun();
-
+            //changes the direction of the particles
             var chargingParticlesShape = chargingParticles.shape;
             chargingParticlesShape.scale = new Vector3(chargingParticles.shape.scale.x, chargingParticles.shape.scale.y, beamAttack.RayDirection.x);
             chargingParticlesShape.position = new Vector3(chargingParticles.shape.position.x * beamAttack.RayDirection.x, chargingParticles.shape.position.y, chargingParticles.shape.position.z);
@@ -101,6 +104,7 @@ public class SlimeBossController : MonoBehaviour
 
     public void Stun()
     {
+        //dissables all of the attacks
         stunTime = 0;
         stunned = true;
         bounceAttack.enabled = false;
@@ -120,7 +124,7 @@ public class SlimeBossController : MonoBehaviour
     void SwitchPhase(int newPhase)
     {
         gameObject.SetActive(true);
-
+        //enables / disables the attacks depending on the phase it switches to
         switch (newPhase)
         {
             case 1:
