@@ -20,9 +20,9 @@ public class CameraDeath : MonoBehaviour
     void Update()
     {
         //Checks if the player is visible from the main camera
-        if (!Visible(player) && player.GetComponent<PlayerDeath>().waitTimer.finish) 
+        if (!Visible(player)) 
         {
-            GetComponent<PlayerHealth>().health = 0;
+            GameEvents.RespawnPlayer();
         }
         
     }

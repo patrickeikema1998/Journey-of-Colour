@@ -35,7 +35,7 @@ public class PlayerDeath : MonoBehaviour
         waitTimer.Update();
         deathTimer.Update();
 
-        if ((health.dead && !deathTimer.start && !deathStarted)||(transform.position.y < deathHeight))
+        if ((health.dead && !deathTimer.start && !deathStarted))
         {
             //starts death event of player
             GameEvents.PlayerDeath();
