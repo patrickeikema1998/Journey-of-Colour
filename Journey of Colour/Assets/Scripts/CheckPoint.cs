@@ -27,6 +27,7 @@ public class CheckPoint : MonoBehaviour
         rb = player.GetComponent<Rigidbody>();
         beginOffset = Vector3.up;
         originPos = transform.position + beginOffset;
+        respawnPos = originPos;
 
         GameEvents.onRespawnPlayer += ResetPlayerPos;
         camera = GameObject.FindGameObjectWithTag("MainCamera");

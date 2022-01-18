@@ -109,6 +109,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c5df4e4b5ac23d4458885cb9cdb5b1ed, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  trigger: 
-  freezeTime: 0
-  freezeDistance: 0
+  trigger: Pause
+  freezeTime: 5
+  speedChange: 0
+  lerpSpeed: 5
+  lerpDistance: 5
+  freezeDistance: 7.5
+  WantedMove: {x: 0, y: -5, z: -5}

@@ -53,7 +53,9 @@ public class PlayerMovement : MonoBehaviour
 
         if (canMove && !playerHealth.dead)
         {
-            transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
+            rb.velocity = new Vector3(xAxis, rb.velocity.y, rb.velocity.z); 
+            //rb.AddForce(new Vector3(xAxis, 0,0), ForceMode.Acceleration);
+            //transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
         }
     }
 
