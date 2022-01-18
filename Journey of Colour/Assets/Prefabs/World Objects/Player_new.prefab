@@ -10874,11 +10874,14 @@ MonoBehaviour:
   rb: {fileID: 8949287569552546978}
   playerClass: {fileID: 0}
   xAxis: 0
-  movementSpeedAngel: 16
-  movementSpeedDevil: 8
+  movementSpeedAngel: 850
+  movementSpeedDevil: 500
   isGrounded: 0
   canMove: 0
   canTurn: 0
+  layerMask:
+    serializedVersion: 2
+    m_Bits: 2048
 --- !u!114 &1973236706
 MonoBehaviour:
   m_ObjectHideFlags: 0

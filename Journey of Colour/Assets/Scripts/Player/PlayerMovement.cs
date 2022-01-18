@@ -21,6 +21,7 @@ public class PlayerMovement : MonoBehaviour
     string lastPressed;
     PlayerHealth playerHealth;
     [SerializeField] LayerMask layerMask;
+    BoxCollider playerCollider;
 
 
     public void Start()
@@ -31,6 +32,7 @@ public class PlayerMovement : MonoBehaviour
         canTurn = true;
         canMove = true;
         playerClass = GetComponent<SwapClass>();
+        playerCollider = GetComponent<BoxCollider>();
     }
 
     public void Update()
@@ -53,7 +55,7 @@ public class PlayerMovement : MonoBehaviour
         else movementSpeed = movementSpeedDevil;
         xAxis *= movementSpeed * Time.deltaTime;
 
-        if (canMove && !playerHealth.dead && !((Physics.Raycast(transform.position, xAxis < 0 ?  Vector3.left : Vector3.right, 0.5f, layerMask))))
+        if (canMove && !playerHealth.dead && !((Physics.BoxCast(transform.position + playerCollider.size/2, playerCollider.size/2,  xAxis < 0 ?  Vector3.left : Vector3.right,Quaternion.identity, 0.5f, layerMask))))
         {
             rb.velocity = new Vector3(xAxis, rb.velocity.y, rb.velocity.z); 
             //transform.position = new Vector3(transform.position.x + xAxis, transform.position.y, transform.position.z);
