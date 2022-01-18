@@ -19,6 +19,7 @@ public class AutomaticScrolling : MonoBehaviour
     float speederOffset;
     float startYOffset;
 
+    Vector2 startSpeeds;
     Rect screenSize;
     Vector2 screenSizeCalc;
     GameObject player;
@@ -29,6 +30,7 @@ public class AutomaticScrolling : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        startSpeeds = new Vector2(normalSpeed, highSpeed);
         reset = true;
         player = GameObject.Find("Player");
         offset = transform.position - player.transform.position;
@@ -116,6 +118,8 @@ public class AutomaticScrolling : MonoBehaviour
     public void Reset()
     {
         //Resets the camera offset to the starting camera offset
+        normalSpeed = startSpeeds.x;
+        highSpeed = startSpeeds.y;
         transform.position = player.transform.position + offset;
         moving = true;
         ActivateObject();
