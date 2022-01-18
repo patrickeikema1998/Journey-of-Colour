@@ -15,7 +15,7 @@ public class AutomaticScrolling : MonoBehaviour
 
     Vector3 /*startMovementPos,*/ offset;
     float speed;
-    float xSpeed;
+    [HideInInspector] public float xSpeed;
     float speederOffset;
     float startYOffset;
 

@@ -14,6 +14,7 @@ public class Spikes : MonoBehaviour
     bool soundPlaying;
     float retractedPosY, extractedPosY;
     bool extracted;
+    [SerializeField] float retractDistance;
 
 
     // Start is called before the first frame update
@@ -21,7 +22,7 @@ public class Spikes : MonoBehaviour
     {
         rb = GetComponent<Rigidbody>();
         extractedPosY = rb.position.y;
-        retractedPosY = rb.position.y - 1.2f;
+        retractedPosY = rb.position.y - retractDistance;
         extracted = true;
         holdTimer = new CustomTimer(holdTimeSpikes);
         damageTimer = new CustomTimer(timeBetweenDamage);

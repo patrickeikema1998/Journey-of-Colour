@@ -121,13 +121,13 @@ public class CameraTrigger : MonoBehaviour
     void LerpUpdate()
     {
         //Lerps to the newly desired position (targetPos)
-        camera.transform.position = new Vector3(
-            Mathf.Lerp(camera.transform.position.x, targetPos.x, lerpSpeed * Time.deltaTime),
-            Mathf.Lerp(camera.transform.position.y, targetPos.y, lerpSpeed * Time.deltaTime),
-            Mathf.Lerp(camera.transform.position.z, targetPos.z, lerpSpeed * Time.deltaTime));
+        targetPos = new Vector3(
+            targetPos.x + camera.GetComponent<AutomaticScrolling>().xSpeed,
+            targetPos.y,
+            targetPos.z);
 
         //Destroys object when desired distance has been reached
-        if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
+        if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) >= lerpDistance)
         {
             triggered = false;
             Invoke("DestroyObject", 0f);

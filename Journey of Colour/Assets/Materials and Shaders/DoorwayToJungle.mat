@@ -7,7 +7,7 @@ Material:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Doorway
+  m_Name: DoorwayToJungle
   m_Shader: {fileID: -6465566751694194690, guid: dcd805ab122770843b5ae2bf947e828b, type: 3}
   m_ShaderKeywords: 
   m_LightmapFlags: 4
@@ -44,6 +44,6 @@ Material:
     - RefractionAmount: 0.38
     - Smoothness: 0.815
     m_Colors:
-    - FresnalColor: {r: 0, g: 0.0627451, b: 2.9960785, a: 0}
+    - FresnalColor: {r: 0.44630075, g: 2.3678746, b: 0, a: 0}
     - _Color: {r: 0.6117647, g: 1.4980392, b: 1.4588236, a: 1}
   m_BuildTextureStacks: []
