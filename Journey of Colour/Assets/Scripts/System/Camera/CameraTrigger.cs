@@ -72,8 +72,6 @@ public class CameraTrigger : MonoBehaviour
                             camera.transform.position.y + WantedMove.y,
                             camera.transform.position.z + WantedMove.z
                             );
-                        //GetComponent<AutomaticScrolling>().yOffset.x += WantedMove.x;
-                        //GetComponent<AutomaticScrolling>().yOffset.y += WantedMove.y;
                         triggered = true;
                         break;
                     default:
@@ -133,6 +131,7 @@ public class CameraTrigger : MonoBehaviour
             targetPos.y, 
             targetPos.z);
 
+        //Debug.Log(Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos));
         if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
         {
             triggered = false;
