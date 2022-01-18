@@ -12,7 +12,9 @@ public class PlayerDeath : MonoBehaviour
     [SerializeField] AudioSource sound;
     bool deathStarted;
     float deathHeight = -12f;
+    [HideInInspector] public bool dying;
 
+    [HideInInspector] public CustomTimer waitTimer;
 
     // Start is called before the first frame update
     void Start()
@@ -20,6 +22,7 @@ public class PlayerDeath : MonoBehaviour
         playerClass = GetComponent<SwapClass>();
         deathAnimTime = 4;
         deathTimer = new CustomTimer(deathAnimTime);
+        waitTimer = new CustomTimer(deathAnimTime + 3f);
         deathTimer.start = false;
         health = GetComponent<PlayerHealth>();
         angelPitch = new Vector2(1.2f, 1.3f);
@@ -29,9 +32,10 @@ public class PlayerDeath : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        waitTimer.Update();
         deathTimer.Update();
 
-        if (health.dead && !deathTimer.start && !deathStarted)
+        if ((health.dead && !deathTimer.start && !deathStarted)||(transform.position.y < deathHeight))
         {
             //starts death event of player
             GameEvents.PlayerDeath();
@@ -40,6 +44,7 @@ public class PlayerDeath : MonoBehaviour
             if (playerClass.IsAngel()) sound.pitch = Random.Range(angelPitch.x, angelPitch.y);
             else sound.pitch = Random.Range(devilPitch.x, devilPitch.y);
             sound.Play();
+            waitTimer.Reset();
         }
         if (deathTimer.finish)
         {
@@ -50,7 +55,7 @@ public class PlayerDeath : MonoBehaviour
             deathStarted = false;
         }
 
-        if (transform.position.y < deathHeight) GameEvents.RespawnPlayer();
+        if (transform.position.y < deathHeight) { GameEvents.RespawnPlayer(); }
 
     }
 }

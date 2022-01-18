@@ -20,6 +20,7 @@ public class Rotate : MonoBehaviour
         direction.y = 0;
         direction.Normalize();
 
+        //rotates object to face the player
         Quaternion toRotation = Quaternion.LookRotation(direction, Vector3.up);
         transform.rotation = Quaternion.RotateTowards(transform.rotation, toRotation, rotationSpeed * Time.deltaTime);
     }

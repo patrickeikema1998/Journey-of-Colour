@@ -14,6 +14,7 @@ public class FadeTimer : CustomTimer
         this.timeToVisible = timeToVisible;
         this.timeToInvisible = timeToInvisible;
 
+        //Search for all the used materials in the object
         materials = new Material[gameObject.GetComponentInChildren<Renderer>().materials.Length];
         materials = gameObject.GetComponentInChildren<Renderer>().materials;
         foreach (Material mat in materials)
@@ -30,6 +31,7 @@ public class FadeTimer : CustomTimer
         {
             if (alphaValue < 0)
             {
+                //to visible
                 alphaValue += Time.deltaTime * (1 / timeToVisible);
                 ChangeVisibility(alphaValue);
             }
@@ -38,7 +40,8 @@ public class FadeTimer : CustomTimer
         if (finish)
         {
             if (alphaValue > -1)
-            {
+            { 
+                //to invisible
                 alphaValue -= Time.deltaTime * (1 / timeToInvisible);
                 ChangeVisibility(alphaValue);
             }
@@ -58,6 +61,8 @@ public class FadeTimer : CustomTimer
 
     void ChangeVisibility(float alpha)
     {
+        //Sets the alpha visibility of each material
+        //Color.a can be used if the object uses a default shader
         foreach (Material mat in materials)
         {
             mat.SetFloat("_Alpha", alpha);

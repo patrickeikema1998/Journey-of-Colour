@@ -25,8 +25,6 @@ public class CameraTrigger : MonoBehaviour
             case "Pause":
                 PauseStart();
                 break;
-            case "Lerp":
-                break;
             default:
                 break;
         }
@@ -63,12 +61,14 @@ public class CameraTrigger : MonoBehaviour
                 switch (trigger)
                 {
                     case "Pause":
+                        //starts timer and sets the position of the trigger
                         camera.GetComponent<AutomaticScrolling>().moving = false;
                         Triggered(transform.position, freezeDistance);
                         freezeTimer.Reset();
                         triggered = true;
                         break;
                     case "Lerp":
+                        //sets the targeted position
                         targetPos = new Vector3(
                             camera.transform.position.x + WantedMove.x,
                             camera.transform.position.y + WantedMove.y,
@@ -104,7 +104,7 @@ public class CameraTrigger : MonoBehaviour
             camera.GetComponent<AutomaticScrolling>().moving = true;
             freezeTimer.timeRemaining = 0;
             triggered = false;
-            Invoke("DestroyObject", 0f);
+            Invoke("InactivateObject", 0f);
         }
     }
 
@@ -116,7 +116,7 @@ public class CameraTrigger : MonoBehaviour
         camera.GetComponent<AutomaticScrolling>().highSpeed = camera.GetComponent<AutomaticScrolling>().highSpeed + speedChange;
 
         triggered = false;
-        Invoke("DestroyObject", 0f);
+        Invoke("InactivateObject", 0f);
     }
     void LerpUpdate()
     {
@@ -127,10 +127,17 @@ public class CameraTrigger : MonoBehaviour
             Mathf.Lerp(camera.transform.position.z, targetPos.z, lerpSpeed * Time.deltaTime));
 
         //Destroys object when desired distance has been reached
+
+        targetPos = new Vector3(
+            targetPos.x + camera.GetComponent<AutomaticScrolling>().xSpeed,
+            targetPos.y, 
+            targetPos.z);
+
+        //Debug.Log(Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos));
         if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
         {
             triggered = false;
-            Invoke("DestroyObject", 0f);
+            Invoke("InactivateObject", 0f);
         }
     }
 
@@ -144,9 +151,9 @@ public class CameraTrigger : MonoBehaviour
             );
     }
 
-    //Destroys the object
-    void DestroyObject()
+    //Disables the object
+    void InactivateObject()
     {
-        Destroy(this.gameObject);
+        this.enabled = false;
     }
 }

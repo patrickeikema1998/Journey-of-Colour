@@ -8,28 +8,34 @@ public class AutomaticScrolling : MonoBehaviour
     [SerializeField] public Vector2 yOffset;
     [SerializeField] public float normalSpeed, highSpeed/*, freezeTime*/;
     [SerializeField] [Range(0f, 1f)] float speedTriggerPercentage;
-    
-    [HideInInspector] public bool moving/*, frozen*/;
+
+    [HideInInspector] public bool moving, reset;
     [HideInInspector] public bool speedTrigger;
-    
+
 
     Vector3 /*startMovementPos,*/ offset;
     float speed;
-    float xSpeed;
+    [HideInInspector] public float xSpeed;
     float speederOffset;
     float startYOffset;
 
+    Vector2 startSpeeds;
     Rect screenSize;
     Vector2 screenSizeCalc;
     GameObject player;
+
+    GameObject[] gameObjects;
     //CustomTimer freezeTimer;
 
     // Start is called before the first frame update
     void Start()
     {
+        startSpeeds = new Vector2(normalSpeed, highSpeed);
+        reset = true;
         player = GameObject.Find("Player");
         offset = transform.position - player.transform.position;
         startYOffset = transform.position.y - player.transform.position.y;
+        gameObjects = GameObject.FindGameObjectsWithTag("CamTrigger");
 
         //Calculate the distance to the left and right side of the screen in worldspace
         screenSize = GetComponent<Camera>().pixelRect;
@@ -84,7 +90,8 @@ public class AutomaticScrolling : MonoBehaviour
         if (moving)
         {
             //if the camera moves and the right side of the screen has been reached
-            switch (OverSpeederLimit()) {
+            switch (OverSpeederLimit())
+            {
                 case true:
                     //right side of the screen
                     speed = highSpeed;
@@ -92,15 +99,17 @@ public class AutomaticScrolling : MonoBehaviour
                 case false:
                     speed = normalSpeed;
                     break;
-            } 
+            }
         }
-        else 
+        else
         {
             speed = 0;
         }
+
+        reset = false;
     }
 
-    bool OverSpeederLimit() 
+    bool OverSpeederLimit()
     {
         //If right side of the screen return true
         if (player.transform.position.x >= transform.position.x + speederOffset) { return true; }
@@ -110,7 +119,22 @@ public class AutomaticScrolling : MonoBehaviour
     public void Reset()
     {
         //Resets the camera offset to the starting camera offset
+        normalSpeed = startSpeeds.x;
+        highSpeed = startSpeeds.y;
         transform.position = player.transform.position + offset;
         moving = true;
+        ActivateObject();
+    }
+
+    //enables CameraTrigger, the objects
+    void ActivateObject()
+    {
+        foreach (GameObject trigger in gameObjects)
+        {
+            if (trigger.GetComponent<CameraTrigger>().enabled == false)
+            {
+                trigger.GetComponent<CameraTrigger>().enabled = true;
+            }
+        }
     }
 }
