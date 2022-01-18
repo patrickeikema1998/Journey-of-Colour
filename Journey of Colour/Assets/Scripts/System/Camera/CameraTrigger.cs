@@ -25,8 +25,6 @@ public class CameraTrigger : MonoBehaviour
             case "Pause":
                 PauseStart();
                 break;
-            case "Lerp":
-                break;
             default:
                 break;
         }
@@ -69,11 +67,18 @@ public class CameraTrigger : MonoBehaviour
                         triggered = true;
                         break;
                     case "Lerp":
+                        startMovementPos = new Vector3(
+                            camera.transform.position.x,
+                            camera.transform.position.y,
+                            camera.transform.position.z
+                            );
                         targetPos = new Vector3(
                             camera.transform.position.x + WantedMove.x,
                             camera.transform.position.y + WantedMove.y,
                             camera.transform.position.z + WantedMove.z
                             );
+                        //GetComponent<AutomaticScrolling>().yOffset.x += WantedMove.x;
+                        //GetComponent<AutomaticScrolling>().yOffset.y += WantedMove.y;
                         triggered = true;
                         break;
                     default:
@@ -127,6 +132,12 @@ public class CameraTrigger : MonoBehaviour
             Mathf.Lerp(camera.transform.position.z, targetPos.z, lerpSpeed * Time.deltaTime));
 
         //Destroys object when desired distance has been reached
+
+        targetPos = new Vector3(
+            targetPos.x + camera.GetComponent<AutomaticScrolling>().xSpeed,
+            targetPos.y, 
+            targetPos.z);
+
         if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
         {
             triggered = false;
