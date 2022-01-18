@@ -1,5 +1,6 @@
 using UnityEngine;
 using UnityEngine.Events;
+using UnityEngine.SceneManagement;
 
 public class PhaseEvent : UnityEvent<int> { }
 
@@ -175,5 +176,10 @@ public class SlimeBossController : MonoBehaviour
         health.Heal(health.maxHealth);
         transform.position = startPosition;
         SwitchPhase(1);
+    }
+
+    private void OnDestroy()
+    {
+        SceneManager.LoadScene("Startscreen");
     }
 }
