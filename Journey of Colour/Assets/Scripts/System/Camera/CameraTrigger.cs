@@ -128,10 +128,13 @@ public class CameraTrigger : MonoBehaviour
 
         //Destroys object when desired distance has been reached
 
+
         targetPos = new Vector3(
             targetPos.x + camera.GetComponent<AutomaticScrolling>().xSpeed,
             targetPos.y, 
             targetPos.z);
+
+        Debug.Log(Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)));
 
         //Debug.Log(Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos));
         if (Mathf.Abs(Vector3.Distance(camera.transform.position, targetPos)) <= lerpDistance)
