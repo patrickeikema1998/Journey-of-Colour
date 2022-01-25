@@ -4,13 +4,10 @@ using UnityEngine;
 
 public class SpikeStateManager : MonoBehaviour
 {
-    const string _PlayerTag = "Player";
-
     //changable variables
-    [SerializeField] float secondsToSpikes, secondsBetweenDamage;
+    [SerializeField] float secondsToSpikes;
     [SerializeField] float moveDistance;
     [SerializeField] public float moveSpeed;
-    [SerializeField] int damage;
     [SerializeField] AudioSource soundExtract, soundRetract;
 
     [HideInInspector] public CustomTimer holdStateTimer;
@@ -29,7 +26,6 @@ public class SpikeStateManager : MonoBehaviour
         rb = GetComponent<Rigidbody>();
 
         //timers
-        betweenDamageTimer = new CustomTimer(secondsBetweenDamage);
         holdStateTimer = new CustomTimer(secondsToSpikes);
         holdStateTimer.start = true;
 
@@ -49,10 +45,7 @@ public class SpikeStateManager : MonoBehaviour
     private void Update()
     {
         currentState.Update(this);
-        holdStateTimer.Update();
-
-        betweenDamageTimer.Update();
-        betweenDamageTimer.start = true;
+        holdStateTimer.Update(); 
     }
 
     private void OnTriggerEnter(Collider collider)
@@ -63,20 +56,6 @@ public class SpikeStateManager : MonoBehaviour
     private void OnTriggerExit(Collider collider)
     {
         currentState.OnTriggerExit(this, collider);
-    }
-
-    private void OnTriggerStay(Collider other)
-    {
-
-        //Damages the player if colliding with the spikes. Only damages every couple of seconds to prevent instant death.
-        if (other.gameObject.tag == _PlayerTag)
-        {
-            if (other.GetComponent<PlayerHealth>() != null && betweenDamageTimer.finish)
-            {
-                other.GetComponent<PlayerHealth>().Damage(damage);
-                betweenDamageTimer.Reset();
-            }
-        }
     }
 
     //this method switches the current state to a new state and calls the start method of this state.

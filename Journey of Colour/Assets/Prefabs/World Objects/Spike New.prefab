@@ -1164,6 +1164,7 @@ GameObject:
   - component: {fileID: 4672674620997918717}
   - component: {fileID: 4672674620997918716}
   - component: {fileID: 9109890912871386329}
+  - component: {fileID: 8130474251724246978}
   m_Layer: 0
   m_Name: Spikes
   m_TagString: Untagged
@@ -1238,17 +1239,29 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5143c631bb1471408bf292521551dae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  HoldSecondsSpikes: 3
-  timeBetweenDamage: 1
+  secondsToSpikes: 0
+  moveDistance: 0.7
   moveSpeed: 6
-  damage: 34
   soundExtract: {fileID: 3416388008012680823}
   soundRetract: {fileID: 5147979729224847210}
-  moveDistance: 0.7
   holdStateTimer: {fileID: 0}
   retractedPosY: 0
   extractedPosY: 0
   rb: {fileID: 0}
+--- !u!114 &8130474251724246978
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4672674620997918713}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a4cfb91b3a33a3a42a690478dd2b9ba8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  secondsBetweenDamage: 1
+  damage: 30
 --- !u!1 &4672674621233666087
 GameObject:
   m_ObjectHideFlags: 0
