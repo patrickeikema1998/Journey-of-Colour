@@ -40,7 +40,7 @@ public class Spikes : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.layer == 7)
+        if (other.gameObject.tag == "Player")
         {
             if (other.GetComponent<PlayerHealth>() != null && damageTimer.finish)
             {
