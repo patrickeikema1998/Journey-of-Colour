@@ -6,7 +6,7 @@ public class IcePlatformStateManager : MonoBehaviour
 {
     [SerializeField] float secondsUntilVibrating, secondsUntilBreaking, cancelVibratingTime, respawnTime;
     [SerializeField] AudioSource crackSound, breakSound;
-    [SerializeField] public GameObject platform;
+    public GameObject platform;
 
     IcePlatformState currentState;
     public IcePlatformStationaryState stationaryState;

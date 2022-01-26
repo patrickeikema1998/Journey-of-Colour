@@ -377,7 +377,7 @@ GameObject:
   - component: {fileID: 8401886110905815190}
   m_Layer: 0
   m_Name: Breaking platform New
-  m_TagString: Untagged
+  m_TagString: Ground
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -410,9 +410,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 4f66db3dc82135649a529824a5f159b2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  secondsUntilVibrating: 1.5
+  secondsUntilVibrating: 2
   secondsUntilBreaking: 1
-  cancelVibratingTime: 0.5
+  cancelVibratingTime: 1
   respawnTime: 3
   crackSound: {fileID: 2149282428006679616}
   breakSound: {fileID: 1957043810353464847}

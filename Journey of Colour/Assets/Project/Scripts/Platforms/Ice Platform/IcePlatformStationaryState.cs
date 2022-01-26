@@ -39,7 +39,7 @@ public class IcePlatformStationaryState : IcePlatformState
     public override void OnCollisionEnter(IcePlatformStateManager stateManager, Collision collision)
     {
         //when colliding with player it starts the vibration counter
-        if(collision.gameObject.tag == "Player")
+        if(collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             switchToVibratingTimer.start = true;
             cancelVibratingTimer.Reset();
@@ -48,7 +48,7 @@ public class IcePlatformStationaryState : IcePlatformState
     }
     public override void OnCollisionExit(IcePlatformStateManager stateManager, Collision collision)
     {
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             cancelVibratingTimer.start = true;
         }

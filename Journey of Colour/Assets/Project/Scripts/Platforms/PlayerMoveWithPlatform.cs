@@ -9,7 +9,7 @@ public class PlayerMoveWithPlatform : MonoBehaviour
     private void OnCollisionEnter(Collision collision)
     {
         //if colliding with player, make player move with platform
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             collision.transform.parent = transform;
         }
@@ -18,7 +18,7 @@ public class PlayerMoveWithPlatform : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         //on exiting collision, stop moving with platfo
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             collision.transform.parent = null;
         }
