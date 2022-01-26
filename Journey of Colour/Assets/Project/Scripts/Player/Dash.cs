@@ -4,9 +4,10 @@ using UnityEngine;
 
 public class Dash : MonoBehaviour
 {
-    CustomTimer cooldownTimer, trailTimer;
-    [SerializeField] float cooldownInSeconds, trailTime, InitialDashRange, lerpSpeed;
-    float wantedPosX, stopDashRange, dashRangeLeft, dashRangeRight;
+    CustomTimer cooldownTimer;
+    [SerializeField] float cooldownInSeconds, InitialDashRange, lerpSpeed;
+    float wantedPosX;
+    float stopLerpingRange = .5f;
     bool dash;
     Rigidbody rb;
     PlayerMovement movement;
@@ -16,13 +17,15 @@ public class Dash : MonoBehaviour
     TrailRenderer trail;
     [SerializeField] AudioSource sound;
 
+    Vector3 rightRotation = new Vector3(0f, 90f, 0f);
+    Vector3 leftRotation = new Vector3(0f, 270f, 0f);
+
+
     // Start is called before the first frame update
     void Start()
     {
         cooldownTimer = new CustomTimer(cooldownInSeconds);
         cooldownTimer.finish = true;
-        trailTimer = new CustomTimer(trailTime);
-
 
         player = transform.parent.gameObject;
         trail = GetComponent<TrailRenderer>();
@@ -32,25 +35,22 @@ public class Dash : MonoBehaviour
         floatAbility = GetComponent<Float>();
         trail.enabled = false;
 
-        stopDashRange = 1f;
-        dashRangeLeft = -InitialDashRange;
-        dashRangeRight = InitialDashRange;
+        stopLerpingRange = .5f;
     }
 
     // Update is called once per frame
     void Update()
     {
         cooldownTimer.Update();
-        trailTimer.Update();
+        if(dash) DoDash();
 
-        if(Input.GetKeyDown(GameManager.GM.dashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
+        if (Input.GetKeyDown(GameManager.GM.dashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
         {
             //animation and sound
             sound.Play();
             anim.DashAnimation();
 
-            //start timers
-            trailTimer.start = true;
+            //start trail
             trail.enabled = true;
 
             //constrains
@@ -58,45 +58,33 @@ public class Dash : MonoBehaviour
             movement.canTurn = false;
             rb.useGravity = false;
 
-            //changes direction based on rotation
-            if (transform.parent.rotation.eulerAngles.y == 270) wantedPosX = transform.parent.position.x + dashRangeLeft;
-            else wantedPosX = transform.parent.position.x + dashRangeRight;
+            //changes direction based on rotation of the player
+            if (transform.parent.rotation.eulerAngles == rightRotation) wantedPosX = transform.parent.position.x + InitialDashRange;
+            else if(transform.parent.rotation.eulerAngles == leftRotation) wantedPosX = transform.parent.position.x - InitialDashRange;
 
             //starts the dash and resets the timer.
             dash = true;
             cooldownTimer.Reset();
         }
-
-        DoDash();
-
-
-        if (trailTimer.finish)
-        {
-            trailTimer.Reset();
-            trailTimer.start = false;
-            trail.enabled = false;
-        }
     }
-
 
     void DoDash()
     {
-        if (dash)
+        
+        rb.velocity = Vector3.zero;
+
+        //the actual movement of the dash.
+        Vector3 pos = transform.parent.position;
+        transform.parent.position = new Vector3(Mathf.Lerp(pos.x, wantedPosX, lerpSpeed * Time.deltaTime), pos.y, pos.z);
+
+        //checks if dash is almost there, then stops it.
+        if (Mathf.Abs(pos.x - wantedPosX) < stopLerpingRange)
         {
-            rb.velocity = Vector3.zero;
-
-            //the actual dash.
-            Vector3 pos = transform.parent.position;
-            transform.parent.position = new Vector3(Mathf.Lerp(pos.x, wantedPosX, lerpSpeed * Time.deltaTime), pos.y, pos.z);
-
-            //checks if dash is almost there, then stops it.
-            if (Mathf.Abs(pos.x - wantedPosX) < stopDashRange)
-            {
-                dash = false;
-                movement.canTurn = true;
-                movement.canMove = true;
-                rb.useGravity = true;
-            }
-        }
+            dash = false;
+            movement.canTurn = true;
+            movement.canMove = true;
+            rb.useGravity = true;
+            trail.enabled = false;
+        }    
     }
 }
