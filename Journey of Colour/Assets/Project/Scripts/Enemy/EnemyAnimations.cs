@@ -5,16 +5,21 @@ using UnityEngine;
 public class EnemyAnimations : MonoBehaviour
 {
     [SerializeField]float movementAnimationBlendSpeed = 2f;
+    [HideInInspector] public float deathTime = 2;
+    [SerializeField] bool isMovingEnemy;
+    public float attackAnimTime;
     Animator myAnimator;
     CharacterController controller;
-    [HideInInspector] public float plantAttackAnimTime, spearAttackAnimTime, deathTime = 2;
-    [SerializeField] bool isMovingEnemy;
+
+    float minimumMoveVelocity = .5f;
+    float minimumAnimSpeed = 0.1f;
+
+    const string animSpeedFloat = "speed";
+    const string animIsDeadBool = "isDead";
 
 
     private void Start()
     {
-        spearAttackAnimTime = .5f;
-        plantAttackAnimTime = .35f;
         controller = GetComponent<CharacterController>();
         myAnimator = GetComponent<Animator>();
     }
@@ -27,7 +32,7 @@ public class EnemyAnimations : MonoBehaviour
     void MovementAndIdle()
     {
         float desiredAnimSpeed;
-        if ((controller.velocity.x > .5f || controller.velocity.x < -.5))
+        if ((controller.velocity.x > minimumMoveVelocity || controller.velocity.x < -minimumMoveVelocity))
         {
             desiredAnimSpeed = 1;
         }
@@ -35,29 +40,29 @@ public class EnemyAnimations : MonoBehaviour
         {
             desiredAnimSpeed = 0;
         }
-        if (desiredAnimSpeed == 0 && myAnimator.GetFloat("speed") < 0.1)
+        if (desiredAnimSpeed == 0 && myAnimator.GetFloat(animSpeedFloat) < minimumAnimSpeed)
         {
-            myAnimator.SetFloat("speed", 0);
+            myAnimator.SetFloat(animSpeedFloat, 0);
         }
         else
         {
-            myAnimator.SetFloat("speed", Mathf.Lerp(myAnimator.GetFloat("speed"), desiredAnimSpeed, movementAnimationBlendSpeed * Time.deltaTime));
+            myAnimator.SetFloat(animSpeedFloat, Mathf.Lerp(myAnimator.GetFloat(animSpeedFloat), desiredAnimSpeed, movementAnimationBlendSpeed * Time.deltaTime));
 
         }
     }
     public void Attack()
     {
-        myAnimator.SetTrigger("attack");
+        myAnimator.SetTrigger(animSpeedFloat);
     }
 
     public void GetHit()
     {
-        myAnimator.SetTrigger("getHit");
+        myAnimator.SetTrigger(animSpeedFloat);
     }
 
     public void Death()
     {
-        if(!myAnimator.GetBool("isDead"))
-        myAnimator.SetBool("isDead", true);
+        if(!myAnimator.GetBool(animIsDeadBool))
+        myAnimator.SetBool(animIsDeadBool, true);
     }
 }

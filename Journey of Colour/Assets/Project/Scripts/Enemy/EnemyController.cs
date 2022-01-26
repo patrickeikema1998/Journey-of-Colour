@@ -71,7 +71,7 @@ public class EnemyController : MonoBehaviour
 
         anim.Attack();
         timeLeft = attackCooldown;
-        Invoke("DoAttack", anim.plantAttackAnimTime);
+        Invoke("DoAttack", anim.attackAnimTime);
     }
     void DoAttack()
     {

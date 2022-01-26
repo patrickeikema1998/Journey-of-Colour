@@ -59,7 +59,7 @@ public class EnemyShoot : MonoBehaviour
         sound.Play();
         anim.Attack();
         coolDown = fireRate;
-        Invoke("InstantiateBullet", anim.spearAttackAnimTime);
+        Invoke("InstantiateBullet", anim.attackAnimTime);
     }
 
     void InstantiateBullet()

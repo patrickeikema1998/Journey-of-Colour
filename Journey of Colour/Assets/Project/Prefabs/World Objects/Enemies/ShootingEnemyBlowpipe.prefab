@@ -2459,6 +2459,7 @@ MonoBehaviour:
   plantAttackAnimTime: 0
   spearAttackAnimTime: 0
   deathTime: 2
+  attackAnimTime: 0.5
   isMovingEnemy: 0
 --- !u!114 &3504474486368434103
 MonoBehaviour:

@@ -37,15 +37,9 @@ public class IcePlatfromBreakAndRespawnState : IcePlatformState
 
     void SetActivePlatform(bool setActive, IcePlatformStateManager stateManager)
     {
-        //disables or enables the collider and renderers.
-        if (setActive)
-        {
-            stateManager.platform.SetActive(true);
-            stateManager.GetComponent<BoxCollider>().enabled = true;
-        } else
-        {
-            stateManager.platform.SetActive(false);
-            stateManager.GetComponent<BoxCollider>().enabled = false;
-        }
+        //disables or enables the collider and renderers.  
+        stateManager.platform.SetActive(setActive);
+        stateManager.GetComponent<BoxCollider>().enabled = setActive;
+       
     }
 }
