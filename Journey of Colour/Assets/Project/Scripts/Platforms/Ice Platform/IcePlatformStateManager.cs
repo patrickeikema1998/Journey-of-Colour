@@ -39,9 +39,9 @@ public class IcePlatformStateManager : MonoBehaviour
         currentState.OnCollisionExit(this, collision);
     }
 
-    //this method switches the current state to a new state and calls the start method of this state.
     public void SwitchState(IcePlatformState state)
     {
+        //this method switches the current state to a new state and calls the start method of this state.
         currentState = state;
         state.Start(this);
     }

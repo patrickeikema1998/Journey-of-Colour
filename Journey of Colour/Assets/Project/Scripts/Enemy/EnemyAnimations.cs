@@ -16,6 +16,9 @@ public class EnemyAnimations : MonoBehaviour
 
     const string animSpeedFloat = "speed";
     const string animIsDeadBool = "isDead";
+    const string animAttackTrigger = "attack";
+    const string animgetHitTrigger = "isDead";
+
 
 
     private void Start()
@@ -52,12 +55,12 @@ public class EnemyAnimations : MonoBehaviour
     }
     public void Attack()
     {
-        myAnimator.SetTrigger(animSpeedFloat);
+        myAnimator.SetTrigger(animAttackTrigger);
     }
 
     public void GetHit()
     {
-        myAnimator.SetTrigger(animSpeedFloat);
+        myAnimator.SetTrigger(animgetHitTrigger);
     }
 
     public void Death()

@@ -11,7 +11,6 @@ public class PlayerDeath : MonoBehaviour
     Vector2 angelPitch, devilPitch;
     [SerializeField] AudioSource sound;
     bool deathStarted;
-    float deathHeight = -12f;
     [HideInInspector] public bool dying;
 
     [HideInInspector] public CustomTimer waitTimer;
@@ -54,8 +53,5 @@ public class PlayerDeath : MonoBehaviour
             GameEvents.RespawnPlayer();
             deathStarted = false;
         }
-
-        if (transform.position.y < deathHeight) { GameEvents.RespawnPlayer(); }
-
     }
 }
