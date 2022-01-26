@@ -22,18 +22,27 @@ public class ControlsMenu : MonoBehaviour
         //om te zetten in text.
         for (int i = 0; i < controlPanel.childCount; i++)
         {
-            if (controlPanel.GetChild(i).name == "SwitchPlayerKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.switchPlayer.ToString();
-            else if (controlPanel.GetChild(i).name == "DashKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.dashAbility.ToString();
-            else if (controlPanel.GetChild(i).name == "FloatKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.floatAbility.ToString();
-            else if (controlPanel.GetChild(i).name == "FireBallKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.fireBallAbility.ToString();
-            else if (controlPanel.GetChild(i).name == "MeleeKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.meleeAbility.ToString();
-            else if (controlPanel.GetChild(i).name == "CounterKey")
-                controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.counterAbility.ToString();
+            switch (controlPanel.GetChild(i).name)
+            {
+                case "SwitchPlayerKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.SwitchPlayer.ToString();
+                    break;
+                case "DashKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.DashAbility.ToString();
+                    break;
+                case "FloatKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.FloatAbility.ToString();
+                    break;
+                case "FireBallKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.FireBallAbility.ToString();
+                    break;
+                case "MeleeKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.MeleeAbility.ToString();
+                    break;
+                case "CounterKey":
+                    controlPanel.GetChild(i).GetComponentInChildren<Text>().text = GameManager.GM.CounterAbility.ToString();
+                    break;
+            }
         }
     }
 
@@ -82,34 +91,34 @@ public class ControlsMenu : MonoBehaviour
         switch (keyName)
         {
             case "switchPlayer":
-                GameManager.GM.switchPlayer = newKey;
-                buttonText.text = GameManager.GM.switchPlayer.ToString();
-                PlayerPrefs.SetString("switchPlayerKey", GameManager.GM.switchPlayer.ToString());
+                GameManager.GM.SwitchPlayer = newKey;
+                buttonText.text = GameManager.GM.SwitchPlayer.ToString();
+                PlayerPrefs.SetString("switchPlayerKey", GameManager.GM.SwitchPlayer.ToString());
                 break;
             case "dashAbility":
-                GameManager.GM.dashAbility = newKey;
-                buttonText.text = GameManager.GM.dashAbility.ToString();
-                PlayerPrefs.SetString("dashAbilityKey", GameManager.GM.dashAbility.ToString());
+                GameManager.GM.DashAbility = newKey;
+                buttonText.text = GameManager.GM.DashAbility.ToString();
+                PlayerPrefs.SetString("dashAbilityKey", GameManager.GM.DashAbility.ToString());
                 break;
             case "floatAbility":
-                GameManager.GM.floatAbility = newKey;
-                buttonText.text = GameManager.GM.floatAbility.ToString();
-                PlayerPrefs.SetString("floatAbilityKey", GameManager.GM.floatAbility.ToString());
+                GameManager.GM.FloatAbility = newKey;
+                buttonText.text = GameManager.GM.FloatAbility.ToString();
+                PlayerPrefs.SetString("floatAbilityKey", GameManager.GM.FloatAbility.ToString());
                 break;
             case "fireBallAbility":
-                GameManager.GM.fireBallAbility = newKey;
-                buttonText.text = GameManager.GM.fireBallAbility.ToString();
-                PlayerPrefs.SetString("fireBallAbilityKey", GameManager.GM.fireBallAbility.ToString());
+                GameManager.GM.FireBallAbility = newKey;
+                buttonText.text = GameManager.GM.FireBallAbility.ToString();
+                PlayerPrefs.SetString("fireBallAbilityKey", GameManager.GM.FireBallAbility.ToString());
                 break;
             case "meleeAbility":
-                GameManager.GM.meleeAbility = newKey;
-                buttonText.text = GameManager.GM.meleeAbility.ToString();
-                PlayerPrefs.SetString("meleeAbilityKey", GameManager.GM.meleeAbility.ToString());
+                GameManager.GM.MeleeAbility = newKey;
+                buttonText.text = GameManager.GM.MeleeAbility.ToString();
+                PlayerPrefs.SetString("meleeAbilityKey", GameManager.GM.MeleeAbility.ToString());
                 break;
             case "counterAbility":
-                GameManager.GM.counterAbility = newKey;
-                buttonText.text = GameManager.GM.counterAbility.ToString();
-                PlayerPrefs.SetString("counterAbilityKey", GameManager.GM.counterAbility.ToString());
+                GameManager.GM.CounterAbility = newKey;
+                buttonText.text = GameManager.GM.CounterAbility.ToString();
+                PlayerPrefs.SetString("counterAbilityKey", GameManager.GM.CounterAbility.ToString());
                 break;
         }
 

@@ -42,7 +42,7 @@ public class FireBallAbility : MonoBehaviour
     {
         shootCooldownTimer.Update();
 
-        if (Input.GetKeyDown(GameManager.GM.fireBallAbility) && shootCooldownTimer.finish && !playerHealth.dead)
+        if (Input.GetKeyDown(GameManager.GM.FireBallAbility) && shootCooldownTimer.finish && !playerHealth.dead)
         {
             anim.RangeAttack();
             fireSound.Play();

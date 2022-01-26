@@ -64,13 +64,13 @@ public class Float : MonoBehaviour
 
         if (!playerMovement.isGrounded)
         {
-            if (Input.GetKeyDown(GameManager.GM.floatAbility) && cooldownTimer.finish)
+            if (Input.GetKeyDown(GameManager.GM.FloatAbility) && cooldownTimer.finish)
             {
                 isFloating = true;
                 stoppedFloating = false;
                 startedFloating = false;
             }
-            if (Input.GetKeyUp(GameManager.GM.floatAbility))
+            if (Input.GetKeyUp(GameManager.GM.FloatAbility))
             {
                 isFloating = false;
             }

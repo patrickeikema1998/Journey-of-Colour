@@ -35,7 +35,7 @@ public class PlayerMeleeAttack : MeleeAttack
 
     public override void Attack()
     {
-        if (Input.GetKeyDown(GameManager.GM.meleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
+        if (Input.GetKeyDown(GameManager.GM.MeleeAbility) && meleeAttackCooldownTimer.finish && !health.dead)
         {
             base.Attack();
 

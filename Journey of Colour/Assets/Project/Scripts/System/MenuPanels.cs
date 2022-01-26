@@ -40,6 +40,5 @@ public class MenuPanels : MonoBehaviour
                 automaticScrolling.moving = true;
             }
         }
-
     }
 }

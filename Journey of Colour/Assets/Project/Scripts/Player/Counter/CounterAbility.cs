@@ -27,7 +27,7 @@ public class CounterAbility : MonoBehaviour
 
     public void Update()
     {
-        if (Input.GetKeyDown(GameManager.GM.counterAbility))
+        if (Input.GetKeyDown(GameManager.GM.CounterAbility))
         {
             keyDown = true;
         }

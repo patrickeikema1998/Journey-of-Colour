@@ -6,35 +6,44 @@ public class GameManager : MonoBehaviour
 {
     public static GameManager GM;
 
-    public KeyCode switchPlayer { get; set; }
-    public KeyCode dashAbility { get; set; }
-    public KeyCode floatAbility { get; set; }
-    public KeyCode fireBallAbility { get; set; }
-    public KeyCode meleeAbility { get; set; }
-    public KeyCode counterAbility { get; set; }
+    public KeyCode SwitchPlayer { get; set; }
+    public KeyCode DashAbility { get; set; }
+    public KeyCode FloatAbility { get; set; }
+    public KeyCode FireBallAbility { get; set; }
+    public KeyCode MeleeAbility { get; set; }
+    public KeyCode CounterAbility { get; set; }
+
+    const string switchPlayerDefaultKey = "switchPlayerKey";
+    const string dashAbilityDefaultKey = "dashAbilityKey";
+    const string floatAbilityDefaultKey = "floatAbilityKey";
+    const string fireBallAbilityKey = "fireBallAbilityKey";
+    const string meleeAbilityKey = "meleeAbilityKey";
+    const string CounterAbilityKey = "CounterAbilityKey";
 
     //Maakt een singleton van deze class
     private void Awake()
     {
-        if(GM == null)
+        if (GM == null)
         {
             DontDestroyOnLoad(gameObject);
             GM = this;
-        } else if(GM != this)
+        }
+        else if (GM != this)
         {
             Destroy(gameObject);
         }
 
-        // De System.Enum.Parse zorgt ervoor dat we de KeyCode kunnen zetten naar een bepaalde waarde.
-        // In dit geval is de standaardwaarde van de KeyCode 'switchPlayer': W. Dit staat in de PlayerPrefs.
         // We gebruiken PlayerPrefs zodat het wordt opgeslagen op het systeem waar dit spel wordt opgestart.
-        switchPlayer = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("switchPlayerKey", "W"));
-        dashAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("dashAbilityKey", "E"));
-        floatAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("floatAbilityKey", "X"));
-        fireBallAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("fireBallAbilityKey", "E"));
-        meleeAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("meleeAbilityKey", "Q"));
-        counterAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString("CounterAbilityKey", "C"));
 
+        // De string van de genoemde PlayerPrefs.GetString wordt omgezet in een enum waarde. Deze wordt weer omgezet naar een KeyCode.
+        // Als de waarde uit de string in de lijst van de KeyCodes staat, wordt deze eruit gepakt.
+
+        SwitchPlayer = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(switchPlayerDefaultKey, "W"));
+        DashAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(dashAbilityDefaultKey, "E"));
+        FloatAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(floatAbilityDefaultKey, "X"));
+        FireBallAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(fireBallAbilityKey, "E"));
+        MeleeAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(meleeAbilityKey, "Q"));
+        CounterAbility = (KeyCode)System.Enum.Parse(typeof(KeyCode), PlayerPrefs.GetString(CounterAbilityKey, "C"));
     }
     // Ik heb deze code geschreven aan de hand van dit filmpje:
     // https://www.youtube.com/watch?v=iSxifRKQKAA

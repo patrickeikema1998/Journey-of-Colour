@@ -13,10 +13,4 @@ public class BossHealth : Health
         health = bossHealth;
         slider = GetComponentInChildren<Slider>();
     }
-
-    // Update is called once per frame
-    void Update()
-    {
-        DeadCheck();
-    }
 }

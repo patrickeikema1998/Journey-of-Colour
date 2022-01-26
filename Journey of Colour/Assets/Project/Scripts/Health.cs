@@ -25,25 +25,30 @@ public class Health : MonoBehaviour
         get { return health; }
     }
 
+    // Deal damage.
     public virtual void Damage(int damageAmount)
     {
         health -= damageAmount;
         SetHealthBar(health);
 
+        // If there are no blood particles, Play it.
         if (bloodParticles != null) bloodParticles.Play();
     }
 
+    // Set the healthbar for the Player or Enemy.
     internal void SetHealthBar(int health)
     {
         slider.value = (float)health/maxHealth;
     }
 
-    internal void DeadCheck()
+    // Check if the Player or Enemy is dead.
+    void DeadCheck()
     {
         if (health <= 0) dead = true;
         else dead = false;
     }
 
+    // Heal the Player or Enemy.
     public void Heal(int healAmount)
     {
         health += healAmount;

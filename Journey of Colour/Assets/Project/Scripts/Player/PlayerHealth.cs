@@ -11,10 +11,13 @@ public class PlayerHealth : Health
 
     private void Start()
     {
+        // Get the sliderin Health Panel.
         slider = GameObject.Find("Health Panel").GetComponentInChildren<Slider>();
         GameEvents.onRespawnPlayer += HealthReset;
         HealthReset();
         playerClass = GetComponent<SwapClass>();
+
+        // Get different pitches for damaging the angel or devil.
         angelPitch = new Vector2(1.2f, 1.3f);
         devilPitch = new Vector2(1f, 1f);
     }
@@ -33,6 +36,7 @@ public class PlayerHealth : Health
     void HealthReset()
     {
         health = maxHealth;
+        // Set the slider value to the healthbar.
         SetHealthBar(health);
     }
 }

@@ -128,19 +128,19 @@ public class Cooldown : MonoBehaviour
         {
             case "Melee":
                 cooldownTime = cooldowns[0];
-                key = GameManager.GM.meleeAbility;
+                key = GameManager.GM.MeleeAbility;
                 break;
             case "Counter":
                 cooldownTime = cooldowns[1];
-                key = GameManager.GM.counterAbility;
+                key = GameManager.GM.CounterAbility;
                 break;
             case "Fireball":
                 cooldownTime = cooldowns[2];
-                key = GameManager.GM.fireBallAbility;
+                key = GameManager.GM.FireBallAbility;
                 break;
             case "Dash":
                 cooldownTime = cooldowns[3];
-                key = GameManager.GM.dashAbility;
+                key = GameManager.GM.DashAbility;
                 break;
             case "DoubleJump":
                 cooldownTime = cooldowns[4];
@@ -148,7 +148,7 @@ public class Cooldown : MonoBehaviour
                 break;
             case "Float":
                 cooldownTime = cooldowns[5];
-                key = GameManager.GM.floatAbility;
+                key = GameManager.GM.FloatAbility;
                 break;
         }
         abilityText.text = key.ToString();
@@ -185,7 +185,7 @@ public class Cooldown : MonoBehaviour
                     case "Dash":
                         disable = false;
                         cooldownImage.fillAmount = 0f;
-                        key = GameManager.GM.dashAbility;
+                        key = GameManager.GM.DashAbility;
                         abilityText.text = key.ToString();
                         break;
                     case "DoubleJump":
@@ -196,7 +196,7 @@ public class Cooldown : MonoBehaviour
                     case "Float":
                         disable = false;
                         cooldownImage.fillAmount = 0f;
-                        key = GameManager.GM.floatAbility;
+                        key = GameManager.GM.FloatAbility;
                         abilityText.text = key.ToString();
                         break;
                 }
@@ -207,19 +207,19 @@ public class Cooldown : MonoBehaviour
                     case "Melee":
                         disable = false;
                         cooldownImage.fillAmount = 0f;
-                        key = GameManager.GM.meleeAbility;
+                        key = GameManager.GM.MeleeAbility;
                         abilityText.text = key.ToString();
                         break;
                     case "Counter":
                         disable = false;
                         cooldownImage.fillAmount = 0f;
-                        key = GameManager.GM.counterAbility;
+                        key = GameManager.GM.CounterAbility;
                         abilityText.text = key.ToString();
                         break;
                     case "Fireball":
                         disable = false;
                         cooldownImage.fillAmount = 0f;
-                        key = GameManager.GM.fireBallAbility;
+                        key = GameManager.GM.FireBallAbility;
                         abilityText.text = key.ToString();
                         break;
                     case "Dash":

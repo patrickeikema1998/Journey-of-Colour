@@ -43,7 +43,7 @@ public class Dash : MonoBehaviour
         cooldownTimer.Update();
         trailTimer.Update();
 
-        if(Input.GetKeyDown(GameManager.GM.dashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
+        if(Input.GetKeyDown(GameManager.GM.DashAbility) && cooldownTimer.finish && !floatAbility.isFloating)
         {
             //animation and sound
             sound.Play();
