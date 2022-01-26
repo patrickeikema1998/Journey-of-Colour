@@ -1,6 +1,7 @@
 using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
+using UnityEngine.Analytics;
 
 public class PhaseEvent : UnityEvent<int> { }
 
@@ -11,6 +12,7 @@ public class SlimeBossController : MonoBehaviour
     BossLungeAttack lungeAttack;
     BossProjectileAttack projectileAttack;
     BossBeamAttack beamAttack;
+
     [System.NonSerialized] public ParticleSystem stunParticles;
     [System.NonSerialized] public ParticleSystem chargingParticles;
 
@@ -37,7 +39,7 @@ public class SlimeBossController : MonoBehaviour
 
     // Start is called before the first frame update
     void Start()
-    {
+    { 
         startPosition = transform.position;
         health = GetComponent<BossHealth>();
         stunParticles = GetComponentsInChildren<ParticleSystem>()[0];
@@ -169,6 +171,7 @@ public class SlimeBossController : MonoBehaviour
         stunned = false;
         PhaseChange.Invoke(newPhase);
         phase = newPhase;
+        OnPha
     }
 
     public void ResetBossFight()
