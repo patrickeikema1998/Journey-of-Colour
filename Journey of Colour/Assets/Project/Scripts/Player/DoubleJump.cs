@@ -51,7 +51,7 @@ public class DoubleJump : MonoBehaviour
             doubleJump = false;
 
             landed = false;
-            playerAnim.DoubleJump();
+            playerAnim.DoubleJumpAnimation();
         }
 
         if (jump.canJump) { landed = true; }

@@ -22,7 +22,7 @@ public class DashAbility : MonoBehaviour
 
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         rb = player.GetComponent<Rigidbody>();
         _float = GetComponent<Float>();
         playerHealth = player.GetComponent<PlayerHealth>();
@@ -47,7 +47,7 @@ public class DashAbility : MonoBehaviour
         //Checks if player is able to dash
         if (Input.GetKeyDown(GameManager.GM.dashAbility) && coolDown < 0 && !playerHealth.dead && !_float.isFloating)
         {
-            playerAnim.Dash();
+            playerAnim.DashAnimation();
             rb.velocity = Vector3.zero;
             duration = durationTime;
         }

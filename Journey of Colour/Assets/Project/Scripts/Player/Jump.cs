@@ -39,7 +39,7 @@ public class Jump : MonoBehaviour
             sound.Play();
             rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
             jump = false;
-            GetComponentInChildren<PlayerAnimations>().Jump();
+            GetComponentInChildren<PlayerAnimations>().JumpAnimation();
         }
     }
     private void FixedUpdate()

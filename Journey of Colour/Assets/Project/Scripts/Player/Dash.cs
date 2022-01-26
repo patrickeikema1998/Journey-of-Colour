@@ -47,7 +47,7 @@ public class Dash : MonoBehaviour
         {
             //animation and sound
             sound.Play();
-            anim.Dash();
+            anim.DashAnimation();
 
             //start timers
             trailTimer.start = true;

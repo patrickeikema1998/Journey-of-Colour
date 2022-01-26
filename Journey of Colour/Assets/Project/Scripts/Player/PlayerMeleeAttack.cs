@@ -44,7 +44,7 @@ public class PlayerMeleeAttack : MeleeAttack
             sound.Play();
 
             meleeAttackCooldownTimer.Reset();
-            anim.Attack();
+            anim.AttackAnimation();
         }
     }
 }

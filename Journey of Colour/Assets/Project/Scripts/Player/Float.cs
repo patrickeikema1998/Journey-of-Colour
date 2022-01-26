@@ -103,7 +103,7 @@ public class Float : MonoBehaviour
             maxFloatTimer.start = true;
 
             //animation
-            playerAnim.Floating(true);
+            playerAnim.FloatingAnimation(true);
 
             //stopping movement and constrains.
             rb.useGravity = false;
@@ -132,7 +132,7 @@ public class Float : MonoBehaviour
         maxFloatTimer.start = false;
 
         //animation
-        playerAnim.Floating(false);
+        playerAnim.FloatingAnimation(false);
 
         //constrains
         swapClass.swappable = true;

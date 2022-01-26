@@ -16,7 +16,7 @@ public class AngelDevilSwitchPlatform : MonoBehaviour
     [SerializeField] bool startAsAngel;
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         playerClass = player.GetComponent<SwapClass>();
         objCollider = GetComponent<Collider>();
         material = GetComponent<Renderer>().material;

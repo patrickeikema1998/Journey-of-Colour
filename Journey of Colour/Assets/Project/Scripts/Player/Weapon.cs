@@ -48,7 +48,7 @@ public class Weapon : MonoBehaviour
         
         if (Input.GetKeyDown(GameManager.GM.fireBallAbility) && shootTimer.finish && !playerHealth.dead)
         {
-            anim.RangeAttack();
+            anim.RangeAttackAnimation();
             fireSound.Play();
             if (Input.mousePosition.x > player.transform.position.x)
             {

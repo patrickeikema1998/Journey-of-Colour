@@ -11,117 +11,155 @@ public class PlayerAnimations : MonoBehaviour
     [HideInInspector] public Animator myAnimator;
     float movementAnimationBlendSpeed = 30f;
 
+    int amountOfHitAnims = 3;
+    int amountOfDeathAnims = 3;
+    int amountOfJumpAnims = 3;
+    float maxSpeed = 1f;
+    float minimumAxisSpeed = 0.1f;
+    float minimumAnimSpeed = 0.1f;
+
+    //animator variable strings
+    string speedBoolName = "speed";
+    string landedBoolName = "landed";
+    string jumpBoolName = "jump";
+    string doubleJumpBoolName = "doubleJump";
+    string floatingBoolName = "floating";
+    string isDeadBoolName = "isDead";
+    string rangeAttackTriggerName = "rangeAttack";
+    string attackTriggerName = "attack";
+    string dashTriggerName = "dash";
+    string getHitTriggerName = "getHit";
+    string deathTriggerName = "death";
+
+
+
+
+
+
+
+
 
 
     private void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         playerClass = player.GetComponent<SwapClass>();
         playerMovement = player.GetComponent<PlayerMovement>();
         myAnimator = GetComponent<Animator>();
 
-        GameEvents.onPlayerDeath += PlayerDeath;
-        GameEvents.onRespawnPlayer += stopDeath;
+        //this adds the death animation to the death event. the stop death animation function is called so that the player goes back to idle in the animator.
+        GameEvents.onPlayerDeath += PlayerDeathAnimation;
+        GameEvents.onRespawnPlayer += stopDeathAnimation;
     }
 
     private void Update()
     {
-        MovementAndIdle();
-        if (playerMovement.isGrounded) myAnimator.SetBool("landed", true);
-        else myAnimator.SetBool("landed", false);
+
+        //this is the only animation handled in this class, the other animations are handled in the classes with that specific functionality.
+        MovementAndIdleAnimation();
+
+        //this just sets the landed bool in the animator on true if the player is grounded.
+        if (playerMovement.isGrounded) myAnimator.SetBool(landedBoolName, true);
+        else myAnimator.SetBool(landedBoolName, false);
     }
 
-    void MovementAndIdle()
+    void MovementAndIdleAnimation()
     {
         float desiredAnimSpeed;
-
-        if ((playerMovement.xAxis > 0.1 || playerMovement.xAxis < -0.1) && playerMovement.isGrounded)
+        //for both directions, if the speed is above a certain point, the desired animation speed is 1. else its 0.
+        if ((playerMovement.xAxis > minimumAxisSpeed || playerMovement.xAxis < -minimumAxisSpeed) && playerMovement.isGrounded)
         {
-            desiredAnimSpeed = 1;
+            desiredAnimSpeed = maxSpeed;
         }
         else
         {
             desiredAnimSpeed = 0;
         }
 
-        if (desiredAnimSpeed == 0 && myAnimator.GetFloat("speed") < 0.1)
+        //This makes the movement blending more snappy when the player stops. We agreed on making the animation stop almost instantly.
+        if (desiredAnimSpeed == 0 && myAnimator.GetFloat(speedBoolName) < minimumAnimSpeed)
         {
-            myAnimator.SetFloat("speed", 0);
+            myAnimator.SetFloat(speedBoolName, 0);
         }
         else
         {
-            myAnimator.SetFloat("speed", Mathf.Lerp(myAnimator.GetFloat("speed"), desiredAnimSpeed, movementAnimationBlendSpeed * Time.deltaTime));
+            myAnimator.SetFloat(speedBoolName, Mathf.Lerp(myAnimator.GetFloat(speedBoolName), desiredAnimSpeed, movementAnimationBlendSpeed * Time.deltaTime));
 
         }
     }
 
-    public void Jump()
+    public void JumpAnimation()
     {
 
 
         if (playerClass.IsDevil())
         {
-            int randomJump = Random.Range(1, 3);
-            myAnimator.SetTrigger("jump" + randomJump);
+            //if the player is a devil, theres a random jump animation.
+            int randomJump = Random.Range(1, amountOfJumpAnims);
+            myAnimator.SetTrigger(jumpBoolName + randomJump);
         }
         else
         {
-            myAnimator.SetTrigger("jump");
+            //the angel class has a standard jump animation, because it also has a standard double jump animation.
+            myAnimator.SetTrigger(jumpBoolName);
         }
     }
 
-    public void DoubleJump()
+    public void DoubleJumpAnimation()
     {
-        myAnimator.SetTrigger("doubleJump");
+        myAnimator.SetTrigger(doubleJumpBoolName);
     }
 
-    public void Attack()
+    public void AttackAnimation()
     {
-        myAnimator.SetTrigger("attack");
+        myAnimator.SetTrigger(attackTriggerName);
     }
 
-    public void Floating(bool floating)
+    public void FloatingAnimation(bool floating)
     {
-        if ((floating && !myAnimator.GetBool("floating")) || (!floating && myAnimator.GetBool("floating")))
+        //sets the bool on true or false
+        if ((floating && !myAnimator.GetBool(floatingBoolName)) || (!floating && myAnimator.GetBool(floatingBoolName)))
         {
-            myAnimator.SetBool("floating", floating);
+            myAnimator.SetBool(floatingBoolName, floating);
         }
     }
 
-    public void GetHit()
+    public void GetHitAnimation()
     {
-        int randomHit = Random.Range(1, 3);
-        myAnimator.SetTrigger("getHit" + randomHit);
+        int randomHit = Random.Range(1, amountOfHitAnims);
+        myAnimator.SetTrigger(getHitTriggerName + randomHit);
     }
 
-    public void Dash()
+    public void DashAnimation()
     {
-        myAnimator.SetTrigger("dash");
+        myAnimator.SetTrigger(dashTriggerName);
     }
 
-    public void Death(bool death)
+    public void DeathAnimation(bool death)
     {
-        if (!myAnimator.GetBool("isDead") && death)
+        //if the player dies, theres a random death anim.
+        if (!myAnimator.GetBool(isDeadBoolName) && death)
         {
-            int randomDeath = Random.Range(1, 3);
-            myAnimator.SetTrigger("death" + randomDeath);
+            int randomDeath = Random.Range(1, amountOfDeathAnims);
+            myAnimator.SetTrigger(deathTriggerName + randomDeath);
         }
-        myAnimator.SetBool("isDead", death);
+        //this bool is to stop other animations to happen.
+        myAnimator.SetBool(isDeadBoolName, death);
     }
 
-    public void RangeAttack()
+    public void RangeAttackAnimation()
     {
-        myAnimator.SetTrigger("rangeAttack");
+        myAnimator.SetTrigger(rangeAttackTriggerName);
     }
 
-    public void PlayerDeath()
+    public void PlayerDeathAnimation()
     {
-        Death(true);
+        DeathAnimation(true);
 
     }
-    void stopDeath()
+    void stopDeathAnimation()
     {
-        Death(false);
+        DeathAnimation(false);
     }
 
 }

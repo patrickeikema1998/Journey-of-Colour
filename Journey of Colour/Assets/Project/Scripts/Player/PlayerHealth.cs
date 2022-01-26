@@ -27,7 +27,7 @@ public class PlayerHealth : Health
     {
         if ((health - damageAmount) > 0) damageSound.Play();
         base.Damage(damageAmount);
-        GetComponentInChildren<PlayerAnimations>().GetHit();
+        GetComponentInChildren<PlayerAnimations>().GetHitAnimation();
 
         //sounds
         if (playerClass.IsAngel()) damageSound.pitch = Random.Range(angelPitch.x, angelPitch.y);

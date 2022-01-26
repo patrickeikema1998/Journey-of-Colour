@@ -9,7 +9,7 @@ public class RotateEnemy : MonoBehaviour
     GameObject player;
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         left = 270;
         right = 90;
     }
