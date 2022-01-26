@@ -71,7 +71,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
     {
         //starts vibrating timer when colliding with player
         //also resets the exit collision timer.
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
 
             vibratingTimer.start = true;
@@ -84,7 +84,7 @@ public class BreakingPlatformBehavior : MonoBehaviour
     private void OnCollisionExit(Collision collision)
     {
         //when exiting collision, starts the timer.
-        if (collision.gameObject.tag == "Player")
+        if (collision.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             OnExitingCollisionTimer.start = true;
         }

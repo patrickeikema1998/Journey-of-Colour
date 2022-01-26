@@ -15,6 +15,11 @@ public class Health : MonoBehaviour
     [SerializeField]
     ParticleSystem bloodParticles;
 
+    private void Update()
+    {
+        DeadCheck();
+    }
+
     public int GetHealth
     {
         get { return health; }

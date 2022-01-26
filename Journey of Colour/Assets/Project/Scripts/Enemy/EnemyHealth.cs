@@ -10,14 +10,9 @@ public class EnemyHealth : Health
     [SerializeField] AudioSource damageSound;
 
     // Start is called before the first frame update
-    void Start()
+    private void Start()
     {
         slider = GetComponentInChildren<Slider>();
-    }
-
-    private void Update()
-    {
-        DeadCheck();
     }
 
     public override void Damage(int damageAmount)

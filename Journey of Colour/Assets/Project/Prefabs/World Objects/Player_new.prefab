@@ -30,7 +30,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 6
+  m_RootOrder: 4
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!198 &32173094
 ParticleSystem:
@@ -5021,7 +5021,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 5
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: -46.017, y: 0, z: 0}
 --- !u!198 &405462224
 ParticleSystem:
@@ -10271,7 +10271,7 @@ Transform:
   - {fileID: 449361040}
   - {fileID: 2703243485343200381}
   m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 4
+  m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1549392164
 GameObject:
@@ -10527,66 +10527,6 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
---- !u!1 &2330538529329680994
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 993643816317321575}
-  m_Layer: 7
-  m_Name: FireBallPointLeft
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &993643816317321575
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2330538529329680994}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.4399999, z: -0.718}
-  m_LocalScale: {x: 0.8333331, y: 0.83333325, z: 0.8333331}
-  m_Children: []
-  m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 3
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!1 &2726974680396012434
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 2024685874119392762}
-  m_Layer: 7
-  m_Name: FireBallPointRight
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!4 &2024685874119392762
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2726974680396012434}
-  m_LocalRotation: {x: -0, y: -0.7071068, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 0.4399999, z: 0.718}
-  m_LocalScale: {x: 0.8333331, y: 0.83333325, z: 0.8333331}
-  m_Children: []
-  m_Father: {fileID: 8949287569552546977}
-  m_RootOrder: 2
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!114 &2366306593432405958
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10779,8 +10719,6 @@ Transform:
   m_Children:
   - {fileID: 2647605834071225690}
   - {fileID: 4909877701084508665}
-  - {fileID: 2024685874119392762}
-  - {fileID: 993643816317321575}
   - {fileID: 1525069207}
   - {fileID: 405462222}
   - {fileID: 32173092}
@@ -10882,6 +10820,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
+  playerCollider: {fileID: 0}
 --- !u!114 &1973236706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10896,6 +10835,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathAnimTime: 0
   sound: {fileID: 1196653124}
+  dying: 0
+  waitTimer: {fileID: 0}
 --- !u!114 &1973236693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -11032,17 +10973,37 @@ PrefabInstance:
       value: 70
       objectReference: {fileID: 0}
     - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: damage
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
       propertyPath: fireSound
       value: 
       objectReference: {fileID: 3937416908542718930}
     - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: fireBallSpeed
+      value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: fireBallOffsetX
+      value: 0.5
+      objectReference: {fileID: 0}
+    - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: fireBallOffsetY
+      value: 0.7
+      objectReference: {fileID: 0}
+    - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
       propertyPath: fireBallPointLeft
       value: 
-      objectReference: {fileID: 993643816317321575}
+      objectReference: {fileID: 0}
     - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
       propertyPath: fireBallPointRight
       value: 
-      objectReference: {fileID: 2024685874119392762}
+      objectReference: {fileID: 0}
+    - target: {fileID: 636924351257444760, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
+      propertyPath: shootCooldownInSeconds
+      value: 0.5
+      objectReference: {fileID: 0}
     - target: {fileID: 1647683470037761804, guid: 21823053bd8810d4795458b474d3ecd9, type: 3}
       propertyPath: m_RootOrder
       value: 0

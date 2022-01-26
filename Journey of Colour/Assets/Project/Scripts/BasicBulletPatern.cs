@@ -16,7 +16,7 @@ public class BasicBulletPatern : MonoBehaviour
     void Start()
     {
         rb = GetComponent<Rigidbody>();
-        target = GameObject.Find("Player");
+        target = GameObject.Find(ObjectTags._PlayerTag);
         moveDirection = (target.transform.position - transform.position).normalized * moveSpeed;
         moveDirection = new Vector3(moveDirection.x, moveDirection.y + playerOffsetY, moveDirection.z);
         rb.velocity = moveDirection;
@@ -35,7 +35,7 @@ public class BasicBulletPatern : MonoBehaviour
             //target.GetComponent<TakeDamage>().TakeHit(2);
             target.GetComponent<PlayerHealth>().Damage(damage);
         }
-        else if(collision.gameObject.tag == "Enemy"){
+        else if(collision.gameObject.CompareTag(ObjectTags._EnemyTag)){
             collision.gameObject.GetComponent<EnemyHealth>().Damage(damage);
         }
 

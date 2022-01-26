@@ -23,7 +23,7 @@ public class DoubleJump : MonoBehaviour
     void Start()
     {
         landed = true;
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         jump = player.GetComponentInChildren<Jump>();
         playerAnim = GetComponent<PlayerAnimations>();
         rb = player.GetComponent<Rigidbody>();
@@ -60,6 +60,6 @@ public class DoubleJump : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
-        if (collision.gameObject.tag == "Ground") canDoubleJump = false;
+        if (collision.gameObject.CompareTag(ObjectTags._GroundTag)) canDoubleJump = false;
     }
 }

@@ -23,7 +23,7 @@ public class Counter : MonoBehaviour
     private void Start()
     {
         idList = new Dictionary<int, bool>();
-        player = GameObject.FindGameObjectWithTag("Player");
+        player = GameObject.FindGameObjectWithTag(ObjectTags._PlayerTag);
         fadeTimer = new FadeTimer(fadeTime, timeToVisible, timeToInvisible, this.gameObject);
         fadeTimer.Reset();
     }
@@ -44,7 +44,7 @@ public class Counter : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Enemy" || other.gameObject.tag == "Bullet")
+        if (other.gameObject.CompareTag(ObjectTags._EnemyTag) || other.gameObject.CompareTag(ObjectTags._BulletTag))
         {
             Redirect(other);
         }

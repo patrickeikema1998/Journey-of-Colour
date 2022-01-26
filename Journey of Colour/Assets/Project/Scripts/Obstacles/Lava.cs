@@ -19,12 +19,12 @@ public class Lava : MonoBehaviour
 
     private void OnTriggerStay(Collider other)
     {
-        if (other.gameObject.tag == "Player")
+        if (other.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             other.gameObject.GetComponent<Rigidbody>().velocity *= 0.4f;
         }
 
-        if (lavaTimer.finish && other.gameObject.tag == "Player")
+        if (lavaTimer.finish && other.gameObject.CompareTag(ObjectTags._PlayerTag))
         {
             other.gameObject.GetComponent<PlayerHealth>().Damage(30);
             lavaTimer.Reset();

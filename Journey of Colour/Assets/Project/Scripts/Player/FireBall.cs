@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class FireBall : MonoBehaviour
 {
-    public float speed;
-    public int damage = 5;
+    [HideInInspector] public float speed;
+    [HideInInspector] public int damage = 5;
 
     public Rigidbody rb;
     public GameObject player;
@@ -14,7 +14,7 @@ public class FireBall : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        player = GameObject.Find("Player");
+        player = GameObject.Find(ObjectTags._PlayerTag);
         playerMovement = player.GetComponent<PlayerMovement>();
 
         rb.velocity = transform.right * speed;
@@ -27,14 +27,14 @@ public class FireBall : MonoBehaviour
     }
 
     // If this gameObject collides with an object with the tag "Enemy", the
-    // enemy will take 5 damage from within the HealthClass on the enemy itself.
-    // If it collides with something else, it will simply get destroyed
+    // enemy will take damage from within the EnemyHealth on the enemy itself.
+    // If the FireBall collides with the camTrigger of another bullet, it will simply get destroyed.
     void OnTriggerEnter(Collider collision)
     {
-        if (collision.tag == "Enemy")
+        if (collision.CompareTag(ObjectTags._EnemyTag))
         {
-            collision.GetComponent<Health>().Damage(damage);
+            collision.GetComponent<EnemyHealth>().Damage(damage);
         }
-        if(collision.tag != "CamTrigger" && collision.tag != "Bullet") Destroy(gameObject);
+        if (collision.CompareTag(ObjectTags._CamTriggerTag) && collision.CompareTag(ObjectTags._BulletTag)) Destroy(gameObject);
     }
 }

@@ -16,8 +16,10 @@ public class ControlsMenu : MonoBehaviour
     {
         waitingForKeys = false;
 
-        //Here we loop through the children of the panel. These are the buttons, they all have a text component
-        //so in here we change the text component to the GameManager.GM.KeyCode put into a String
+        //We loopen hier door de childs van het panel. Dit zijn alle buttons die we willen aanpassen.
+        //Deze hebben een text component die we willen veranderen. Dus zet deze code de text om naar wat het moet zijn,
+        //namelijk de key die op de bepaalde keyCode staat. Dit is nog geen string, dus doen we een ToString() om het
+        //om te zetten in text.
         for (int i = 0; i < controlPanel.childCount; i++)
         {
             if (controlPanel.GetChild(i).name == "SwitchPlayerKey")
@@ -39,9 +41,8 @@ public class ControlsMenu : MonoBehaviour
     {
         keyEvent = Event.current;
 
-        //if the button is pressed, we are waiting for input
-        //if the user presses a key, the new key will be assigned to newKey
-        //we will assign the newKey to the key we are modifying
+        //Als de button is gepressed, wachten we op input.
+        //De key die is ingedrukt wordt gezet naar keyEvent.keyCode.
         if (keyEvent.isKey && waitingForKeys)
         {
             newKey = keyEvent.keyCode;
@@ -49,7 +50,7 @@ public class ControlsMenu : MonoBehaviour
         }
     }
 
-    //when you are not waiting for a key, then assign the key
+    //when you are not waiting for a key, then assign the key.
     public void StartAssignment(string keyName)
     {
         if (!waitingForKeys)
@@ -58,13 +59,13 @@ public class ControlsMenu : MonoBehaviour
         }
     }
 
-    //we can update the text of the button we are clicking on
+    //we can update the text of the button we are clicking on.
     public void SendText(Text text)
     {
         buttonText = text;
     }
 
-    //this is a control statement
+    //this is a control statement.
     IEnumerator WaitForKey()
     {
         while (!keyEvent.isKey)
@@ -75,7 +76,7 @@ public class ControlsMenu : MonoBehaviour
     {
         waitingForKeys = true;
 
-        //stop the coroutine from executing until there is a key pressed on the keyboard
+        //stop the coroutine from executing until there is a key pressed on the keyboard.
         yield return WaitForKey();
 
         switch (keyName)

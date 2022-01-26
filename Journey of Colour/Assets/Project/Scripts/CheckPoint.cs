@@ -22,7 +22,7 @@ public class CheckPoint : MonoBehaviour
 
     void Start()
     {
-        playerMovement = GameObject.Find("Player").GetComponent<PlayerMovement>();
+        playerMovement = GameObject.Find(ObjectTags._PlayerTag).GetComponent<PlayerMovement>();
         health = player.GetComponent<PlayerHealth>();
         rb = player.GetComponent<Rigidbody>();
         beginOffset = Vector3.up;
@@ -30,12 +30,12 @@ public class CheckPoint : MonoBehaviour
         respawnPos = originPos;
 
         GameEvents.onRespawnPlayer += ResetPlayerPos;
-        camera = GameObject.FindGameObjectWithTag("MainCamera");
+        camera = GameObject.FindGameObjectWithTag(ObjectTags._CameraTag);
     }
 
     private void OnTriggerEnter(Collider other)
     {
-        if (other.gameObject.tag == "CheckPoint")
+        if (other.gameObject.CompareTag(ObjectTags._CheckPointTag))
         {
             respawnPos = other.transform.position + beginOffset;
             other.gameObject.transform.position = new Vector3(0, 10000, 0);

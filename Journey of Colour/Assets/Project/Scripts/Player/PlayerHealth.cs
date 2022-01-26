@@ -8,6 +8,7 @@ public class PlayerHealth : Health
     SwapClass playerClass;
     Vector2 angelPitch, devilPitch;
     [SerializeField] AudioSource damageSound;
+
     private void Start()
     {
         slider = GameObject.Find("Health Panel").GetComponentInChildren<Slider>();
@@ -16,11 +17,6 @@ public class PlayerHealth : Health
         playerClass = GetComponent<SwapClass>();
         angelPitch = new Vector2(1.2f, 1.3f);
         devilPitch = new Vector2(1f, 1f);
-    }
-
-    private void Update()
-    {
-        DeadCheck();
     }
 
     public override void Damage(int damageAmount)
