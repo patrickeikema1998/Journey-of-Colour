@@ -12,14 +12,16 @@ public class DashAbility : MonoBehaviour
     private float direction;
     private float coolDown;
     private float duration;
-    GameObject player;
-    Rigidbody rb;
-    SwapClass swapClass;
-    PlayerAnimations playerAnim;
-    PlayerHealth playerHealth;
-    PlayerMovement movement;
-    Float _float;
+    private float gravityTime;
+    private GameObject player;
+    private Rigidbody rb;
+    private SwapClass swapClass;
+    private PlayerAnimations playerAnim;
+    private PlayerHealth playerHealth;
+    private PlayerMovement movement;
+    private Float _float;
 
+    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
@@ -31,6 +33,7 @@ public class DashAbility : MonoBehaviour
         coolDown = coolDownTime;
         swapClass = player.GetComponent<SwapClass>();
         duration = durationTime;
+        gravityTime = - 0.4f;
         direction = 1;
     }
     // Update is called once per frame
@@ -64,13 +67,13 @@ public class DashAbility : MonoBehaviour
             else
             {
                 movement.canMove = true;
-                if (duration < -0.4) rb.useGravity = true;
+                if (duration < gravityTime) rb.useGravity = true;
             }
         }
 
     }
 
-
+    //The actual dash function is called every frame when duration is more than zero
     public void Dash()
     {
         rb.velocity = new Vector3(rb.velocity.x,0,0);

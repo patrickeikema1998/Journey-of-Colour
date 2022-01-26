@@ -7,9 +7,9 @@ public class BasicBulletPatern : MonoBehaviour
     [SerializeField] float moveSpeed = 7f;
     [SerializeField] float playerOffsetY;
     [SerializeField] int damage;
-    GameObject target;
-    Rigidbody rb;
-    Vector3 moveDirection;
+    private GameObject target;
+    private Rigidbody rb;
+    private Vector3 moveDirection;
 
 
     // Start is called before the first frame update
@@ -22,6 +22,7 @@ public class BasicBulletPatern : MonoBehaviour
         rb.velocity = moveDirection;
     }
 
+    //fuction that makes the projectile dissapear
     private void OnBecameInvisible()
     {
         Destroy(gameObject);
@@ -29,19 +30,13 @@ public class BasicBulletPatern : MonoBehaviour
 
     private void OnCollisionEnter(Collision collision)
     {
+        //does damage to either player or enemy
         if (collision.gameObject == target)
-        {
-            //Debug.Log("Hit!");
-            //target.GetComponent<TakeDamage>().TakeHit(2);
             target.GetComponent<PlayerHealth>().Damage(damage);
-        }
-        else if(collision.gameObject.tag == "Enemy"){
+
+        else if (collision.gameObject.tag == "Enemy")
             collision.gameObject.GetComponent<EnemyHealth>().Damage(damage);
-        }
 
-        Destroy(gameObject);
-
-        //if (collision.gameObject.tag != "Enemy")
-        //    Destroy(gameObject);
+        OnBecameInvisible();
     }
 }

@@ -13,14 +13,12 @@ public class EnemyShoot : MonoBehaviour
     EnemyHealth health;
     [SerializeField] AudioSource sound;
 
-    float coolDown;
-    
-    Vector3 offset;
-    
-    bool lookingLeft;
+    private float coolDown;
+    private Vector3 offset;
+    private bool lookingLeft;
+    private float distance;
 
-    float distance;
-
+    // Start is called before the first frame update
     void Start()
     {
         player = GameObject.Find("Player");
@@ -38,6 +36,7 @@ public class EnemyShoot : MonoBehaviour
 
         distance = Vector3.Distance(transform.position, player.transform.position);
 
+        //checks if enemy can fire projectile 
         if (coolDown < 0 && distance < enemySight && !health.dead)
         {
             FireBullet();

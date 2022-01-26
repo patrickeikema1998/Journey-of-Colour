@@ -6,9 +6,9 @@ using UnityEngine.SceneManagement;
 public class NextLevel : MonoBehaviour
 {
     [SerializeField] GameObject winScreen;
-    Scene currentScene;
-    int nextSceneIndex;
-    bool levelBeat = false;
+    private Scene currentScene;
+    private int nextSceneIndex;
+    private bool levelBeat = false;
 
     // Start is called before the first frame update
     void Start()
@@ -18,7 +18,7 @@ public class NextLevel : MonoBehaviour
         winScreen.SetActive(false);
     }
 
-    
+    //checks if player is at the level finish
     private void OnTriggerStay(Collider collision)
     {
         if (collision.gameObject.CompareTag("Player"))
@@ -29,7 +29,6 @@ public class NextLevel : MonoBehaviour
     }
 
     // Update is called once per frame
-
     private void Update()
     {
         if (levelBeat == true && Input.GetKeyDown(KeyCode.Space))
@@ -37,6 +36,8 @@ public class NextLevel : MonoBehaviour
             GoToNextLevel();
         }
     }
+
+    //Function that loads the next scene in the build index
     public void GoToNextLevel()
     {
         if (nextSceneIndex > SceneManager.sceneCount)
