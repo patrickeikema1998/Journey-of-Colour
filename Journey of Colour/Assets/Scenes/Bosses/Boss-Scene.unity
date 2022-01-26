@@ -7489,6 +7489,18 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
+--- !u!134 &462517093
+PhysicMaterial:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_Name: SlimeBoss (Instance)
+  dynamicFriction: 10
+  staticFriction: 10
+  bounciness: 0
+  frictionCombine: 3
+  bounceCombine: 1
 --- !u!1 &474532131
 GameObject:
   m_ObjectHideFlags: 0
@@ -21782,7 +21794,36 @@ MonoBehaviour:
     m_IsEventExpanded: 1
     m_StandardEventType: CustomEvent
     m_Parameters:
-      m_Parameters: []
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: Phase
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 2
+          m_ValueType: System.Int32
+          m_Value: 
+          m_Target:
+            m_Target: {fileID: 6598137198058354630}
+            m_Path: phase
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            m_Type: System.Int32
+            m_EnumType: 
     m_Name: CurrentPhase
 --- !u!1 &1516524029
 GameObject:
@@ -44944,6 +44985,14 @@ PrefabInstance:
       propertyPath: m_Name
       value: Slime-Boss
       objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520920, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: result
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6598137198759520925, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
+      propertyPath: m_Material
+      value: 
+      objectReference: {fileID: 462517093}
     - target: {fileID: 6598137198759520926, guid: 4da4e2b7b45410549b9f0d22b36c4fd5, type: 3}
       propertyPath: m_RootOrder
       value: 5

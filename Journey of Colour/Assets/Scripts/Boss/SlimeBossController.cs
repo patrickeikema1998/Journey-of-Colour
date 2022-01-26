@@ -22,7 +22,7 @@ public class SlimeBossController : MonoBehaviour
     Vector3 startPosition;
 
     [SerializeField]
-    int phase = 1;
+    public int phase = 1;
 
     [SerializeField]
     int meleeDamage = 4;
@@ -171,7 +171,7 @@ public class SlimeBossController : MonoBehaviour
         stunned = false;
         PhaseChange.Invoke(newPhase);
         phase = newPhase;
-        OnPha
+        Analytics.CustomEvent("CurrentPhase");
     }
 
     public void ResetBossFight()
