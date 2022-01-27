@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.SceneManagement;
 using UnityEngine.Analytics;
+using System.Collections.Generic;
 
 public class PhaseEvent : UnityEvent<int> { }
 
@@ -37,6 +38,9 @@ public class SlimeBossController : MonoBehaviour
     float stunTime;
     bool stunned;
 
+    float timeInPhase1, timeInPhase2, timeInPhase3, timeInPhase4;
+    int amountOfStuns;
+
     // Start is called before the first frame update
     void Start()
     { 
@@ -50,6 +54,7 @@ public class SlimeBossController : MonoBehaviour
         beamAttack = GetComponent<BossBeamAttack>();
         SwitchPhase(phase);
         GameEvents.onRespawnPlayer += ResetBossFight;
+        GameEvents.onPlayerDeath += PhaseAnalytics;
     }
 
     // Update is called once per frame
@@ -65,15 +70,23 @@ public class SlimeBossController : MonoBehaviour
         {
             //checks the health and switches phase
             case 1:
+                timeInPhase1 += Time.deltaTime;
+
                 if (health.GetHealth <= health.maxHealth / 4 * 3) SwitchPhase(phase + 1);
                 break;
             case 2:
+                timeInPhase2 += Time.deltaTime;
+
                 if (health.GetHealth <= health.maxHealth / 4 * 2) SwitchPhase(phase + 1);
                 break;
             case 3:
+                timeInPhase3 += Time.deltaTime;
+
                 if (health.GetHealth <= health.maxHealth / 4) SwitchPhase(phase + 1);
                 break;
             case 4:
+                timeInPhase4 += Time.deltaTime;
+
                 if (health.dead) gameObject.SetActive(false);
                 break;
         }
@@ -107,7 +120,7 @@ public class SlimeBossController : MonoBehaviour
 
     public void Stun()
     {
-        //dissables all of the attacks
+        //disables all of the attacks
         stunTime = 0;
         stunned = true;
         bounceAttack.enabled = false;
@@ -116,6 +129,7 @@ public class SlimeBossController : MonoBehaviour
         beamAttack.enabled = false;
         stunParticles.Clear();
         stunParticles.Play();
+        amountOfStuns++;
     }
 
     void ShootBeam()
@@ -179,6 +193,25 @@ public class SlimeBossController : MonoBehaviour
         health.Heal(health.maxHealth);
         transform.position = startPosition;
         SwitchPhase(1);
+    }
+    public void PhaseAnalytics()
+    {
+        AnalyticsEvent.Custom("PlayerDeath", new Dictionary<string, object>
+        {
+            { "Current_phase",  phase},
+            { "time_phase_1", timeInPhase1 },
+            { "time_phase_2", timeInPhase2 },
+            { "time_phase_3", timeInPhase3 },
+            { "time_phase_4", timeInPhase4 },
+            { "amount_of_stuns", amountOfStuns }
+        });
+
+        timeInPhase1 = 0;
+        timeInPhase2 = 0;
+        timeInPhase3 = 0;
+        timeInPhase4 = 0;
+
+        amountOfStuns = 0;
     }
 
     private void OnDestroy()

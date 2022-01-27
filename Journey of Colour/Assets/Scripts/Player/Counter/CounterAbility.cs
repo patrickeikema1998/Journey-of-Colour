@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class CounterAbility : MonoBehaviour
 {
@@ -10,6 +11,8 @@ public class CounterAbility : MonoBehaviour
     private bool keyDown, once;
     private SwapClass swapClass;
     private CustomTimer cooldownTimer;
+
+    int amountOfCounters;
 
     [HideInInspector] public float cdTime;
     private GameObject player;
@@ -23,6 +26,7 @@ public class CounterAbility : MonoBehaviour
         swapClass = player.GetComponent<SwapClass>();
         cooldownTimer = new CustomTimer(cooldownTime);
         cooldownTimer.finish = true;
+        GameEvents.onPlayerDeath += AnalyticsCounter;
     }
 
     public void Update()
@@ -55,7 +59,17 @@ public class CounterAbility : MonoBehaviour
 
     void Counter()
     {
+        amountOfCounters++;
         //Create a temporary CounterArea
-        Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + playerHeight/2, transform.position.z), transform.rotation);
+        Instantiate(CounterPrefab, new Vector3(transform.position.x, transform.position.y + playerHeight / 2, transform.position.z), transform.rotation);
+    }
+
+    public void AnalyticsCounter()
+    {
+        AnalyticsEvent.Custom("Counters", new Dictionary<string, object>
+        {
+            { "Amount_of_counters",  amountOfCounters},
+        });
+        amountOfCounters = 0;
     }
 }
