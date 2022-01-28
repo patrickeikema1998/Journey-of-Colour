@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class AutomaticScrolling : MonoBehaviour
 {
@@ -118,6 +119,8 @@ public class AutomaticScrolling : MonoBehaviour
 
     public void Reset()
     {
+        Analytics();
+
         //Resets the camera offset to the starting camera offset
         normalSpeed = startSpeeds.x;
         highSpeed = startSpeeds.y;
@@ -136,5 +139,15 @@ public class AutomaticScrolling : MonoBehaviour
                 trigger.GetComponent<CameraTrigger>().enabled = true;
             }
         }
+    }
+
+    void Analytics()
+    {
+        AnalyticsEvent.Custom("CameraSpeeds", new Dictionary<string, object>
+            {
+                { "Normal_speed",  normalSpeed},
+                { "Current_speed",  speed},
+                { "High_speed",  highSpeed},
+        });
     }
 }

@@ -56,6 +56,5 @@ public class PlayerDeath : MonoBehaviour
         }
 
         if (transform.position.y < deathHeight) { GameEvents.RespawnPlayer(); }
-
     }
 }

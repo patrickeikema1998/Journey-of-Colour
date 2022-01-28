@@ -1,9 +1,13 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Analytics;
 
 public class CheckPoint : MonoBehaviour
 {
+    [HideInInspector] public float distance, time;
+    float timelapsed;
+
     public GameObject player;
     private PlayerHealth health;
     private Rigidbody rb;
@@ -43,12 +47,18 @@ public class CheckPoint : MonoBehaviour
         }
     }
 
+    private void Update()
+    {
+        timelapsed += Time.deltaTime;
+    }
+
     void ResetPlayerPos()
     {
         AutomaticScrolling scrolling = camera.GetComponent<AutomaticScrolling>();
 
         if (!checkPointHit) 
         {
+            Analytics();
             rb.velocity = Vector3.zero;
             player.transform.position = respawnPos + beginOffset;
             if(scrolling.isActiveAndEnabled) scrolling.Reset();
@@ -61,6 +71,18 @@ public class CheckPoint : MonoBehaviour
             player.transform.position = respawnPos;
             if(scrolling.isActiveAndEnabled) scrolling.Reset();
         }
+    }
+
+    void Analytics()
+    {
+        distance = player.transform.position.x - originPos.x;
+        time = Time.timeSinceLevelLoad - timelapsed;
+        AnalyticsEvent.Custom("PlayerDeath", new Dictionary<string, object>
+            {
+                { "Distance",  distance},
+                { "Time",  distance},
+            });
+        timelapsed = 0;
     }
 }
 
