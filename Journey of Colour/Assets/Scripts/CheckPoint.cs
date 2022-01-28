@@ -51,7 +51,7 @@ public class CheckPoint : MonoBehaviour
         {
             rb.velocity = Vector3.zero;
             player.transform.position = respawnPos + beginOffset;
-            if(scrolling.isActiveAndEnabled) scrolling.Reset();
+            if(scrolling != null && scrolling.isActiveAndEnabled) scrolling.Reset();
         }
         else
         {
@@ -59,7 +59,7 @@ public class CheckPoint : MonoBehaviour
             //to the respawnPos which will be acitvated when the checkPoints is triggered.
             rb.velocity = Vector3.zero;
             player.transform.position = respawnPos;
-            if(scrolling.isActiveAndEnabled) scrolling.Reset();
+            if(scrolling != null && scrolling.isActiveAndEnabled) scrolling.Reset();
         }
     }
 }
