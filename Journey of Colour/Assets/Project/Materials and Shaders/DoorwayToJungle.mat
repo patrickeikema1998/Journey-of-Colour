@@ -47,3 +47,16 @@ Material:
     - FresnalColor: {r: 0.44630075, g: 2.3678746, b: 0, a: 0}
     - _Color: {r: 0.6117647, g: 1.4980392, b: 1.4588236, a: 1}
   m_BuildTextureStacks: []
+--- !u!114 &5084782636447101740
+MonoBehaviour:
+  m_ObjectHideFlags: 11
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d0353a89b1f911e48b9e16bdc9f2e058, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  version: 5
