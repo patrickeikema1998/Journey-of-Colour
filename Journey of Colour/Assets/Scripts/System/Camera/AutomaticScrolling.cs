@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Analytics;
+using UnityEngine.SceneManagement;
 
 public class AutomaticScrolling : MonoBehaviour
 {
@@ -145,6 +146,7 @@ public class AutomaticScrolling : MonoBehaviour
     {
         AnalyticsEvent.Custom("CameraSpeeds", new Dictionary<string, object>
             {
+                { "Scene",  SceneManager.GetActiveScene().name},
                 { "Normal_speed",  normalSpeed},
                 { "Current_speed",  speed},
                 { "High_speed",  highSpeed},

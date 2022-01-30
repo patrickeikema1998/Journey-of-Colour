@@ -15,6 +15,7 @@ public class PlayerDeath : MonoBehaviour
     [HideInInspector] public bool dying;
 
     [HideInInspector] public CustomTimer waitTimer;
+    Rigidbody rb; 
 
     // Start is called before the first frame update
     void Start()
@@ -27,6 +28,7 @@ public class PlayerDeath : MonoBehaviour
         health = GetComponent<PlayerHealth>();
         angelPitch = new Vector2(1.2f, 1.3f);
         devilPitch = new Vector2(1f, 1f);
+        rb = GetComponent<Rigidbody>();
     }
 
     // Update is called once per frame
@@ -45,6 +47,7 @@ public class PlayerDeath : MonoBehaviour
             else sound.pitch = Random.Range(devilPitch.x, devilPitch.y);
             sound.Play();
             waitTimer.Reset();
+            rb.velocity = Vector3.zero;
         }
         if (deathTimer.finish)
         {

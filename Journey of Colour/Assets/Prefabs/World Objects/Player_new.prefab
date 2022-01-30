@@ -10759,6 +10759,7 @@ GameObject:
   - component: {fileID: 1973236693}
   - component: {fileID: 1973236699}
   - component: {fileID: 3814855406369161049}
+  - component: {fileID: 3255857245179256810}
   m_Layer: 7
   m_Name: Player_new
   m_TagString: Player
@@ -10841,6 +10842,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ba4360ad34f57e446aa6005b263595a2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  distance: 0
+  time: 0
   player: {fileID: 8949287569552546981}
 --- !u!114 &1973236701
 MonoBehaviour:
@@ -10882,6 +10885,7 @@ MonoBehaviour:
   layerMask:
     serializedVersion: 2
     m_Bits: 2048
+  playerCollider: {fileID: 0}
 --- !u!114 &1973236706
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10896,6 +10900,8 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   deathAnimTime: 0
   sound: {fileID: 1196653124}
+  dying: 0
+  waitTimer: {fileID: 0}
 --- !u!114 &1973236693
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -10934,6 +10940,65 @@ AudioListener:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8949287569552546981}
   m_Enabled: 1
+--- !u!114 &3255857245179256810
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8949287569552546981}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: -745406591, guid: 220224b43fc464c28bc0e8de8f54a432, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_Trigger:
+    m_IsTriggerExpanded: 1
+    m_Type: 2
+    m_LifecycleEvent: 2
+    m_ApplyRules: 0
+    m_Rules:
+      m_Rules: []
+    m_TriggerBool: 0
+    m_InitTime: 5
+    m_RepeatTime: 0
+    m_Repetitions: 0
+    repetitionCount: 0
+  m_EventPayload:
+    m_IsEventExpanded: 1
+    m_StandardEventType: CustomEvent
+    m_Parameters:
+      m_Parameters:
+      - m_RequirementType: 0
+        m_GroupID: 
+        m_Tooltip: 
+        m_Name: Distance
+        m_Value:
+          m_EditingCustomValue: 0
+          m_PopupIndex: 0
+          m_CustomValue: 
+          m_FixedType: 0
+          m_EnumType: 
+          m_EnumTypeIsCustomizable: 0
+          m_CanDisable: 0
+          m_PropertyType: 2
+          m_ValueType: System.Single
+          m_Value: Works
+          m_Target:
+            m_Target: {fileID: 7909688683903341602}
+            m_Path: distance
+            m_ValidTypeNames:
+            - System.Int32
+            - System.Boolean
+            - System.Decimal
+            - System.Double
+            - System.Single
+            - System.Int64
+            - System.Int16
+            - System.String
+            m_Type: System.Single
+            m_EnumType: 
+    m_Name: test_event
 --- !u!1001 &1066220266792107791
 PrefabInstance:
   m_ObjectHideFlags: 0
