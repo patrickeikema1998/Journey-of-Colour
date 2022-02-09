@@ -47,8 +47,7 @@ public class FireBallAbility : MonoBehaviour
             anim.RangeAttack();
             fireSound.Play();
 
-            // We use Invoke because we need the animation to play first and after that do the Shoot function.
-            Invoke("Shoot", shootAnimationTime);
+            Shoot();
 
             shootCooldownTimer.Reset();
         }
