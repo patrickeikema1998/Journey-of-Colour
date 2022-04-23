@@ -62,6 +62,7 @@ public class BossBeamAttack : MonoBehaviour
                 float beamScaleY = hit.point.x - (transform.position.x + (transform.lossyScale.x /2));
                 beam.transform.localScale = new Vector3(transform.lossyScale.x, beamScaleY /2, transform.lossyScale.z);
                 Instantiate(beam, transform.position + new Vector3((beamScaleY / 2) + (transform.lossyScale.x / 2 * RayDirection.x), 0), Quaternion.Euler(0, 0, 90));
+                //returns the prefab to the original size
                 beam.transform.localScale = new Vector3(transform.lossyScale.x, originalBeamScale, transform.lossyScale.z);
 
                 slimeBoss.chargingParticles.Stop();
